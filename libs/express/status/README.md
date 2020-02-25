@@ -46,7 +46,7 @@ app.use(ExpressStatusRouter);
 #### ExpressStatusController
 
 The controller that takes care of handling the route callback.
-Using the controller gives you the
+Using the controller gives you the flexibility of adding your own endpoint.
 
 Usage:
 
