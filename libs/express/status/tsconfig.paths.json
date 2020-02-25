@@ -1,0 +1,11 @@
+{
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {}
+	},
+	"include": [
+		"src/",
+		"types/",
+		"jest.config.js"
+	]
+}

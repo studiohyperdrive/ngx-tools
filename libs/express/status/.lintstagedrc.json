@@ -1,0 +1,3 @@
+{
+	"*.ts": "eslint -c .eslintrc.js --ext .ts,.js src/ --quiet"
+}

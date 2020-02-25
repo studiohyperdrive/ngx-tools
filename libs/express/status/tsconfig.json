@@ -1,0 +1,30 @@
+{
+	"compilerOptions": {
+		"declaration": true,
+		"declarationDir": "lib/types",
+		"esModuleInterop": true,
+		"experimentalDecorators": true,
+		"importHelpers": true,
+		"module": "ESNext",
+		"moduleResolution": "node",
+		"strict": true,
+		"target": "ES2018",
+		"lib": [
+			"ES2018",
+		]
+	},
+	"include": [
+		"src/**/*.ts",
+		// Property 'toBeString' does not exist on type 'Matchers<any>'.
+		// 1. https://github.com/jest-community/jest-extended/issues/189
+		// 2. https://github.com/jest-community/jest-extended#typescript
+		// If the editor does not recognise the custom jest-extended machters,
+		// add a global.d.ts file with import of jest-extended
+		"types/*",
+	],
+	"exclude": [
+		"node_modules",
+		"src/**.spec.ts",
+	],
+	"extends": "./tsconfig.paths.json"
+}
