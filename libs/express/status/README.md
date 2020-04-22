@@ -55,7 +55,7 @@ import { ExpressStatusController } from '@studiohyperdrive/express-status';
 
 ...
 
-public expressStatusController = new ExpressStatusController();
+const expressStatusController = new ExpressStatusController();
 
-router.route('/status').get(this.expressStatusController.get);
+router.route('/status').get(expressStatusController.get);
 ```
