@@ -2,6 +2,8 @@ import Express from 'express';
 import Supertest from 'supertest';
 import { ExpressStatusController } from './express-status.controller';
 
+const expressStatusController = new ExpressStatusController();
+
 describe('Express Status', () => {
 	// Set the required process.env
 	process.env.TZ = 'Europe/Brussels';
@@ -14,7 +16,7 @@ describe('Express Status', () => {
 	const request = Supertest(app);
 	const router = Express.Router();
 
-	router.use('/status', ExpressStatusController.get);
+	router.use('/status', expressStatusController.get);
 	app.use(router);
 
 	it('Should return a status page', async () => {

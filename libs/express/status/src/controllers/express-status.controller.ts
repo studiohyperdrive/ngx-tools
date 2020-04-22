@@ -22,7 +22,7 @@ export class ExpressStatusController {
 			},
 		},
 	})
-	public static get(req: Request, res: Response): Response {
+	public get(req: Request, res: Response): Response {
 		return res.status(HttpCodes.OK).json({
 			project: {
 				name: Env.get('NAME'),
