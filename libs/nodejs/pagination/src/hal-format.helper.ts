@@ -81,7 +81,7 @@ export function HALFormat<T = unknown>({
 	page,
 	size,
 	totalElements,
-}: IHALFormatParams): IHALFormat {
+}: IHALFormatParams<T>): IHALFormat<T> {
 	const _page = calculatePagination(page, size, totalElements);
 	const _links = createHalLinks(path, _page);
 
