@@ -20,7 +20,7 @@ $ npm install @studiohyperdrive/hal-tools
 ```
 or if you use Yarn:
 ``` bash
-& yarn add @studiohyperdrive/hal-tools
+$ yarn add @studiohyperdrive/hal-tools
 ```
 
 ### In your code
@@ -29,14 +29,24 @@ In your code, you can use this package and it's interfaces like this:
 ```typescript
 import { HALFormat } from '@studiohyperdrive/hal-tools';
 
-return HALFormat({
-  path,
-  key,
-  entities,
-  page,
-  size,
-  totalElements,
-});
+class DoSomething {
+  public async findAll(page: number, size: number): Promise<IHALFormat<MyEntity>> {
+    const [entities, totalElements] = await this.MyEntitiyRepository.findAndCount(
+      calculateTakeSkip(page, size),
+    );
+    const key = 'my-entities';
+    const path = `https://my-api.com/v1/api/${key}`;
+
+    return HALFormat<MyEntity>({
+      path,
+      key,
+      entities,
+      page,
+      size,
+      totalElements,
+    });
+  }
+}
 ```
 
 This will transform your entities and count to a HAL formatted response which you can return to the client.
