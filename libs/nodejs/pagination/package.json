@@ -2,7 +2,7 @@
   "name": "@studiohyperdrive/hal-tools",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
     "prepare": "npm run build",
