@@ -5,7 +5,8 @@
     "@angular/common": "^11.2.1",
     "@angular/core": "^11.2.1"
   },
-  "dependencies": {
+  "allowedNonPeerDependencies": {
+    "rxjs": "^6.6.6",
     "tslib": "^2.0.0"
   }
 }
