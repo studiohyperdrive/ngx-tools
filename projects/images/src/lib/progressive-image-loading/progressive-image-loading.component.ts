@@ -17,10 +17,9 @@ export class ProgressiveImageLoadingComponent implements OnInit {
 
 	getBackgroundColor(): string {
 		if (this.backgroundColor === '' || this.backgroundColor === undefined) {
-			console.log('setting color');
 			return '#eaeaea';
 		}
-		console.log(this.backgroundColor);
+
 		return this.backgroundColor;
 	}
 
