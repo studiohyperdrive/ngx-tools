@@ -1,4 +1,4 @@
-<div [class]="className">
-	<img *ngIf="lowResLoaded" [src]="lowResImg" class="progressive-img-low-res" />
+<div [class]="className" [style.background-color]="getBackgroundColor()">
+	<img *ngIf=" lowResLoaded" [src]="lowResImg" class="progressive-img-low-res" />
 	<img *ngIf="highResLoaded" [src]="highResImg" class="progressive-img-high-res" />
 </div>

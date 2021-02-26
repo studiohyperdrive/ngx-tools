@@ -9,10 +9,20 @@ export class ProgressiveImageLoadingComponent implements OnInit {
 	@Input() lowResImg: string;
 	@Input() highResImg: string;
 	@Input() className: string;
-
+	@Input() backgroundColor: string;
 	highResLoaded = false;
 	lowResLoaded = false;
+
 	constructor() { }
+
+	getBackgroundColor() {
+		if (this.backgroundColor === '' || this.backgroundColor === undefined) {
+			console.log('setting color');
+			return "#eaeaea";
+		}
+		console.log(this.backgroundColor);
+		return this.backgroundColor
+	}
 
 	ngOnInit(): void {
 		const imageToLoadHighRes = new Image();
