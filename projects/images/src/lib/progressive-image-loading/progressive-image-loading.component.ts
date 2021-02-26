@@ -15,13 +15,13 @@ export class ProgressiveImageLoadingComponent implements OnInit {
 
 	constructor() { }
 
-	getBackgroundColor() {
+	getBackgroundColor(): string {
 		if (this.backgroundColor === '' || this.backgroundColor === undefined) {
 			console.log('setting color');
-			return "#eaeaea";
+			return '#eaeaea';
 		}
 		console.log(this.backgroundColor);
-		return this.backgroundColor
+		return this.backgroundColor;
 	}
 
 	ngOnInit(): void {
@@ -29,12 +29,12 @@ export class ProgressiveImageLoadingComponent implements OnInit {
 		imageToLoadHighRes.src = this.highResImg;
 		imageToLoadHighRes.onload = () => {
 			this.highResLoaded = true;
-		}
+		};
 
 		const imageToLoadLowRes = new Image();
 		imageToLoadLowRes.src = this.lowResImg;
 		imageToLoadLowRes.onload = () => {
 			this.lowResLoaded = true;
-		}
+		};
 	}
 }
