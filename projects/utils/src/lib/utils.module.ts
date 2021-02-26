@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { WindowService } from './window-service/window.service'
+
+import { WindowService } from './window-service/window.service';
 
 
 
@@ -8,6 +9,6 @@ import { WindowService } from './window-service/window.service'
   imports: [
   ],
   providers: [WindowService],
-  exports: []
+  exports: [],
 })
 export class UtilsModule { }
