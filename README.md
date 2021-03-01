@@ -4,6 +4,8 @@
 This repo contains general usage libraries for shd Angular projects. Those libraries are:
 - utils:
     - window service
+- images:
+    - progressive image loading
 
 It is build with:
 - Angular CLI : `11.2.1` 
@@ -19,33 +21,23 @@ To setup this project, clone the repo and run `npm i` to install the dependencie
 
 ### NPM
 
-The available commands for development are:
+The available command are:
 
 | command      | runs                                                                                                 |
 |--------------|------------------------------------------------------------------------------------------------------|
-|    |                                                      |
+| build        | runs `ng build`                                                                                      |
+| test         | runs `ng test`                                                                                       |
+| lint         | runs `ng lint --fix`                                                                                 |
+
 <br>
 
-The available commands for building the project are:
+## Team
 
-| command      | runs                                                                                                 |
-|--------------|------------------------------------------------------------------------------------------------------|
-| build        | runs `ng build`                                            |
-<br>
+This project has been created by:
+- Axelle Vanden Eynde: axelle.vandeneynde@studiohyperdrive.be
 
-The available commands for testing the project are:
 
-| command      | runs                                                                                                 |
-|--------------|------------------------------------------------------------------------------------------------------|
-| test       |runs `ng test`  |
-<br>
-
-Other available commands are:
-
-| command      | runs                                                                                                 |
-|--------------|------------------------------------------------------------------------------------------------------|
-|lint    | runs     `ng lint`                                                  |
-<br>
-
+It is currently maintained by:
+- Axelle Vanden Eynde: axelle.vandeneynde@studiohyperdrive.be
 
 

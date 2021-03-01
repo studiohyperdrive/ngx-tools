@@ -1,24 +1,46 @@
-# Utils
+# Images
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.1.
+first of all:
 
-## Code scaffolding
+```npm install @studiohyperdrive/ngx-utils```
 
-Run `ng generate component component-name --project utils` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project utils`.
-> Note: Don't forget to add `--project utils` or else it will be added to the default project in your `angular.json` file. 
+## 1. window service
 
-## Build
+Service to be able to get `window.width` when no window is present. Usefull with serverside rendering for example. 
 
-Run `ng build utils` to build the project. The build artifacts will be stored in the `dist/` directory.
+```
+import { WindowService } from '@studiohyperdrive/ngx-utils';
 
-## Publishing
+export class YourComponent {
 
-After building your library with `ng build utils`, go to the dist folder `cd dist/utils` and run `npm publish`.
+	public windowWidth$: Observable<number>;
 
-## Running unit tests
+	constructor(
+		private windowService: WindowService
+	) {
+		this.windowWidth$ = this.windowService.width$;
+	}
 
-Run `ng test utils` to execute the unit tests via [Karma](https://karma-runner.github.io).
+}
+```
 
-## Further help
+## build information
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+It is build with:
+- Angular CLI : `11.2.1` 
+- Angular: `11.2.1`
+- nodejs: `12.19.0`
+- npm: `6.14.8`
+
+For a complete list of packages and version check out the `package.json` file.
+## Team
+
+This project has been created by:
+- Axelle Vanden Eynde: axelle.vandeneynde@studiohyperdrive.be
+
+
+It is currently maintained by:
+- Axelle Vanden Eynde: axelle.vandeneynde@studiohyperdrive.be
+
+
+
