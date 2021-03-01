@@ -23,7 +23,6 @@ export class YourComponent {
 
 }
 ```
-
 # Build information
 
 It is build with:
@@ -33,14 +32,3 @@ It is build with:
 - npm: `6.14.8`
 
 For a complete list of packages and version check out the `package.json` file.
-# Team
-
-This project has been created by:
-- Axelle Vanden Eynde: axelle.vandeneynde@studiohyperdrive.be
-
-
-It is currently maintained by:
-- Axelle Vanden Eynde: axelle.vandeneynde@studiohyperdrive.be
-
-
-

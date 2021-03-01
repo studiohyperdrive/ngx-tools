@@ -47,9 +47,8 @@ This project can be published to the npm registry. To do so follow these steps:
 
 This project has been created by:
 - Axelle Vanden Eynde: axelle.vandeneynde@studiohyperdrive.be
-
+- Denis Valcke: denis.valcke@studiohyperdrive.be
 
 It is currently maintained by:
 - Axelle Vanden Eynde: axelle.vandeneynde@studiohyperdrive.be
-
-
+- Denis Valcke: denis.valcke@studiohyperdrive.be
