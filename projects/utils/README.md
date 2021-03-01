@@ -24,7 +24,7 @@ export class YourComponent {
 }
 ```
 
-## build information
+# Build information
 
 It is build with:
 - Angular CLI : `11.2.1` 
@@ -33,7 +33,7 @@ It is build with:
 - npm: `6.14.8`
 
 For a complete list of packages and version check out the `package.json` file.
-## Team
+# Team
 
 This project has been created by:
 - Axelle Vanden Eynde: axelle.vandeneynde@studiohyperdrive.be
