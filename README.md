@@ -7,6 +7,8 @@ This repo contains general usage libraries for shd Angular projects. Those libra
 - images:
     - progressive image loading
 
+You can find detailed explanations in their respective README’s.
+
 It is build with:
 - Angular CLI : `11.2.1` 
 - Angular: `11.2.1`
@@ -30,6 +32,16 @@ The available command are:
 | lint         | runs `ng lint --fix`                                                                                 |
 
 <br>
+
+### Publish
+
+This project can be published to the npm registry. To do so follow these steps:
+
+1. Run npm version <major | minor | patch> to create a new version and commit + tag it.
+2. Open a Merge Request on Gitlab.
+3. run `npm build`
+4. Once your changes have been commited to the main-branch, you can publish to the repo.
+5. Run `npm publish` in dist/*library*.
 
 ## Team
 
