@@ -7,7 +7,7 @@
       "projectType": "library",
       "root": "projects/utils",
       "sourceRoot": "projects/utils/src",
-      "prefix": "lib",
+      "prefix": "utils",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -47,7 +47,7 @@
       "projectType": "library",
       "root": "projects/images",
       "sourceRoot": "projects/images/src",
-      "prefix": "lib",
+      "prefix": "img",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",

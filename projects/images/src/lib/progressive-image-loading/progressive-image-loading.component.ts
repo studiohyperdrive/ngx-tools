@@ -1,21 +1,20 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-	selector: 'lib-progressive-image-loading',
+	selector: 'img-progressive-image-loading',
 	templateUrl: './progressive-image-loading.component.html',
 	styleUrls: ['./progressive-image-loading.component.css'],
 })
 export class ProgressiveImageLoadingComponent implements OnInit {
-	@Input() lowResImg: string;
-	@Input() highResImg: string;
-	@Input() className: string;
-	@Input() backgroundColor: string;
-	highResLoaded = false;
-	lowResLoaded = false;
+	@Input() public lowResImg: string;
+	@Input() public highResImg: string;
+	@Input() public className: string;
+	@Input() public backgroundColor: string;
 
-	constructor() { }
+	public highResLoaded: boolean = false;
+	public lowResLoaded: boolean = false;
 
-	getBackgroundColor(): string {
+	public getBackgroundColor(): string {
 		if (this.backgroundColor === '' || this.backgroundColor === undefined) {
 			return '#eaeaea';
 		}
@@ -23,7 +22,7 @@ export class ProgressiveImageLoadingComponent implements OnInit {
 		return this.backgroundColor;
 	}
 
-	ngOnInit(): void {
+	public ngOnInit(): void {
 		const imageToLoadHighRes = new Image();
 		imageToLoadHighRes.src = this.highResImg;
 		imageToLoadHighRes.onload = () => {
