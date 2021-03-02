@@ -3,12 +3,9 @@ import { NgModule } from '@angular/core';
 
 import { ProgressiveImageLoadingComponent } from './progressive-image-loading/progressive-image-loading.component';
 
-
-
 @NgModule({
 	declarations: [ProgressiveImageLoadingComponent],
-	imports: [CommonModule,
-	],
+	imports: [CommonModule],
 	exports: [ProgressiveImageLoadingComponent],
 })
 export class ImagesModule { }
