@@ -25,10 +25,10 @@ On very slow networks the low-resolution image will also need a litle time to lo
 **usage:**
 
 ```
-<progressive-image-loading 
+<img-progressive-image-loading 
     lowResImg="https://link/to/low/resolution/image"
 	highResImg="https://link/to/high/resolution/image">
-</progressive-image-loading>
+</img-progressive-image-loading>
 
 ```
 **options:**
