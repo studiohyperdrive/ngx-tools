@@ -8,9 +8,7 @@ describe('SubscriptionService', () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			providers: [
-				SubscriptionService,
-			],
+			providers: [SubscriptionService],
 		});
 
 		injector = getTestBed();
