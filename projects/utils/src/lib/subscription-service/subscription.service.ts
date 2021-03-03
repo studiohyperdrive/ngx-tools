@@ -1,9 +1,7 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
 
-@Injectable({
-	providedIn: 'root',
-})
+@Injectable()
 export class SubscriptionService implements OnDestroy {
 	public destroyed$: Subject<boolean> = new Subject<boolean>();
 
