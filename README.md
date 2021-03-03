@@ -4,6 +4,10 @@
 This repo contains general usage libraries for shd Angular projects. Those libraries are:
 - utils:
     - window service
+- images:
+    - progressive image loading
+
+You can find detailed explanations in their respective README’s.
 
 It is build with:
 - Angular CLI : `11.2.1` 
@@ -19,33 +23,32 @@ To setup this project, clone the repo and run `npm i` to install the dependencie
 
 ### NPM
 
-The available commands for development are:
+The available command are:
 
 | command      | runs                                                                                                 |
 |--------------|------------------------------------------------------------------------------------------------------|
-|    |                                                      |
+| build        | runs `ng build`                                                                                      |
+| test         | runs `ng test`                                                                                       |
+| lint         | runs `ng lint --fix`                                                                                 |
+
 <br>
 
-The available commands for building the project are:
+### Publish
 
-| command      | runs                                                                                                 |
-|--------------|------------------------------------------------------------------------------------------------------|
-| build        | runs `ng build`                                            |
-<br>
+This project can be published to the npm registry. To do so follow these steps:
 
-The available commands for testing the project are:
+1. Run npm version <major | minor | patch> to create a new version and commit + tag it.
+2. Open a Merge Request on Gitlab.
+3. run `npm build`
+4. Once your changes have been commited to the main-branch, you can publish to the repo.
+5. Run `npm publish` in dist/*library*.
 
-| command      | runs                                                                                                 |
-|--------------|------------------------------------------------------------------------------------------------------|
-| test       |runs `ng test`  |
-<br>
+## Team
 
-Other available commands are:
+This project has been created by:
+- Axelle Vanden Eynde: axelle.vandeneynde@studiohyperdrive.be
+- Denis Valcke: denis.valcke@studiohyperdrive.be
 
-| command      | runs                                                                                                 |
-|--------------|------------------------------------------------------------------------------------------------------|
-|lint    | runs     `ng lint`                                                  |
-<br>
-
-
-
+It is currently maintained by:
+- Axelle Vanden Eynde: axelle.vandeneynde@studiohyperdrive.be
+- Denis Valcke: denis.valcke@studiohyperdrive.be
