@@ -4,6 +4,8 @@
 This repo contains general usage libraries for shd Angular projects. Those libraries are:
 - utils:
     - window service
+    - subscription service
+    
 - images:
     - progressive image loading
 
