@@ -20,6 +20,10 @@
       "dom"
     ],
     "paths": {
+      "images": [
+        "dist/images/images",
+        "dist/images"
+      ],
       "utils": [
         "dist/utils/utils",
         "dist/utils"
