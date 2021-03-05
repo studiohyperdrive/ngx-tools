@@ -20,9 +20,36 @@ export class YourComponent {
 	) {
 		this.windowWidth$ = this.windowService.width$;
 	}
-
 }
 ```
+
+## 1. subscription service
+
+End all RxJS subscriptions when component is destroyed.
+
+```
+import { takeUntil} from 'rxjs/operators';
+import { SubscriptionService } from '@studiohyperdrive/ngx-utils';
+
+@Component({
+	providers: [ SubscriptionService ],
+})
+export class YourComponent {
+		constructor( 
+			private subs: SubscriptionService
+		) {
+			yourObservable
+				.pipe(
+					takeUntil(this.subs.destroyed$),
+				).subscribe(
+					// your subscriptions
+				)
+		}
+	}
+
+```
+
+
 # Build information
 
 It is build with:
