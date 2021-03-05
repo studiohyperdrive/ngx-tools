@@ -6,7 +6,6 @@ import { Component, Input, OnInit } from '@angular/core';
 	styleUrls: ['./progressive-image-loading.component.css'],
 })
 export class ProgressiveImageLoadingComponent implements OnInit {
-
 	public highResLoaded: boolean = false;
 	public lowResLoaded: boolean = false;
 
