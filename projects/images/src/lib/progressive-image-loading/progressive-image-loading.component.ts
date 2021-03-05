@@ -6,6 +6,8 @@ import { Component, Input, OnInit } from '@angular/core';
 	styleUrls: ['./progressive-image-loading.component.css'],
 })
 export class ProgressiveImageLoadingComponent implements OnInit {
+	public highResLoaded: boolean = false;
+	public lowResLoaded: boolean = false;
 	@Input() public lowResImg: string;
 	@Input() public highResImg: string;
 	@Input() public className: string;
@@ -15,10 +17,9 @@ export class ProgressiveImageLoadingComponent implements OnInit {
 	set backgroundColor(backgroundColor: string) {
 		this._backgroundColor = backgroundColor || '#eaeaea';
 	}
+
 	private _backgroundColor: string = '#eaeaea';
 
-	public highResLoaded: boolean = false;
-	public lowResLoaded: boolean = false;
 
 	public ngOnInit(): void {
 		const imageToLoadHighRes = new Image();
