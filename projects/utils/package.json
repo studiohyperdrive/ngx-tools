@@ -1,0 +1,12 @@
+{
+  "name": "utils",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^11.2.1",
+    "@angular/core": "^11.2.1"
+  },
+  "allowedNonPeerDependencies": {
+    "rxjs": "^6.6.6",
+    "tslib": "^2.0.0"
+  }
+}
