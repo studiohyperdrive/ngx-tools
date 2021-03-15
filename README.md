@@ -17,7 +17,6 @@ It is build with:
 - nodejs: `12.19.0`
 - npm: `6.14.8`
 
-
 For a complete list of packages and version check out the `package.json` file.
 
 ### Clone and install dependencies
@@ -36,14 +35,15 @@ The available command are:
 <br>
 
 ### Publish
-
-This project can be published to the npm registry. To do so follow these steps:
-
-1. Run npm version <major | minor | patch> to create a new version and commit + tag it.
-2. Open a Merge Request on Gitlab.
-3. run `npm build`
-4. Once your changes have been commited to the main-branch, you can publish to the repo.
-5. Run `npm publish` in dist/*library*.
+The libraries in this project can be published to the npm registry. To do so follow these steps:
+1. In the library that you want to publish, bump the version in package & package-lock files.
+2. Commit the changes using the following convention: `build(images): v1.0.0`.
+3. Add a tag using the following convention: `@studiohyperdrive/ngx-images@v1.0.0`.
+4. Make a new production build of your library using `ng build <library>` (Ivy is disable in tsconfig by default for this project).
+5. Move to the dist folder of your library using `cd dist/<library>`
+6. Publish the package using `npm publish`  
+	a. If this is the first time publishing the library make sure to add the `--access public` flag.  
+   	b. Make sure you are logged into npm and that you have been added to the @studiohyperdrive organisation.
 
 ## Team
 This bundle of tools has been created and is maintained by [Studio Hyperdrive](https://studiohyperdrive.be).
