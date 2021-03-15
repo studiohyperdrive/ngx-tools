@@ -1,12 +1,12 @@
-# Shd Angular Tools
-## General
+# Studio Hyperdrive: Angular Tools (_shd_angular_tools_)
 
+## General
 This repo contains general usage libraries for shd Angular projects. Those libraries are:
-- utils:
+- utils (`@studiohyperdrive/ngx-utils`) :
     - window service
     - subscription service
     
-- images:
+- images (`@studiohyperdrive/ngx-images`):
     - progressive image loading
 
 You can find detailed explanations in their respective README’s.
@@ -46,11 +46,4 @@ This project can be published to the npm registry. To do so follow these steps:
 5. Run `npm publish` in dist/*library*.
 
 ## Team
-
-This project has been created by:
-- Axelle Vanden Eynde: axelle.vandeneynde@studiohyperdrive.be
-- Denis Valcke: denis.valcke@studiohyperdrive.be
-
-It is currently maintained by:
-- Axelle Vanden Eynde: axelle.vandeneynde@studiohyperdrive.be
-- Denis Valcke: denis.valcke@studiohyperdrive.be
+This bundle of tools has been created and is maintained by [Studio Hyperdrive](https://studiohyperdrive.be).
