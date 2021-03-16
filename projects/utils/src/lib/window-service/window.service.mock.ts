@@ -1,6 +1,8 @@
+import {} from 'jasmine';
 import { BehaviorSubject } from 'rxjs';
 
 export const windowMock = {
+	addEventListener: jasmine.createSpy(),
 	defaultView: {
 		scrollTo: () => null,
 		addEventListener: () => null,

@@ -8,8 +8,9 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class WindowService {
 	public width$: BehaviorSubject<number> = new BehaviorSubject<number>(1200);
-
-	private window: Window;
+	public scrollingUp$: BehaviorSubject<boolean> = new BehaviorSubject(true);
+	public currentScrollPosition: number = 0;
+	public window: Window;
 
 	constructor(
 		@Inject(DOCUMENT) public document: Document,
@@ -18,6 +19,7 @@ export class WindowService {
 	) {
 		if (this.isBrowser() && this.hasDocument()) {
 			this.window = this.document.defaultView;
+			this.document.addEventListener('scroll', this.handleContentScroll.bind(this));
 
 			this.width$.next(this.window.innerWidth);
 
@@ -42,5 +44,15 @@ export class WindowService {
 
 	public isBrowser(): boolean {
 		return isPlatformBrowser(this.platformId);
+	}
+
+	private handleContentScroll(): void {
+		if (window.pageYOffset > this.currentScrollPosition) {
+			this.scrollingUp$.next(false);
+		} else {
+			this.scrollingUp$.next(true);
+		}
+
+		this.currentScrollPosition = window.pageYOffset;
 	}
 }

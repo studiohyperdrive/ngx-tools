@@ -76,13 +76,19 @@ describe('WindowService', () => {
 
 				service.scrollTo(200);
 
-				expect(spy).toHaveBeenCalledWith(0, 200);
+				expect(spy).toHaveBeenCalledWith(0 as any, 200 as any);
 			});
 		});
 
 		describe('hasDocument', () => {
 			it('should return true', () => {
 				expect(service.hasDocument()).toBeTrue();
+			});
+		});
+
+		describe('scrollListeners', () => {
+			it('should have called addEventListeners', () => {
+				expect(windowMock.addEventListener).toHaveBeenCalled();
 			});
 		});
 
