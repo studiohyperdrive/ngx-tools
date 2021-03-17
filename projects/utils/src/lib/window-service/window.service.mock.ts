@@ -1,4 +1,3 @@
-import {} from 'jasmine';
 import { BehaviorSubject } from 'rxjs';
 
 export const windowMock = {
