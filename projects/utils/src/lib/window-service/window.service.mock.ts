@@ -16,9 +16,18 @@ export const windowMock = (spy: unknown) => ({
 	},
 });
 
-export const windowServiceMock = (width: number = 1200) => ({
+/*
+* Provide a spy for your testing framework because the windowMock requires it.
+*
+* The reason why the spy is not provided by default is for this mock
+* to work on both Jest and Jasmine based test-suites.
+*
+* example:
+* windowServiceMock(jasmine.createSpy(), 1440);
+* */
+export const windowServiceMock = (spy: unknown, width: number = 1200) => ({
 	width: new BehaviorSubject(width),
-	window: windowMock,
+	window: windowMock(spy),
 	scrollTo: () => null,
 	hasDocument: () => true,
 	isBrowser: () => true,
