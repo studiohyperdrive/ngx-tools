@@ -5,6 +5,7 @@ This repo contains general usage libraries for shd Angular projects. Those libra
 - utils (`@studiohyperdrive/ngx-utils`) :
     - window service
     - subscription service
+    - custom validators
     
 - images (`@studiohyperdrive/ngx-images`):
     - progressive image loading

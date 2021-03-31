@@ -187,3 +187,11 @@ This project has been build with:
 - npm: `6.14.8`
 
 For a complete list of packages and version check out the `package.json` file.
+
+## 3. Validators
+
+A set of extra custom validators compatible with the default Angular validators and reactive forms.
+
+| Validator      | Description                                                                                          |
+|----------------|------------------------------------------------------------------------------------------------------|
+| extendedEmail  | Extends the default e-mail validator with a required period in the tld part of te email.             |
