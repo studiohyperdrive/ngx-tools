@@ -53,6 +53,6 @@ export class WindowService {
 			this.scrollingUp$.next(true);
 		}
 
-		this.currentScrollPosition = window.pageYOffset;
+		this.currentScrollPosition = window.pageYOffset < 0 ? 0 : window.pageYOffset;
 	}
 }
