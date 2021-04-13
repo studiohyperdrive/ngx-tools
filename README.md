@@ -9,6 +9,9 @@ This repo contains general usage libraries for shd Angular projects. Those libra
 - images (`@studiohyperdrive/ngx-images`):
     - progressive image loading
 
+- forms (`@studiohyperdrive/ngx-forms`):
+    - custom validators
+
 You can find detailed explanations in their respective README’s.
 
 It is build with:

@@ -20,6 +20,10 @@
       "dom"
     ],
     "paths": {
+      "forms": [
+        "dist/forms/forms",
+        "dist/forms"
+      ],
       "images": [
         "dist/images/images",
         "dist/images"
