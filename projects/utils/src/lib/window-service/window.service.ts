@@ -1,15 +1,35 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 // @dynamic
 @Injectable({
 	providedIn: 'root',
 })
 export class WindowService {
-	public width$: BehaviorSubject<number> = new BehaviorSubject<number>(1200);
-	public scrollingUp$: BehaviorSubject<boolean> = new BehaviorSubject(true);
+	private widthSubject$: BehaviorSubject<number> = new BehaviorSubject<number>(1200);
+	private scrollingUpSubject$: BehaviorSubject<boolean> = new BehaviorSubject(true);
+	private currentScrollPositionSubject$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+
+	/**
+	 * Observable to get the window-width, defaults to 1200 when no window is defined
+	 */
+	public width$: Observable<number> = this.widthSubject$.asObservable();
+	/**
+	 * Observable to track when the scroll has ended
+	 */
+	public scrollingUp$: Observable<boolean> = this.scrollingUpSubject$.asObservable();
+	/**
+	 * Observable of the current scroll position after the scroll has ended
+	 */
+	public currentScrollPosition$: Observable<number> = this.currentScrollPositionSubject$.asObservable();
+	/**
+	 * Current scroll position after the scroll has ended
+	 */
 	public currentScrollPosition: number = 0;
+	/**
+	 * The platforms Window object
+	 */
 	public window: Window;
 
 	constructor(
@@ -21,16 +41,21 @@ export class WindowService {
 			this.window = this.document.defaultView;
 			this.document.addEventListener('scroll', this.handleContentScroll.bind(this));
 
-			this.width$.next(this.window.innerWidth);
+			this.widthSubject$.next(this.window.innerWidth);
 
 			this.window.addEventListener('resize', () => {
-				if (this.window.innerWidth && this.width$.getValue()) {
-					this.width$.next(this.window.innerWidth);
+				if (this.window.innerWidth && this.widthSubject$.getValue()) {
+					this.widthSubject$.next(this.window.innerWidth);
 				}
 			});
 		}
 	}
 
+	/**
+	 * Scrolls to the provided position of the page
+	 *
+	 * @param offset - Offset to which we want to scroll, scrolls to top when no offset is provided
+	 */
 	public scrollTo(offset: number = 0): void {
 		if (!this.window) {
 			return;
@@ -38,21 +63,28 @@ export class WindowService {
 		this.window.scrollTo(0, offset);
 	}
 
+	/**
+	 * Returns whether there is a document present
+	 */
 	public hasDocument(): boolean {
 		return !!this.document;
 	}
 
+	/**
+	 * Returns whether the current platform is a browser
+	 */
 	public isBrowser(): boolean {
 		return isPlatformBrowser(this.platformId);
 	}
 
 	private handleContentScroll(): void {
 		if (window.pageYOffset > this.currentScrollPosition) {
-			this.scrollingUp$.next(false);
+			this.scrollingUpSubject$.next(false);
 		} else {
-			this.scrollingUp$.next(true);
+			this.scrollingUpSubject$.next(true);
 		}
 
 		this.currentScrollPosition = window.pageYOffset < 0 ? 0 : window.pageYOffset;
+		this.currentScrollPositionSubject$.next(this.currentScrollPosition);
 	}
 }
