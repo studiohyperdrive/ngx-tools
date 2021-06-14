@@ -26,8 +26,8 @@ describe('WindowService', () => {
 		});
 
 		describe('construct', () => {
-			it('should set the width$ BehaviourSubject to a default value of 1200 for SSR', () => {
-				expect(service.width$.getValue()).toBe(1200);
+			it('should set the width$ BehaviorSubject to a default value of 1200 for SSR', () => {
+				expect((service as any).widthSubject$.getValue()).toBe(1200);
 			});
 		});
 
@@ -46,12 +46,13 @@ describe('WindowService', () => {
 
 	describe('with a document', () => {
 		let service: WindowService;
+		const window = windowMock(jasmine.createSpy());
 
 		beforeEach(async () => {
 			await TestBed.configureTestingModule({
 				providers: [{
 					provide: DOCUMENT,
-					useValue: windowMock,
+					useValue: window,
 				}, {
 					provide: PLATFORM_ID,
 					useValue: 'browser',
@@ -64,8 +65,8 @@ describe('WindowService', () => {
 		});
 
 		describe('construct', () => {
-			it('should set the width$ BehaviourSubject to the value of the window-width', () => {
-				expect(service.width$.getValue()).toBe(windowMock.defaultView.innerWidth);
+			it('should set the width$ BehaviorSubject to the value of the window-width', () => {
+				expect((service as any).widthSubject$.getValue()).toBe(windowMock(jasmine.createSpy()).defaultView.innerWidth);
 			});
 		});
 
@@ -88,7 +89,7 @@ describe('WindowService', () => {
 
 		describe('scrollListeners', () => {
 			it('should have called addEventListeners', () => {
-				expect(windowMock.addEventListener).toHaveBeenCalled();
+				expect(window.addEventListener).toHaveBeenCalled();
 			});
 		});
 

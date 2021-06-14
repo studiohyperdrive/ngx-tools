@@ -13,6 +13,7 @@ export const windowMock = (spy: unknown) => ({
 	defaultView: {
 		scrollTo: () => null,
 		innerWidth: 720,
+		addEventListener: spy,
 	},
 });
 
