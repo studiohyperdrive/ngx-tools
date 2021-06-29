@@ -1,9 +1,10 @@
 {
-  "name": "@studiohyperdrive/ngx-utils",
+  "name": "@studiohyperdrive/ngx-forms",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": ">12.2.15",
-    "@angular/core": ">12.2.15"
+    "@angular/core": ">12.2.15",
+    "@angular/forms": ">12.2.15"
   },
   "dependencies": {
     "tslib": "^2.0.0"
