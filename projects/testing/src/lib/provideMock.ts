@@ -13,10 +13,10 @@ export const spyOnClass = <T>(spiedClass: NewableFunction, properties: Record<st
 	return { ...properties, ...jasmine.createSpyObj('spy', [...methods]) };
 };
 
-export const provideMock = <T>(
+export const provideMock = (
 	spiedClass: NewableFunction,
 	properties: Record<string, any> = {}
 ): ValueProvider => ({
 	provide: spiedClass,
-	useValue: spyOnClass(spiedClass, properties),
+	useValue: spyOnClass<NewableFunction>(spiedClass, properties),
 });
