@@ -5,17 +5,21 @@ This repo contains general usage libraries for shd Angular projects. Those libra
 - utils (`@studiohyperdrive/ngx-utils`) :
     - window service
     - subscription service
-    
+
 - images (`@studiohyperdrive/ngx-images`):
     - progressive image loading
 
 - forms (`@studiohyperdrive/ngx-forms`):
     - custom validators
 
+- testing (`@studiohyperdrive/ngx-testing`)
+    - provideMock
+    - spyOnClass
+
 You can find detailed explanations in their respective README’s.
 
 It is build with:
-- Angular CLI : `11.2.1` 
+- Angular CLI : `11.2.1`
 - Angular: `11.2.1`
 - nodejs: `12.19.0`
 - npm: `6.14.8`
@@ -44,8 +48,8 @@ The libraries in this project can be published to the npm registry. To do so fol
 3. Add a tag using the following convention: `@studiohyperdrive/ngx-images@v1.0.0`.
 4. Make a new production build of your library using `ng build <library>` (Ivy is disable in tsconfig by default for this project).
 5. Move to the dist folder of your library using `cd dist/<library>`
-6. Publish the package using `npm publish`  
-	a. If this is the first time publishing the library make sure to add the `--access public` flag.  
+6. Publish the package using `npm publish`
+	a. If this is the first time publishing the library make sure to add the `--access public` flag.
    	b. Make sure you are logged into npm and that you have been added to the @studiohyperdrive organisation.
 
 ## Team
