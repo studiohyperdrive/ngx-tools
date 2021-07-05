@@ -28,6 +28,10 @@
         "dist/images/images",
         "dist/images"
       ],
+      "testing": [
+        "dist/testing/testing",
+        "dist/testing"
+      ],
       "utils": [
         "dist/utils/utils",
         "dist/utils"
