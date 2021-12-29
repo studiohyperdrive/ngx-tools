@@ -2,4 +2,4 @@
  * Public API Surface of forms
  */
 
-export { Validators } from '../../forms/src/lib/validators/validators';
+export { Validators } from './lib/validators/validators';

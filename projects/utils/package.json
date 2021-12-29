@@ -2,8 +2,8 @@
   "name": "@studiohyperdrive/ngx-utils",
   "version": "1.1.6",
   "peerDependencies": {
-    "@angular/common": "^11.2.1",
-    "@angular/core": "^11.2.1"
+    "@angular/common": ">12.2.15",
+    "@angular/core": ">12.2.15"
   },
   "allowedNonPeerDependencies": {
     "rxjs": "^6.6.6",
