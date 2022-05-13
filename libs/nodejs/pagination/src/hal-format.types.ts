@@ -21,13 +21,13 @@ export interface IHALPagination {
 }
 
 export interface IHALFormat<T = unknown> {
-	_links: IHALLinks;
+	_links?: IHALLinks;
 	_embedded: IHALEntities<T>;
 	_page: IHALPagination;
 }
 
 export interface IHALFormatParams<T = unknown> {
-	path: string;
+	path?: string;
 	key: string;
 	entities: T[];
 	page: number;

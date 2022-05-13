@@ -87,5 +87,22 @@ describe('HAL Format Tools', () => {
 				_page,
 			})
 		});
+
+		it('should create a response conform to the IHALFormat without links', () => {
+			const _page = calculatePagination(1, 10, 1);
+
+			expect(HALFormat({
+				key: keyOfMyEntity,
+				entities: myEntities,
+				page: 1,
+				size: 10,
+				totalElements: 1
+			})).toEqual({
+				_embedded: {
+					[keyOfMyEntity]: myEntities,
+				},
+				_page,
+			})
+		});
 	});
 });
