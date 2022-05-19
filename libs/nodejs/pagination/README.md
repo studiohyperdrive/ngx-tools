@@ -18,18 +18,18 @@ For a complete list of packages and version check out the `package.json` file.
 
 You can install this package by doing:
 ``` bash
-$ npm install @studiohyperdrive/hal-tools
+$ npm install @studiohyperdrive/nodejs-hal-tools
 ```
 or if you use Yarn:
 ``` bash
-$ yarn add @studiohyperdrive/hal-tools
+$ yarn add @studiohyperdrive/nodejs-hal-tools
 ```
 
 ### In your code
 In your code, you can use this package and it's interfaces like this:
 
 ```typescript
-import { HALFormat } from '@studiohyperdrive/hal-tools';
+import { HALFormat } from '@studiohyperdrive/nodejs-hal-tools';
 
 class DoSomething {
   public async findAll(page: number, size: number): Promise<IHALFormat<MyEntity>> {
