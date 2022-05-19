@@ -2,6 +2,8 @@
 
 ## General
 
+WARNING: This package has been renamed to [@studiohyperdrive/nodejs-hal-tools](https://www.npmjs.com/package/@studiohyperdrive/nodejs-hal-tools).
+
 This repo contains a set of tools for working with HAL standards.
 
 It is build with:
