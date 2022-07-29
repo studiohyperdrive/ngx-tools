@@ -1,6 +1,6 @@
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
-import { Validators } from './validators';
+import { Validators } from '../validators';
 
 describe('Extended Email Validator', () => {
 	it('should throw an error if e-mail is not valid', () => {

@@ -7,6 +7,7 @@
     "@angular/forms": "^16.1.5"
   },
   "dependencies": {
-    "tslib": "^2.5.0"
+    "tslib": "^2.5.0",
+    "obj-clean": "^3.0.1"
   }
 }
