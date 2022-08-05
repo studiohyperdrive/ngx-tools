@@ -7,6 +7,7 @@ import {
 } from './at-least-one-required/at-least-one-required.validator';
 import { dependedRequiredValidator } from './depended-required/depended-required.validator';
 import { decimalsAfterCommaValidator } from './decimals-after-comma/decimals-after-comma.validator';
+import { chronologicalDatesValidator } from './chronological-dates/chronological-dates.validator';
 import { extendedEmailValidator } from './email/extended-email.validator';
 
 /**
@@ -68,7 +69,22 @@ export class NgxValidators {
 	 * @param max - The maximum number of decimals after the comma
 	 */
 	static decimalsAfterComma(max: number): ValidatorFn {
-		return decimalsAfterCommaValidator(max);
+		return decimalsAfterCommaValidator( max );
+	}
+
+	/**
+	 * A FormGroup validator to check whether a start and end date are chronologically correct
+	 *
+	 * @param startControlKey - The key of the control containing the start date value
+	 * @param endControlKey - The key of the control containing the end date value
+	 * @param format - Optional format of the dates provided by the controls, by default YYYY-MM-DD
+	 */
+	static chronologicalDates(
+		startControlKey: string,
+		endControlKey: string,
+		format = 'YYYY-MM-DD'
+	): ValidatorFn {
+		return chronologicalDatesValidator(startControlKey, endControlKey, format);
 	}
 
 	// Add other custom validators :-)

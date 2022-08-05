@@ -5,7 +5,8 @@
     "@angular/common": "^16.1.5",
     "@angular/core": "^16.1.5",
     "@angular/forms": "^16.1.5",
-    "obj-clean": "^3.0.1"
+    "obj-clean": "^3.0.1",
+    "date-fns": "2.30.0"
   },
   "dependencies": {
     "tslib": "^2.5.0"
