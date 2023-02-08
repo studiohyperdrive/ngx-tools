@@ -11,13 +11,15 @@ describe('WindowService', () => {
 
 		beforeEach(async () => {
 			await TestBed.configureTestingModule({
-				providers: [{
-					provide: DOCUMENT,
-					useValue: null,
-				}, {
-					provide: PLATFORM_ID,
-					useValue: 'server',
-				},
+				providers: [
+					{
+						provide: DOCUMENT,
+						useValue: null,
+					},
+					{
+						provide: PLATFORM_ID,
+						useValue: 'server',
+					},
 					WindowService,
 				],
 			}).compileComponents();
@@ -50,13 +52,15 @@ describe('WindowService', () => {
 
 		beforeEach(async () => {
 			await TestBed.configureTestingModule({
-				providers: [{
-					provide: DOCUMENT,
-					useValue: window,
-				}, {
-					provide: PLATFORM_ID,
-					useValue: 'browser',
-				},
+				providers: [
+					{
+						provide: DOCUMENT,
+						useValue: window,
+					},
+					{
+						provide: PLATFORM_ID,
+						useValue: 'browser',
+					},
 					WindowService,
 				],
 			}).compileComponents();
@@ -66,13 +70,15 @@ describe('WindowService', () => {
 
 		describe('construct', () => {
 			it('should set the width$ BehaviorSubject to the value of the window-width', () => {
-				expect((service as any).widthSubject$.getValue()).toBe(windowMock(jasmine.createSpy()).defaultView.innerWidth);
+				expect((service as any).widthSubject$.getValue()).toBe(
+					windowMock(jasmine.createSpy()).defaultView.innerWidth
+				);
 			});
 		});
 
 		describe('scrollTo', () => {
 			it('should use the window.scrollTo to move to a position on the page', () => {
-				// tslint:disable-next-line: no-string-literal
+				// eslint-disable-next-line @typescript-eslint/dot-notation
 				const spy = spyOn(service['window'], 'scrollTo');
 
 				service.scrollTo(200);
