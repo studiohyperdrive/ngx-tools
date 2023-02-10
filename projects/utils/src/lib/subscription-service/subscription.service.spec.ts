@@ -16,15 +16,14 @@ describe('SubscriptionService', () => {
 	});
 
 	describe('destroy', () => {
-		it('should set a value to the destroyed$ Subject, destroying all subscriptions', async (done: DoneFn) => {
-			const testSub = service.destroyed$
-				.subscribe((triggered: boolean) => {
-					expect(triggered).toBe(true);
+		it('should set a value to the destroyed$ Subject, destroying all subscriptions', (done: DoneFn) => {
+			const testSub = service.destroyed$.subscribe((triggered: boolean) => {
+				expect(triggered).toBe(true);
 
-					testSub.unsubscribe();
+				testSub.unsubscribe();
 
-					done();
-				});
+				done();
+			});
 
 			service.ngOnDestroy();
 		});

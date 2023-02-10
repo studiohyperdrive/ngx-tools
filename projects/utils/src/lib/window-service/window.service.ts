@@ -7,6 +7,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 	providedIn: 'root',
 })
 export class WindowService {
+	/* eslint-disable @typescript-eslint/member-ordering */
 	private widthSubject$: BehaviorSubject<number> = new BehaviorSubject<number>(1200);
 	private scrollingUpSubject$: BehaviorSubject<boolean> = new BehaviorSubject(true);
 	private currentScrollPositionSubject$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
@@ -22,7 +23,8 @@ export class WindowService {
 	/**
 	 * Observable of the current scroll position after the scroll has ended
 	 */
-	public currentScrollPosition$: Observable<number> = this.currentScrollPositionSubject$.asObservable();
+	public currentScrollPosition$: Observable<number> =
+		this.currentScrollPositionSubject$.asObservable();
 	/**
 	 * Current scroll position after the scroll has ended
 	 */
@@ -31,6 +33,7 @@ export class WindowService {
 	 * The platforms Window object
 	 */
 	public window: Window;
+	/* eslint-enable */
 
 	constructor(
 		@Inject(DOCUMENT) public document: Document,

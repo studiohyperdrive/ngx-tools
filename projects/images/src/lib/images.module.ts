@@ -8,4 +8,4 @@ import { ProgressiveImageLoadingComponent } from './progressive-image-loading/pr
 	imports: [CommonModule],
 	exports: [ProgressiveImageLoadingComponent],
 })
-export class ImagesModule { }
+export class ImagesModule {}

@@ -6,6 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
 	styleUrls: ['./progressive-image-loading.component.css'],
 })
 export class ProgressiveImageLoadingComponent implements OnInit {
+	/* eslint-disable @typescript-eslint/member-ordering */
 	public highResLoaded: boolean = false;
 	public lowResLoaded: boolean = false;
 
@@ -15,12 +16,15 @@ export class ProgressiveImageLoadingComponent implements OnInit {
 
 	@Input()
 	/* tslint:disable:variable-name */
-	get backgroundColor(): string { return this._backgroundColor; }
-	set backgroundColor(backgroundColor: string) {
-		this._backgroundColor = backgroundColor || '#eaeaea';
+	public get backgroundColor(): string {
+		return this.backgroundColorInt;
+	}
+	public set backgroundColor(backgroundColor: string) {
+		this.backgroundColorInt = backgroundColor || '#eaeaea';
 	}
 
-	private _backgroundColor: string = '#eaeaea';
+	private backgroundColorInt: string = '#eaeaea';
+	/* eslint-enable */
 
 	public ngOnInit(): void {
 		const imageToLoadHighRes = new Image();

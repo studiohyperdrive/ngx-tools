@@ -10,8 +10,7 @@ describe('ProgressiveImageLoadingComponent', () => {
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
 			declarations: [ProgressiveImageLoadingComponent],
-		})
-			.compileComponents();
+		}).compileComponents();
 	});
 
 	beforeEach(() => {
@@ -25,10 +24,14 @@ describe('ProgressiveImageLoadingComponent', () => {
 	});
 
 	it('should have a background color', () => {
-		expect(fixture.nativeElement.querySelector('div').style.backgroundColor).toBe('rgb(234, 234, 234)');
+		expect(fixture.nativeElement.querySelector('div').style.backgroundColor).toBe(
+			'rgb(234, 234, 234)'
+		);
 		component.backgroundColor = '#fff';
 		fixture.detectChanges();
-		expect(fixture.nativeElement.querySelector('div').style.backgroundColor).toBe('rgb(255, 255, 255)');
+		expect(fixture.nativeElement.querySelector('div').style.backgroundColor).toBe(
+			'rgb(255, 255, 255)'
+		);
 	});
 
 	it('should render loaded images', () => {
