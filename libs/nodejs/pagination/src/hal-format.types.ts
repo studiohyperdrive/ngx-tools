@@ -33,4 +33,5 @@ export interface IHALFormatParams<T = unknown> {
 	page: number;
 	size: number;
 	totalElements: number;
+	maxPages?: number;
 }

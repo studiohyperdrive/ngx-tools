@@ -5,8 +5,8 @@ import {IHALFormat, IHALFormatParams, IHALLinks, IHALPagination} from './hal-for
  * @param size
  * @param totalElements
  */
-export function calculateTotalPages(size: number, totalElements: number): number {
-	return Math.ceil(totalElements / size);
+export function calculateTotalPages(size: number, totalElements: number, maxPages?: number): number {
+	return maxPages ? Math.min(maxPages, Math.ceil(totalElements / size)) : Math.ceil(totalElements / size);
 }
 
 /**
@@ -19,11 +19,12 @@ export function calculatePagination(
 	page: number,
 	size: number,
 	totalElements: number,
+	maxPages?: number,
 ): IHALPagination {
 	return {
 		size,
 		totalElements,
-		totalPages: calculateTotalPages(size, totalElements),
+		totalPages: calculateTotalPages(size, totalElements, maxPages),
 		number: page,
 	};
 }
@@ -81,8 +82,9 @@ export function HALFormat<T = unknown>({
 	page,
 	size,
 	totalElements,
+	maxPages,
 }: IHALFormatParams<T>): IHALFormat<T> {
-	const _page = calculatePagination(page, size, totalElements);
+	const _page = calculatePagination(page, size, totalElements, maxPages);
 
 	return {
 		...path && {
