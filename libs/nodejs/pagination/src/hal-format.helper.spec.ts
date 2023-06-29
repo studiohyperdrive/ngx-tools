@@ -20,6 +20,12 @@ describe('HAL Format Tools', () => {
 			expect(calculateTotalPages(10, 1)).toEqual(1);
 			expect(calculateTotalPages(100, 703)).toEqual(8);
 		});
+
+		it('should cap the number of pages to maxPages if provided', () => {
+			expect(calculateTotalPages(10, 100)).toEqual(10);
+			expect(calculateTotalPages(10, 100, 5)).toEqual(5);
+			expect(calculateTotalPages(10, 20, 1)).toEqual(1);
+		});
 	});
 
 	describe('calculatePagination', () => {
