@@ -16,7 +16,7 @@ import { extendedEmailValidator } from './email/extended-email.validator';
  * Exported Class
  */
 
-export class Validators {
+export class NgxValidators {
 	/**
 	 * A stricter validator for e-mail validation
 	 *
