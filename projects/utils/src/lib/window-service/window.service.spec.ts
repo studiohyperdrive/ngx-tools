@@ -1,30 +1,14 @@
-import { DOCUMENT } from '@angular/common';
-import { PLATFORM_ID } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
-
 import { WindowService } from './window.service';
 import { windowMock } from './window.service.mock';
 
 describe('WindowService', () => {
 	describe('with no document', () => {
 		let service: WindowService;
+		const document: any = null;
+		const platform = 'server';
 
-		beforeEach(async () => {
-			await TestBed.configureTestingModule({
-				providers: [
-					{
-						provide: DOCUMENT,
-						useValue: null,
-					},
-					{
-						provide: PLATFORM_ID,
-						useValue: 'server',
-					},
-					WindowService,
-				],
-			}).compileComponents();
-
-			service = TestBed.inject(WindowService);
+		beforeEach(() => {
+			service = new WindowService(document, platform);
 		});
 
 		describe('construct', () => {
@@ -48,24 +32,11 @@ describe('WindowService', () => {
 
 	describe('with a document', () => {
 		let service: WindowService;
-		const window = windowMock(jasmine.createSpy());
+		const document: any = windowMock(jasmine.createSpy());
+		const platform = 'browser';
 
-		beforeEach(async () => {
-			await TestBed.configureTestingModule({
-				providers: [
-					{
-						provide: DOCUMENT,
-						useValue: window,
-					},
-					{
-						provide: PLATFORM_ID,
-						useValue: 'browser',
-					},
-					WindowService,
-				],
-			}).compileComponents();
-
-			service = TestBed.inject(WindowService);
+		beforeEach(() => {
+			service = new WindowService(document, platform);
 		});
 
 		describe('construct', () => {
@@ -78,12 +49,11 @@ describe('WindowService', () => {
 
 		describe('scrollTo', () => {
 			it('should use the window.scrollTo to move to a position on the page', () => {
-				// eslint-disable-next-line @typescript-eslint/dot-notation
-				const spy = spyOn(service['window'], 'scrollTo');
+				service.window.scrollTo = jasmine.createSpy();
 
 				service.scrollTo(200);
 
-				expect(spy).toHaveBeenCalledWith(0 as any, 200 as any);
+				expect(service.window.scrollTo).toHaveBeenCalledWith(0 as any, 200 as any);
 			});
 		});
 
@@ -94,8 +64,8 @@ describe('WindowService', () => {
 		});
 
 		describe('scrollListeners', () => {
-			it('should have called addEventListeners', () => {
-				expect(window.addEventListener).toHaveBeenCalled();
+			it( 'should have called addEventListeners',() => {
+				expect(service.window.addEventListener).toHaveBeenCalled();
 			});
 		});
 
