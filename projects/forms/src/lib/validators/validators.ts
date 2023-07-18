@@ -10,6 +10,7 @@ import {
 	AtLeastOneRequiredValidatorOptions,
 	atLeastOneRequiredValidator,
 } from './at-least-one-required/at-least-one-required.validator';
+import { dependedRequiredValidator } from './depended-required/depended-required.validator';
 import { extendedEmailValidator } from './email/extended-email.validator';
 
 /**
@@ -48,6 +49,21 @@ export class NgxValidators {
 		options?: AtLeastOneRequiredValidatorOptions<KeyType>
 	): ValidatorFn {
 		return atLeastOneRequiredValidator<KeyType>(options);
+	}
+
+	/**
+	 * FormGroup validator which checks if an array of controls in the control are filled in if the depended control is filled in
+	 *
+	 * @param controls - An array of controls.
+	 * @param dependedControlKey - A control within the group which the other controls depend on.
+	 * @param matchFunction - Optional function the dependedControl should check
+	 */
+	static dependedRequired<KeyType extends string = string>(
+		controls: KeyType[],
+		dependedControlKey: KeyType,
+		matchFunction?: (data: any) => boolean
+	): ValidatorFn {
+		return dependedRequiredValidator<KeyType>(controls, dependedControlKey, matchFunction);
 	}
 
 	// Add other custom validators :-)
