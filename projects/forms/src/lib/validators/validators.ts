@@ -1,9 +1,4 @@
-import {
-	AbstractControl,
-	FormGroup,
-	ValidationErrors,
-	ValidatorFn,
-} from '@angular/forms';
+import { AbstractControl, FormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
 
 import { allOrNothingRequiredValidator } from './all-or-nothing-required/all-or-nothing-required.validator';
 import {
@@ -11,6 +6,7 @@ import {
 	atLeastOneRequiredValidator,
 } from './at-least-one-required/at-least-one-required.validator';
 import { dependedRequiredValidator } from './depended-required/depended-required.validator';
+import { decimalsAfterCommaValidator } from './decimals-after-comma/decimals-after-comma.validator';
 import { extendedEmailValidator } from './email/extended-email.validator';
 
 /**
@@ -64,6 +60,15 @@ export class NgxValidators {
 		matchFunction?: (data: any) => boolean
 	): ValidatorFn {
 		return dependedRequiredValidator<KeyType>(controls, dependedControlKey, matchFunction);
+	}
+
+	/**
+	 * Validates whether or not the inputted value has exceeded the maximum amount of decimals after the comma
+	 *
+	 * @param max - The maximum number of decimals after the comma
+	 */
+	static decimalsAfterComma(max: number): ValidatorFn {
+		return decimalsAfterCommaValidator(max);
 	}
 
 	// Add other custom validators :-)
