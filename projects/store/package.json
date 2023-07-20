@@ -1,6 +1,6 @@
 {
-  "name": "studiohyperdrive/ngx-store",
-  "version": "16.0.0",
+  "name": "@studiohyperdrive/ngx-store",
+  "version": "16.0.1",
   "peerDependencies": {
     "@angular/common": "^16.1.0",
     "@angular/core": "^16.1.0",
