@@ -11,6 +11,9 @@ This repo contains general usage libraries for shd Angular projects. Those libra
 -   forms (`@studiohyperdrive/ngx-forms`):
     -   custom validators
 
+-   store (`@studiohyperdrive/ngx-store`):
+    -   ngrx and ngrx/entity wrapper
+
 You can find detailed explanations in their respective README’s.
 
 It is build with:
