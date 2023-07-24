@@ -1,0 +1,150 @@
+import { AbstractControl, FormGroup } from '@angular/forms';
+
+import { DataFormAccessor, FormAccessor } from '../../abstracts';
+import { markAllAsDirty } from '../mark-all-as-dirty/mark-all-as-dirty.util';
+import { FormStateOptionsEntity } from '../../interfaces';
+
+/**
+ * Disable a FormControl/FormArray
+ *
+ * @param keys - The keys of the fields we wish to disable
+ * @param emitEvent - Whether or not we wish to emit the event
+ */
+const handleDisableFormControlOfFormArray = (
+	form: AbstractControl,
+	keys: Set<string>,
+	emitEvent: boolean
+) => {
+	// Iben: Early exit in case the state already matches so we don't do unnecessary emits
+	if (
+		(keys.has('formAccessorSelf') && form.disabled) ||
+		(!keys.has('formAccessorSelf') && form.enabled)
+	) {
+		return;
+	}
+
+	// Iben: Disable/enable the control based on the key
+	keys.has('formAccessorSelf') ? form.disable({ emitEvent }) : form.enable({ emitEvent });
+};
+
+/**
+ * Disable the controls of a FormGroup
+ *
+ * @param keys - The keys of the fields we wish to disable
+ * @param emitEvent - Whether or not we wish to emit the event
+ */
+const handleDisableFormGroup = (form: FormGroup, keys: Set<string>, emitEvent: boolean) => {
+	// Iben: Loop over all controls and enable them so that they are re-enabled in case the set of keys changes
+	enableControls(form, emitEvent);
+
+	// Iben: Disable the keys
+	Array.from(keys).forEach((key) => {
+		const control = form.get(key);
+		if (!control) {
+			console.warn(
+				`FormAccessor: The key "${key}" was provided in the disableFields array but was not found in the provided form.`
+			);
+
+			return;
+		}
+
+		// Iben: Prevent emit event if the control is already disabled
+		if (!control.disabled) {
+			control.disable({ emitEvent });
+		}
+	});
+};
+
+/**
+ * Recursively enables all fields of a control
+ *
+ * @param control - An AbstractControl which we want to enable and enable all children off
+ * @param emitEvent - Whether or not we wish to emit an event
+ */
+const enableControls = (control: AbstractControl, emitEvent: boolean = false): void => {
+	//Iben: If no control was found, early exit
+	if (!control) {
+		return;
+	}
+
+	// Iben: Enable the control itself if it is not enabled yet
+	if (!control.enabled) {
+		control.enable({ emitEvent });
+	}
+
+	// Iben: If there are no controls, early exit
+	if (!control['controls']) {
+		return;
+	}
+
+	// Iben: Recursively enable each control
+	(Array.isArray(control['controls'])
+		? control['controls']
+		: Object.values(control['controls'])
+	).forEach((child: AbstractControl) => {
+		enableControls(child, emitEvent);
+	});
+};
+
+/**
+ * Disables and enables a form's control based on a set of provided keys
+ *
+ * @param form - The form we wish to disable the controls for
+ * @param controlKeys - A set of keys of the controls
+ * @param emitEvent - Whether or not we wish to emit the event
+ */
+export const handleFormAccessorControlDisabling = (
+	form: AbstractControl,
+	controlKeys: Set<string>,
+	emitEvent: boolean
+) => {
+	// Iben: Depending on whether we're dealing with a FormArray/FormControl or a FormGroup, we have different  and handle the disable/enable state
+	if (!form['controls'] || Array.isArray(form['controls'])) {
+		handleDisableFormControlOfFormArray(form, controlKeys, emitEvent);
+	} else {
+		handleDisableFormGroup(form as FormGroup, controlKeys, emitEvent);
+	}
+};
+
+/**
+ * Marks a form and all the form-accessors this form is based on as dirty
+ *
+ * @param form - The form we wish to mark as dirty
+ * @param accessors - An array of all the accessors we wish to mark as dirty
+ * @param options - Form state options we wish to provide
+ */
+export const handleFormAccessorMarkAsDirty = (
+	form: AbstractControl,
+	accessors: (FormAccessor | DataFormAccessor)[],
+	options: FormStateOptionsEntity = {}
+) => {
+	// Iben: If the control has child controls, recursively mark them as dirty
+	if (form['controls']) {
+		markAllAsDirty(form['controls'], options);
+	} else {
+		// Iben : Mark the form as dirty
+		form.markAsDirty(options);
+	}
+
+	// Iben: Loop over each form accessor and call the mark as dirty function, so all subsequent accessors are also marked as dirty
+	accessors.forEach((accessor) => accessor.markAsDirty(options));
+};
+
+/**
+ * Marks a form and all the form-accessors this form is based on as touched
+ *
+ * @param form - The form we wish to mark as touched
+ * @param accessors - An array of all the accessors we wish to mark as touched
+ * @param options - Form state options we wish to provide
+ */
+export const handleFormAccessorMarkAsTouched = (
+	form: AbstractControl,
+	accessors: (FormAccessor | DataFormAccessor)[],
+	options: FormStateOptionsEntity = {}
+) => {
+	// Iben: Mark all the controls and the children as touched
+	form.markAllAsTouched();
+
+	// Iben: Loop over each form accessor and call the mark as touched function, so all subsequent accessors are also marked as touched
+	accessors.forEach((accessor) => accessor.markAsTouched(options));
+};

@@ -1,21 +1,8 @@
-# Angular Tools: forms (`@studiohyperdrive/ngx-forms`)
+# shared/ui/forms FormAccessor
 
-Install the package first:
-```shell
-npm install @studiohyperdrive/ngx-forms
-```
+> An abstract layer for control value accessor with provided default implementations
 
-## 1. Validators
-
-A set of extra custom validators compatible with the default Angular validators and reactive forms.
-
-| Validator      | Description                                                                                          |
-|----------------|------------------------------------------------------------------------------------------------------|
-| extendedEmail  | Extends the default e-mail validator with a required period in the tld part of te email.             |
-
-## 2. FormAccessor
-
-### Concept
+## Concept
 
 A `FormAccessor` can represent a control, group or array form, and has its own validation, disabled and touched state.
 
@@ -23,7 +10,7 @@ This approach allows us to easily compartmentalize larger forms into smaller com
 
 `FormAccessor` is an abstract layer on top of the `CustomControlValueAccessor`, and provides a default implementation for the most commonly implemented methods that are needed for a [ControlValueAccessor](https://angular.io/api/forms/ControlValueAccessor). These methods are: [writeValue](https://angular.io/api/forms/ControlValueAccessor#writeValue), [onChange](https://angular.io/api/forms/ControlValueAccessor#registerOnChange), [validate](https://angular.io/api/forms/NG_VALIDATORS), [setDisabledState](https://angular.io/api/forms/ControlValueAccessor#setdisabledstate), [markAsTouched](https://angular.io/api/forms/AbstractControl#markAsTouched) and [markAsPristine](https://angular.io/api/forms/AbstractControl#markaspristine). Each of these methods has a default implementation that can be overwritten for specific use-cases.
 
-### Base implementation
+## Base implementation
 
 In order to use this way of working, we create a component and extend the `FormAccessor` class. To make sure that the internal process is typed, we pass a type to the accessor.
 
@@ -42,7 +29,7 @@ initForm(): FormGroup {
 }
 ```
 
-### Extended implementation
+## Extended implementation
 
 As mentioned earlier, this approach allows us to map the data to a specific interface that is beneficial for the form. For example, whilst the external API expects an object, internally in the form, using an array is easier. The `FormAccessor` has an extended implementation to make this possible.
 
@@ -74,21 +61,21 @@ onChangeMapper({value: string[]) {
 }
 ```
 
-### Disabling and enabling control
+## Disabling and enabling control
 
 If we wish to disable or enable all controls within a (Data)FormAccessor, we can simply disable/enable the parent control that is connected to this accessor.
 
 If we wish to disable specific controls within the a (Data)FormAccessor, we can use the `disableFields` input to pass down the keys of these controls. By default, disabling these will cause a valueChanges emit. This behavior can be overwritten by implementing the `emitValueWhenDisableFieldsUsingInput` function.
 
-### UpdateValueAndValidity
+## UpdateValueAndValidity
 
 As Angular does not by default support a recursive `updateValueAndValidity` and therefore cannot update the value and validity of the inner controls of the accessor, we have a custom implementation that will recursively update all the controls.
 
 In case we wish to handle any logic _before_ this, we can implement the `onUpdateValueAndValidity` function.
 
-### Examples
+## Examples
 
-#### Simple example
+### Simple example
 
 ```ts
 interface UserName {
@@ -126,7 +113,7 @@ export class UserNameFormComponent extends FormAccessor<UserName> implements OnC
 }
 ```
 
-#### Mapper example
+### Mapper example
 
 ```ts
 interface UserName {
@@ -174,7 +161,7 @@ export class UserNameFormComponent extends FormAccessor<string, UserName> implem
 }
 ```
 
-#### Overwrite example
+### Overwrite example
 
 ```ts
 interface UserName {
