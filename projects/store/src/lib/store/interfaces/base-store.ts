@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActionCreator, DefaultProjectorFn, MemoizedSelector } from '@ngrx/store';
+// eslint-disable-next-line import/no-unresolved
 import { Action, ActionReducer, TypedAction } from '@ngrx/store/src/models';
 
 export interface BaseStore<StateInterface, ErrorInterface = unknown> {
@@ -11,7 +12,10 @@ export interface BaseStore<StateInterface, ErrorInterface = unknown> {
 
 export interface BaseStoreAssets<StateInterface, ErrorInterface = HttpErrorResponse> {
 	actions: BaseStoreActions<StateInterface, ErrorInterface>;
-	reducers: ActionReducer<{ data: any; loading: boolean; error: boolean; errorMessage: ErrorInterface }, Action>;
+	reducers: ActionReducer<
+		{ data: any; loading: boolean; error: boolean; errorMessage: ErrorInterface },
+		Action
+	>;
 	selectors: BaseStoreSelectors<StateInterface>;
 }
 
@@ -22,10 +26,15 @@ export interface BaseStoreActions<StateInterface = any, ErrorInterface = unknown
 		string,
 		(props: { payload: StateInterface }) => { payload: StateInterface } & TypedAction<string>
 	>;
-	loading: ActionCreator<string, (props: { payload: boolean }) => { payload: boolean } & TypedAction<string>>;
+	loading: ActionCreator<
+		string,
+		(props: { payload: boolean }) => { payload: boolean } & TypedAction<string>
+	>;
 	error: ActionCreator<
 		string,
-		(props: { payload: boolean | ErrorInterface }) => { payload: boolean | ErrorInterface } & TypedAction<string>
+		(props: {
+			payload: boolean | ErrorInterface;
+		}) => { payload: boolean | ErrorInterface } & TypedAction<string>
 	>;
 	clear: ActionCreator<string, () => TypedAction<string>>;
 }

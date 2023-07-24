@@ -17,6 +17,6 @@ export const { actions, reducers, selectors } = createStoreAssets<SpecStoreAsset
 	},
 	{
 		subSlice: 'videos',
-		generator: createEntityAdapterStoreAssets<DataType>
-	}
+		generator: createEntityAdapterStoreAssets<DataType>,
+	},
 ]);

@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 
-import { StoreService } from '../abstracts';
-import { DataType, actions, selectors } from './store-assets';
-import { dispatchDataToStore } from '../utils';
 import { HttpClient } from '@angular/common/http';
+import { StoreService } from '../abstracts';
+import { dispatchDataToStore } from '../utils';
+import { DataType, actions, selectors } from './store-assets';
 
 @Injectable()
 export class SpecStoreService extends StoreService {

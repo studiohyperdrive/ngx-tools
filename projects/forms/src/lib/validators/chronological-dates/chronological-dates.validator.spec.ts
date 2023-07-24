@@ -13,24 +13,24 @@ describe('chronologicalDatesValidator', () => {
 		formGroup.patchValue({
 			start: 'MOUSTACHE',
 			end: 'TEST',
-		} );
+		});
 
 		expect(chronologicalDatesValidator('start', 'end')(formGroup)).toEqual(null);
 		formGroup.patchValue({
 			start: '2018-05-23',
-		} );
+		});
 
 		expect(chronologicalDatesValidator('start', 'end')(formGroup)).toEqual(null);
 		formGroup.patchValue({
 			start: '2018-05-23',
 			end: '2018-05-24',
-		} );
+		});
 
 		expect(chronologicalDatesValidator('start', 'end')(formGroup)).toEqual(null);
 		formGroup.patchValue({
 			start: '2018-05-23',
 			end: '2018-07-24',
-		} );
+		});
 
 		expect(chronologicalDatesValidator('start', 'end')(formGroup)).toEqual(null);
 

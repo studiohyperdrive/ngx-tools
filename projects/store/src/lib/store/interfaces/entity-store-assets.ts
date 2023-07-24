@@ -5,6 +5,7 @@ import {
 	DefaultProjectorFn,
 	ActionCreator,
 } from '@ngrx/store';
+// eslint-disable-next-line import/no-unresolved
 import { TypedAction } from '@ngrx/store/src/models';
 
 import { BasicEntityState } from './entity-adapter-reducers';

@@ -17,30 +17,28 @@ export const dispatchDataToStore = <DataType>(
 	dispatchType: 'set' | 'add' | 'update' = 'set'
 ): Observable<DataType> => {
 	// Iben: Set the loading state to true and the error state to false to start a new set
-	store.dispatch( dispatchAction.loading( { payload: true } ) );
-	store.dispatch( dispatchAction.error( { payload: false } ) );
-
+	store.dispatch(dispatchAction.loading({ payload: true }));
+	store.dispatch(dispatchAction.error({ payload: false }));
 
 	// Iben: Set, add or update the data according to the provided dispatch type
 	return data.pipe(
-		tap( ( payload ) => {
+		tap((payload) => {
 			if (dispatchType === 'set') {
-				store.dispatch( dispatchAction.set( { payload } ) );
-
+				store.dispatch(dispatchAction.set({ payload }));
 			} else if (dispatchType === 'add') {
 				store.dispatch(dispatchAction.add({ payload }));
 			} else {
 				store.dispatch(dispatchAction.update({ payload }));
 			}
-		} ),
+		}),
 		// Iben: Catch the error and dispatch it to the store
 		catchError((err) => {
 			store.dispatch(dispatchAction.error({ payload: err }));
 
 			return throwError(() => err);
-		} ),
+		}),
 		// Iben: Set the loading state to false
-		finalize( () => {
+		finalize(() => {
 			store.dispatch(dispatchAction.loading({ payload: false }));
 		})
 	);

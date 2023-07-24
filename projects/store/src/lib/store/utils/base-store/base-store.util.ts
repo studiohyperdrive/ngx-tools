@@ -2,14 +2,16 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { createAction, createReducer, createSelector, on, props } from '@ngrx/store';
 import { get } from 'lodash';
 
-import { BaseStore,BaseStoreAssets } from '../../interfaces';
+import { BaseStore, BaseStoreAssets } from '../../interfaces';
 
 /**
  * Creates store assets to save basic properties (object, string, number, etc.) into the store
  *
  * @param slice - The slice we wish to save the data in
  */
-export const createBaseStoreAssets = <StateInterface>(slice: string): BaseStoreAssets<StateInterface> => {
+export const createBaseStoreAssets = <StateInterface>(
+	slice: string
+): BaseStoreAssets<StateInterface> => {
 	// Iben: Create actions
 	const actions = {
 		set: createAction(`[${slice}]: Set`, props<{ payload: StateInterface }>()),
@@ -20,7 +22,7 @@ export const createBaseStoreAssets = <StateInterface>(slice: string): BaseStoreA
 				payload: boolean | HttpErrorResponse;
 			}>()
 		),
-		clear: createAction(`[${slice}]: Clear`)
+		clear: createAction(`[${slice}]: Clear`),
 	};
 
 	// Iben: Set the initial state
@@ -28,7 +30,7 @@ export const createBaseStoreAssets = <StateInterface>(slice: string): BaseStoreA
 		data: undefined,
 		loading: false,
 		error: false,
-		errorMessage: null
+		errorMessage: null,
 	};
 
 	// Iben: Create reducers
@@ -55,9 +57,18 @@ export const createBaseStoreAssets = <StateInterface>(slice: string): BaseStoreA
 
 	const selectors = {
 		select: createSelector(featureSelector, (state: BaseStore<StateInterface>) => state.data),
-		selectLoading: createSelector(featureSelector, (state: BaseStore<StateInterface>) => state.loading),
-		selectError: createSelector(featureSelector, (state: BaseStore<StateInterface>) => state.error),
-		selectErrorMessage: createSelector(featureSelector, (state: BaseStore<StateInterface>) => state.errorMessage)
+		selectLoading: createSelector(
+			featureSelector,
+			(state: BaseStore<StateInterface>) => state.loading
+		),
+		selectError: createSelector(
+			featureSelector,
+			(state: BaseStore<StateInterface>) => state.error
+		),
+		selectErrorMessage: createSelector(
+			featureSelector,
+			(state: BaseStore<StateInterface>) => state.errorMessage
+		),
 	};
 
 	return { actions, reducers, selectors };

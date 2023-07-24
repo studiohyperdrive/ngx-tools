@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+if command -v nvm &> /dev/null
+then
+    nvm use
+fi
+
+if command -v fnm &> /dev/null
+then
+    fnm use
+fi
+
+npm run lint && npm run test
