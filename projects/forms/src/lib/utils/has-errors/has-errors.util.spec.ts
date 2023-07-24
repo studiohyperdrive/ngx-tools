@@ -18,8 +18,8 @@ describe('hasErrors', () => {
 	});
 
 	it('should return false if all controls are valid', () => {
-		form.patchValue( { test: 'Denis',hello: { world: 'Wouter' } } );
-		
+		form.patchValue({ test: 'Denis', hello: { world: 'Wouter' } });
+
 		expect(hasErrors(form)).toBeFalse();
 	});
 });

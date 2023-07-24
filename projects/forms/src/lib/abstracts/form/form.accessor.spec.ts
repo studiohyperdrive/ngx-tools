@@ -6,31 +6,34 @@ import {
 	FormGroup,
 	NG_VALUE_ACCESSOR,
 	ReactiveFormsModule,
-	Validators
+	Validators,
 } from '@angular/forms';
 
 import { FormAccessor } from './form.accessor';
 
 describe('FormAccessor', () => {
 	@Component({
-		selector: 'test-component',
+		selector: 'forms-component',
 		template: '',
 		providers: [
 			{
 				provide: NG_VALUE_ACCESSOR,
 				useExisting: forwardRef(() => TestComponent),
-				multi: true
-			}
-		]
+				multi: true,
+			},
+		],
 	})
-	class TestComponent extends FormAccessor<{ name: string }, FormGroup<{ name: FormControl<string> }>> {
+	class TestComponent extends FormAccessor<
+		{ name: string },
+		FormGroup<{ name: FormControl<string> }>
+	> {
 		constructor(cdRef: ChangeDetectorRef) {
 			super(cdRef);
 		}
 
 		initForm() {
 			return new FormGroup({
-				name: new FormControl('', Validators.required)
+				name: new FormControl('', Validators.required),
 			});
 		}
 	}
@@ -42,7 +45,7 @@ describe('FormAccessor', () => {
 		const testBed = TestBed.configureTestingModule({
 			declarations: [TestComponent],
 			imports: [ReactiveFormsModule],
-			providers: [ControlContainer]
+			providers: [ControlContainer],
 		});
 
 		fixture = testBed.createComponent(TestComponent);
@@ -146,24 +149,28 @@ describe('FormAccessor', () => {
 
 describe('FormAccessor with mappers', () => {
 	@Component({
-		selector: 'test-component',
+		selector: 'forms-component',
 		template: '',
 		providers: [
 			{
 				provide: NG_VALUE_ACCESSOR,
 				useExisting: forwardRef(() => TestComponent),
-				multi: true
-			}
-		]
+				multi: true,
+			},
+		],
 	})
-	class TestComponent extends FormAccessor<string, FormGroup<{ name: FormControl<string> }>, { name: string }> {
+	class TestComponent extends FormAccessor<
+		string,
+		FormGroup<{ name: FormControl<string> }>,
+		{ name: string }
+	> {
 		constructor(injector: Injector, cdRef: ChangeDetectorRef) {
 			super(cdRef);
 		}
 
 		initForm() {
 			return new FormGroup({
-				name: new FormControl('')
+				name: new FormControl(''),
 			});
 		}
 
@@ -183,7 +190,7 @@ describe('FormAccessor with mappers', () => {
 		const testBed = TestBed.configureTestingModule({
 			declarations: [TestComponent],
 			imports: [ReactiveFormsModule],
-			providers: [ControlContainer]
+			providers: [ControlContainer],
 		});
 
 		fixture = testBed.createComponent(TestComponent);

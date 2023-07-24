@@ -22,10 +22,9 @@ describe('customUpdateValueAndValidity', () => {
 
 	it('should call the update value and validity on the controls', () => {
 		spyOn(form.get('hello.world'), 'updateValueAndValidity');
-		spyOn( form.get( 'test' ),'updateValueAndValidity' );
+		spyOn(form.get('test'), 'updateValueAndValidity');
 
 		customUpdateValueAndValidity(form, updateValueAndValidity, { onlySelf: true });
-
 
 		expect(form.get('hello.world').updateValueAndValidity).toHaveBeenCalledWith({
 			onlySelf: true,

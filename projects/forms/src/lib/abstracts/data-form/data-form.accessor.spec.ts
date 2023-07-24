@@ -14,7 +14,7 @@ const keys = ['hello', 'world'];
 
 describe('DataFormAccessor', () => {
 	@Component({
-		selector: 'test-component',
+		selector: 'forms-component',
 		template: '',
 		providers: [
 			{
@@ -137,9 +137,9 @@ describe('DataFormAccessor', () => {
 			// Wait until the task queue becomes empty
 			await fixture.whenStable();
 
-			component.form.patchValue( {} );
+			component.form.patchValue({});
 
-			expect(component.validate()).toEqual({invalidForm: true});
+			expect(component.validate()).toEqual({ invalidForm: true });
 		}));
 
 		it('should call the `validate` method with the correct output when the form is invalid', fakeAsync(async () => {
@@ -158,7 +158,7 @@ describe('DataFormAccessor', () => {
 
 describe('DataFormAccessor with mappers', () => {
 	@Component({
-		selector: 'test-component',
+		selector: 'forms-component',
 		template: '',
 		providers: [
 			{

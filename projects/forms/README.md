@@ -9,9 +9,29 @@ npm install @studiohyperdrive/ngx-forms
 
 A set of extra custom validators compatible with the default Angular validators and reactive forms.
 
-| Validator      | Description                                                                                          |
-|----------------|------------------------------------------------------------------------------------------------------|
-| extendedEmail  | Extends the default e-mail validator with a required period in the tld part of te email.             |
+### extendedEmail
+Extends the default e-mail validator with a required period in the tld part of te email. 
+
+### allOrNothingRequired
+A FormGroup validator that checks whether either all controls in a FormGroup are filled in, or no controls are. This validator is particularly useful when dealing with optional FormGroups within a form.
+
+### atLeastOneRequired
+A FormGroup validator that checks whether at least one of the provided controls was filled in. A separate function to determine the filled in state can be provided.
+
+### dependedRequired
+A FormGroup validator that checks whether a series of controls are filled in when another control was filled in. A separate function to determine the filled in state can be provided.
+
+### decimalsAfterComma
+A validator that checks whether a provided number matches with a maximum amount of decimals after the comma.
+
+### chronologicalDates
+A validator that checks whether two dates are in chronological order.
+
+### dateRangeValidator
+A validator that checks whether a date falls between a provided range. The start and end date of the range are exclusive.
+
+### set/clearFormError
+In custom validators, it is often useful to be able to quickly add or remove a specific error from the control. Using the `setFormError` we can easily set a specific error on a control, whilst `clearFormError` will remove said error.
 
 ## 2. FormAccessor
 
@@ -25,10 +45,10 @@ This approach allows us to easily compartmentalize larger forms into smaller com
 
 ### Base implementation
 
-In order to use this way of working, we create a component and extend the `FormAccessor` class. To make sure that the internal process is typed, we pass a type to the accessor.
+In order to use this way of working, we create a component and extend the `FormAccessor` class. To make sure that the internal process is typed, we pass a data type for the form data by passing the `FormDataType`, and the kind of control we want to use internally by passing a `FormControlType`
 
 ```ts
-export class TestComponent extends FormAccessor<FormDataInterface>
+export class TestComponent extends FormAccessor<FormDataType, FormControlType>
 ```
 
 The `FormAccessor` requires a single method to be implemented by its extender, being `initForm`. This method should return an [AbstractControl](https://angular.io/api/forms/AbstractControl) to which we'll write the data to.
@@ -46,13 +66,13 @@ initForm(): FormGroup {
 
 As mentioned earlier, this approach allows us to map the data to a specific interface that is beneficial for the form. For example, whilst the external API expects an object, internally in the form, using an array is easier. The `FormAccessor` has an extended implementation to make this possible.
 
-We start by providing a second interface when extending, so we know which type of data we use internally.
+We start by providing a third interface when extending, so we know which type of data we use internally.
 
 ```ts
-export class TestComponent extends FormAccessor<FormDataInterface, InternalFormDataInterface>
+export class TestComponent extends FormAccessor<FormDataType, FormControlType, InternalFormDataType>
 ```
 
-When writing the data from the exterior form to this component, we can now map the data from the interface `FormDataInterface` to `InternalFormDataInterface` by using the optional `onWriteValueMapper` method.
+When writing the data from the exterior form to this component, we can now map the data from the interface `FormDataType` to `InternalFormDataType` by using the optional `onWriteValueMapper` method.
 
 ```ts
 onWriteValueMapper({value: {foo: true, bar: false}) {
@@ -76,15 +96,21 @@ onChangeMapper({value: string[]) {
 
 ### Disabling and enabling control
 
-If we wish to disable or enable all controls within a (Data)FormAccessor, we can simply disable/enable the parent control that is connected to this accessor.
+If we wish to disable or enable all controls within a FormAccessor, we can simply disable/enable the parent control that is connected to this accessor.
 
-If we wish to disable specific controls within the a (Data)FormAccessor, we can use the `disableFields` input to pass down the keys of these controls. By default, disabling these will cause a valueChanges emit. This behavior can be overwritten by implementing the `emitValueWhenDisableFieldsUsingInput` function.
+If we wish to disable specific controls within the a FormAccessor, we can use the `disableFields` input to pass down the keys of these controls. By default, disabling these will cause a valueChanges emit. This behavior can be overwritten by implementing the `emitValueWhenDisableFieldsUsingInput` function.
 
 ### UpdateValueAndValidity
 
 As Angular does not by default support a recursive `updateValueAndValidity` and therefore cannot update the value and validity of the inner controls of the accessor, we have a custom implementation that will recursively update all the controls.
 
 In case we wish to handle any logic _before_ this, we can implement the `onUpdateValueAndValidity` function.
+
+### DataFormAccessor
+
+A special case of the FormAccessor, the DataFormAccessor allows you to provide a set of data to the `data` input which will be used when creating the underlying form. Common examples for this use case include using an array of data to build up a set of controls in the form. 
+
+Given that the DataFormAccessor is a special case of the regular FormAccessor, all earlier mentioned methods and @Inputs are still applicable. 
 
 ### Examples
 
@@ -94,6 +120,11 @@ In case we wish to handle any logic _before_ this, we can implement the `onUpdat
 interface UserName {
 	name: string;
 	firstName: string;
+}
+
+interface UserNameForm {
+    name: FormControl<string>,
+    firstName: FormControl<string>
 }
 
 @Component({
@@ -112,12 +143,12 @@ interface UserName {
 		}
 	]
 })
-export class UserNameFormComponent extends FormAccessor<UserName> implements OnChanges {
-	constructor(injector: Injector, readonly cdRef: ChangeDetectorRef, private readonly formBuilder: FormBuilder) {
-		super(injector, cdRef);
+export class UserNameFormComponent extends FormAccessor<UserName, FormGroup<UserNameForm>> implements OnChanges {
+	constructor(readonly cdRef: ChangeDetectorRef, private readonly formBuilder: FormBuilder) {
+		super(cdRef);
 	}
 
-	initForm(): FormGroup {
+	initForm(): FormGroup<UserNameForm> {
 		return this.formBuilder.group({
 			name: [null, Validators.required],
 			firstName: [null, Validators.required]
@@ -134,6 +165,11 @@ interface UserName {
 	firstName: string;
 }
 
+interface UserNameForm {
+    name: FormControl<string>,
+    firstName: FormControl<string>
+}
+
 @Component({
 	selector: 'user-name-form',
 	templateUrl: './user-name.component.html',
@@ -150,12 +186,12 @@ interface UserName {
 		}
 	]
 })
-export class UserNameFormComponent extends FormAccessor<string, UserName> implements OnChanges {
-	constructor(injector: Injector, readonly cdRef: ChangeDetectorRef, private readonly formBuilder: FormBuilder) {
-		super(injector, cdRef);
+export class UserNameFormComponent extends FormAccessor<string, FormGroup<UserNameForm>, UserName> implements OnChanges {
+	constructor(readonly cdRef: ChangeDetectorRef, private readonly formBuilder: FormBuilder) {
+		super(cdRef);
 	}
 
-	initForm(): FormGroup {
+	initForm(): FormGroup<UserNameForm> {
 		return this.formBuilder.group({
 			name: [null, Validators.required],
 			firstName: [null, Validators.required]
@@ -182,6 +218,11 @@ interface UserName {
 	firstName: string;
 }
 
+interface UserNameForm {
+    name: FormControl<string>,
+    firstName: FormControl<string>
+}
+
 @Component({
 	selector: 'user-name-form',
 	templateUrl: './user-name.component.html',
@@ -198,12 +239,12 @@ interface UserName {
 		}
 	]
 })
-export class UserNameFormComponent extends FormAccessor<UserName> implements OnChanges {
-	constructor(injector: Injector, readonly cdRef: ChangeDetectorRef, private readonly formBuilder: FormBuilder) {
-		super(injector, cdRef);
+export class UserNameFormComponent extends FormAccessor<UserName, FormGroup<UserNameForm>> implements OnChanges {
+	constructor(readonly cdRef: ChangeDetectorRef, private readonly formBuilder: FormBuilder) {
+		super(cdRef);
 	}
 
-	initForm(): FormGroup {
+	initForm(): FormGroup<UserNameForm> {
 		return this.formBuilder.group({
 			name: [null, Validators.required],
 			firstName: [null, Validators.required]
@@ -215,3 +256,74 @@ export class UserNameFormComponent extends FormAccessor<UserName> implements OnC
 	}
 }
 ```
+
+#### DataFormAccessor
+```ts
+interface SurveyQuestion {
+	name: string;
+	id: string;
+}
+
+interface SurveyForm {
+    name: FormControl<string>;
+    [key:id]: FormControl<string>;
+}
+
+@Component({
+	selector: 'survey-form',
+	templateUrl: './survey.component.html',
+	providers: [
+		{
+			provide: NG_VALUE_ACCESSOR,
+			useExisting: forwardRef(() => SurveyFormComponent),
+			multi: true
+		},
+		{
+			provide: NG_VALIDATORS,
+			useExisting: forwardRef(() => SurveyFormComponent),
+			multi: true
+		}
+	]
+})
+export class SurveyFormComponent extends DataFormAccessor<SurveyQuestion[], Record<string, string>, FormGroup<SurveyForm>> implements OnChanges {
+	constructor(readonly cdRef: ChangeDetectorRef, private readonly formBuilder: FormBuilder) {
+		super(cdRef);
+	}
+
+	initForm(questions: SurveyQuestion[]): FormGroup<SurveyForm> {
+		const form = this.formBuilder.group({
+			name: [null, Validators.required]
+		});
+
+        questions.forEach(question => {
+            form.addControl(question.id, this.formBuilder.control('', Validators.required))
+        })
+
+        return form;
+	}
+}
+
+```
+
+## 3. FormAccessorContainer
+
+In order to mark all controls of several (nested) `FormAccessors` as touched or dirty, we use the `FormAccessorContainer`. 
+
+### BaseFormAccessor
+
+In order to reach all FormAccessors and their children, we need to provide the `BaseFormAccessor` value in the providers array of the accessors.
+
+```ts
+		{
+			provide: BaseFormAccessor,
+			useExisting: forwardRef(() => BasicRegistrationDataFormComponent)
+		}
+```
+
+### markAllAsTouched
+
+Calling this method on a `FormAccessorContainer` will recursively mark each `FormAccessor` and their corresponding `FormAccessor` children in the template as touched.
+
+### markAsDirty
+
+Calling this method on a `FormAccessorContainer` will recursively mark each `FormAccessor` and their corresponding `FormAccessor` children in the template as dirty.

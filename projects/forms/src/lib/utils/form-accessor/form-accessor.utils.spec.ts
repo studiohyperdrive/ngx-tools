@@ -48,7 +48,7 @@ describe('handleFormAccessorControlDisabling', () => {
 		beforeEach(() => {
 			control = new FormGroup({
 				moustache: new FormControl(),
-				wax: new FormControl()
+				wax: new FormControl(),
 			});
 		});
 
