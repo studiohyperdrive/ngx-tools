@@ -55,7 +55,7 @@ export abstract class FormAccessor<
 	);
 
 	/**
-	 * Stream to know whether or not the form has been initialized
+	 * Stream to know whether the form has been initialized
 	 */
 	@Output()
 	public readonly initialized$: Observable<boolean> = this.initializedSubject$.asObservable();
@@ -77,7 +77,7 @@ export abstract class FormAccessor<
 			return;
 		}
 
-		// Iben: Setup a subject to track whether or not we're still disabling the fields
+		// Iben: Setup a subject to track whether we're still disabling the fields
 		const disabling = new Subject();
 
 		// Iben: Add the keys to a set for more performant lookup and convert those to a string to not have Typescript issues later down the line
