@@ -22,7 +22,7 @@ describe('atLeastOneRequiredValidator', () => {
 				b: new FormControl(''),
 				c: new FormControl(''),
 			},
-			atLeastOneRequiredValidator({controls: ['b', 'c']})
+			atLeastOneRequiredValidator({ controls: ['b', 'c'] })
 		);
 
 		formWithKeysAndMatchFunction = new FormGroup(
@@ -31,7 +31,10 @@ describe('atLeastOneRequiredValidator', () => {
 				b: new FormControl(''),
 				c: new FormControl(''),
 			},
-			atLeastOneRequiredValidator({controls: ['b', 'c'], conditionalFunction: (value) => value.a})
+			atLeastOneRequiredValidator({
+				controls: ['b', 'c'],
+				conditionalFunction: (value) => value.a,
+			})
 		);
 	});
 

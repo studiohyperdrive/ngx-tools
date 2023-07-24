@@ -64,7 +64,7 @@ describe('WindowService', () => {
 		});
 
 		describe('scrollListeners', () => {
-			it( 'should have called addEventListeners',() => {
+			it('should have called addEventListeners', () => {
 				expect(service.window.addEventListener).toHaveBeenCalled();
 			});
 		});

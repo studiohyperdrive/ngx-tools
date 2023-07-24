@@ -11,7 +11,7 @@ describe('createBaseStoreAssets', () => {
 	});
 
 	it('should return the reducers/selectors based on the slice', () => {
-		const { reducers,selectors } = createBaseStoreAssets( 'moustaches' );
+		const { reducers, selectors } = createBaseStoreAssets('moustaches');
 
 		expect(reducers).not.toBeUndefined();
 		expect(selectors).not.toBeUndefined();

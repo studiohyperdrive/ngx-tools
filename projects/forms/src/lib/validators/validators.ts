@@ -64,12 +64,12 @@ export class NgxValidators {
 	}
 
 	/**
-	 * Validates whether or not the inputted value has exceeded the maximum amount of decimals after the comma
+	 * Validates whether the inputted value has exceeded the maximum amount of decimals after the comma
 	 *
 	 * @param max - The maximum number of decimals after the comma
 	 */
 	static decimalsAfterComma(max: number): ValidatorFn {
-		return decimalsAfterCommaValidator( max );
+		return decimalsAfterCommaValidator(max);
 	}
 
 	/**
@@ -84,11 +84,7 @@ export class NgxValidators {
 		endControlKey: string,
 		format = 'YYYY-MM-DD'
 	): ValidatorFn {
-		return chronologicalDatesValidator(
-			startControlKey,
-			endControlKey,
-			format
-		);
+		return chronologicalDatesValidator(startControlKey, endControlKey, format);
 	}
 
 	/**
@@ -98,11 +94,7 @@ export class NgxValidators {
 	 * @param maxDate - Maximum valid date
 	 * @param format - Optional format used for all 3 dates, by default YYYY-MM-DD
 	 */
-	static dateRangeValidator(
-		min: string,
-		max: string,
-		format = 'YYYY-MM-DD'
-	): ValidatorFn {
+	static dateRangeValidator(min: string, max: string, format = 'YYYY-MM-DD'): ValidatorFn {
 		return this.dateRangeValidator(min, max, format);
 	}
 

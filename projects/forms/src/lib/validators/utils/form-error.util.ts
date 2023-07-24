@@ -7,10 +7,7 @@ import * as clean from 'obj-clean';
  * @param control - Form control to remove the error from.
  * @param error  - Name of the error to remove from the control.
  */
-export const clearFormError = (
-	control: AbstractControl,
-	error: string
-): void => {
+export const clearFormError = (control: AbstractControl, error: string): void => {
 	// Iben: Check if there are no errors existing on this control or if the the provided error does not exist, and early exit if needed
 	const errors = new Set(Object.keys(control.errors || {}));
 
@@ -41,11 +38,7 @@ export const clearFormError = (
  * @param error - Name of the error to attach to the control.
  * @param value - Value of the error being attached to the control
  */
-export const setFormError = (
-	control: AbstractControl,
-	error: string,
-	value: any = true
-): void => {
+export const setFormError = (control: AbstractControl, error: string, value: any = true): void => {
 	// Iben: Early exit in case the control already has the error
 	if (control.hasError(error)) {
 		return;

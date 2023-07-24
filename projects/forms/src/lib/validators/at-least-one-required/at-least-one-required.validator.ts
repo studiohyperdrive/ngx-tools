@@ -3,9 +3,7 @@ import * as clean from 'obj-clean';
 
 import { clearFormError, setFormError } from '../utils';
 
-export interface AtLeastOneRequiredValidatorOptions<
-	KeyType extends string = string
-> {
+export interface AtLeastOneRequiredValidatorOptions<KeyType extends string = string> {
 	controls?: KeyType[];
 	conditionalFunction?: (data: any) => boolean;
 }
@@ -13,14 +11,9 @@ export interface AtLeastOneRequiredValidatorOptions<
 /**
  * FormGroup validator which checks if either at least one value is filled in
  *
- * @param group - A form group
  * @param options - An optional object with configuration options, see below params for more info
- * @param controls - Optional list of controls, if not provided the validator is applied to all controls of the group
- * @param conditionalFunction - Optional function the form value needs to return true to for the required to be set
  */
-export const atLeastOneRequiredValidator = <
-	KeyType extends string = string
->(
+export const atLeastOneRequiredValidator = <KeyType extends string = string>(
 	options?: AtLeastOneRequiredValidatorOptions<KeyType>
 ) => {
 	return (group: FormGroup): { atLeastOneRequiredError: true } | null => {
@@ -52,18 +45,13 @@ export const atLeastOneRequiredValidator = <
 
 		// Iben: Check if we need to check on a specific key
 		if (keys) {
-			const hasOneKey = keys.reduce(
-				(hasOne, key) => hasOne || cleanedKeys.has(key),
-				false
-			);
+			const hasOneKey = keys.reduce((hasOne, key) => hasOne || cleanedKeys.has(key), false);
 
 			// Iben: Only return an error when there is no key matched at all
 			// and in case of a conditionalFunction if the conditionalFunction is matched as well
 			if (
 				(!hasOneKey && !conditionalFunction) ||
-				(!hasOneKey &&
-					conditionalFunction &&
-					conditionalFunction(group.value))
+				(!hasOneKey && conditionalFunction && conditionalFunction(group.value))
 			) {
 				for (const key of keys) {
 					setFormError(group.get(key), 'required');

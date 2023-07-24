@@ -3,4 +3,4 @@
  */
 
 export { NgxValidators } from './lib/validators/validators';
-export { setFormError, clearFormError} from './lib/validators/utils';
+export { setFormError, clearFormError } from './lib/validators/utils';

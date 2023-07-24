@@ -1,14 +1,12 @@
 import { FormControl } from '@angular/forms';
 
 /**
- * Validates whether or not the inputted value has exceeded the maximum amount of decimals after the comma
+ * Validates whether the inputted value has exceeded the maximum amount of decimals after the comma
  *
  * @param max - The maximum number of decimals after the comma
  */
 export const decimalsAfterCommaValidator = (max: number) => {
-	return (
-		control: FormControl
-	): { invalidDecimalsAfterComma: true } | null => {
+	return (control: FormControl): { invalidDecimalsAfterComma: true } | null => {
 		// Iben: In case no control was provided, or the control value was empty, we early exit
 		if (!control || (!control.value && control.value !== 0)) {
 			return null;

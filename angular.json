@@ -32,7 +32,8 @@
           "options": {
             "main": "projects/utils/src/test.ts",
             "tsConfig": "projects/utils/tsconfig.spec.json",
-            "karmaConfig": "projects/utils/karma.conf.js"
+            "karmaConfig": "projects/utils/karma.conf.js",
+            "watch": false
           }
         },
         "lint": {
@@ -69,7 +70,8 @@
           "options": {
             "main": "projects/forms/src/test.ts",
             "tsConfig": "projects/forms/tsconfig.spec.json",
-            "karmaConfig": "projects/forms/karma.conf.js"
+            "karmaConfig": "projects/forms/karma.conf.js",
+            "watch": false
           }
         },
         "lint": {
@@ -109,6 +111,8 @@
           "options": {
             "main": "projects/store/src/test.ts",
             "tsConfig": "projects/store/tsconfig.spec.json",
+            "karmaConfig": "projects/forms/karma.conf.js",
+            "watch": false,
             "polyfills": [
               "zone.js",
               "zone.js/testing"
