@@ -84,7 +84,26 @@ export class NgxValidators {
 		endControlKey: string,
 		format = 'YYYY-MM-DD'
 	): ValidatorFn {
-		return chronologicalDatesValidator(startControlKey, endControlKey, format);
+		return chronologicalDatesValidator(
+			startControlKey,
+			endControlKey,
+			format
+		);
+	}
+
+	/**
+	 * Form control validator which validates if a date is between a provided range
+	 *
+	 * @param minDate - Minimum valid date
+	 * @param maxDate - Maximum valid date
+	 * @param format - Optional format used for all 3 dates, by default YYYY-MM-DD
+	 */
+	static dateRangeValidator(
+		min: string,
+		max: string,
+		format = 'YYYY-MM-DD'
+	): ValidatorFn {
+		return this.dateRangeValidator(min, max, format);
 	}
 
 	// Add other custom validators :-)
