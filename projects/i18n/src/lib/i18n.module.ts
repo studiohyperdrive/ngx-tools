@@ -1,4 +1,4 @@
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule, inject } from '@angular/core';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { HttpBackend } from '@angular/common/http';
@@ -9,18 +9,22 @@ import { I18nService } from './services';
 import { TranslationLoaderResolver } from './resolvers';
 
 function FallBackTranslationLoader(http: HttpBackend) {
-	return new MultiTranslationHttpLoader(http, ['./assets/i18n/shared/i18n/']);
+	// Iben: Inject the config
+	const config = inject(I18N_CONFIG);
+
+	// Iben: Return a default loader
+	return new MultiTranslationHttpLoader(http, config.defaultAssetPaths || []);
 }
 
 @NgModule({
 	imports: [TranslateModule],
 	exports: [TranslateModule],
 })
-export class I18nModule {
+export class NgxI18nModule {
 	public static forRoot(
 		config: I18nConfig,
 		translationLoader?: (http: HttpBackend) => MultiTranslationHttpLoader
-	): ModuleWithProviders<I18nModule> {
+	): ModuleWithProviders<NgxI18nModule> {
 		const providers = [
 			...TranslateModule.forRoot({
 				loader: {
@@ -38,14 +42,14 @@ export class I18nModule {
 		];
 
 		return {
-			ngModule: I18nModule,
+			ngModule: NgxI18nModule,
 			providers,
 		};
 	}
 
 	public static forChild(
 		translationLoader?: (http: HttpBackend) => MultiTranslationHttpLoader
-	): ModuleWithProviders<I18nModule> {
+	): ModuleWithProviders<NgxI18nModule> {
 		const providers = [
 			...TranslateModule.forChild({
 				loader: {
@@ -60,7 +64,7 @@ export class I18nModule {
 		];
 
 		return {
-			ngModule: I18nModule,
+			ngModule: NgxI18nModule,
 			providers,
 		};
 	}

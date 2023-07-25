@@ -8,14 +8,19 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { I18nLoadingService } from '../../services';
 
 export class MultiTranslationHttpLoader implements TranslateLoader {
-	private translationLoadingService: I18nLoadingService = inject(I18nLoadingService);
+	private readonly translationLoadingService: I18nLoadingService = inject(I18nLoadingService);
 
 	constructor(
 		private readonly httpBackend: HttpBackend,
 		private readonly translationsPaths: string[]
 	) {}
 
-	public getTranslation(lang: string): Observable<any> {
+	/**
+	 * Fetches the provided translation files and saves them to the translation store
+	 *
+	 * @param  language - The currently used language
+	 */
+	public getTranslation(language: string): Observable<any> {
 		// Iben: Fetch the currently existing translations, so we can see if they already exist in the loading service
 		const availableTranslations = this.translationLoadingService.getTranslations();
 
@@ -31,7 +36,7 @@ export class MultiTranslationHttpLoader implements TranslateLoader {
 				});
 			} else {
 				// Iben: If the translations aren't available in the store, we fetch them from the server
-				const fetchPath = `${path}${lang}.json`;
+				const fetchPath = `${path}${language}.json`;
 				return new HttpClient(this.httpBackend).get(fetchPath).pipe(
 					// Iben: Map this to an object so we can track which results corresponds with which path
 					map((translations) => {

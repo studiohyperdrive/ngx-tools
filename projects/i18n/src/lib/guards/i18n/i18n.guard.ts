@@ -38,7 +38,7 @@ export const I18nGuard: CanActivateFn = (route: ActivatedRouteSnapshot): boolean
 };
 
 const getLanguage = (route: ActivatedRouteSnapshot, config: I18nConfig): string => {
-	const language = route?.paramMap.get('language');
+	const language = route?.paramMap.get(config.languageRouteParam || 'language');
 	const parent = route?.parent;
 
 	if (!parent && !language) {

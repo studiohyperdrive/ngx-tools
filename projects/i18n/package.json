@@ -1,6 +1,6 @@
 {
-  "name": "i18n",
-  "version": "0.0.1",
+  "name": "@studiohyperdrive/ngx-i18n",
+  "version": "16.0.0",
   "peerDependencies": {
     "@angular/common": "^16.1.5",
     "@angular/core": "^16.1.5",
