@@ -1,0 +1,15 @@
+{
+  "name": "ngx-table",
+  "version": "16.0.0",
+  "peerDependencies": {
+    "@angular/common": "^16.1.0",
+    "@angular/core": "^16.1.0",
+    "@angular/forms": "^16.1.0",
+    "@angular/cdk": "16.1.6",
+    "dot-prop": "8.0.2"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}

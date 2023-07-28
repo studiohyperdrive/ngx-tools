@@ -27,6 +27,9 @@
       "store": [
         "dist/store"
       ],
+      "table": [
+        "dist/table"
+      ],
       "utils": [
         "dist/utils/utils",
         "dist/utils"

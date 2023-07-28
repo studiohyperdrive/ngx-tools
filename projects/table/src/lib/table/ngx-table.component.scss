@@ -1,0 +1,65 @@
+:host {
+	display: block;
+	width: 100%;
+	height: 100%;
+
+	.ngx-table {
+		width: 100%;
+		height: 100%;
+
+		border-spacing: 0px;
+		border-top: 1px solid black;
+		border-left: 1px solid black;
+
+		&.ngx-table-hide-rows {
+			.ngx-table-row,
+			.ngx-table-footer-row {
+				display: none;
+			}
+		}
+
+		&.ngx-table-clickable-rows {
+			.ngx-table-row {
+				cursor: pointer;
+			}
+		}
+	}
+
+	.ngx-table-selectable-cell {
+		width: 25px;
+		text-align: center;
+	}
+
+	.ngx-table-sortable-cell {
+		cursor: pointer;
+
+		.ngx-table-sorting-icon {
+			font-style: normal;
+		}
+	}
+
+	.ngx-table-open-row-state-cell {
+		width: 50px;
+
+		.ngx-table-open-state-icon {
+			font-style: normal;
+
+			&.is-reversed {
+				transform: rotate(180deg);
+			}
+		}
+	}
+
+	.ngx-table-cell {
+		padding: 15px;
+
+		border-right: 1px solid black;
+		border-bottom: 1px solid black;
+	}
+
+	.ngx-table-detail-row {
+		&:not(.ngx-table-detail-row-open) {
+			display: none;
+		}
+	}
+}
