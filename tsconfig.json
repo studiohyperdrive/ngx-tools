@@ -16,7 +16,7 @@
     "target": "ES2022",
     "module": "es2020",
     "lib": [
-      "es2018",
+      "es2022",
       "dom"
     ],
     "paths": {
@@ -26,6 +26,9 @@
       ],
       "store": [
         "dist/store"
+      ],
+      "table": [
+        "dist/table"
       ],
       "utils": [
         "dist/utils/utils",
