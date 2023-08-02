@@ -1,42 +1,5 @@
-import { Action, ActionReducer, combineReducers } from '@ngrx/store';
-
-import { BaseStoreAssets, EntityStoreAssets } from '../../interfaces';
-
-/**
- * These objects will be used as a blueprint for our store slices
- *
- * @template SliceKey - The keys of our store
- */
-export interface StoreAssetsOptions<SliceKey extends string | number | symbol> {
-	subSlice: SliceKey;
-	generator: (slice: string) => EntityStoreAssets<any> | BaseStoreAssets<any>;
-}
-
-// Iben: The base type for our flow assets which we'll pass to the create generator
-type StoreFlowAssets = Record<string, EntityStoreAssets<any> | BaseStoreAssets<any>>;
-
-// Iben: Type to extract the selectors from the provided ResultType, so that we know if we have a BaseStoreSelector or an EntityStoreSelector, this way
-// we get correct typing in our services
-type StoreSelectors<ResultType extends StoreFlowAssets> = {
-	[Key in keyof ResultType]: ResultType[Key]['selectors'];
-};
-
-// Iben: Type to extract the actions from the provided ResultType, so that we know if we have a BaseStoreAction or an EntityStoreAction, this way
-// we get correct typing in our services
-type StoreActions<ResultType extends StoreFlowAssets> = {
-	[Key in keyof ResultType]: ResultType[Key]['actions'];
-};
-
-/**
- * The typing of the store of all sub slices
- *
- * @template ResultType - The typing we wish to see for our actions, reducers and selectors
- */
-export interface NgxStore<ResultType extends StoreFlowAssets> {
-	selectors: StoreSelectors<ResultType>;
-	actions: StoreActions<ResultType>;
-	reducers: ActionReducer<any, Action>;
-}
+import { combineReducers } from '@ngrx/store';
+import { NgxStore, StoreAssetsOptions, StoreFlowAssets } from '../../interfaces';
 
 /**
  * Generates selectors,actions and reducers for a store
@@ -54,7 +17,9 @@ export const createStoreAssets = <ResultType extends StoreFlowAssets>(
 	const storeAssets: ResultType = [...options].reduce((result, current): ResultType => {
 		return {
 			...result,
-			[current.subSlice]: current.generator(`${slice}.${current.subSlice.toString()}`),
+			[current.subSlice]: current.selectId
+				? current.generator(`${slice}.${current.subSlice.toString()}`, current.selectId)
+				: current.generator(`${slice}.${current.subSlice.toString()}`),
 		};
 	}, {} as ResultType);
 
