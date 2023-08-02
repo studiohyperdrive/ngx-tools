@@ -10,6 +10,8 @@ Using the CDK Table the `ngx-table` provides an easy to use template based syste
 
 Whilst this package is opinionated, the `ngx-table` works primarily with a ng-template based system, which ensures that any default implementation the table provides can be overwritten.
 
+You can find a StackBlitz example [here](https://stackblitz.com/edit/stackblitz-starters-am9x39).
+
 ## 2. Simple example
 
 Starting off with a simple example, the `ngx-table` works with two primary inputs, the `columns` and the `data` inputs. 
@@ -320,4 +322,4 @@ Cells can also have a default class we want to provide to all cells of that kind
 
 ## 7. Acknowledgements
 
-A big thanks goes out to Sam Verschueren for his help with the initial implementation of this table. Without his help, this table would not have existed.
+A big thanks goes out to [Sam Verschueren](https://github.com/SamVerschueren) for his help with the initial implementation of this table. Without his help, this table would not have existed.
