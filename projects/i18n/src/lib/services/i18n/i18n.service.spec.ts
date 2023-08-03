@@ -14,8 +14,12 @@ const translateService: any = {
 	},
 };
 
+const rootI18nService: any = {
+	setCurrentLanguage: jasmine.createSpy(),
+};
+
 describe('I18nService', () => {
-	const service = new I18nService(translateService);
+	const service = new I18nService(translateService, rootI18nService);
 
 	let subscriptions: Subscription[] = [];
 
@@ -46,6 +50,7 @@ describe('I18nService', () => {
 			subscriptions.push(
 				service.initI18n('nl').subscribe(() => {
 					expect(translateService.use).toHaveBeenCalledWith('nl');
+					expect(rootI18nService.setCurrentLanguage).toHaveBeenCalledWith('nl');
 					expect(translateService.reloadLang).toHaveBeenCalledWith('nl');
 
 					done();

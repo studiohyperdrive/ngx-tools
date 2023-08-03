@@ -3,10 +3,14 @@ import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 
 import { AbstractI18nService } from '../../abstracts';
+import { RootI18nService } from '../root-i18n/root-i18n.service';
 
 @Injectable()
 export class I18nService implements AbstractI18nService {
-	constructor(private readonly translateService: TranslateService) {}
+	constructor(
+		private readonly translateService: TranslateService,
+		private readonly rootI18nService: RootI18nService
+	) {}
 
 	/**
 	 * Returns the current language of the application
@@ -35,7 +39,12 @@ export class I18nService implements AbstractI18nService {
 	 * @param language - The provided language
 	 */
 	public initI18n(language: string): Observable<unknown> {
-		this.translateService.use(language);
+		// Iben: If the language is provided, set it in the root service
+		if (language) {
+			this.rootI18nService.setCurrentLanguage(language);
+		}
+
+		this.translateService.use(language || this.rootI18nService.currentLanguage);
 
 		return this.translateService.reloadLang(language);
 	}
