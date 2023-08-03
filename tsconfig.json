@@ -24,6 +24,9 @@
         "dist/forms/forms",
         "dist/forms"
       ],
+      "i18n": [
+        "dist/i18n"
+      ],
       "store": [
         "dist/store"
       ],

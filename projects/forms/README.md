@@ -327,3 +327,12 @@ Calling this method on a `FormAccessorContainer` will recursively mark each `For
 ### markAsDirty
 
 Calling this method on a `FormAccessorContainer` will recursively mark each `FormAccessor` and their corresponding `FormAccessor` children in the template as dirty.
+
+## build information
+This project has been build with:
+- Angular CLI : `16.1.4`
+- Angular: `16.1.5`
+- nodejs: `18.17.0`
+- npm: `9.6.7`
+
+For a complete list of packages and version check out the `package.json` file.
