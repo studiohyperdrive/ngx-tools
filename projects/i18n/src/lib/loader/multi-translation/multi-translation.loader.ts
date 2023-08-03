@@ -18,9 +18,9 @@ export class MultiTranslationHttpLoader implements TranslateLoader {
 	/**
 	 * Fetches the provided translation files and saves them to the translation store
 	 *
-	 * @param  language - The currently used language
+	 * @param  lang - The currently used language
 	 */
-	public getTranslation(language: string): Observable<any> {
+	public getTranslation(lang: string): Observable<any> {
 		// Iben: Fetch the currently existing translations, so we can see if they already exist in the loading service
 		const availableTranslations = this.translationLoadingService.getTranslations();
 
@@ -36,7 +36,7 @@ export class MultiTranslationHttpLoader implements TranslateLoader {
 				});
 			} else {
 				// Iben: If the translations aren't available in the store, we fetch them from the server
-				const fetchPath = `${path}${language}.json`;
+				const fetchPath = `${path}${lang}.json`;
 				return new HttpClient(this.httpBackend).get(fetchPath).pipe(
 					// Iben: Map this to an object so we can track which results corresponds with which path
 					map((translations) => {
