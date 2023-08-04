@@ -6,8 +6,6 @@ npm install @studiohyperdrive/ngx-i18n
 ```
 
 ## 1. Concept
-...
-
 `ngx-1i8n` is a layer on top of `ngx-translate` that allows for a lazy-loaded modular approach to translations. This approach allows the user to split up the translations into several independent files, which can be lazy-loaded whenever they're needed.
 
 This approach only works for module-based projects. There is currently no support for standalone-components.
