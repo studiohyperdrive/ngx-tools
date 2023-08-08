@@ -111,12 +111,8 @@
           "options": {
             "main": "projects/store/src/test.ts",
             "tsConfig": "projects/store/tsconfig.spec.json",
-            "karmaConfig": "projects/forms/karma.conf.js",
-            "watch": false,
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
+            "karmaConfig": "projects/store/karma.conf.js",
+            "watch": false
           }
         },
         "lint": {
@@ -154,11 +150,10 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
+            "main": "projects/table/src/test.ts",
             "tsConfig": "projects/table/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
+            "karmaConfig": "projects/table/karma.conf.js",
+            "watch": false
           }
         },
         "lint": {
@@ -198,12 +193,8 @@
           "options": {
             "main": "projects/i18n/src/test.ts",
             "tsConfig": "projects/i18n/tsconfig.spec.json",
-            "karmaConfig": "projects/forms/karma.conf.js",
-            "watch": false,
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
+            "karmaConfig": "projects/i18n/karma.conf.js",
+            "watch": false
           }
         },
         "lint": {
@@ -296,20 +287,10 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "main": "projects/i18n-test/src/test.ts",
             "tsConfig": "projects/i18n-test/tsconfig.spec.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              "projects/i18n-test/src/favicon.ico",
-              "projects/i18n-test/src/assets"
-            ],
-            "styles": [
-              "projects/i18n-test/src/styles.scss"
-            ],
-            "scripts": []
+            "karmaConfig": "projects/i18n-test/karma.conf.js",
+            "watch": false
           }
         },
         "lint": {
@@ -402,20 +383,10 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "main": "projects/table-test/src/test.ts",
             "tsConfig": "projects/table-test/tsconfig.spec.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              "projects/table-test/src/favicon.ico",
-              "projects/table-test/src/assets"
-            ],
-            "styles": [
-              "projects/table-test/src/styles.scss"
-            ],
-            "scripts": []
+            "karmaConfig": "projects/table-test/karma.conf.js",
+            "watch": false
           }
         },
         "lint": {

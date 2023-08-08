@@ -33,14 +33,7 @@
             "style": "kebab-case"
           }
         ],
-        "@angular-eslint/directive-selector": [
-          "error",
-          {
-            "type": "attribute",
-            "prefix": "utils",
-            "style": "camelCase"
-          }
-        ],
+        "@angular-eslint/directive-selector": "off",
         "@typescript-eslint/no-inferrable-types": "off",
         "comma-dangle": [
           "error",

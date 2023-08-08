@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+
 import { FeaturePageComponent } from './pages/feature.component';
 import { FeatureRoutingModule } from './feature.routing.module';
 import { FeatureTranslationLoader } from './translation.loader';
