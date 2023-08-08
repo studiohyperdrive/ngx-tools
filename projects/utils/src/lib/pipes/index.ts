@@ -25,3 +25,16 @@ export const Pipes = [
 	JoinPipe,
 	HasObserversPipe,
 ];
+
+export { BtwPipe } from './btw/btw.pipe';
+export { EntriesPipe } from './entries/entries.pipe';
+export { HasObserversPipe } from './has-observers/has-observers.pipe';
+export { HasValuesPipe } from './has-values/has-values.pipe';
+export { HighlightPipe } from './highlight/highlight.pipe';
+export { IbanPipe } from './iban/iban.pipe';
+export { JoinPipe } from './join/join.pipe';
+export { LimitToPipe } from './limit-to/limit-to.pipe';
+export { SafeHtmlPipe } from './safe-html/safe-html.pipe';
+export { StripHtmlPipe } from './strip-html/strip-html.pipe';
+export { TransformPipe } from './transform/transform.pipe';
+export { TruncateTextPipe } from './truncate-text/truncate-text.pipe';
