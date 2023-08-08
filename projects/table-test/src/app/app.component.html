@@ -1,0 +1,31 @@
+<div class="disclaimer">
+	<b>Disclaimer:</b>
+	<p>
+		This is a test application to use during development of the package. For examples of the
+		entire package, we refer to the
+		<a
+			href="https://stackblitz.com/edit/stackblitz-starters-am9x39?file=src%2Fapp.html"
+			target="_blank"
+			>StackBlitz example</a
+		>
+	</p>
+</div>
+
+<ngx-table
+	[formControl]="form"
+	[data]="data"
+	[columns]="columns"
+	[selectable]="true"
+	selectableKey="id"
+	selectableType="radio"
+>
+	<ng-template #radioTmpl let-control let-row="row" let-index="index">
+		<input type="radio" name="control" [id]="index" [formControl]="control" [value]="row.id" />
+	</ng-template>
+</ngx-table>
+
+<p>
+	{{ form.value | json }}
+</p>
+
+<button (click)="setFormValue()">Set form value</button>

@@ -194,7 +194,7 @@ As always, this default icon can be overwritten on table level by using the `sor
     </ngx-table>
 ```
 
-Another built-in common use case provided by the package is selecting columns. The `ngx-table` component functions as a control value accessor, which means any form control can be attached to the table. By setting the `selectable` property to true, the table will automatically display a checkbox at the start of every row, including a checkbox at the top of the headers to provide a select-all behavior.
+Another built-in common use case provided by the package is selecting rows. The `ngx-table` component functions as a control value accessor, which means any form control can be attached to the table. By setting the `selectable` property to true, the table will automatically display a checkbox at the start of every row, including a checkbox at the top of the headers to provide a select-all behavior.
 
 By default, the `ngx-table` will use the index as the selected value in the form. If we wish to use a property of the data object instead, we can pass the key of the property to the `selectableKey` Input. Just as in previous use-cases, the default template of the checkbox can be overwritten by a custom template using the `checkboxTmpl`.
 
@@ -207,6 +207,24 @@ By default, the `ngx-table` will use the index as the selected value in the form
         [columns]="['name', 'firstName']">
         <ng-template #checkBoxTmpl let-control>
             <my-custom-checkbox [formControl]="control" />
+        </ng-template>
+    </ngx-table>
+```
+
+On top of being able to select rows, we can also define how we select the rows by passing the `selectableType` property. By default, the select will be handled by checkboxes, which allows for multiple rows to be selected. This automatically results in a select all option at the top of the table.
+
+When you do not want multiple rows to be selected, you can pass the `radio` option to the `selectableType` property. Using this property, the select boxes will become radio buttons and the select all option will no longer be available. If you wish to override the default radio buttons, you can use the `radioTmpl` template.
+
+```html
+    <ngx-table 
+        selectableType="radio"
+        selectableKey="id"
+        [selectable]="true"
+        [data]="[{name: 'World', firstName: 'Hello', active: true, id: '1'}, {name: 'Tools', firstName: 'NGX', active:false, id: '2'}]" 
+        [loading]="true"
+        [columns]="['name', 'firstName']">
+        <ng-template #radioTmpl let-control>
+            <my-custom-radio-button [formControl]="control" />
         </ng-template>
     </ngx-table>
 ```

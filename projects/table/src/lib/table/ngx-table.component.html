@@ -8,8 +8,13 @@
 	[dataSource]="!loading ? data : []"
 >
 	<ng-container *ngIf="selectable" cdkColumnDef="ngxTableSelectColumn">
-		<th *cdkHeaderCellDef class="ngx-table-cell ngx-table-header-cell ngx-table-selectable-cell" cdk-header-cell>
+		<th
+			*cdkHeaderCellDef
+			class="ngx-table-cell ngx-table-header-cell ngx-table-selectable-cell"
+			cdk-header-cell
+		>
 			<ng-template
+				*ngIf="selectableType === 'checkbox'"
 				[ngTemplateOutlet]="checkboxTmpl"
 				[ngTemplateOutletContext]="{
 					$implicit: headerControl,
@@ -24,19 +29,35 @@
 			*cdkCellDef="let row; let index = dataIndex"
 			class="ngx-table-cell ngx-table-row-cell ngx-table-selectable-cell"
 		>
+			<ng-container *ngIf="selectableType === 'checkbox'; else radioTmpl">
+				<ng-template
+					*ngIf="rowsFormGroup.controls[index] as control"
+					[ngTemplateOutlet]="checkboxTmpl"
+					[ngTemplateOutletContext]="{
+						$implicit: control,
+						row: row,
+						index: index
+					}"
+				>
+				</ng-template>
+			</ng-container>
+
 			<ng-template
-				*ngIf="rowsFormGroup.controls[index] as control"
-				[ngTemplateOutlet]="checkboxTmpl"
+				#radioTmpl
+				[ngTemplateOutlet]="radioButtonTmpl"
 				[ngTemplateOutletContext]="{
-					$implicit: control,
-					row: row,
+					$implicit: row,
 					index: index
 				}"
 			>
 			</ng-template>
 		</td>
 
-		<td *cdkFooterCellDef="let row" class="ngx-table-cell ngx-table-footer-cell" cdk-footer-cell></td>
+		<td
+			*cdkFooterCellDef="let row"
+			class="ngx-table-cell ngx-table-footer-cell"
+			cdk-footer-cell
+		></td>
 	</ng-container>
 
 	<ng-container *ngIf="showOpenRowState" cdkColumnDef="ngxOpenRowStateColumn">
@@ -56,7 +77,11 @@
 			</ng-template>
 		</td>
 
-		<td *cdkFooterCellDef="let row" class="ngx-table-cell ngx-table-footer-cell" cdk-footer-cell></td>
+		<td
+			*cdkFooterCellDef="let row"
+			class="ngx-table-cell ngx-table-footer-cell"
+			cdk-footer-cell
+		></td>
 	</ng-container>
 
 	<ng-container *ngFor="let column of tableColumns">
@@ -72,8 +97,13 @@
 				[class.ngx-table-sortable-cell]="sortableTableCellRecord[column]"
 				(click)="handleSort(column)"
 			>
-				<ng-container *ngIf="tableCellTemplateRecord[column]?.headerTemplate; else defaultHeaderTmpl">
-					<ng-template [ngTemplateOutlet]="tableCellTemplateRecord[column].headerTemplate"> </ng-template>
+				<ng-container
+					*ngIf="tableCellTemplateRecord[column]?.headerTemplate; else defaultHeaderTmpl"
+				>
+					<ng-template
+						[ngTemplateOutlet]="tableCellTemplateRecord[column].headerTemplate"
+					>
+					</ng-template>
 				</ng-container>
 				<ng-template #defaultHeaderTmpl> {{ column }} </ng-template>
 
@@ -82,13 +112,18 @@
 						*ngIf="sortTemplate; else defaultSortTmpl"
 						[ngTemplateOutlet]="sortTemplate"
 						[ngTemplateOutletContext]="{
-							$implicit: sortCell.sortDirection ? sortCell.sortDirection.toString() : null
+							$implicit: sortCell.sortDirection
+								? sortCell.sortDirection.toString()
+								: null
 						}"
 					>
 					</ng-template>
 
 					<ng-template #defaultSortTmpl>
-						<i class="ngx-table-sorting-icon" [innerHtml]="sortCell.sortDirection | ngxTableSortIcon"></i>
+						<i
+							class="ngx-table-sorting-icon"
+							[innerHtml]="sortCell.sortDirection | ngxTableSortIcon"
+						></i>
 					</ng-template>
 				</ng-container>
 			</th>
@@ -96,10 +131,16 @@
 			<td
 				*cdkCellDef="let row; let index = dataIndex"
 				cdk-cell
-				[ngClass]="['ngx-table-cell', 'ngx-table-row-cell', tableCellTemplateRecord[column]?.cellClass || '']"
+				[ngClass]="[
+					'ngx-table-cell',
+					'ngx-table-row-cell',
+					tableCellTemplateRecord[column]?.cellClass || ''
+				]"
 				(click)="handleRowClicked(row, index)"
 			>
-				<ng-container *ngIf="tableCellTemplateRecord[column]?.cellTemplate; else defaultCellTmpl">
+				<ng-container
+					*ngIf="tableCellTemplateRecord[column]?.cellTemplate; else defaultCellTmpl"
+				>
 					<ng-template
 						[ngTemplateOutlet]="tableCellTemplateRecord[column].cellTemplate"
 						[ngTemplateOutletContext]="{
@@ -114,7 +155,11 @@
 				<ng-template #defaultCellTmpl> {{ row[column] }} </ng-template>
 			</td>
 
-			<td *cdkFooterCellDef="let row" class="ngx-table-cell ngx-table-footer-cell" cdk-footer-cell>
+			<td
+				*cdkFooterCellDef="let row"
+				class="ngx-table-cell ngx-table-footer-cell"
+				cdk-footer-cell
+			>
 				<ng-template
 					*ngIf="tableCellTemplateRecord[column]?.footerTemplate"
 					[ngTemplateOutlet]="tableCellTemplateRecord[column].footerTemplate"
@@ -145,7 +190,11 @@
 			*cdkRowDef="let row; columns: definedColumns; let rowIndex = dataIndex"
 			cdk-row
 			tabindex="0"
-			[ngClass]="['ngx-table-row', rowClass || '', row[highlightKey] ? 'ngx-table-row-highlight' : '']"
+			[ngClass]="[
+				'ngx-table-row',
+				rowClass || '',
+				row[highlightKey] ? 'ngx-table-row-highlight' : ''
+			]"
 			[class.ngx-table-row-odd]="rowIndex % 2 !== 0"
 			[class.ngx-table-row-even]="rowIndex % 2 === 0"
 			[class.ngx-table-row-selected]="showSelectedRow && selectedRow === rowIndex"
@@ -175,7 +224,10 @@
 
 <ng-template #detailRowTmpl let-row let-index="index">
 	<ng-container *ngIf="allRowsOpen || openRows.has(index)">
-		<ng-template [ngTemplateOutlet]="detailRowTemplate" [ngTemplateOutletContext]="{ $implicit: row }">
+		<ng-template
+			[ngTemplateOutlet]="detailRowTemplate"
+			[ngTemplateOutletContext]="{ $implicit: row }"
+		>
 		</ng-template>
 	</ng-container>
 </ng-template>
@@ -189,7 +241,27 @@
 	</ng-template>
 
 	<ng-template #defaultCheckboxTmpl>
-		<input type="checkbox" [formControl]="control" />
+		<input class="ngx-table-checkbox" type="checkbox" [formControl]="control" />
+	</ng-template>
+</ng-template>
+
+<ng-template #radioButtonTmpl let-row let-index="index">
+	<ng-template
+		*ngIf="radioTemplate; else defaultRadioTmpl"
+		[ngTemplateOutlet]="radioTemplate"
+		[ngTemplateOutletContext]="{ $implicit: radioControl, row: row, index: index }"
+	>
+	</ng-template>
+
+	<ng-template #defaultRadioTmpl>
+		<input
+			class="ngx-table-radio"
+			type="radio"
+			[id]="index"
+			[value]="selectableKey ? row[selectableKey] : index"
+			name="ngx-table-radio"
+			[formControl]="radioControl"
+		/>
 	</ng-template>
 </ng-template>
 
