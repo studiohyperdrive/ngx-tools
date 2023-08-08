@@ -5,21 +5,26 @@
 This repo contains general usage libraries for shd Angular projects. Those libraries are:
 
 -   utils (`@studiohyperdrive/ngx-utils`) :
-    -   window service
-    -   subscription service
+    -   general purpose utilities (services, pipes, injects, ...)
 
 -   forms (`@studiohyperdrive/ngx-forms`):
-    -   custom validators
+    -   custom validators & abstracts for creating custom form components
 
 -   store (`@studiohyperdrive/ngx-store`):
-    -   ngrx and ngrx/entity wrapper
+    -   ngrx and ngrx/entity wrapper to create store setups with less boilerplating
+  
+-   table (`@studiohyperdrive/ngx-table`):
+    -   a quick and easy template based table builder using the Angular CDK Table
+
+-   i18n (`@studiohyperdrive/ngx-i18n`):
+    -   a layer on top of ngx-translate that provides lazy-loaded translations
 
 You can find detailed explanations in their respective README’s.
 
 It is build with:
 
--   Angular CLI : `15.1.4`
--   Angular: `15.1.3`
+-   Angular CLI : `16.1.4`
+-   Angular: `16.1.5`
 -   nodejs: `18.14.0`
 -   npm: `9.3.1`
 
@@ -40,6 +45,21 @@ The available command are:
 | lint    | runs `ng lint --fix` |
 
 <br>
+
+## Contribute
+
+### Add a new library
+To add a new library, consult the Angular CLI documentation:
+https://angular.io/guide/creating-libraries
+
+After adding your library, make sure to check the karma set-up is consistent with other projects.  
+Check the following files:
+- `/angular.json`: `<your project>.architect.test`
+- `/projects/<your-lib>/tsconfig.spec.json`
+- `/projects/<your-lib>/karma.conf.js`
+- `/projects/<your-lib>/src/test.ts`
+
+When adding a playground for your lib, also make sure the project has at least one test or provide a placeholder.
 
 ### Publish
 
