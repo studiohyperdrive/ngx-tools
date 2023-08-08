@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 
-import { WindowService } from './window-service/window.service';
+import { Pipes } from './pipes';
+import { Directives } from './directives';
 
 @NgModule({
-	providers: [WindowService],
+	declarations: [Pipes, Directives],
+	exports: [Pipes, Directives],
 })
 export class UtilsModule {}
