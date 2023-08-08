@@ -341,3 +341,12 @@ Cells can also have a default class we want to provide to all cells of that kind
 ## 7. Acknowledgements
 
 A big thanks goes out to [Sam Verschueren](https://github.com/SamVerschueren) for his help with the initial implementation of this table. Without his help, this table would not have existed.
+## Team
+
+This bundle of tools has been created and is maintained by [Studio Hyperdrive](https://studiohyperdrive.be).
+
+Contributors:
+- Benoît Dossoine
+- [Denis Valcke](https://github.com/DenisValcke)
+- [Iben Van de Veire](https://github.com/IbenTesara)
+- [Wouter Heirstrate](https://github.com/WHeirstrate)

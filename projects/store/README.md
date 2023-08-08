@@ -113,3 +113,11 @@ This project has been build with:
 - npm: `9.6.7`
 
 For a complete list of packages and version check out the `package.json` file.
+
+## Team
+
+This bundle of tools has been created and is maintained by [Studio Hyperdrive](https://studiohyperdrive.be).
+
+Contributors:
+- [Denis Valcke](https://github.com/DenisValcke)
+- [Iben Van de Veire](https://github.com/IbenTesara)
