@@ -74,6 +74,12 @@ export class NgxTableComponent
 	public checkboxTemplate: TemplateRef<any>;
 
 	/**
+	 * A template to provide a radio button template
+	 */
+	@ContentChild('radioTmpl', { static: false })
+	public radioTemplate: TemplateRef<any>;
+
+	/**
 	 * A template to provide a sort template
 	 */
 	@ContentChild('sortTmpl', { static: false })
@@ -119,6 +125,11 @@ export class NgxTableComponent
 	 * In case the rows are selectable, we can pass a key we want to use as return value instead of the index of the row
 	 */
 	@Input() public selectableKey: string;
+
+	/**
+	 * In case the rows are selectable, we pass whether we want a radio button or a checkbox. By default, this is a checkbox
+	 */
+	@Input() public selectableType: 'checkbox' | 'radio' = 'checkbox';
 
 	/**
 	 * SETTER
@@ -178,6 +189,7 @@ export class NgxTableComponent
 	public openRows: Set<number> = new Set();
 	public readonly rowsFormGroup = new FormGroup({});
 	public readonly headerControl = new FormControl();
+	public readonly radioControl = new FormControl();
 	public definedColumns: string[] = [];
 	public hasFooterTemplates: boolean = false;
 	public selectedRow: number | undefined = undefined;
@@ -191,7 +203,14 @@ export class NgxTableComponent
 
 	constructor(private cdRef: ChangeDetectorRef) {}
 
-	public writeValue(value: string[]): void {
+	public writeValue(value: string[] | unknown): void {
+		// Iben: In case we're using radio buttons, we set the radio control and early exit
+		if (this.selectableType === 'radio') {
+			this.radioControl.patchValue(value, { emitEvent: false });
+
+			return;
+		}
+
 		// Iben: Reset the form
 		this.rowsFormGroup.reset({}, { emitEvent: false });
 
@@ -425,6 +444,17 @@ export class NgxTableComponent
 
 					// Iben: Emit the current selection and mark the form as touched\
 					this.onChanged(result);
+					this.onTouch();
+				}),
+				takeUntil(this.destroyed$)
+			)
+			.subscribe();
+
+		// Iben: Listen to the radio control and update the value accordingly
+		this.radioControl.valueChanges
+			.pipe(
+				tap((value) => {
+					this.onChanged(value);
 					this.onTouch();
 				}),
 				takeUntil(this.destroyed$)
