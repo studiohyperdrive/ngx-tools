@@ -4,180 +4,101 @@ Install the package first:
 ```shell
 npm install @studiohyperdrive/ngx-utils
 ```
+## Directives
+### FocusClickDirective
+The FocusClickDirective provides an a11y friendly click handler.
 
-## 1. Window service
+[Full documentation.](src/lib/directives/focus-click/focus-click.directive.md)
 
+## Injects
+### getQueryParams
+The getQueryParams helper will get query params from the ActivatedRoute and return them as an observable.
+
+[Full documentation.](src/lib/injects/query-params/query-params.inject.md)
+
+## Pipes
+### BtwPipe
+The BtwPipe will format Belgian VAT numbers.
+
+[Full documentation.](src/lib/pipes/btw/btw.pipe.md)
+
+### EntriesPipe
+
+The BtwPipe will transform an object in to an array of key/value arrays.
+
+[Full documentation.](src/lib/pipes/entries/entries.pipe.md)
+
+### HasObserversPipe
+
+The HasObserversPipe will check if an Output property has observers.
+
+[Full documentation.](src/lib/pipes/has-observers/has-observers.pipe.md)
+
+### HasValuesPipe
+
+The HasValuesPipe will check if a provided object has values.
+
+[Full documentation.](src/lib/pipes/has-values/has-values.pipe.md)
+
+### HighlightPipe
+
+The HighlightPipe will select a piece of text and wrap it in a new element.
+
+[Full documentation.](src/lib/pipes/highlight/highlight.pipe.md)
+
+### IbanPipe
+
+The IbanPipe will format an IBAN number.
+
+[Full documentation.](src/lib/pipes/iban/iban.pipe.md)
+
+### JoinPipe
+
+The JoinPipe will join values in an array.
+
+[Full documentation.](src/lib/pipes/join/join.pipe.md)
+
+### LimitToPipe
+
+The LimitToPipe will limit an array to x-amount of values.
+
+[Full documentation.](src/lib/pipes/limit-to/limit-to.pipe.md)
+
+### SafeHtmlPipe
+
+The SafeHtmlPipe will sanitize a given value with the DomSanitizer.
+
+[Full documentation.](src/lib/pipes/safe-html/safe-html.pipe.md)
+
+### StripHtmlPipe
+
+The StripHtmlPipe will strip HTML from a given value.
+
+[Full documentation.](src/lib/pipes/strip-html/strip-html.pipe.md)
+
+### TransformPipe
+
+The TransformPipe will transform a given value with the provided transform-function.
+
+[Full documentation.](src/lib/pipes/transform/transform.pipe.md)
+
+### TruncateTextPipe
+
+The TruncateTextPipe will truncate a given text to a given number of characters and suffix it with an ellipsis.
+
+[Full documentation.](src/lib/pipes/truncate-text/truncate-text.pipe.md)
+
+## Services
+### 1. Window service
 This service uses the `DOCUMENT` injection-token to provide several methods to access both document and window and related information.
 It is convenient for using the document or window without breaking SSR.
 
-### Properties
-#### width$
-The window-service exposes a `width$` observable to get the window-width. It defaults to `1200` when no window is defined.
-```typescript
-import { WindowService } from '@studiohyperdrive/ngx-utils';
+[Full documentation.](src/lib/services/window-service/window.service.md)
 
-export class YourComponent {
-	public windowWidth$: Observable<number>;
-
-	constructor(
-		private windowService: WindowService
-	) {
-		this.windowWidth$ = this.windowService.width$;
-	}
-}
-```
-
-#### scrollingUp$
-The window-service exposes a `scrollingUp$` observable to know when the scroll has ended.
-```typescript
-import { WindowService } from '@studiohyperdrive/ngx-utils';
-
-export class YourComponent {
-	public scrollingUp$: Observable<number>;
-
-	constructor(
-		private windowService: WindowService
-	) {
-		this.scrollingUp$ = this.windowService.scrollingUp$;
-	}
-}
-```
-
-#### currentScrollPosition
-The window-service exposes a `currentScrollPosition` property that contains the currentScrollPosition after handleContentScroll has been called.
-```typescript
-import { WindowService } from '@studiohyperdrive/ngx-utils';
-
-export class YourComponent {
-	public currentScrollPosition: Observable<number>;
-
-	constructor(
-		private windowService: WindowService
-	) {
-		this.currentScrollPosition = this.windowService.currentScrollPosition;
-	}
-}
-```
-
-#### window
-The window-service exposes the `window` property which is a link to the `Window` object.
-```typescript
-import { WindowService } from '@studiohyperdrive/ngx-utils';
-
-export class YourComponent {
-	public window: Observable<number>;
-
-	constructor(
-		private windowService: WindowService
-	) {
-		this.window = this.windowService.window;
-	}
-}
-```
-
-#### document
-The window-service also exposes the `document` property which is a link to the `Document` object.
-```typescript
-import { WindowService } from '@studiohyperdrive/ngx-utils';
-
-export class YourComponent {
-	public window: Observable<number>;
-
-	constructor(
-		private windowService: WindowService
-	) {
-		this.window = this.windowService.window;
-	}
-}
-```
-
-### Methods
-#### scrollTo
-A `scrollTo` method is provided to scroll to a position on the page. When there is no window, it will do nothing.
-
-The offset is set to `0` by default so triggering the method without a value will scroll to the top of the page.
-```typescript
-import { WindowService } from '@studiohyperdrive/ngx-utils';
-
-export class YourComponent {
-	constructor(
-		private windowService: WindowService
-	) {}
-
-	public somethingHappened(): void {
-		this.windowService.scrollTo(500);
-	}
-}
-```
-
-#### hasDocument
-The `hasDocument`-method is provided to check if there is a document. 
-
-```typescript
-import { WindowService } from '@studiohyperdrive/ngx-utils';
-
-export class YourComponent {
-	constructor(
-		private windowService: WindowService
-	) {}
-	
-	public aCoolMethod(): void {
-		if (this.windowService.hasDocument()) {
-		    // do something that depends on the document.
-		}
-	}
-}
-```
-
-#### isBrowser
-The `isBrowser`-method is provided to check if the current platform is a browser.
-
-It uses the `isPlatformBrowser` method with the `PLATFORM_ID` injection-token internally.
-
-```typescript
-import { WindowService } from '@studiohyperdrive/ngx-utils';
-
-export class YourComponent {
-	constructor(
-		private windowService: WindowService
-	) {}
-	
-	public aCoolMethod(): void {
-		if (this.windowService.isBrowser()) {
-		    // do something that depends on the browser.
-		}
-	}
-}
-```
-
-## 2. subscription service
+### 2. subscription service
 This service is a solution to end RxJS subscriptions when component is destroyed.
 
-It is build on the assumption that a service provided on a component destroys when the component destroys.
-
-To use it, you provide the service on the component and provide its exposed `destroyed$` observable within the `takeUntil` operator in a pipe on your subscription. 
-```typescript
-import { takeUntil} from 'rxjs/operators';
-import { SubscriptionService } from '@studiohyperdrive/ngx-utils';
-
-@Component({
-	providers: [ SubscriptionService ],
-})
-export class YourComponent {
-		constructor( 
-			private subs: SubscriptionService
-		) {
-			yourObservable
-				.pipe(
-					takeUntil(this.subs.destroyed$),
-				).subscribe(
-					// your subscriptions
-				)
-		}
-	}
-
-```
-
+[Full documentation.](src/lib/services/subscription-service/subscription.service.md)
 
 ## build information
 This project has been build with:

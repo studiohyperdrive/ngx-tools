@@ -1,0 +1,22 @@
+import { Pipe, PipeTransform, SecurityContext } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+
+@Pipe({ name: 'safeHtml' })
+export class SafeHtmlPipe implements PipeTransform {
+	constructor(private readonly sanitized: DomSanitizer) {}
+
+	/**
+	 * Maps a provided string value to a sanitized string
+	 *
+	 * @param value - A provided string with HTML items
+	 */
+	public transform(value: string) {
+		// Iben: Early exit in case the value is not a string
+		if (!value || typeof value !== 'string') {
+			return '';
+		}
+
+		// Iben: Sanitize the string
+		return this.sanitized.sanitize(SecurityContext.HTML, value);
+	}
+}
