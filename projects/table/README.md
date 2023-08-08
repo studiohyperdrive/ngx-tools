@@ -332,6 +332,8 @@ By default the `ngx-table` comes with very minimal styling. Several classes have
 | ngx-table-detail-row-open | A class added to all open detail rows in the table |
 | ngx-table-footer-row | A class added to all footer rows in the table |
 | ngx-table-open-state-icon | A class added to default open-row state icon in the table |
+| ngx-table-radio | A class used by the default radio button when the rows are selectable and the selectableType is radio |
+| ngx-table-checkbox| A class used by the default checkbox when the rows are selectable and the selectableType is checkbox |
 
 
 If you wish to provide a custom class to the row of your tables, you can provide the class name to the `rowClass` Input. 
@@ -341,3 +343,12 @@ Cells can also have a default class we want to provide to all cells of that kind
 ## 7. Acknowledgements
 
 A big thanks goes out to [Sam Verschueren](https://github.com/SamVerschueren) for his help with the initial implementation of this table. Without his help, this table would not have existed.
+## Team
+
+This bundle of tools has been created and is maintained by [Studio Hyperdrive](https://studiohyperdrive.be).
+
+Contributors:
+- Benoît Dossoine
+- [Denis Valcke](https://github.com/DenisValcke)
+- [Iben Van de Veire](https://github.com/IbenTesara)
+- [Wouter Heirstrate](https://github.com/WHeirstrate)
