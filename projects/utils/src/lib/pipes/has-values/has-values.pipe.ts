@@ -7,7 +7,7 @@ import * as clean from 'obj-clean';
 })
 export class HasValuesPipe implements PipeTransform {
 	/**
-	 * Checks wether or not an object has values
+	 * Checks whether an object has values
 	 *
 	 * @param value - The provided value
 	 */
