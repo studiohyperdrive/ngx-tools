@@ -4,9 +4,12 @@ import { defineConfig } from 'vite';
 
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import dts from 'vite-plugin-dts';
+import { viteStaticCopy } from 'vite-plugin-static-copy';
 
 export default defineConfig({
 	cacheDir: '../../node_modules/.vite/rxjs-utils',
+
+	assetsInclude: ['**/*.md'],
 
 	plugins: [
 		dts({
@@ -16,6 +19,19 @@ export default defineConfig({
 		}),
 
 		nxViteTsPaths(),
+
+		viteStaticCopy({
+			targets: [
+				{
+					src: path.resolve(__dirname) + '/README.md',
+					dest: '.',
+				},
+				{
+					src: path.resolve(__dirname, './docs') + '/[!.]*',
+					dest: 'docs',
+				},
+			],
+		}),
 	],
 
 	// Uncomment this if you are using workers.
@@ -33,7 +49,7 @@ export default defineConfig({
 			fileName: 'index',
 			// Change this to the formats you want to support.
 			// Don't forget to update your package.json as well.
-			formats: ['es', 'cjs'],
+			formats: ['es', 'cjs', 'umd'],
 		},
 		rollupOptions: {
 			// External packages that should not be bundled into your library.

@@ -12,34 +12,34 @@ A set of custom operators.
 ### catchAndCallThrough
 An operator that wraps around the default `catchError` and returns a new observable with the error to continue the stream.
 
-[Full documentation.](./src/lib/operators/catch-and-call-through/catch-and-call-through.operator.md)
+[Full documentation.](./docs/operators/catch-and-call-through/catch-and-call-through.operator.md)
 
 ### combineBoolean
 An operator that wraps around the default `combineLatest` and returns a boolean to indicate that all streams have values
 
-[Full documentation.](./src/lib/operators/combine-boolean/combine-boolean.operator.md)
+[Full documentation.](./docs/operators/combine-boolean/combine-boolean.operator.md)
 
 ### pluck
 An operator that is a custom implementation of the RxJS version, the original one is deprecated in favour of map.
 
-[Full documentation.](./src/lib/operators/pluck/pluck.operator.md)
+[Full documentation.](./docs/operators/pluck/pluck.operator.md)
 
 ### pluckOr
 An operator that will pluck a value based on its existence, with a list of property names in case the property is empty.
 
-[Full documentation.](./src/lib/operators/pluck-or/pluck-or.operator.md)
+[Full documentation.](./docs/operators/pluck-or/pluck-or.operator.md)
 
 ### validateContent
 An operator that wraps around the default `filter` and returns a boolean depending on the existence of a value in the stream.
 
-[Full documentation.](./src/lib/operators/validate-content/validate-content.operator.md)
+[Full documentation.](./docs/operators/validate-content/validate-content.operator.md)
 
 ## 2. Types
 
 ### Observables
 A collection of types that extend the default Observable interface.
 
-[Full documentation.](./src/lib/types/observable/observable.types.md)
+[Full documentation.](./docs/types/observable/observable.types.md)
 
 ## build information
 This project has been build with:
