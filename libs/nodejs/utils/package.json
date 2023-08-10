@@ -1,14 +1,14 @@
 {
-	"name": "@studiohyperdrive/tools",
-	"version": "0.0.1",
+	"name": "@studiohyperdrive/utils",
+	"version": "1.0.0",
 	"license": "MIT",
 	"main": "./index.js",
 	"module": "./index.mjs",
 	"typings": "./index.d.ts",
 	"peerDependencies": {
 		"obj-clean": "^3.0.1",
-    "vite": "~4.3.9",
-    "@nx/vite": "16.6.0",
-    "vite-plugin-dts": "~2.3.0"
+		"vite": "~4.3.9",
+		"@nx/vite": "16.6.0",
+		"vite-plugin-dts": "~2.3.0"
 	}
 }
