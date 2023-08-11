@@ -298,7 +298,7 @@ export class UserTableCellComponent extends NgxAbstractTableCellDirective {
 	public headerTemplate: TemplateRef<any>;
 
 	/**
-	 * A template for the header of the cell
+	 * A template for the content of the cell itself
 	 */
 	@ViewChild('cellTmpl', { static: false })
 	public cellTemplate: TemplateRef<any>;
