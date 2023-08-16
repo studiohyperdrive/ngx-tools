@@ -18,7 +18,7 @@ import {
 	FormControl,
 } from '@angular/forms';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { filter, takeUntil, tap } from 'rxjs/operators';
+import { filter, pairwise, takeUntil, tap } from 'rxjs/operators';
 
 import { BaseFormAccessor } from '../base-form/base-form.accessor';
 import { DataFormAccessor } from '../data-form/data-form.accessor';
@@ -29,6 +29,7 @@ import {
 	handleFormAccessorMarkAsTouched,
 	handleFormAccessorMarkAsDirty,
 	hasErrors,
+	getUpdateControls,
 } from '../../utils';
 
 @Directive()
@@ -43,11 +44,13 @@ export abstract class FormAccessor<
 	 */
 	@ViewChildren(BaseFormAccessor) accessors: QueryList<DataFormAccessor | FormAccessor>;
 
-	// On destroy flow handler
-	protected readonly destroy$ = new Subject();
-
 	// Iben: A handler to know when the update value and validity has been set
 	private readonly hasSetUpdateValueAndValiditySubject$ = new Subject();
+
+	private updatedControls: string[] = [];
+
+	// On destroy flow handler
+	protected readonly destroy$ = new Subject();
 
 	// Subject to check whether the form is initialized
 	protected readonly initializedSubject$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
@@ -171,11 +174,14 @@ export abstract class FormAccessor<
 									this.onUpdateValueAndValidity(options);
 								}
 
-								// Iben: Call the custom updateValueAndValidty
+								console.dir(this.updatedControls);
+
+								// Iben: Call the custom updateValueAndValidity
 								customUpdateValueAndValidity(
 									this.form,
 									updateValueAndValidity,
-									options
+									options,
+									this.updatedControls
 								);
 							};
 						}
@@ -274,7 +280,16 @@ export abstract class FormAccessor<
 
 		this.form.valueChanges
 			.pipe(
-				tap<FormValueType>((value) => {
+				pairwise(),
+				tap<[FormValueType, FormValueType]>(([previousValue, value]) => {
+					if (this.form['controls']) {
+						this.updatedControls = getUpdateControls(
+							previousValue,
+							value,
+							Object.keys(this.form['controls'])
+						);
+					}
+
 					// In case there's a mapper we map the value, else we send the form value
 					this.onChange(this.onChangeMapper ? this.onChangeMapper(value) : value);
 				}),

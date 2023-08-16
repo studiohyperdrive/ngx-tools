@@ -12,18 +12,21 @@ import { FormStateOptionsEntity } from '../../interfaces';
 export const customUpdateValueAndValidity = (
 	form: AbstractControl,
 	updateValueAndValidity: Function,
-	options: FormStateOptionsEntity = {}
+	options: FormStateOptionsEntity = {},
+	updatedControls: string[] = []
 ) => {
+	const formControls = form['controls'];
+
 	// Iben: Call the original updateValueAndValidity
 	updateValueAndValidity({ ...options, onlySelf: true });
-
+	console.log('I am the main form and I am updating');
 	// Iben: If we don't have the inner form yet we just do the default update value
-	if (!form || !form['controls']) {
+	if (!form || !formControls) {
 		return;
 	}
 
 	// Iben: We update the value and validity recursively for each child control
-	deepUpdateValueAndValidity(form['controls'], { ...options, onlySelf: true });
+	deepUpdateValueAndValidity(formControls, { ...options, onlySelf: true }, updatedControls);
 };
 /**
  * Allows for a deep updateValueAndValidity of all controls. Can be used for a FormGroup or a FormArray
@@ -33,17 +36,56 @@ export const customUpdateValueAndValidity = (
  */
 export const deepUpdateValueAndValidity = (
 	controls: Record<string, AbstractControl> | AbstractControl[],
-	options: FormStateOptionsEntity = {}
+	options: FormStateOptionsEntity = {},
+	updatedControls: string[] = []
 ) => {
+	if (!controls) {
+		return;
+	}
+
+	if (Array.isArray(controls)) {
+		controls.forEach((control) => {
+			if (!control['controls']) {
+				control.updateValueAndValidity(options);
+				return;
+			}
+
+			// Iben: If there are child controls, we recursively update the value and validity
+			deepUpdateValueAndValidity(control['controls'], options);
+		});
+
+		return;
+	}
+
+	const [currentLevel, children] = getControlsToUpdate(updatedControls);
+
 	// Iben: We loop over all controls
-	(Array.isArray(controls) ? controls : Object.values(controls)).forEach((control) => {
+	Object.entries(controls).forEach(([key, control]) => {
 		// Iben: If there are no child controls, we update the value and validity of the control
-		if (!control['controls']) {
+		if (!control['controls'] && currentLevel.includes(key)) {
+			console.log('I am a control and I am updating', key);
 			control.updateValueAndValidity(options);
 			return;
 		}
 
 		// Iben: If there are child controls, we recursively update the value and validity
-		deepUpdateValueAndValidity(control['controls'], options);
+		deepUpdateValueAndValidity(control['controls'], options, children);
 	});
+};
+
+const getControlsToUpdate = (keys: string[]): [string[], string[]] => {
+	// Iben: Separate the keys into two arrays, the ones we need to update on the current level of the form control, and the ones we'll have to pass to the children
+	const currentLevel = [];
+	const children = [];
+
+	// Iben: Loop over the keys
+	keys.forEach((key) => {
+		if (key.includes('.')) {
+			children.push(key.slice(key.indexOf('.') + 1));
+		} else {
+			currentLevel.push(key);
+		}
+	});
+
+	return [currentLevel, children];
 };
