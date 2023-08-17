@@ -14,18 +14,18 @@ export class AppComponent {
 			active: false,
 			id: 'id1',
 		},
-		{
-			name: 'Tools',
-			firstName: 'Ngx',
-			active: true,
-			id: 'id3',
-		},
-		{
-			name: 'BCD',
-			firstName: 'A',
-			active: true,
-			id: 'id2',
-		},
+		// {
+		// 	name: 'Tools',
+		// 	firstName: 'Ngx',
+		// 	active: true,
+		// 	id: 'id3',
+		// },
+		// {
+		// 	name: 'BCD',
+		// 	firstName: 'A',
+		// 	active: true,
+		// 	id: 'id2',
+		// },
 	];
 
 	public readonly columns = ['firstName', 'name', 'active'];
