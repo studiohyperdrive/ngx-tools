@@ -203,7 +203,11 @@
 			]"
 			[class.ngx-table-row-odd]="rowIndex % 2 !== 0"
 			[class.ngx-table-row-even]="rowIndex % 2 === 0"
-			[class.ngx-table-row-selected]="showSelectedOpenRow && selectedRow === rowIndex"
+			[class.ngx-table-row-selected]="
+				showSelectedOpenRow &&
+				(selectedRow === rowIndex ||
+					(showDetailRow === 'on-single-item' && data?.length === 1))
+			"
 			(keydown.enter)="handleRowClicked(row, rowIndex)"
 		></tr>
 		<ng-container *ngIf="detailRowTemplate">
