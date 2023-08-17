@@ -1,6 +1,6 @@
 {
   "name": "@studiohyperdrive/ngx-table",
-  "version": "16.0.3",
+  "version": "16.1.0",
   "license": "MIT",
   "peerDependencies": {
     "@angular/common": "^16.1.0",

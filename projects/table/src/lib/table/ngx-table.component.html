@@ -71,7 +71,10 @@
 			<ng-template
 				[ngTemplateOutlet]="openRowStateTemplate || defaultOpenRowStateTmpl"
 				[ngTemplateOutletContext]="{
-					$implicit: allRowsOpen || openRows.has(index)
+					$implicit:
+						showDetailRow === 'always' ||
+						(showDetailRow === 'on-single-item' && data?.length === 1) ||
+						openRows.has(index)
 				}"
 			>
 			</ng-template>
@@ -147,7 +150,10 @@
 							$implicit: row[column],
 							row: row,
 							index: index,
-							isRowOpen: allRowsOpen || openRows.has(index)
+							isRowOpen:
+								showDetailRow === 'always' ||
+								(showDetailRow === 'on-single-item' && data?.length === 1) ||
+								openRows.has(index)
 						}"
 					>
 					</ng-template>
@@ -197,7 +203,7 @@
 			]"
 			[class.ngx-table-row-odd]="rowIndex % 2 !== 0"
 			[class.ngx-table-row-even]="rowIndex % 2 === 0"
-			[class.ngx-table-row-selected]="showSelectedRow && selectedRow === rowIndex"
+			[class.ngx-table-row-selected]="showSelectedOpenRow && selectedRow === rowIndex"
 			(keydown.enter)="handleRowClicked(row, rowIndex)"
 		></tr>
 		<ng-container *ngIf="detailRowTemplate">
@@ -205,7 +211,11 @@
 				*cdkRowDef="let row; let index = dataIndex; columns: ['ngxTableDetailColumn']"
 				class="ngx-table-detail-row"
 				cdk-row
-				[class.ngx-table-detail-row-open]="allRowsOpen || openRows.has(index)"
+				[class.ngx-table-detail-row-open]="
+					showDetailRow === 'always' ||
+					(showDetailRow === 'on-single-item' && data?.length === 1) ||
+					openRows.has(index)
+				"
 			></tr>
 		</ng-container>
 		<ng-container *ngIf="hasFooterTemplates">
@@ -223,7 +233,13 @@
 </div>
 
 <ng-template #detailRowTmpl let-row let-index="index">
-	<ng-container *ngIf="allRowsOpen || openRows.has(index)">
+	<ng-container
+		*ngIf="
+			showDetailRow === 'always' ||
+			(showDetailRow === 'on-single-item' && data?.length === 1) ||
+			openRows.has(index)
+		"
+	>
 		<ng-template
 			[ngTemplateOutlet]="detailRowTemplate"
 			[ngTemplateOutletContext]="{ $implicit: row }"

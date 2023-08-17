@@ -4,3 +4,4 @@ export * from './ngx-table.module';
 export * from './interfaces';
 export * from './enums';
 export * from './pipes';
+export * from './token';

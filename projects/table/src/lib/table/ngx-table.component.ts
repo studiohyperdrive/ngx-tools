@@ -6,10 +6,13 @@ import {
 	ContentChild,
 	ContentChildren,
 	EventEmitter,
+	HostBinding,
+	Inject,
 	Input,
 	OnChanges,
 	OnDestroy,
 	OnInit,
+	Optional,
 	Output,
 	QueryList,
 	SimpleChanges,
@@ -22,6 +25,7 @@ import { takeUntil, tap } from 'rxjs/operators';
 
 import { NgxAbstractTableCellDirective } from '../cell/cell.directive';
 import { NgxTableSortEvent } from '../interfaces';
+import { NgxTableConfig, NgxTableConfigToken, ShowDetailRowOption } from '../token';
 
 interface TableCellTemplate {
 	headerTemplate?: TemplateRef<any>;
@@ -46,6 +50,15 @@ interface TableCellTemplate {
 export class NgxTableComponent
 	implements AfterContentChecked, ControlValueAccessor, OnInit, OnChanges, OnDestroy
 {
+	/**
+	 * Default class that will be put on the ngx-table component
+	 */
+	@HostBinding('class') private readonly componentClass =
+		this.ngxTableConfig?.ngxTableClass || '';
+
+	/**
+	 * A QueryList of all the table cell templates
+	 */
 	@ContentChildren(NgxAbstractTableCellDirective)
 	public tableCellTemplates: QueryList<NgxAbstractTableCellDirective>;
 
@@ -112,9 +125,11 @@ export class NgxTableComponent
 	@Input() public loading: boolean = false;
 
 	/**
-	 * Whether or not we allow multiple rows to be added
+	 * An optional property that defines whether multiple rows can be open at once.
+	 * By default, this is false. The default can be overwritten in the NgxTableConfig.
 	 */
-	@Input() public allowMultipleOpenRows: boolean = false;
+	@Input() public allowMultipleOpenRows: boolean =
+		this.ngxTableConfig?.allowMultipleRowsOpen || false;
 
 	/**
 	 * Whether or not rows in the table are selectable
@@ -142,14 +157,11 @@ export class NgxTableComponent
 	}
 
 	/**
-	 * Add the show selected row class to items that can be opened.
+	 * An optional property to define whether we want to add a class to the currently opened row.
+	 * By default this is false. The default can be overwritten in the NgxTableConfig.
 	 */
-	@Input() public showSelectedRow: boolean = false;
-
-	/**
-	 * Whether or not the detail rows should be open at all times
-	 */
-	@Input() public allRowsOpen: boolean = false;
+	@Input() public showSelectedOpenRow: boolean =
+		this.ngxTableConfig?.showSelectedOpenRow || false;
 
 	/**
 	 * An optional class to add to the rows of the table
@@ -158,11 +170,22 @@ export class NgxTableComponent
 
 	/**
 	 * An optional key that can be used in the data in order to highlight a row. If this property is present and true, the highlight class will be provided.
-	 * By default, this key is ngx-highlight
+	 * By default, this key is ngx-highlight. The default can be overwritten in the NgxTableConfig
 	 */
-	@Input() public highlightKey: string = 'ngx-highlight';
+	@Input() public highlightKey: string = this.ngxTableConfig?.highlightKey || 'ngx-highlight';
 
-	@Input() public showOpenRowState: boolean = false;
+	/**
+	 * An optional property to define whether we want to show a visual indicator of the open and closed state of a detail row.
+	 * By default this is false. The default can be overwritten in the NgxTableConfig.
+	 */
+	@Input() public showOpenRowState: boolean = this.ngxTableConfig?.showOpenRowState || false;
+
+	/**
+	 * An optional property to define the default open state of the detail row.
+	 * By default this is 'on-click'. The default can be overwritten in the NgxTableConfig.
+	 */
+	@Input() public showDetailRow: ShowDetailRowOption =
+		this.ngxTableConfig?.showDetailRow || 'on-click';
 
 	/**
 	 * An optional key to open a row by default upon rendering.
@@ -174,7 +197,7 @@ export class NgxTableComponent
 			return;
 		}
 
-		// Wouter: This timeout is needed to wait for the tempateRefs to be found.
+		// Wouter: This timeout is needed to wait for the TemplateRefs to be found.
 		setTimeout(() => {
 			this.handleRowClicked(this.data[openedIndex], openedIndex);
 			this.cdRef.detectChanges();
@@ -201,7 +224,10 @@ export class NgxTableComponent
 	private onChanged: Function = (_: any) => {};
 	private currentSortingEvent: NgxTableSortEvent;
 
-	constructor(private cdRef: ChangeDetectorRef) {}
+	constructor(
+		private cdRef: ChangeDetectorRef,
+		@Optional() @Inject(NgxTableConfigToken) private readonly ngxTableConfig: NgxTableConfig
+	) {}
 
 	public writeValue(value: string[] | unknown): void {
 		// Iben: In case we're using radio buttons, we set the radio control and early exit
@@ -248,9 +274,11 @@ export class NgxTableComponent
 		if (isDisabled) {
 			this.rowsFormGroup.disable({ emitEvent: false });
 			this.headerControl.disable({ emitEvent: false });
+			this.radioControl.disable({ emitEvent: false });
 		} else {
 			this.rowsFormGroup.enable({ emitEvent: false });
 			this.headerControl.enable({ emitEvent: false });
+			this.radioControl.enable({ emitEvent: false });
 		}
 	}
 
@@ -258,7 +286,7 @@ export class NgxTableComponent
 		// Iben: Emit a row click event
 		this.rowClicked.emit(row);
 
-		if (this.showSelectedRow) {
+		if (this.showSelectedOpenRow) {
 			if (this.selectedRow === index) {
 				// Benoit: If you close the selected row, unselect that row
 				this.selectedRow = undefined;

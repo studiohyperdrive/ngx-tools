@@ -117,9 +117,11 @@ The `ngx-table` package comes with two extra cells that are used in common use-c
     </ngx-table>
 ```
 
-Once a detail row is provided, we can use several Inputs to handle the behavior of the table. By setting the `showSelectedRow` property to true, a class (`ngx-table-row-selected`) is provided to the open row so we can style the open rows.
+Once a detail row is provided, we can use several Inputs to handle the behavior of the table. By setting the `showSelectedOpenRow` property to true, a class (`ngx-table-row-selected`) is provided to the open row so we can style the open rows.
 
-By setting the `allRowsOpen` property to true, all rows are open by default. By passing an index to the `defaultRowOpen` input, this row will be opened on rendering the table. The standard behavior of the table allows for only one row to be open at all times, which can be overwritten by setting the `allowMultipleOpenRows` property to true.
+We can define how detail rows are opened by using the `showDetailRow` property. By default, this is set to `on-click`. This value can also be set to `always` to set the all rows open, or to `on-single-item` to make the row open on click and also when there is only one item in the table.
+
+By passing an index to the `defaultRowOpen` input, this row will be opened on rendering the table. The standard behavior of the table allows for only one row to be open at all times, which can be overwritten by setting the `allowMultipleOpenRows` property to true.
 
 We can also visualize the open state of the row by setting the `showOpenRowState` property to true. This will automatically add a cell at the end of the row displaying the open and closed state of the row with a caret. You can overwrite this template using the `openRowStateTmpl`
 
@@ -306,7 +308,36 @@ export class UserTableCellComponent extends NgxAbstractTableCellDirective {
 
 ```
 In the example above, we create a simple user name cell. Instead of using a `ContentChild` template for our cell template, we use a `ViewChild` template. This way, we can provide a default approach to the user name cell, without having to provide it again and again throughout the entire application.
-## 6. Styling
+## 8. Defaults and NgxTableConfig
+
+The table provides several properties that can be set using an `@Input`. The majority of these properties are optional and come with a series of default values for easy use. These defaults can be overwritten using the `NgxTableConfig`.
+
+The `NgxTableConfig` is an optional InjectionToken that allows for the defaults to be overwritten. These defaults are:
+
+| Defaults | |
+|--|--|
+| showDetailRow | Handles the default behavior of detail rows in all tables. By default the detail-rows are shown when clicked. By providing `always`, the rows will always be open. Providing `on-single-item` will have the same behavior as the default `on-click`, but will open the detail row if the table has only one item. |
+| ngxTableClass | This class will be set on the `ngx-table` component itself, using HostBinding |
+| showOpenRowState | Handles the default behavior of the open row state indicator. Providing `true` will automatically show the indicator in every table with a detail row. |
+| allowMultipleRowsOpen | Handles the default behavior of whether multiple rows can be open at once. Providing `true` will allow all tables to always have allow multiple open rows. |
+| highlightKey | Handles the default behavior of rows that get the `ngx-table-row-highlight` class. Providing a string here will use that property as the data property to match to add the class. |
+| showSelectedOpenRow | Handles the default behavior of rows that get the `ngx-table-row-selected` class. Providing `true` will always add the class to open rows. |
+
+
+We can provide the config using a provider. An example of this could be:
+```ts
+	providers: [
+		{
+			provide: NgxTableConfigToken,
+			useValue: { 
+                showDetailRow: 'on-single-item', 
+                highlightKey: 'is-updated'
+                }
+		}
+	]
+```
+
+## 7. Styling
 
 By default the `ngx-table` comes with very minimal styling. Several classes have been provided to help with styling specific parts of the table. As the package was built upon the `cdk-table`, all styling rules that apply to that table also apply here. Check out the documentation of the `cdk-table` for more information.
 
@@ -340,10 +371,10 @@ If you wish to provide a custom class to the row of your tables, you can provide
 
 Cells can also have a default class we want to provide to all cells of that kind. All `ngx-date-table-cell` cells have the `ngx-date-table-cell` class and the same applies for the `ngx-currency-table-cell`.
 
-## 7. Acknowledgements
+## 8. Acknowledgements
 
 A big thanks goes out to [Sam Verschueren](https://github.com/SamVerschueren) for his help with the initial implementation of this table. Without his help, this table would not have existed.
-## Team
+## 9. Team
 
 This bundle of tools has been created and is maintained by [Studio Hyperdrive](https://studiohyperdrive.be).
 
