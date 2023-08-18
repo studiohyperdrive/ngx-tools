@@ -55,11 +55,11 @@ Lastly set up the global config in the appropriate module:
             provide: WITH_ROUTER_LINKS_CONFIG,
             useValue: {
                 // The selector of the component
-                elSelector: 'link-el',
+                replaceElementSelector: 'link-el',
                 // The input property of the component
-                linkAttr: 'to',
+                linkAttributeName: 'to',
                 // The data attribute used in the string to mark the anchor that needs to be targetted
-                dataLinkIdAttr: 'data-link-id',
+                dataLinkIdAttributeName: 'data-link-id',
             } as WithRouterLinksConfig
         }
     ]
@@ -82,8 +82,8 @@ Within the template you can now provide the string and transform it like this:
 
 ```angular2html
 <p [innerHTML]="string | withRouterLinks : [{
-    select: 'someUniqueId',
-    linkTo: ['somewhere', 'in', 'the', 'app']
+    dataLinkId: 'someUniqueId',
+    link: ['somewhere', 'in', 'the', 'app']
 }]"></p>
 ```
 
@@ -92,12 +92,13 @@ The linkTo will transform your array to a string. It also expects plain string p
 #### Deviating from the global settings
 
 If you'd want to deviate from the global settings and use a different component for a specific string, you can provide additional config like this:
+
 ```angular2html
 <p [innerHTML]="string | withRouterLinks : [{
-    select: 'someUniqueId',
-    linkTo: ['somewhere', 'in', 'the', 'app'],
-    elSelector: 'my-other-el',
-	toAttr: 'input-prop',
+    dataLinkId: 'someUniqueId',
+    link: ['somewhere', 'in', 'the', 'app'],
+    replaceElementSelector: 'my-other-el',
+	toAttribute: 'input-prop',
 }]"></p>
 ```
 

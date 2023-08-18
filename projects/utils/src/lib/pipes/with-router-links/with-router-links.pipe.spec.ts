@@ -4,9 +4,9 @@ import { WithRouterLinksConfig } from './with-router-links.types';
 
 describe('WithRouterLinkPipe', () => {
 	const config: WithRouterLinksConfig = {
-		elSelector: 'my-link',
-		linkAttr: 'to',
-		dataLinkIdAttr: 'data-link-id',
+		replaceElementSelector: 'my-link',
+		linkAttributeName: 'to',
+		dataLinkIdAttributeName: 'data-link-id',
 	};
 	const sanitizer: DomSanitizer = {
 		bypassSecurityTrustHtml: jasmine.createSpy().and.callFake((value) => value),
@@ -18,14 +18,14 @@ describe('WithRouterLinkPipe', () => {
 			'This is a text with a <a data-link-id="someUniqueId">link</a>.',
 			[
 				{
-					select: 'someUniqueId',
-					linkTo: ['path', 'in', 'app'],
+					dataLinkId: 'someUniqueId',
+					link: ['path', 'in', 'app'],
 				},
 			]
 		);
 
 		expect(result).toBe(
-			`<head></head><body>This is a text with a <my-link to="/path/in/app">link</my-link>.</body>`
+			`<head></head><body>This is a text with a <my-link to="path/in/app">link</my-link>.</body>`
 		);
 	});
 
@@ -34,8 +34,8 @@ describe('WithRouterLinkPipe', () => {
 			'This is a text with a <a data-link-id="someUniqueId">link</a>.',
 			[
 				{
-					select: 'someUniqueId',
-					linkTo: '/path/in/app',
+					dataLinkId: 'someUniqueId',
+					link: '/path/in/app',
 				},
 			]
 		);
@@ -50,10 +50,10 @@ describe('WithRouterLinkPipe', () => {
 			'This is a text with a <a data-link-id="someUniqueId">link</a>.',
 			[
 				{
-					select: 'someUniqueId',
-					linkTo: '/path/in/app',
-					elSelector: 'other-el',
-					toAttr: 'other-prop',
+					dataLinkId: 'someUniqueId',
+					link: '/path/in/app',
+					replaceElementSelector: 'other-el',
+					toAttribute: 'other-prop',
 				},
 			]
 		);
@@ -63,29 +63,52 @@ describe('WithRouterLinkPipe', () => {
 		);
 	});
 
-	it('should conver multiple links', () => {
+	it('should convert multiple links', () => {
 		const result = pipe.transform(
 			'This is a text with multiple links: <a data-link-id="someUniqueId1">link 1</a>, <a data-link-id="someUniqueId2">link 2</a>, <a data-link-id="someUniqueId3">link 3</a>.',
 			[
 				{
-					select: 'someUniqueId1',
-					linkTo: ['path', 'in', 'app'],
+					dataLinkId: 'someUniqueId1',
+					link: ['path', 'in', 'app'],
 				},
 				{
-					select: 'someUniqueId2',
-					linkTo: '/path/in/app',
+					dataLinkId: 'someUniqueId2',
+					link: '/path/in/app',
 				},
 				{
-					select: 'someUniqueId3',
-					linkTo: ['path', 'in', 'app'],
-					elSelector: 'other-el',
-					toAttr: 'other-prop',
+					dataLinkId: 'someUniqueId3',
+					link: ['path', 'in', 'app'],
+					replaceElementSelector: 'other-el',
+					toAttribute: 'other-prop',
 				},
 			]
 		);
 
 		expect(result).toBe(
-			`<head></head><body>This is a text with multiple links: <my-link to="/path/in/app">link 1</my-link>, <my-link to="/path/in/app">link 2</my-link>, <other-el other-prop="/path/in/app">link 3</other-el>.</body>`
+			`<head></head><body>This is a text with multiple links: <my-link to="path/in/app">link 1</my-link>, <my-link to="/path/in/app">link 2</my-link>, <other-el other-prop="path/in/app">link 3</other-el>.</body>`
+		);
+	});
+
+	it('should return the orginal value if it is not a string', () => {
+		expect(pipe.transform(null)).toBe(null);
+		expect(pipe.transform(undefined)).toBe(undefined);
+		expect(pipe.transform(1 as any)).toBe(1);
+		expect(pipe.transform(true as any)).toBe(true);
+	});
+
+	it('should exclude anchors without a matching reference', () => {
+		const result = pipe.transform(
+			'This is a text with multiple links: <a data-link-id="someUniqueId1">link 1</a>, <a href="https://studiohyperdrive.be">link 2</a>, <a data-link-id="someUniqueId3">link 3</a>.',
+			[
+				{
+					dataLinkId: 'someUniqueId1',
+					link: ['path', 'in', 'app'],
+				},
+			]
+		);
+
+		expect(result).toBe(
+			`<head></head><body>This is a text with multiple links: <my-link to="path/in/app">link 1</my-link>, <a href="https://studiohyperdrive.be">link 2</a>, <a data-link-id="someUniqueId3">link 3</a>.</body>`
 		);
 	});
 });

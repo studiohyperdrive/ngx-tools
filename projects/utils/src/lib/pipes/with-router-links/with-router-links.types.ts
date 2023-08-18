@@ -1,12 +1,12 @@
 export interface WithRouterLinksConfig {
-	elSelector: string;
-	linkAttr: string;
-	dataLinkIdAttr: string;
+	replaceElementSelector: string;
+	linkAttributeName: string;
+	dataLinkIdAttributeName: string;
 }
 
 export interface LinkReference {
-	select: string;
-	linkTo: string | string[];
-	elSelector?: string;
-	toAttr?: string;
+	dataLinkId: string;
+	link: string | string[];
+	replaceElementSelector?: string;
+	toAttribute?: string;
 }
