@@ -10,6 +10,7 @@ import { SafeHtmlPipe } from './safe-html/safe-html.pipe';
 import { StripHtmlPipe } from './strip-html/strip-html.pipe';
 import { TransformPipe } from './transform/transform.pipe';
 import { TruncateTextPipe } from './truncate-text/truncate-text.pipe';
+import { WithRouterLinkPipe } from './with-router-links/with-router-links.pipe';
 
 export const Pipes = [
 	IbanPipe,
@@ -24,6 +25,7 @@ export const Pipes = [
 	TransformPipe,
 	JoinPipe,
 	HasObserversPipe,
+	WithRouterLinkPipe,
 ];
 
 export { BtwPipe } from './btw/btw.pipe';

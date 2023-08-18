@@ -1,5 +1,6 @@
 {
   "name": "@studiohyperdrive/ngx-utils",
+  "homepage": "https://github.com/studiohyperdrive/ngx-tools/blob/master/projects/utils/README.md",
   "version": "16.1.1",
   "license": "MIT",
   "peerDependencies": {
