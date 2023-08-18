@@ -88,6 +88,12 @@ The TruncateTextPipe will truncate a given text to a given number of characters 
 
 [Full documentation.](src/lib/pipes/truncate-text/truncate-text.pipe.md)
 
+### WithRouterLinksPipe
+
+The withRouterLinks pipe will provide a way to transform a string that contains one or more parts that need a routerLink by taking advantage of Angular web components.
+
+[Full documentation.](src/lib/pipes/with-router-links/with-router-links.md)
+
 ## Services
 ### 1. Window service
 This service uses the `DOCUMENT` injection-token to provide several methods to access both document and window and related information.

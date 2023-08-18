@@ -93,6 +93,7 @@ Which we'll then provide to the `NgxI18nModule` in our feature module
  export class FeatureModule{}
 ```
 With this setup, the translations will be loaded only when navigating to the FeatureModule.
+
 ## build information
 This project has been build with:
 - Angular CLI : `16.1.4`
