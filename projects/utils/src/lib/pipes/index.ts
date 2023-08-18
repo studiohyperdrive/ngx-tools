@@ -40,3 +40,4 @@ export { SafeHtmlPipe } from './safe-html/safe-html.pipe';
 export { StripHtmlPipe } from './strip-html/strip-html.pipe';
 export { TransformPipe } from './transform/transform.pipe';
 export { TruncateTextPipe } from './truncate-text/truncate-text.pipe';
+export { WithRouterLinkPipe } from './with-router-links/with-router-links.pipe';
