@@ -22,7 +22,7 @@
 	<ng-template #radioTmpl let-control let-row="row" let-index="index">
 		<input type="radio" name="control" [id]="index" [formControl]="control" [value]="row.id" />
 	</ng-template>
-	<ng-template #detailRowTmpl let-row>
+	<ng-template *ngIf="showDetail" #detailRowTmpl let-row>
 		{{row | json}}
 	</ng-template>
 </ngx-table>
@@ -32,3 +32,4 @@
 </p>
 
 <button (click)="setFormValue()">Set form value</button>
+<button (click)="toggleDetailView()">Toggle detail row</button>

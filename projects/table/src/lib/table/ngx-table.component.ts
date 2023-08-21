@@ -418,7 +418,7 @@ export class NgxTableComponent
 			...(this.selectable ? ['ngxTableSelectColumn'] : []),
 			...(this.columns || []),
 			...(this.actions || []),
-			...(this.showOpenRowState ? ['ngxOpenRowStateColumn'] : []),
+			...(this.showOpenRowState && this.detailRowTemplate ? ['ngxOpenRowStateColumn'] : []),
 		];
 
 		// Iben: Set the actual table columns
@@ -428,7 +428,8 @@ export class NgxTableComponent
 	// Lifecycle methods
 	// ==============================
 	public ngAfterContentChecked(): void {
-		// Iben: Run with content check so that we can dynamically add templates
+		// Iben: Run with content check so that we can dynamically add templates/columns
+		this.handleRowColumns();
 		this.handleTableCellTemplates();
 	}
 

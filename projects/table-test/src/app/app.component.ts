@@ -30,9 +30,15 @@ export class AppComponent {
 
 	public readonly columns = ['firstName', 'name', 'active'];
 
+	public showDetail = true;
+
 	public form = new FormControl();
 
 	public setFormValue() {
 		this.form.patchValue('id2');
+	}
+
+	public toggleDetailView() {
+		this.showDetail = !this.showDetail;
 	}
 }
