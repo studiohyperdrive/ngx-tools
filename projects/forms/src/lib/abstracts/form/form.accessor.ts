@@ -1,20 +1,17 @@
 import {
 	ChangeDetectorRef,
 	Directive,
-	Injector,
 	Input,
 	OnDestroy,
 	OnInit,
 	Output,
 	QueryList,
 	ViewChildren,
-	inject,
 } from '@angular/core';
 import {
 	ValidationErrors,
 	ControlValueAccessor,
 	AbstractControl,
-	ControlContainer,
 	FormControl,
 } from '@angular/forms';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
@@ -25,10 +22,10 @@ import { DataFormAccessor } from '../data-form/data-form.accessor';
 import { FormAccessorControlsEntity, FormStateOptionsEntity } from '../../interfaces';
 import {
 	handleFormAccessorControlDisabling,
-	customUpdateValueAndValidity,
 	handleFormAccessorMarkAsTouched,
 	handleFormAccessorMarkAsDirty,
 	hasErrors,
+	handleFormAccessorUpdateValueAndValidity,
 } from '../../utils';
 
 @Directive()
@@ -43,16 +40,24 @@ export abstract class FormAccessor<
 	 */
 	@ViewChildren(BaseFormAccessor) accessors: QueryList<DataFormAccessor | FormAccessor>;
 
+	/**
+	 * Whether the first setDisable has run
+	 */
+	private initialSetDisableHasRun: boolean = false;
+
 	// On destroy flow handler
 	protected readonly destroy$ = new Subject();
-
-	// Iben: A handler to know when the update value and validity has been set
-	private readonly hasSetUpdateValueAndValiditySubject$ = new Subject();
 
 	// Subject to check whether the form is initialized
 	protected readonly initializedSubject$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
 		false
 	);
+
+	/**
+	 * Whether we want to skip the first setDisable (https://github.com/angular/angular/pull/47576).
+	 * By default, this is true
+	 */
+	private skipInitialSetDisable: boolean = true;
 
 	/**
 	 * Stream to know whether the form has been initialized
@@ -128,13 +133,6 @@ export abstract class FormAccessor<
 	public onWriteValueMapper?(value: DataType): FormValueType;
 
 	/**
-	 * An optional handler to call right before the value and validity is updated
-	 *
-	 * @param options - The options passed to the updateValueAndValidity function
-	 */
-	public onUpdateValueAndValidity?(options: FormStateOptionsEntity): void;
-
-	/**
 	 * Whether or not we want to emit a value when we use the disableFields, by default this will emit
 	 *
 	 * @param  keys - Keys we're about to disable
@@ -143,56 +141,7 @@ export abstract class FormAccessor<
 		keys: FormAccessorControlsEntity<FormAccessorFormType>[]
 	): boolean;
 
-	constructor(readonly cdRef: ChangeDetectorRef) {
-		// Iben: Get the injector so that we can have the parent control
-		const injector = inject(Injector);
-
-		try {
-			// Iben: Grab the controlContainer
-			const container = injector.get(ControlContainer);
-
-			this.initialized$
-				.pipe(
-					filter(Boolean),
-					tap(() => {
-						// Iben: If the container exists and we have an actual control assigned to this container, we can overwrite the updateValueAndValidity of this control
-						if (container && container.control) {
-							// Iben: Grab the control and keep a reference to the original update value and validity of the control
-							const control = container.control;
-							const updateValueAndValidity =
-								control.updateValueAndValidity.bind(control);
-
-							// Iben: We'll overwrite the updateValueAndValidity to also update the value and validity of the form itself;
-							control.updateValueAndValidity = (
-								options: FormStateOptionsEntity = {}
-							) => {
-								// Iben: Call the handler before the updateValueAndValidity has been called
-								if (this.onUpdateValueAndValidity) {
-									this.onUpdateValueAndValidity(options);
-								}
-
-								// Iben: Call the custom updateValueAndValidty
-								customUpdateValueAndValidity(
-									this.form,
-									updateValueAndValidity,
-									options
-								);
-							};
-						}
-
-						// Iben: Close the subscription
-						this.hasSetUpdateValueAndValiditySubject$.next(undefined);
-						this.hasSetUpdateValueAndValiditySubject$.complete();
-					}),
-					takeUntil(this.hasSetUpdateValueAndValiditySubject$)
-				)
-				.subscribe();
-		} catch {
-			console.warn(
-				'You are using a FormAccessor with a single control instead of a control inside a form group. The updateValueAndValidity function could not be overwritten.'
-			);
-		}
-	}
+	constructor(readonly cdRef: ChangeDetectorRef) {}
 
 	private onTouch: Function = () => {}; // tslint:disable-line:no-empty
 	private onChange: Function = (_: any) => {}; // tslint:disable-line:no-empty
@@ -239,11 +188,31 @@ export abstract class FormAccessor<
 	}
 
 	/**
+	 * Update the value and validity of the provided form
+	 */
+	public updateAllValueAndValidity(options: FormStateOptionsEntity): void {
+		handleFormAccessorUpdateValueAndValidity(
+			this.form,
+			this.accessors?.toArray() || [],
+			options
+		);
+		this.cdRef.detectChanges();
+	}
+
+	/**
 	 * Disables/enables the inner form based on the passed value
 	 *
 	 * @param isDisabled - Whether or not the form should be disabled
 	 */
 	public setDisabledState(isDisabled: boolean) {
+		// Iben: Skip the initial setDisabled, as this messes up our form approach.
+		// https://github.com/angular/angular/pull/47576
+		if (this.skipInitialSetDisable && !this.initialSetDisableHasRun) {
+			this.initialSetDisableHasRun = true;
+
+			return;
+		}
+
 		if (isDisabled) {
 			this.form.disable({ emitEvent: false });
 		} else {

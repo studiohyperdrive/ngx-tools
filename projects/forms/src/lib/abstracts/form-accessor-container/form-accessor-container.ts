@@ -6,7 +6,11 @@ import { BaseFormAccessor } from '../base-form/base-form.accessor';
 import { DataFormAccessor } from '../data-form/data-form.accessor';
 import { FormAccessor } from '../form/form.accessor';
 import { FormStateOptionsEntity } from '../../interfaces';
-import { handleFormAccessorMarkAsDirty, handleFormAccessorMarkAsTouched } from '../../utils';
+import {
+	handleFormAccessorMarkAsDirty,
+	handleFormAccessorMarkAsTouched,
+	handleFormAccessorUpdateValueAndValidity,
+} from '../../utils';
 
 @Directive()
 export class FormAccessorContainer implements OnDestroy {
@@ -26,7 +30,7 @@ export class FormAccessorContainer implements OnDestroy {
 	 * @param  form - The form used in the component
 	 * @param options - Options passed to the form state changer
 	 */
-	public markAsDirty(form: AbstractControl, options: FormStateOptionsEntity = {}): void {
+	public markAllAsDirty(form: AbstractControl, options: FormStateOptionsEntity = {}): void {
 		handleFormAccessorMarkAsDirty(form, this.accessors?.toArray() || [], options);
 	}
 
@@ -38,6 +42,13 @@ export class FormAccessorContainer implements OnDestroy {
 	 */
 	public markAllAsTouched(form: AbstractControl, options: FormStateOptionsEntity = {}): void {
 		handleFormAccessorMarkAsTouched(form, this.accessors?.toArray() || [], options);
+	}
+
+	public updateAllValueAndValidity(
+		form: AbstractControl,
+		options: FormStateOptionsEntity = {}
+	): void {
+		handleFormAccessorUpdateValueAndValidity(form, this.accessors?.toArray() || [], options);
 	}
 
 	/**
