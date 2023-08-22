@@ -100,11 +100,11 @@ If we wish to disable or enable all controls within a FormAccessor, we can simpl
 
 If we wish to disable specific controls within the a FormAccessor, we can use the `disableFields` input to pass down the keys of these controls. By default, disabling these will cause a valueChanges emit. This behavior can be overwritten by implementing the `emitValueWhenDisableFieldsUsingInput` function.
 
-### UpdateValueAndValidity
+### setDisableState
 
-As Angular does not by default support a recursive `updateValueAndValidity` and therefore cannot update the value and validity of the inner controls of the accessor, we have a custom implementation that will recursively update all the controls.
+By default, Angular [always](https://github.com/angular/angular/pull/47576) runs `setDisableState` on `ControlValueAccessors`. Due to the implementation of the `FormAccessor`, this might interfere with FormGroups defined in the `initForm`. 
 
-In case we wish to handle any logic _before_ this, we can implement the `onUpdateValueAndValidity` function.
+To prevent this interference, the first `setDisableState` is ignored by default. If you wish to opt out of this behavior, you can set the `skipInitialSetDisable` to false.
 
 ### DataFormAccessor
 
@@ -307,7 +307,7 @@ export class SurveyFormComponent extends DataFormAccessor<SurveyQuestion[], Reco
 
 ## 3. FormAccessorContainer
 
-In order to mark all controls of several (nested) `FormAccessors` as touched or dirty, we use the `FormAccessorContainer`. 
+In order to mark all controls of several (nested) `FormAccessors` as touched or dirty or update the value and validity, we use the `FormAccessorContainer`. 
 
 ### BaseFormAccessor
 
@@ -327,6 +327,10 @@ Calling this method on a `FormAccessorContainer` will recursively mark each `For
 ### markAsDirty
 
 Calling this method on a `FormAccessorContainer` will recursively mark each `FormAccessor` and their corresponding `FormAccessor` children in the template as dirty.
+
+### UpdateValueAndValidity
+
+Calling this method on a `FormAccessorContainer` will recursively update the value and validity for each `FormAccessor` and their corresponding `FormAccessor` children in the template.
 
 ## build information
 This project has been build with:

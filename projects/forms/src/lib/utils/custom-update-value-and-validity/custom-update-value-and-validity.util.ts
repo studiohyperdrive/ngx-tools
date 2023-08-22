@@ -6,17 +6,14 @@ import { FormStateOptionsEntity } from '../../interfaces';
  * Adds a deep update value and validity to the existing update value and validity
  *
  * @param form - The provided abstract control
- * @param updateValueAndValidity - The existing update value and validity function we wish to call
  * @param options - The options we wish to call along with the update value and validity function
  */
-export const customUpdateValueAndValidity = (
+export const updateAllValueAndValidity = (
 	form: AbstractControl,
-	updateValueAndValidity: Function,
 	options: FormStateOptionsEntity = {}
 ) => {
 	// Iben: Call the original updateValueAndValidity
-	updateValueAndValidity({ ...options, onlySelf: true });
-
+	form.updateValueAndValidity(options);
 	// Iben: If we don't have the inner form yet we just do the default update value
 	if (!form || !form['controls']) {
 		return;
