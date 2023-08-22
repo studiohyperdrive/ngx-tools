@@ -18,6 +18,7 @@
 	[selectable]="true"
 	selectableKey="id"
 	selectableType="radio"
+	(rowClicked)="rowEmitted($event)"
 >
 	<ng-template #radioTmpl let-control let-row="row" let-index="index">
 		<input type="radio" name="control" [id]="index" [formControl]="control" [value]="row.id" />

@@ -41,4 +41,8 @@ export class AppComponent {
 	public toggleDetailView() {
 		this.showDetail = !this.showDetail;
 	}
+
+	public rowEmitted(data: any) {
+		console.log(data);
+	}
 }

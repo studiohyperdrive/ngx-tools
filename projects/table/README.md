@@ -119,7 +119,9 @@ The `ngx-table` package comes with two extra cells that are used in common use-c
 
 Once a detail row is provided, we can use several Inputs to handle the behavior of the table. By setting the `showSelectedOpenRow` property to true, a class (`ngx-table-row-selected`) is provided to the open row so we can style the open rows.
 
-We can define how detail rows are opened by using the `showDetailRow` property. By default, this is set to `on-click`. This value can also be set to `always` to set the all rows open, or to `on-single-item` to make the row open on click and also when there is only one item in the table.
+We can define how detail rows are opened by using the `showDetailRow` property. By default, this is set to `on-click`. This value can also be set to `always` to set the all rows open, or to `on-single-item` to make the row open on click and also when there is only one item in the table. 
+
+If you wish to emit the `rowClicked` Output when there's only one item in the table and the `showDetailRow` is set to `on-single-item`, you can set the `emitValueOnSingleItem` to true. The default for this is false, and can be overwritten in the `NgxTableConfig`.
 
 By passing an index to the `defaultRowOpen` input, this row will be opened on rendering the table. The standard behavior of the table allows for only one row to be open at all times, which can be overwritten by setting the `allowMultipleOpenRows` property to true.
 
@@ -322,6 +324,7 @@ The `NgxTableConfig` is an optional InjectionToken that allows for the defaults 
 | allowMultipleRowsOpen | Handles the default behavior of whether multiple rows can be open at once. Providing `true` will allow all tables to always have allow multiple open rows. |
 | highlightKey | Handles the default behavior of rows that get the `ngx-table-row-highlight` class. Providing a string here will use that property as the data property to match to add the class. |
 | showSelectedOpenRow | Handles the default behavior of rows that get the `ngx-table-row-selected` class. Providing `true` will always add the class to open rows. |
+| emitValueOnSingleItem | Handles the default behavior `rowClicked` emit behavior when the table is set to `on-single-item`. |
 
 
 We can provide the config using a provider. An example of this could be:

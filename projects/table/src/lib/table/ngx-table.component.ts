@@ -188,6 +188,14 @@ export class NgxTableComponent
 		this.ngxTableConfig?.showDetailRow || 'on-click';
 
 	/**
+	 * An optional property to define whether we want to emit the row when there's only one item in the table and the showDetailRow is set to `on-single-item`
+	 * By default this is false. The default can be overwritten in the NgxTableConfig.
+	 */
+	@Input() public emitValueOnSingleItem: boolean =
+		this.ngxTableConfig?.showDetailRow === 'on-single-item' &&
+		this.ngxTableConfig?.emitValueOnSingleItem;
+
+	/**
 	 * An optional key to open a row by default upon rendering.
 	 */
 	@Input() public set defaultRowOpen(openedIndex: number) {
@@ -442,6 +450,15 @@ export class NgxTableComponent
 		// Iben: Add the selectableColumn if the rows are selectable and add an open row state when needed
 		if (changes.selectable || changes.columns || changes.showOpenRowState) {
 			this.handleRowColumns();
+		}
+
+		// Iben: If there's only one item in the data and we open the detail row by default, we emit the row clicked value
+		if (
+			this.emitValueOnSingleItem &&
+			changes.data.currentValue.length === 1 &&
+			this.showDetailRow === 'on-single-item'
+		) {
+			this.handleRowClicked(changes.data.currentValue[0], 0);
 		}
 
 		// Iben: Reset the open rows if the amount of items are no longer the same
