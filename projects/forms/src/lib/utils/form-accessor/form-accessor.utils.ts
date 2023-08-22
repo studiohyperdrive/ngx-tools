@@ -3,6 +3,7 @@ import { AbstractControl, FormGroup } from '@angular/forms';
 import { DataFormAccessor, FormAccessor } from '../../abstracts';
 import { markAllAsDirty } from '../mark-all-as-dirty/mark-all-as-dirty.util';
 import { FormStateOptionsEntity } from '../../interfaces';
+import { updateAllValueAndValidity } from '../custom-update-value-and-validity/custom-update-value-and-validity.util';
 
 /**
  * Disable a FormControl/FormArray
@@ -147,4 +148,23 @@ export const handleFormAccessorMarkAsTouched = (
 
 	// Iben: Loop over each form accessor and call the mark as touched function, so all subsequent accessors are also marked as touched
 	accessors.forEach((accessor) => accessor.markAsTouched(options));
+};
+
+/**
+ * Updates a form and all the form-accessors this form i
+ *
+ * @param form - The form we wish to update the value and validity of
+ * @param accessors - An array of all the accessors we wish to update the value and validity of
+ * @param options - Form state options we wish to provide
+ */
+export const handleFormAccessorUpdateValueAndValidity = (
+	form: AbstractControl,
+	accessors: (FormAccessor | DataFormAccessor)[],
+	options: FormStateOptionsEntity = {}
+) => {
+	// Iben: Update the value and validity of the form
+	updateAllValueAndValidity(form, options);
+
+	// Iben: Loop over each form accessor and call the updateValueAndValidity function, so all subsequent accessors are also updated
+	accessors.forEach((accessor) => accessor.updateAllValueAndValidity(options));
 };
