@@ -11,7 +11,11 @@ import { NgxTableConfigToken, NgxTableModule } from 'table';
 	providers: [
 		{
 			provide: NgxTableConfigToken,
-			useValue: { showDetailRow: 'on-single-item', showOpenRowState: true },
+			useValue: {
+				showDetailRow: 'on-single-item',
+				showOpenRowState: true,
+				emitValueOnSingleItem: true,
+			},
 		},
 	],
 	bootstrap: [AppComponent],
