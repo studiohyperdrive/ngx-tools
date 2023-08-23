@@ -455,7 +455,7 @@ export class NgxTableComponent
 		// Iben: If there's only one item in the data and we open the detail row by default, we emit the row clicked value
 		if (
 			this.emitValueOnSingleItem &&
-			changes.data.currentValue.length === 1 &&
+			changes.data?.currentValue.length === 1 &&
 			this.showDetailRow === 'on-single-item'
 		) {
 			this.handleRowClicked(changes.data.currentValue[0], 0);
