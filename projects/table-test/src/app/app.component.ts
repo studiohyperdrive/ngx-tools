@@ -61,4 +61,8 @@ export class AppComponent {
 			this.isWrapperShown = true;
 		}, 1000);
 	}
+
+	public rowEmitted(data: any) {
+		console.log(data);
+	}
 }

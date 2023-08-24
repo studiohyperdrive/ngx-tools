@@ -11,6 +11,7 @@ export type ShowDetailRowOption = 'always' | 'on-click' | 'on-single-item';
  * allowMultipleRowsOpen - Defines whether multiple rows can be open at once.
  * showOpenRowState - Defines whether we always want to show the open-row state indicator for each table.
  * showSelectedOpenRow - Defines whether we want a class to be added to the currently opened row
+ * emitValueOnSingleItem - Defines whether we want to emit the rowClicked when there's only one item in the table and the showDetailRow is set to 'on-single-item'
  */
 export interface NgxTableConfig {
 	showDetailRow?: ShowDetailRowOption;
@@ -19,6 +20,7 @@ export interface NgxTableConfig {
 	allowMultipleRowsOpen?: boolean;
 	highlightKey?: string;
 	showSelectedOpenRow?: boolean;
+	emitValueOnSingleItem?: boolean;
 }
 
 export const NgxTableConfigToken = new InjectionToken<NgxTableConfig>('NgxTableConfig');
