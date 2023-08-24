@@ -371,6 +371,9 @@ export class NgxTableComponent
 			return;
 		}
 
+		// Wouter: Deselect any row that was selected to prevent faulty class toggle.
+		this.selectedRow = undefined;
+
 		// Iben: Loop over the current form and remove all controls
 		Object.keys(this.rowsFormGroup.controls || []).forEach((control) => {
 			this.rowsFormGroup.removeControl(control, { emitEvent: false });

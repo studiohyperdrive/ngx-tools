@@ -11,25 +11,34 @@
 	</p>
 </div>
 
-<ngx-table
-	[formControl]="form"
-	[data]="data"
-	[columns]="columns"
-	[selectable]="true"
-	selectableKey="id"
-	selectableType="radio"
->
-	<ng-template #radioTmpl let-control let-row="row" let-index="index">
-		<input type="radio" name="control" [id]="index" [formControl]="control" [value]="row.id" />
-	</ng-template>
-	<ng-template *ngIf="showDetail" #detailRowTmpl let-row>
-		{{row | json}}
-	</ng-template>
-</ngx-table>
+<app-wrapper [contentVisible]="isWrapperShown">
+	<ngx-table
+		[formControl]="form"
+		[data]="data"
+		[columns]="columns"
+		[selectable]="true"
+		selectableKey="id"
+		selectableType="radio"
+	>
+		<ng-template #radioTmpl let-control let-row="row" let-index="index">
+			<input
+				type="radio"
+				name="control"
+				[id]="index"
+				[formControl]="control"
+				[value]="row.id"
+			/>
+		</ng-template>
+		<ng-template *ngIf="showDetail" #detailRowTmpl let-row>
+			{{ row | json }}
+		</ng-template>
+	</ngx-table>
 
-<p>
-	{{ form.value | json }}
-</p>
+	<p>
+		{{ form.value | json }}
+	</p>
+</app-wrapper>
 
 <button (click)="setFormValue()">Set form value</button>
 <button (click)="toggleDetailView()">Toggle detail row</button>
+<button (click)="removeWrapper()">Toggle wrapper</button>
