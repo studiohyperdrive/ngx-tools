@@ -61,4 +61,12 @@ export class SpecStoreService extends StoreService {
 	public clearVideos(): void {
 		this.store.dispatch(actions.videos.clear());
 	}
+
+	public fetchChannel() {
+		this.store.dispatch(actions.channel.effects.set({ payload: false }));
+	}
+
+	public fetchVideos() {
+		this.store.dispatch(actions.videos.effects.set({ payload: 'test' }));
+	}
 }

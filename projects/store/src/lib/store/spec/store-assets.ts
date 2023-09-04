@@ -1,12 +1,12 @@
-import { BaseStoreAssets, EntityStoreAssets } from '../interfaces';
+import { BaseStoreAssets, EntityStoreAssets, StoreFlowAssets } from '../interfaces';
 import { createBaseStoreAssets, createEntityAdapterStoreAssets, createStoreAssets } from '../utils';
 
 export type DataType = { id: string; url: string };
 
-type SpecStoreAssets = {
-	channel: BaseStoreAssets<DataType>;
-	videos: EntityStoreAssets<DataType>;
-};
+interface SpecStoreAssets extends StoreFlowAssets {
+	channel: BaseStoreAssets<DataType, { set: boolean }>;
+	videos: EntityStoreAssets<DataType, { set: string }>;
+}
 
 export const StoreSlice = 'YouTube';
 

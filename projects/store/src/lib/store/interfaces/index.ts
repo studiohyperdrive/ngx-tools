@@ -3,3 +3,4 @@ export * from './base-store';
 export * from './entity-store-assets';
 export * from './store';
 export * from './store-generator';
+export * from './effects';

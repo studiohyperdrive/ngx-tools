@@ -5,11 +5,15 @@ import { of } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
 import { subscribeSpyTo } from '@hirez_io/observer-spy';
 
+import { EffectsModule } from '@ngrx/effects';
 import { StoreSlice, reducers } from './store-assets';
 import { SpecStoreService } from './store-service';
+import { EffectsService } from './effects.service';
+import { StoreEffects } from './effects';
 
-const mockChannel = { id: 'iben', url: 'youtube.com/@Iben' };
-const mockVideos = [
+export const mockChannel = { id: 'iben', url: 'youtube.com/@Iben' };
+export const mockPrivateChannel = { id: 'denis', url: 'youtube.com/@Denis' };
+export const mockVideos = [
 	{ id: 'test', url: 'hello.world' },
 	{ id: 'two', url: 'hello.world' },
 ];
@@ -24,8 +28,17 @@ describe('NgxStore', () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			imports: [StoreModule.forRoot({}), StoreModule.forFeature(StoreSlice, reducers)],
-			providers: [SpecStoreService, { provide: HttpClient, useValue: httpClient }],
+			imports: [
+				StoreModule.forRoot({}),
+				StoreModule.forFeature(StoreSlice, reducers),
+				EffectsModule.forRoot(),
+				EffectsModule.forFeature(StoreEffects),
+			],
+			providers: [
+				SpecStoreService,
+				EffectsService,
+				{ provide: HttpClient, useValue: httpClient },
+			],
 		});
 
 		service = TestBed.inject(SpecStoreService);
@@ -43,6 +56,15 @@ describe('NgxStore', () => {
 			);
 
 			expect(spy.getValues()).toEqual([mockChannel]);
+		});
+
+		it('should use the effect when dispatched', () => {
+			const loading = subscribeSpyTo(service.channelLoading$);
+			service.fetchChannel();
+			const spy = subscribeSpyTo(service.channel$);
+
+			expect(spy.getValues()).toEqual([mockPrivateChannel]);
+			expect(loading.getValues()).toEqual([false, true, false]);
 		});
 
 		it('should correctly set the loading state', () => {
@@ -78,6 +100,15 @@ describe('NgxStore', () => {
 					})
 				)
 				.subscribe(() => done());
+		});
+
+		it('should use the effect when one is dispatched', () => {
+			const loading = subscribeSpyTo(service.videosLoading$);
+			service.fetchVideos();
+			const videos = subscribeSpyTo(service.videos$);
+
+			expect(loading.getValues()).toEqual([false, true, false]);
+			expect(videos.getValues()).toEqual([mockVideos]);
 		});
 
 		it('should correctly set the loading state', () => {

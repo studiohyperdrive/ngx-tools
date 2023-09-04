@@ -2,7 +2,7 @@
 # NGX-Store
 
 
-NGX-store aims to reduce the boilerplate that comes with `@ngrx` and `@ngrx/entity`; whilst still including the benefits of said packages.
+NGX-store aims to reduce the boilerplate that comes with `@ngrx`, `@ngrx/effects` and `@ngrx/entity`; whilst still including the benefits of said packages.
 
 Each of the provided utils can be used individually, but we strongly advice to use all three utils as a coherent unit to get the best developers experience.
 
@@ -12,9 +12,16 @@ Install the package first:
 ```shell
 npm install @studiohyperdrive/ngx-store
 ```
-## Store utils
 
-  
+## Concept
+
+As mentioned before, `ngx-store` works in tandem with `@ngrx`. The package aims to optimize the workflow for (complex) projects that currently already use this redux implementation.
+
+With this in mind, our goal is to make this package as flexible as possible. We are aware that existing projects often already have their own approach to their store setup, and therefor we try to provide solutions that can be used when needed. Whilst we strongly suggest using the entire system for the optimal approach, several of our utils are entirely optional. The use of `handleEffect`, `dispatchDataToStore` and the `StoreService` is never mandatory and all utils are opt-in at any stage.
+
+Because of this approach, our implementation has to take into account these constraints and will therefore deviate from the standard redux implementation.
+
+## Store utils
 
 ### createStoreAssets
   
@@ -43,6 +50,7 @@ When using the `createBaseStoreAssets` generator, we are presented with the foll
 |  loading| Sets the loading state of provided data in the store |
 |  error| Sets the error state of the provided data in the store |
 |  clear| Clears the earlier set data from the store |
+|  effects.set| Dispatches a trigger for a set effect |
 
 On top of that, we get a series of default selectors corresponding with the aforementioned actions.
 | Selector |  |
@@ -64,6 +72,10 @@ Using `createEntityStoreAssets` will provide you with the following actions and 
 |  loading| Sets the loading state of provided data in the store |
 |  error| Sets the error state of the provided data in the store |
 |  clear| Clears the earlier set data from the store |
+|  effects.set| Dispatches a trigger for a set effect |
+|  effects.add| Dispatches a trigger for an add effect |
+|  effects.delete| Dispatches a trigger for a delete effect |
+|  effects.update| Dispatches a trigger for an update effect |
 
 On top of the provided actions and reducers, the util also provides the following selectors.
 
@@ -73,6 +85,45 @@ On top of the provided actions and reducers, the util also provides the followin
 |  selectLoading| Selects the loading state of provided data from the store |
 |  selectError| Selects the error state of the provided data from the store |
 |  selectErrorMessage| Selects the provided error data of the provided data from the store |
+
+### Effects
+
+#### Actions
+To support `@ngrx-effects` the generator automatically generates a series of actions that can be used to handle effects. These can be found under the `effects` property, and match the `set, add, update` and `delete` actions.
+
+In order to define the type of the payload of the effect actions, we can pass a secondary type to both the `BaseStoreAssets` and `EntityStoreAssets` (and their respective generators).
+
+A short example can be found here
+``` ts
+    interface UserStore extends StoreFlowAssets {
+        users: EntityStoreAssets<User, { set: void; add: string }>;
+        paging: BaseStoreAssets<string>;
+    }
+
+    export const { actions, reducers, selectors } = createStoreAssets<UserStore>('users', [
+        {
+            subSlice: 'users',
+            generator: createEntityAdapterStoreAssets<User, { set: void; add: string }>,
+        },
+        {
+            subSlice: 'paging',
+            generator: createBaseStoreAssets<string>,
+        },
+    ]);
+```
+
+#### handleEffect
+
+As additional support to effects, the package provides a `handleEffect` operator which will automatically take care of any of the provided actions. By defining which sub-slice we wish to use, the action we wish to handle and the corresponding data source, the `handleEffect` operator will perform all the necessary actions required.
+
+A short example can be found here
+``` ts
+	public fetchUsers$ = createEffect(() => {
+		return this.actions$.pipe(
+			handleEffect<User[]>(actions.users, 'set', this.userService.fetchUsers)
+		);
+	});
+```
 
 ### dispatchDataToSTore
 
