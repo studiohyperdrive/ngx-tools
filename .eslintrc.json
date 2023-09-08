@@ -71,14 +71,6 @@
             "style": "kebab-case"
           }
         ],
-        "@angular-eslint/directive-selector": [
-          "error",
-          {
-            "type": "attribute",
-            "prefix": "kp",
-            "style": "camelCase"
-          }
-        ],
         "@typescript-eslint/no-inferrable-types": "off",
         "comma-dangle": [
           "error",

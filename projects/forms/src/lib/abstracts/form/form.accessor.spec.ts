@@ -13,7 +13,7 @@ import { FormAccessor } from './form.accessor';
 
 describe('FormAccessor', () => {
 	@Component({
-		selector: 'forms-component',
+		selector: 'kp-forms-component',
 		template: '',
 		providers: [
 			{
@@ -149,7 +149,7 @@ describe('FormAccessor', () => {
 
 describe('FormAccessor with mappers', () => {
 	@Component({
-		selector: 'forms-component',
+		selector: 'kp-forms-component',
 		template: '',
 		providers: [
 			{

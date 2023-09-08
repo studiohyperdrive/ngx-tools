@@ -25,22 +25,6 @@
             ]
           }
         ],
-        "@angular-eslint/component-selector": [
-          "error",
-          {
-            "type": "element",
-            "prefix": "forms",
-            "style": "kebab-case"
-          }
-        ],
-        "@angular-eslint/directive-selector": [
-          "error",
-          {
-            "type": "attribute",
-            "prefix": "forms",
-            "style": "camelCase"
-          }
-        ],
         "@typescript-eslint/no-inferrable-types": "off",
         "comma-dangle": [
           "error",
