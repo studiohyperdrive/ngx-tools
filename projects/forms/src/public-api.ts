@@ -9,3 +9,4 @@ export * from './lib/utils';
 export * from './lib/interfaces';
 export * from './lib/directives';
 export * from './lib/tokens';
+export * from './lib/ngx-forms-errors.module';
