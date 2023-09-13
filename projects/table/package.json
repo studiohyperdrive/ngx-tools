@@ -9,7 +9,8 @@
     "@angular/forms": "^16.1.0",
     "@angular/cdk": "16.1.6",
     "dot-prop": "8.0.2",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "angular2-uuid": "1.1.1"
   },
   "dependencies": {
     "tslib": "^2.3.0"

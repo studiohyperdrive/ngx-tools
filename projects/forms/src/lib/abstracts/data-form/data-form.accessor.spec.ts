@@ -14,7 +14,7 @@ const keys = ['hello', 'world'];
 
 describe('DataFormAccessor', () => {
 	@Component({
-		selector: 'forms-component',
+		selector: 'kp-forms-component',
 		template: '',
 		providers: [
 			{
@@ -158,7 +158,7 @@ describe('DataFormAccessor', () => {
 
 describe('DataFormAccessor with mappers', () => {
 	@Component({
-		selector: 'forms-component',
+		selector: 'kp-forms-component',
 		template: '',
 		providers: [
 			{
