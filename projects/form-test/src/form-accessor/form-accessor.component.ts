@@ -12,10 +12,10 @@ import { BaseFormAccessor, FormAccessor } from 'forms';
 	selector: 'app-form-accessor',
 	template: ` <ng-container [formGroup]="form">
 		<p>Hello</p>
-		<input *ngxErrors="'hello'" formControlName="hello" type="text" />
+		<input *ngxFormsErrors="'hello'" formControlName="hello" type="text" />
 
 		<p>World</p>
-		<input *ngxErrors="'world'" formControlName="world" type="text" />
+		<input *ngxFormsErrors="'world'" formControlName="world" type="text" />
 	</ng-container>`,
 	providers: [
 		{
