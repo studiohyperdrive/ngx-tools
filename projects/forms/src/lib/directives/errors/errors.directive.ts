@@ -60,7 +60,7 @@ export class NgxFormsErrorsDirective implements AfterViewInit, OnDestroy {
 	/**
 	 * A reference to a control or a string reference to the control
 	 */
-	@Input('ngxErrors') public control: AbstractControl | string;
+	@Input('ngxFormsErrors') public control: AbstractControl | string;
 
 	constructor(
 		@Optional() private readonly formGroupDirective: FormGroupDirective,
