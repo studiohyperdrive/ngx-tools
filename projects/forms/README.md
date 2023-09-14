@@ -366,11 +366,11 @@ Once configured, all we need to do is attach the directive where we wish to rend
 ``` html
 <ng-container [formGroup]="form">
     <p>Hello</p>
-    <input *ngxErrors="'hello'" formControlName="hello" type="text" />
+    <input *ngxFormsErrors="'hello'" formControlName="hello" type="text" />
 </ng-container>
 ```
 
-The `ngxErrors` directive allows for a string value that matches with the provided control in a `FormGroup`. Alternatively, you can also pass the `AbstractControl` directly. 
+The `ngxFormsErrors` directive allows for a string value that matches with the provided control in a `FormGroup`. Alternatively, you can also pass the `AbstractControl` directly. 
 
 By using this approach, when the control is invalid and in our case `touched`, the directive will render a `p` element with the `ngx-forms-error` class underneath the input.
 
