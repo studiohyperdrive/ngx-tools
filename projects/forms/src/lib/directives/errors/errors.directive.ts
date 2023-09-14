@@ -1,5 +1,6 @@
 import {
 	AfterViewInit,
+	ChangeDetectorRef,
 	ComponentRef,
 	Directive,
 	ElementRef,
@@ -71,7 +72,8 @@ export class NgxFormsErrorsDirective implements AfterViewInit, OnDestroy {
 		private readonly viewContainer: ViewContainerRef,
 		private readonly elementRef: ElementRef,
 		private readonly renderer: Renderer2,
-		private readonly templateRef: TemplateRef<any>
+		private readonly templateRef: TemplateRef<any>,
+		private readonly cdRef: ChangeDetectorRef
 	) {
 		// Iben: Set the current template ref at constructor time so we actually have the provided template (as done in the *ngIf directive)
 		this.template = this.templateRef;
@@ -130,6 +132,9 @@ export class NgxFormsErrorsDirective implements AfterViewInit, OnDestroy {
 					} else {
 						this.handleComponentRender(shouldShow);
 					}
+
+					// Iben: Detect the changes so this works with (nested) OnPush components
+					this.cdRef.detectChanges();
 				}),
 				takeUntil(this.onDestroy$)
 			)
@@ -153,13 +158,17 @@ export class NgxFormsErrorsDirective implements AfterViewInit, OnDestroy {
 			return;
 		}
 
-		// Iben: If there's no error component yet, we add one to the view
-		if (!this.errorComponent) {
-			this.componentRef = this.viewContainer.createComponent<NgxFormsErrorAbstractComponent>(
-				this.config.component
-			);
-			this.errorComponent = this.componentRef.instance;
+		// Iben: If there already is a component, destroy it so it can update correctly
+		if (this.componentRef) {
+			this.componentRef.destroy();
+			this.componentRef = undefined;
 		}
+
+		// Iben: Add the new component to the view
+		this.componentRef = this.viewContainer.createComponent<NgxFormsErrorAbstractComponent>(
+			this.config.component
+		);
+		this.errorComponent = this.componentRef.instance;
 
 		// Iben: Set the data of the error component
 		const { errors, errorKeys, data } = this.getErrors(this.abstractControl.errors);

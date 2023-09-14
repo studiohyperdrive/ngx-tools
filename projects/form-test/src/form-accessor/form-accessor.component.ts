@@ -1,4 +1,4 @@
-import { Component, forwardRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, forwardRef } from '@angular/core';
 import {
 	FormControl,
 	FormGroup,
@@ -33,6 +33,7 @@ import { BaseFormAccessor, FormAccessor } from 'forms';
 			useExisting: forwardRef(() => FormAccessorComponent),
 		},
 	],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormAccessorComponent extends FormAccessor<any, any> {
 	initForm() {
