@@ -54,12 +54,6 @@ export abstract class FormAccessor<
 	);
 
 	/**
-	 * Whether we want to skip the first setDisable (https://github.com/angular/angular/pull/47576).
-	 * By default, this is true
-	 */
-	private skipInitialSetDisable: boolean = true;
-
-	/**
 	 * Stream to know whether the form has been initialized
 	 */
 	@Output()
@@ -112,6 +106,12 @@ export abstract class FormAccessor<
 			)
 			.subscribe();
 	}
+
+	/**
+	 * Whether we want to skip the first setDisable (https://github.com/angular/angular/pull/47576).
+	 * By default, this is true
+	 */
+	@Input() public skipInitialSetDisable: boolean = true;
 
 	/**
 	 * Method to set up the inner form
