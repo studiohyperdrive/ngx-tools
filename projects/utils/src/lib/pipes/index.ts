@@ -11,6 +11,7 @@ import { StripHtmlPipe } from './strip-html/strip-html.pipe';
 import { TransformPipe } from './transform/transform.pipe';
 import { TruncateTextPipe } from './truncate-text/truncate-text.pipe';
 import { WithRouterLinkPipe } from './with-router-links/with-router-links.pipe';
+import { UniqByPipe } from './unique-by/uniq-by.pipe';
 
 export const Pipes = [
 	IbanPipe,
@@ -25,6 +26,7 @@ export const Pipes = [
 	TransformPipe,
 	JoinPipe,
 	HasObserversPipe,
+	UniqByPipe,
 	WithRouterLinkPipe,
 ];
 
@@ -40,4 +42,5 @@ export { SafeHtmlPipe } from './safe-html/safe-html.pipe';
 export { StripHtmlPipe } from './strip-html/strip-html.pipe';
 export { TransformPipe } from './transform/transform.pipe';
 export { TruncateTextPipe } from './truncate-text/truncate-text.pipe';
+export { UniqByPipe } from './unique-by/uniq-by.pipe';
 export { WithRouterLinkPipe } from './with-router-links/with-router-links.pipe';
