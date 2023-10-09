@@ -88,6 +88,12 @@ The TruncateTextPipe will truncate a given text to a given number of characters 
 
 [Full documentation.](src/lib/pipes/truncate-text/truncate-text.pipe.md)
 
+### UniqByPipe
+
+The UniqByPipe will execute the uniqBy function (Lodash) on a provided array.
+
+[Full documentation.](src/lib/pipes/truncate-text/truncate-text.pipe.md)
+
 ### WithRouterLinksPipe
 
 The withRouterLinks pipe will provide a way to transform a string that contains one or more parts that need a routerLink by taking advantage of Angular web components.
