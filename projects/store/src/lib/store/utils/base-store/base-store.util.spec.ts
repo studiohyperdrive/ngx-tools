@@ -8,6 +8,7 @@ describe('createBaseStoreAssets', () => {
 		expect(actions.clear.type).toEqual('[moustaches]: Clear');
 		expect(actions.loading.type).toEqual('[moustaches]: Loading');
 		expect(actions.error.type).toEqual('[moustaches]: Error');
+		expect(actions.effects.set.type).toEqual('[moustaches]: Trigger set');
 	});
 
 	it('should return the reducers/selectors based on the slice', () => {

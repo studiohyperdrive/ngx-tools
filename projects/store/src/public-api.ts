@@ -10,6 +10,7 @@ export {
 	BaseStoreSelectors,
 	EntityStoreActions,
 	EntityStoreSelectors,
+	StoreFlowAssets,
 } from './lib/store/interfaces';
 export {
 	createStoreAssets,
@@ -17,3 +18,4 @@ export {
 	createBaseStoreAssets,
 	createEntityAdapterStoreAssets,
 } from './lib/store/utils';
+export { handleEffect } from './lib/store/operators';

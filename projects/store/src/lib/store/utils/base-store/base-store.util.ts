@@ -3,13 +3,17 @@ import { createAction, createReducer, createSelector, on, props } from '@ngrx/st
 import { get } from 'lodash';
 
 import { BaseStore, BaseStoreAssets } from '../../interfaces';
+import { BaseStoreEffectsInterface } from '../../interfaces/effects';
 
 /**
  * Creates store assets to save basic properties (object, string, number, etc.) into the store
  *
  * @param slice - The slice we wish to save the data in
  */
-export const createBaseStoreAssets = <StateInterface>(
+export const createBaseStoreAssets = <
+	StateInterface,
+	EffectsInterface extends BaseStoreEffectsInterface = any
+>(
 	slice: string
 ): BaseStoreAssets<StateInterface> => {
 	// Iben: Create actions
@@ -23,6 +27,12 @@ export const createBaseStoreAssets = <StateInterface>(
 			}>()
 		),
 		clear: createAction(`[${slice}]: Clear`),
+		effects: {
+			set: createAction(
+				`[${slice}]: Trigger set`,
+				props<{ payload: EffectsInterface['set'] }>()
+			),
+		},
 	};
 
 	// Iben: Set the initial state
@@ -49,7 +59,15 @@ export const createBaseStoreAssets = <StateInterface>(
 
 			return { ...state, error: true, errorMessage: payload.error };
 		}),
-		on(actions.clear, () => initialState)
+		on(actions.clear, () => initialState),
+		on(actions.effects.set, (state) => {
+			return {
+				...state,
+				loading: true,
+				error: false,
+				errorMessage: undefined,
+			};
+		})
 	);
 
 	// Iben: Create selectors

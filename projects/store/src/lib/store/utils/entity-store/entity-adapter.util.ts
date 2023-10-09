@@ -3,6 +3,7 @@ import { createAction, createReducer, createSelector, on, props } from '@ngrx/st
 import { get } from 'lodash';
 
 import { BasicEntityState, EntityStoreAssets } from '../../interfaces';
+import { EntityStoreEffectsInterface } from '../../interfaces/effects';
 
 /**
  * Creates basic reducers and selectors for a store slice
@@ -11,7 +12,10 @@ import { BasicEntityState, EntityStoreAssets } from '../../interfaces';
  * @param actions - The actions used to interact with the store slice
  * @param selectId - An optional match function of the identifier of the payload is not "id"
  */
-export const createEntityAdapterStoreAssets = <StateInterface>(
+export const createEntityAdapterStoreAssets = <
+	StateInterface,
+	EffectsInterface extends EntityStoreEffectsInterface = any
+>(
 	slice: string,
 	selectId?: IdSelector<StateInterface>
 ): EntityStoreAssets<StateInterface> => {
@@ -27,6 +31,24 @@ export const createEntityAdapterStoreAssets = <StateInterface>(
 		loading: createAction(`[${slice}]: Loading`, props<{ payload: boolean }>()),
 		error: createAction(`[${slice}]: Error`, props<{ payload: boolean }>()),
 		clear: createAction(`[${slice}]: Clear`),
+		effects: {
+			add: createAction(
+				`[${slice}]: Trigger add`,
+				props<{ payload: EffectsInterface['add'] }>()
+			),
+			set: createAction(
+				`[${slice}]: Trigger set`,
+				props<{ payload: EffectsInterface['set'] }>()
+			),
+			update: createAction(
+				`[${slice}]: Trigger update`,
+				props<{ payload: EffectsInterface['update'] }>()
+			),
+			delete: createAction(
+				`[${slice}]: Trigger delete`,
+				props<{ payload: EffectsInterface['delete'] }>()
+			),
+		},
 	};
 
 	// Iben: Create adapter
@@ -117,6 +139,30 @@ export const createEntityAdapterStoreAssets = <StateInterface>(
 					error: true,
 					errorMessage: payload,
 				},
+			};
+		}),
+		on(actions.effects.set, (state) => {
+			return {
+				...state,
+				entityStatus: { loading: true, error: false, errorMessage: undefined },
+			};
+		}),
+		on(actions.effects.delete, (state) => {
+			return {
+				...state,
+				entityStatus: { loading: true, error: false, errorMessage: undefined },
+			};
+		}),
+		on(actions.effects.add, (state) => {
+			return {
+				...state,
+				entityStatus: { loading: true, error: false, errorMessage: undefined },
+			};
+		}),
+		on(actions.effects.add, (state) => {
+			return {
+				...state,
+				entityStatus: { loading: true, error: false, errorMessage: undefined },
 			};
 		})
 	);

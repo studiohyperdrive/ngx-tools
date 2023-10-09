@@ -11,6 +11,10 @@ describe('createEntityAdapterStoreAssets', () => {
 		expect(actions.loading.type).toEqual('[moustaches]: Loading');
 		expect(actions.error.type).toEqual('[moustaches]: Error');
 		expect(actions.clear.type).toEqual('[moustaches]: Clear');
+		expect(actions.effects.set.type).toEqual('[moustaches]: Trigger set');
+		expect(actions.effects.add.type).toEqual('[moustaches]: Trigger add');
+		expect(actions.effects.update.type).toEqual('[moustaches]: Trigger update');
+		expect(actions.effects.delete.type).toEqual('[moustaches]: Trigger delete');
 	});
 
 	it('should return the reducers/selectors based on the slice', () => {
