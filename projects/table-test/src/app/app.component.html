@@ -30,8 +30,9 @@
 				[value]="row.id"
 			/>
 		</ng-template>
-		<ng-template *ngIf="showDetail" #detailRowTmpl let-row>
+		<ng-template *ngIf="showDetail" #detailRowTmpl let-row let-index="index">
 			{{ row | json }}
+			{{index}}
 		</ng-template>
 	</ngx-table>
 
