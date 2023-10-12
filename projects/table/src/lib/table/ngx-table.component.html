@@ -246,7 +246,7 @@
 	>
 		<ng-template
 			[ngTemplateOutlet]="detailRowTemplate"
-			[ngTemplateOutletContext]="{ $implicit: row }"
+			[ngTemplateOutletContext]="{ $implicit: row, index }"
 		>
 		</ng-template>
 	</ng-container>
