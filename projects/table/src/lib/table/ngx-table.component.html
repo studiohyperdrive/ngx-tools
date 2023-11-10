@@ -29,10 +29,9 @@
 			*cdkCellDef="let row; let index = dataIndex"
 			class="ngx-table-cell ngx-table-row-cell ngx-table-selectable-cell"
 		>
-			<ng-container *ngIf="selectableType === 'checkbox'; else radioTmpl">
 				<ng-template
-					*ngIf="rowsFormGroup.controls[index] as control"
-					[ngTemplateOutlet]="checkboxTmpl"
+					*ngIf="selectableType === 'radio' || selectableType === 'checkbox' && rowsFormGroup.controls[index] as control"
+					[ngTemplateOutlet]="selectableType === 'checkbox' ? checkboxTmpl : radioButtonTmpl"
 					[ngTemplateOutletContext]="{
 						$implicit: control,
 						row: row,
@@ -40,17 +39,6 @@
 					}"
 				>
 				</ng-template>
-			</ng-container>
-
-			<ng-template
-				#radioTmpl
-				[ngTemplateOutlet]="radioButtonTmpl"
-				[ngTemplateOutletContext]="{
-					$implicit: row,
-					index: index
-				}"
-			>
-			</ng-template>
 		</td>
 
 		<td
