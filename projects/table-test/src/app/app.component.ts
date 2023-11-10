@@ -42,7 +42,7 @@ export class AppComponent {
 	public isWrapperShown = true;
 
 	public setFormValue() {
-		this.form.patchValue('id1');
+		this.form.patchValue(['id1']);
 	}
 
 	public toggleDetailView() {

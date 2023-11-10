@@ -257,7 +257,7 @@ export class NgxTableComponent
 		const patchValue = [...value].reduce((previousValue, selectedValue) => {
 			// Iben: Get the index of the item when we have a selectableKey or just use the provided value
 			const key = this.selectableKey
-				? this.data.findIndex((item) => item[this.selectableKey] === value)
+				? this.data.findIndex((item) => item[this.selectableKey] === selectedValue)
 				: selectedValue;
 
 			return {
