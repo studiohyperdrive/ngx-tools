@@ -16,8 +16,8 @@ describe('EntriesPipe', () => {
 	});
 
 	it('should map anything that is not an object to an empty array', () => {
-		expect(pipe.transform(undefined)).toEqual([]);
-		expect(pipe.transform(null)).toEqual([]);
+		expect(pipe.transform(undefined as any)).toEqual([]);
+		expect(pipe.transform(null as any)).toEqual([]);
 		expect(pipe.transform('test' as any)).toEqual([]);
 		expect(pipe.transform(['test'] as any)).toEqual([]);
 		expect(pipe.transform(0 as any)).toEqual([]);
