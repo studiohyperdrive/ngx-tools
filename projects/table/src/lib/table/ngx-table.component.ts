@@ -25,7 +25,12 @@ import { takeUntil, tap } from 'rxjs/operators';
 
 import { NgxAbstractTableCellDirective } from '../cell/cell.directive';
 import { NgxTableSortEvent } from '../interfaces';
-import { NgxTableConfig, NgxTableConfigToken, ShowDetailRowOption } from '../token';
+import {
+	HideHeaderRowOption,
+	NgxTableConfig,
+	NgxTableConfigToken,
+	ShowDetailRowOption,
+} from '../token';
 
 interface TableCellTemplate {
 	headerTemplate?: TemplateRef<any>;
@@ -122,7 +127,7 @@ export class NgxTableComponent
 	/**
 	 * The loading state of our table
 	 */
-	@Input() public loading: boolean = false;
+	@HostBinding('ngx-table-loading') @Input() public loading: boolean = false;
 
 	/**
 	 * An optional property that defines whether multiple rows can be open at once.
@@ -211,6 +216,9 @@ export class NgxTableComponent
 			this.cdRef.detectChanges();
 		});
 	}
+
+	@Input() public hideHeaderWhen: HideHeaderRowOption =
+		this.ngxTableConfig?.hideHeaderWhen || 'never';
 
 	@Output() public rowClicked = new EventEmitter<any>();
 

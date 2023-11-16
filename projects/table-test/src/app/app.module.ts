@@ -16,6 +16,7 @@ import { NgxTableConfigToken, NgxTableModule } from 'projects/table/src/lib';
 				showDetailRow: 'on-single-item',
 				showOpenRowState: true,
 				emitValueOnSingleItem: true,
+				hideHeaderWhen: ['when-loading'],
 			},
 		},
 	],
