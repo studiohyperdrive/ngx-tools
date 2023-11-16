@@ -8,6 +8,7 @@ import {
 	EventEmitter,
 	HostBinding,
 	Inject,
+	Injector,
 	Input,
 	OnChanges,
 	OnDestroy,
@@ -18,7 +19,13 @@ import {
 	SimpleChanges,
 	TemplateRef,
 } from '@angular/core';
-import { ControlValueAccessor, FormControl, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {
+	ControlValueAccessor,
+	FormControl,
+	FormGroup,
+	NG_VALUE_ACCESSOR,
+	NgControl,
+} from '@angular/forms';
 import { isEmpty } from 'lodash';
 import { Subject } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
@@ -242,6 +249,7 @@ export class NgxTableComponent
 
 	constructor(
 		private cdRef: ChangeDetectorRef,
+		@Inject(Injector) private injector: Injector,
 		@Optional() @Inject(NgxTableConfigToken) private readonly ngxTableConfig: NgxTableConfig
 	) {}
 
@@ -398,6 +406,10 @@ export class NgxTableComponent
 				emitEvent: false,
 			});
 		});
+
+		// Iben: Set the current control value of the parent so the value is not lost when switching the data set
+		// This is particularly useful for when a table gets filtered
+		this.writeValue(this.injector.get(NgControl)?.value || {});
 	}
 
 	private handleCurrentSort(event: NgxTableSortEvent): void {

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
 	selector: 'app-root',
@@ -7,6 +8,8 @@ import { FormControl } from '@angular/forms';
 	styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+	private currentSet = 'dataSet1';
+
 	public dataSet1 = [
 		{
 			name: 'World',
@@ -31,7 +34,7 @@ export class AppComponent {
 		},
 	];
 
-	public data = this.dataSet1;
+	public data = new BehaviorSubject(this.dataSet1);
 
 	public readonly columns = ['firstName', 'name', 'active'];
 
@@ -41,6 +44,8 @@ export class AppComponent {
 
 	public isWrapperShown = true;
 
+	public loading = false;
+
 	public setFormValue() {
 		this.form.patchValue(['id1']);
 	}
@@ -49,17 +54,14 @@ export class AppComponent {
 		this.showDetail = !this.showDetail;
 	}
 
-	public removeWrapper() {
-		// Hide <ng-content>
-		this.isWrapperShown = false;
+	public toggleDataSet() {
+		this.loading = true;
 
-		// Toggle data source
-		this.data = this.data === this.dataSet1 ? this.dataSet2 : this.dataSet1;
-
-		// Show <ng-content> after delay
 		setTimeout(() => {
-			this.isWrapperShown = true;
-		}, 1000);
+			this.data.next(this.currentSet === 'dataSet1' ? this.dataSet2 : this.dataSet1);
+			this.currentSet = this.currentSet === 'dataSet1' ? 'dataSet2' : 'dataSet1';
+			this.loading = false;
+		}, 2000);
 	}
 
 	public rowEmitted(data: any) {
