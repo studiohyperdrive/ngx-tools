@@ -259,8 +259,13 @@ Optionally, you can provide an array of `actions` in the same vain you can add `
 
 As mentioned earlier, the `columns` input defines the order of the columns by using the order of the provided strings. These columns can be changed on the fly, allowing users to reorder the columns by hand or showing/hiding columns in certain specific situations. A built-in solution to allow drag-and-drop column sorting is not yet provided, but will be in the future.
 
+## 5. Header
 
-## 5. Custom Cells
+By default, the header row is always visible, even when no data is provided or when the loading state is active. This behavior can be overwritten in individual tables by `hideHeaderWhen`, but can also be overwritten globally using the `NgxTableConfig`. 
+
+If you want the header to not be visible when loading or empty or both, you can pass an array of states that define when the headers are not shown. You can pass just `when-empty` or `when-loading`, but both can also be applied.
+
+## 6. Custom Cells
 
 By using a template-based approach to our cells, we have the ability the create default cells we can use throughout our application. This does not only benefit developers, as it allows for quicker setups of tables, but also provides a consistent look and feel for the users. 
 
@@ -310,7 +315,8 @@ export class UserTableCellComponent extends NgxAbstractTableCellDirective {
 
 ```
 In the example above, we create a simple user name cell. Instead of using a `ContentChild` template for our cell template, we use a `ViewChild` template. This way, we can provide a default approach to the user name cell, without having to provide it again and again throughout the entire application.
-## 8. Defaults and NgxTableConfig
+
+## 7. Defaults and NgxTableConfig
 
 The table provides several properties that can be set using an `@Input`. The majority of these properties are optional and come with a series of default values for easy use. These defaults can be overwritten using the `NgxTableConfig`.
 
@@ -325,6 +331,7 @@ The `NgxTableConfig` is an optional InjectionToken that allows for the defaults 
 | highlightKey | Handles the default behavior of rows that get the `ngx-table-row-highlight` class. Providing a string here will use that property as the data property to match to add the class. |
 | showSelectedOpenRow | Handles the default behavior of rows that get the `ngx-table-row-selected` class. Providing `true` will always add the class to open rows. |
 | emitValueOnSingleItem | Handles the default behavior `rowClicked` emit behavior when the table is set to `on-single-item`. |
+| hideHeaderWhen | Handles the default behavior of the header rendering, based on whether we wish to show the header when the table is loading or is empty.  |
 
 
 We can provide the config using a provider. An example of this could be:
@@ -340,13 +347,14 @@ We can provide the config using a provider. An example of this could be:
 	]
 ```
 
-## 7. Styling
+## 8. Styling
 
 By default the `ngx-table` comes with very minimal styling. Several classes have been provided to help with styling specific parts of the table. As the package was built upon the `cdk-table`, all styling rules that apply to that table also apply here. Check out the documentation of the `cdk-table` for more information.
 
 | Class | |
 |--|--|
 | ngx-table | A class set to the `table` element |
+| ngx-table-loading | A class set to the `table` element when the table is displaying a loading template |
 | ngx-table-clickable-rows | A class set to the `table` element if a detail row template was provided or the `rowClicked` output was defined |
 | ngx-table-hide-rows | A class set to the `table` element if the data array is empty or when the `loading` property is set to true |
 | ngx-table-cell | A class added to all cells in the table |
@@ -374,10 +382,11 @@ If you wish to provide a custom class to the row of your tables, you can provide
 
 Cells can also have a default class we want to provide to all cells of that kind. All `ngx-date-table-cell` cells have the `ngx-date-table-cell` class and the same applies for the `ngx-currency-table-cell`.
 
-## 8. Acknowledgements
+## 9. Acknowledgements
 
 A big thanks goes out to [Sam Verschueren](https://github.com/SamVerschueren) for his help with the initial implementation of this table. Without his help, this table would not have existed.
-## 9. Team
+
+## 10. Team
 
 This bundle of tools has been created and is maintained by [Studio Hyperdrive](https://studiohyperdrive.be).
 

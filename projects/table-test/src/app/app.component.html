@@ -17,6 +17,7 @@
 		[data]="data"
 		[columns]="columns"
 		[selectable]="true"
+		selectableType="radio"
 		selectableKey="id"
 		(rowClicked)="rowEmitted($event)"
 	>
@@ -32,6 +33,10 @@
 		<ng-template *ngIf="showDetail" #detailRowTmpl let-row let-index="index">
 			{{ row | json }}
 			{{index}}
+		</ng-template>
+
+		<ng-template #loadingTmpl>
+			Loading
 		</ng-template>
 	</ngx-table>
 

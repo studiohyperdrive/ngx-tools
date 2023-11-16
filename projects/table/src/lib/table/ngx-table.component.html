@@ -29,16 +29,19 @@
 			*cdkCellDef="let row; let index = dataIndex"
 			class="ngx-table-cell ngx-table-row-cell ngx-table-selectable-cell"
 		>
-				<ng-template
-					*ngIf="selectableType === 'radio' || selectableType === 'checkbox' && rowsFormGroup.controls[index] as control"
-					[ngTemplateOutlet]="selectableType === 'checkbox' ? checkboxTmpl : radioButtonTmpl"
-					[ngTemplateOutletContext]="{
-						$implicit: control,
-						row: row,
-						index: index
-					}"
-				>
-				</ng-template>
+			<ng-template
+				*ngIf="
+					selectableType === 'radio' ||
+					(selectableType === 'checkbox' && rowsFormGroup.controls[index]) as control
+				"
+				[ngTemplateOutlet]="selectableType === 'checkbox' ? checkboxTmpl : radioButtonTmpl"
+				[ngTemplateOutletContext]="{
+					$implicit: control,
+					row: row,
+					index: index
+				}"
+			>
+			</ng-template>
 		</td>
 
 		<td
@@ -178,7 +181,9 @@
 		</td>
 	</ng-container>
 
-	<tr *cdkHeaderRowDef="definedColumns" cdk-header-row></tr>
+	<ng-container *ngIf="{isLoading: loading, isEmpty: data?.length === 0} | ngxTableShowHeader: hideHeaderWhen">
+		<tr *cdkHeaderRowDef="definedColumns" cdk-header-row></tr>
+	</ng-container>
 	<ng-container *ngIf="data">
 		<tr
 			*cdkRowDef="let row; columns: definedColumns; let rowIndex = dataIndex"
@@ -253,7 +258,7 @@
 	</ng-template>
 </ng-template>
 
-<ng-template #radioButtonTmpl let-row let-index="index">
+<ng-template #radioButtonTmpl let-row="row" let-index="index">
 	<ng-template
 		*ngIf="radioTemplate; else defaultRadioTmpl"
 		[ngTemplateOutlet]="radioTemplate"
