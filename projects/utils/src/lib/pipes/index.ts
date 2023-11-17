@@ -1,4 +1,5 @@
 import { BtwPipe } from './btw/btw.pipe';
+import { CleanArrayPipe } from './clean-array/clean-array.pipe';
 import { EntriesPipe } from './entries/entries.pipe';
 import { HasObserversPipe } from './has-observers/has-observers.pipe';
 import { HasValuesPipe } from './has-values/has-values.pipe';
@@ -14,20 +15,22 @@ import { WithRouterLinkPipe } from './with-router-links/with-router-links.pipe';
 import { UniqByPipe } from './unique-by/uniq-by.pipe';
 
 export const Pipes = [
-	IbanPipe,
 	BtwPipe,
-	StripHtmlPipe,
-	TruncateTextPipe,
-	HighlightPipe,
+	CleanArrayPipe,
 	EntriesPipe,
-	SafeHtmlPipe,
-	LimitToPipe,
-	HasValuesPipe,
-	TransformPipe,
-	JoinPipe,
 	HasObserversPipe,
+	HasValuesPipe,
+	HighlightPipe,
+	IbanPipe,
+	JoinPipe,
+	LimitToPipe,
+	SafeHtmlPipe,
+	StripHtmlPipe,
+	TransformPipe,
+	TruncateTextPipe,
 	UniqByPipe,
 	WithRouterLinkPipe,
+	CleanArrayPipe,
 ];
 
 export { BtwPipe } from './btw/btw.pipe';
@@ -44,3 +47,4 @@ export { TransformPipe } from './transform/transform.pipe';
 export { TruncateTextPipe } from './truncate-text/truncate-text.pipe';
 export { UniqByPipe } from './unique-by/uniq-by.pipe';
 export { WithRouterLinkPipe } from './with-router-links/with-router-links.pipe';
+export { CleanArrayPipe } from './clean-array/clean-array.pipe';
