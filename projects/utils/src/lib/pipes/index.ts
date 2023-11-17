@@ -13,6 +13,7 @@ import { TransformPipe } from './transform/transform.pipe';
 import { TruncateTextPipe } from './truncate-text/truncate-text.pipe';
 import { WithRouterLinkPipe } from './with-router-links/with-router-links.pipe';
 import { UniqByPipe } from './unique-by/uniq-by.pipe';
+import { LogPipe } from './log/log.pipe';
 
 export const Pipes = [
 	BtwPipe,
@@ -31,6 +32,7 @@ export const Pipes = [
 	UniqByPipe,
 	WithRouterLinkPipe,
 	CleanArrayPipe,
+	LogPipe,
 ];
 
 export { BtwPipe } from './btw/btw.pipe';
@@ -48,3 +50,4 @@ export { TruncateTextPipe } from './truncate-text/truncate-text.pipe';
 export { UniqByPipe } from './unique-by/uniq-by.pipe';
 export { WithRouterLinkPipe } from './with-router-links/with-router-links.pipe';
 export { CleanArrayPipe } from './clean-array/clean-array.pipe';
+export { LogPipe } from './log/log.pipe';
