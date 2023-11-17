@@ -13,12 +13,13 @@
 
 <app-wrapper [contentVisible]="isWrapperShown">
 	<ngx-table
+		[loading]="loading"
 		[formControl]="form"
-		[data]="data"
+		[data]="data | async"
 		[columns]="columns"
 		[selectable]="true"
-		selectableType="radio"
 		selectableKey="id"
+		[resetFormOnNewData]="false"
 		(rowClicked)="rowEmitted($event)"
 	>
 		<ng-template #radioTmpl let-control let-row="row" let-index="index">
@@ -47,4 +48,4 @@
 
 <button (click)="setFormValue()">Set form value</button>
 <button (click)="toggleDetailView()">Toggle detail row</button>
-<button (click)="removeWrapper()">Toggle wrapper</button>
+<button (click)="toggleDataSet()">Toggle dataset</button>

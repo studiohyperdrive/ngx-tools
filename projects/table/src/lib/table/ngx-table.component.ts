@@ -31,6 +31,12 @@ import {
 	NgxTableConfigToken,
 	ShowDetailRowOption,
 } from '../token';
+import {
+	generateNgxTableForm,
+	handleNgxTableValueChanges,
+	resetNgxTableForm,
+	writeNgxTableValue,
+} from '../utils';
 
 interface TableCellTemplate {
 	headerTemplate?: TemplateRef<any>;
@@ -152,6 +158,14 @@ export class NgxTableComponent
 	@Input() public selectableType: 'checkbox' | 'radio' = 'checkbox';
 
 	/**
+	 * In case the rows are selectable, we can determine whether we want to reset the form based on new data. Setting this to false will add new controls to the FormGroup; but will not remove the earlier controls from the form.
+	 * This is a useful feature for when the data is being filtered or new data is added through a load more mechanic
+	 *
+	 * By default, this is true. This default cannot be overwritten in the NgxTableConfig.
+	 */
+	@Input() public resetFormOnNewData: boolean = true;
+
+	/**
 	 * SETTER
 	 *
 	 * The current sorting event.
@@ -217,6 +231,10 @@ export class NgxTableComponent
 		});
 	}
 
+	/**
+	 * An optional property to define whether we want the header to be hidden in certain cases.
+	 * By default this is never. The default can be overwritten in the NgxTableConfig
+	 */
 	@Input() public hideHeaderWhen: HideHeaderRowOption =
 		this.ngxTableConfig?.hideHeaderWhen || 'never';
 
@@ -239,6 +257,7 @@ export class NgxTableComponent
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	private onChanged: Function = (_: any) => {};
 	private currentSortingEvent: NgxTableSortEvent;
+	private formGenerated: boolean = false;
 
 	constructor(
 		private cdRef: ChangeDetectorRef,
@@ -261,21 +280,10 @@ export class NgxTableComponent
 			return;
 		}
 
-		// Iben: Create group value to patch
-		const patchValue = [...value].reduce((previousValue, selectedValue) => {
-			// Iben: Get the index of the item when we have a selectableKey or just use the provided value
-			const key = this.selectableKey
-				? this.data.findIndex((item) => item[this.selectableKey] === selectedValue)
-				: selectedValue;
-
-			return {
-				...previousValue,
-				[key]: true,
-			};
-		}, {});
-
 		// Iben: Patch the value to the form
-		this.rowsFormGroup.patchValue(patchValue, { emitEvent: false });
+		this.rowsFormGroup.patchValue(writeNgxTableValue(value, this.selectableKey), {
+			emitEvent: false,
+		});
 	}
 
 	public registerOnChange(fn: any): void {
@@ -382,24 +390,6 @@ export class NgxTableComponent
 		});
 	}
 
-	private setupForm(): void {
-		if (!this.data) {
-			return;
-		}
-
-		// Iben: Loop over the current form and remove all controls
-		Object.keys(this.rowsFormGroup.controls || []).forEach((control) => {
-			this.rowsFormGroup.removeControl(control, { emitEvent: false });
-		});
-
-		// Iben: Loop over data and create the new controls
-		this.data.forEach((_, index) => {
-			this.rowsFormGroup.addControl(`${index}`, new FormControl(), {
-				emitEvent: false,
-			});
-		});
-	}
-
 	private handleCurrentSort(event: NgxTableSortEvent): void {
 		// Iben: Early exit if the sortable cell record is empty or if the cell already has the sortDirection of the event
 		if (
@@ -457,7 +447,20 @@ export class NgxTableComponent
 
 		// Iben: Setup the form when the data or selectable state changes
 		if ((changes.data || changes.selectable) && this.selectable) {
-			this.setupForm();
+			// Iben: If no form was generated, first generate the form we need
+			if (!this.formGenerated) {
+				generateNgxTableForm(this.rowsFormGroup, this.data, this.selectableKey);
+
+				this.formGenerated = true;
+			} else {
+				// Iben: If a form was generated, reset it as required
+				resetNgxTableForm(
+					this.rowsFormGroup,
+					this.data,
+					this.selectableKey,
+					this.resetFormOnNewData
+				);
+			}
 		}
 
 		// Iben: Add the selectableColumn if the rows are selectable and add an open row state when needed
@@ -484,7 +487,7 @@ export class NgxTableComponent
 	}
 
 	public ngOnInit() {
-		// Iben: Subscribe to the form to handle the selectable behaviour
+		// Iben: Subscribe to the form to handle the selectable behavior
 		this.rowsFormGroup.valueChanges
 			.pipe(
 				tap((value) => {
@@ -494,15 +497,8 @@ export class NgxTableComponent
 						{ emitEvent: false }
 					);
 
-					// Iben: Convert the formGroup to an array
-					const result = Object.entries({ ...this.rowsFormGroup.value })
-						.filter(([, selected]) => selected)
-						.map(([index]) =>
-							this.selectableKey ? this.data[index][this.selectableKey] : index
-						);
-
 					// Iben: Emit the current selection and mark the form as touched\
-					this.onChanged(result);
+					this.onChanged(handleNgxTableValueChanges(value));
 					this.onTouch();
 				}),
 				takeUntil(this.destroyed$)
