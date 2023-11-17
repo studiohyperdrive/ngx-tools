@@ -32,7 +32,10 @@
 			<ng-template
 				*ngIf="
 					selectableType === 'radio' ||
-					(selectableType === 'checkbox' && rowsFormGroup.controls[index]) as control
+					(selectableType === 'checkbox' &&
+						rowsFormGroup.controls[
+							this.selectableKey ? row[selectableKey] : index
+						]) as control
 				"
 				[ngTemplateOutlet]="selectableType === 'checkbox' ? checkboxTmpl : radioButtonTmpl"
 				[ngTemplateOutletContext]="{
@@ -181,7 +184,12 @@
 		</td>
 	</ng-container>
 
-	<ng-container *ngIf="{isLoading: loading, isEmpty: data?.length === 0} | ngxTableShowHeader: hideHeaderWhen">
+	<ng-container
+		*ngIf="
+			{ isLoading: loading, isEmpty: data?.length === 0 }
+				| ngxTableShowHeader : hideHeaderWhen
+		"
+	>
 		<tr *cdkHeaderRowDef="definedColumns" cdk-header-row></tr>
 	</ng-container>
 	<ng-container *ngIf="data">
