@@ -1,22 +1,22 @@
 {
-  "name": "@studiohyperdrive/ngx-table",
-  "homepage": "https://github.com/studiohyperdrive/ngx-tools/blob/master/projects/table/README.md",
-  "version": "16.3.0",
-  "license": "MIT",
-  "peerDependencies": {
-    "@angular/common": "^16.1.0",
-    "@angular/core": "^16.1.0",
-    "@angular/forms": "^16.1.0",
-    "@angular/cdk": "16.1.6",
-    "dot-prop": "8.0.2",
-    "lodash": "^4.17.21",
-    "angular2-uuid": "1.1.1"
-  },
-  "dependencies": {
-    "tslib": "^2.3.0"
-  },
-  "devDependencies": {
-    "@types/lodash": "^4.14.195"
-  },
-  "sideEffects": false
+	"name": "@studiohyperdrive/ngx-table",
+	"homepage": "https://github.com/studiohyperdrive/ngx-tools/blob/master/projects/table/README.md",
+	"version": "16.3.1",
+	"license": "MIT",
+	"peerDependencies": {
+		"@angular/common": "^16.1.0",
+		"@angular/core": "^16.1.0",
+		"@angular/forms": "^16.1.0",
+		"@angular/cdk": "16.1.6",
+		"dot-prop": "8.0.2",
+		"lodash": "^4.17.21",
+		"angular2-uuid": "1.1.1"
+	},
+	"dependencies": {
+		"tslib": "^2.3.0"
+	},
+	"devDependencies": {
+		"@types/lodash": "^4.14.195"
+	},
+	"sideEffects": false
 }

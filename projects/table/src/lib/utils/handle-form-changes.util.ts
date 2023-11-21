@@ -1,3 +1,5 @@
+import { FormGroup } from '@angular/forms';
+
 /**
  * Handles the writeValue value of an NgxTableComponent form
  *
@@ -23,6 +25,22 @@ export const writeNgxTableValue = (
 			[key]: true,
 		};
 	}, {});
+};
+
+/**
+ * Get for every control in the group a record with the value `true`.
+ *
+ * @param data The formGroup whose controls will be used.
+ * @returns A record with the key of the controls as key with the value `true`.
+ */
+export const handleNgxTableHeaderValueChanges = (data: FormGroup): Record<string, true> => {
+	return Object.keys(data.controls || []).reduce(
+		(previousValues, currentValue) => ({
+			...previousValues,
+			[currentValue]: true,
+		}),
+		{}
+	);
 };
 
 /**

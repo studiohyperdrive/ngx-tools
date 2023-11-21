@@ -33,6 +33,7 @@ import {
 } from '../token';
 import {
 	generateNgxTableForm,
+	handleNgxTableHeaderValueChanges,
 	handleNgxTableValueChanges,
 	resetNgxTableForm,
 	writeNgxTableValue,
@@ -284,6 +285,19 @@ export class NgxTableComponent
 		this.rowsFormGroup.patchValue(writeNgxTableValue(value, this.selectableKey), {
 			emitEvent: false,
 		});
+
+		// Wouter: Some rows are not selected, so uncheck the header checkbox
+		if (
+			Object.values(this.rowsFormGroup.controls).some(
+				(control: FormControl) => !Boolean(control?.value)
+			)
+		) {
+			this.headerControl.patchValue(false, { emitEvent: false });
+			return;
+		}
+
+		// Wouter: Set the header checkbox to `checked`, because all rows are selected
+		this.headerControl.patchValue(true, { emitEvent: false });
 	}
 
 	public registerOnChange(fn: any): void {
@@ -523,12 +537,7 @@ export class NgxTableComponent
 					// Iben: Select all items when this control is selected, if not, unselect them all
 					if (selected) {
 						this.rowsFormGroup.patchValue(
-							this.data.reduce((previousValue, _, index) => {
-								return {
-									...previousValue,
-									[`${index}`]: true,
-								};
-							}, {})
+							handleNgxTableHeaderValueChanges(this.rowsFormGroup)
 						);
 					} else {
 						this.rowsFormGroup.reset();
