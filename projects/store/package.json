@@ -1,13 +1,13 @@
 {
   "name": "@studiohyperdrive/ngx-store",
-  "version": "16.1.0",
+  "version": "17.0.0",
   "license": "MIT",
   "peerDependencies": {
-    "@angular/common": "^16.1.0",
-    "@angular/core": "^16.1.0",
-    "@ngrx/entity": "^16.2.0",
-    "@ngrx/store": "^16.2.0",
-    "@ngrx/effects": "16.2.0",
+    "@angular/common": "^17.0.4",
+    "@angular/core": "^17.0.4",
+    "@ngrx/entity": "17.0.0",
+    "@ngrx/store": "17.0.0",
+    "@ngrx/effects": "17.0.0",
     "lodash": "^4.17.21"
   },
   "dependencies": {

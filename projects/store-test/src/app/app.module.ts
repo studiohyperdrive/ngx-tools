@@ -17,6 +17,7 @@ import { AppComponent } from './app.component';
 		EffectsModule.forRoot(UserEffects),
 		StoreDevtoolsModule.instrument({
 			maxAge: 25,
+			connectInZone: true,
 		}),
 	],
 	providers: [UserService],
