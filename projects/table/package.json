@@ -1,13 +1,13 @@
 {
 	"name": "@studiohyperdrive/ngx-table",
 	"homepage": "https://github.com/studiohyperdrive/ngx-tools/blob/master/projects/table/README.md",
-	"version": "16.3.1",
+	"version": "17.0.0",
 	"license": "MIT",
 	"peerDependencies": {
-		"@angular/common": "^16.1.0",
-		"@angular/core": "^16.1.0",
-		"@angular/forms": "^16.1.0",
-		"@angular/cdk": "16.1.6",
+		"@angular/common": "^17.0.4",
+		"@angular/core": "^17.0.4",
+		"@angular/forms": "^17.0.4",
+		"@angular/cdk": "17.0.1",
 		"dot-prop": "8.0.2",
 		"lodash": "^4.17.21",
 		"angular2-uuid": "1.1.1"
