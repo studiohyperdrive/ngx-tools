@@ -187,7 +187,10 @@ export abstract class DataFormAccessor<
 
 	constructor(readonly cdRef: ChangeDetectorRef) {}
 
-	private onTouch: Function = () => {}; // tslint:disable-line:no-empty
+	/**
+	 * Marks the control attached to this accessor as touched
+	 */
+	public onTouch: Function = () => {}; // tslint:disable-line:no-empty
 	private onChange: Function = (_: any) => {}; // tslint:disable-line:no-empty
 
 	public registerOnChange(fn: any): void {
