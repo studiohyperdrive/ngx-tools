@@ -16,6 +16,9 @@ import { BaseFormAccessor, FormAccessor } from 'forms';
 
 		<p>World</p>
 		<input *ngxFormsErrors="'world'" formControlName="world" type="text" />
+
+		<p>Date</p>
+		<app-date-input *ngxFormsErrors="'date'" formControlName="date" />
 	</ng-container>`,
 	providers: [
 		{
@@ -40,6 +43,7 @@ export class FormAccessorComponent extends FormAccessor<any, any> {
 		return new FormGroup({
 			hello: new FormControl(null, [Validators.required, Validators.email]),
 			world: new FormControl(null, Validators.minLength(3)),
+			date: new FormControl(null, Validators.required),
 		});
 	}
 

@@ -4,11 +4,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormAccessorComponent } from '../form-accessor/form-accessor.component';
 import { FormErrorComponent } from '../error/error.component';
+import { DateInputComponent } from '../date-input/date-input.component';
 import { AppComponent } from './app.component';
 import { NgxFormsErrorsModule } from 'projects/forms/src/lib/ngx-forms-errors.module';
 
 @NgModule({
-	declarations: [AppComponent, FormAccessorComponent, FormErrorComponent],
+	declarations: [AppComponent, FormAccessorComponent, FormErrorComponent, DateInputComponent],
 	imports: [
 		BrowserModule,
 		ReactiveFormsModule,
