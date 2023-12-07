@@ -114,10 +114,11 @@ export class NgxFormsErrorsDirective implements AfterViewInit, OnDestroy {
 			return;
 		}
 
-		// Iben: Listen to the value changes and the touched changes of the control
+		// Iben: Listen to the value changes, status changes and the touched changes of the control
 		combineLatest([
 			this.abstractControl.valueChanges.pipe(startWith(this.abstractControl.value)),
 			touchedEventListener(this.abstractControl),
+			this.abstractControl.statusChanges.pipe(startWith(this.abstractControl.status)),
 		])
 			.pipe(
 				tap(([, touched]) => {

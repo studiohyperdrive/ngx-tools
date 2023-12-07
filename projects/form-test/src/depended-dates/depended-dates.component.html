@@ -1,0 +1,15 @@
+<ng-container [formGroup]="form">
+	<fieldset formGroupName="hello">
+		<p>Start</p>
+		<app-date-input formControlName="start" />
+		<p>End</p>
+		<app-date-input formControlName="end" />
+	</fieldset>
+
+	<fieldset formGroupName="world">
+		<p>Start</p>
+		<app-date-input *ngxFormsErrors="'world.start'" formControlName="start" />
+		<p>End</p>
+		<app-date-input formControlName="end" />
+	</fieldset>
+</ng-container>
