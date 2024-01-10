@@ -1,6 +1,7 @@
 import { Inject, Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { LinkReference, WithRouterLinksConfig } from './with-router-links.types';
+
+import { WithRouterLinksConfig, LinkReference } from '../../types';
 import { WITH_ROUTER_LINKS_CONFIG } from './with-router-links.config';
 
 /**
