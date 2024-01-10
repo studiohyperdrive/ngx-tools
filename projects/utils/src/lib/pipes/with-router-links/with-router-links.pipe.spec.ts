@@ -1,6 +1,7 @@
 import { DomSanitizer } from '@angular/platform-browser';
+
+import { WithRouterLinksConfig } from '../../types';
 import { WithRouterLinkPipe } from './with-router-links.pipe';
-import { WithRouterLinksConfig } from './with-router-links.types';
 
 describe('WithRouterLinkPipe', () => {
 	const config: WithRouterLinksConfig = {
