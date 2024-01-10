@@ -92,7 +92,7 @@ export class NgxFormsErrorsDirective implements AfterViewInit, OnDestroy {
 
 		// Iben: If no control was provided, we early exit and log an error
 		if (!this.control) {
-			console.error('No control was provided to the NgxFormsErrorDirective');
+			console.error('NgxForms: No control was provided to the NgxFormsErrorDirective');
 
 			return;
 		}
@@ -109,7 +109,7 @@ export class NgxFormsErrorsDirective implements AfterViewInit, OnDestroy {
 
 		// Iben: If no control was found, we early exit and log an error
 		if (!this.abstractControl) {
-			console.error('No control was provided to the NgxFormsErrorDirective');
+			console.error('NgxForms: No control was provided to the NgxFormsErrorDirective');
 
 			return;
 		}

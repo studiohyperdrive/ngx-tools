@@ -163,14 +163,29 @@ export abstract class FormAccessor<
 	 * @param value - Value to patch in the inner form
 	 */
 	public writeValue(value: DataType | undefined | null): void {
+		// Iben: Early exit in case the form was not found
+		if (!this.form) {
+			console.error(
+				'NgxForms: No form was found when trying to write a value. This error can occur when overwriting the ngOnInit without invoking super.OnInit().'
+			);
+
+			return;
+		}
+
+		// Iben: Reset the current form without emitEvent to not trigger the valueChanges
 		this.form.reset(undefined, { emitEvent: false });
 
+		// Iben: Patch the current form with the new value without emitEvent to not trigger the valueChanges
 		if (value !== undefined && value !== null) {
 			this.form.patchValue(this.onWriteValueMapper ? this.onWriteValueMapper(value) : value, {
 				emitEvent: false,
 			});
 		}
 
+		// Iben: Validate the current value
+		this.validate();
+
+		// Iben: Detect changes so the changes are visible in the dom
 		this.cdRef.detectChanges();
 	}
 
@@ -179,6 +194,8 @@ export abstract class FormAccessor<
 	 */
 	public markAsTouched(options: FormStateOptionsEntity = {}): void {
 		handleFormAccessorMarkAsTouched(this.form, this.accessors?.toArray() || [], options);
+
+		// Iben: Detect changes so the changes are visible in the dom
 		this.cdRef.detectChanges();
 	}
 
@@ -187,6 +204,8 @@ export abstract class FormAccessor<
 	 */
 	public markAsDirty(options: FormStateOptionsEntity): void {
 		handleFormAccessorMarkAsDirty(this.form, this.accessors?.toArray() || [], options);
+
+		// Iben: Detect changes so the changes are visible in the dom
 		this.cdRef.detectChanges();
 	}
 
@@ -199,6 +218,8 @@ export abstract class FormAccessor<
 			this.accessors?.toArray() || [],
 			options
 		);
+
+		// Iben: Detect changes so the changes are visible in the dom
 		this.cdRef.detectChanges();
 	}
 
@@ -216,12 +237,14 @@ export abstract class FormAccessor<
 			return;
 		}
 
+		// Iben: Disable or enable the form based on the provided state. Do not emit a change to avoid valueChanges
 		if (isDisabled) {
 			this.form.disable({ emitEvent: false });
 		} else {
 			this.form.enable({ emitEvent: false });
 		}
 
+		// Iben: Detect changes so the changes are visible in the dom
 		this.cdRef.detectChanges();
 	}
 
@@ -239,11 +262,22 @@ export abstract class FormAccessor<
 	}
 
 	public ngOnInit(): void {
-		// Set the inner form
+		// Iben: Set the inner form
 		this.form = this.initForm();
 
+		// Iben: Early exit in case the form was not found
+		if (!this.form) {
+			console.error(
+				'NgxForms: No form was found after initializing. Check if the initForm method returns a form.'
+			);
+
+			return;
+		}
+
+		// Iben: Warn the initialized$ observable that the form has been set up
 		this.initializedSubject$.next(true);
 
+		// Iben: Listen to the changes and warn the parent form
 		this.form.valueChanges
 			.pipe(
 				tap<FormValueType>((value) => {
