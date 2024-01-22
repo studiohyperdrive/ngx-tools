@@ -92,6 +92,7 @@
 					tableCellTemplateRecord[column]?.cellClass || ''
 				]"
 				[class.ngx-table-sortable-cell]="sortableTableCellRecord[column]"
+				[attr.data-cy]="tableCypressRecord[column]?.header || ''"
 				(click)="handleSort(column)"
 			>
 				<ng-container
@@ -133,6 +134,7 @@
 					'ngx-table-row-cell',
 					tableCellTemplateRecord[column]?.cellClass || ''
 				]"
+				[attr.data-cy]="tableCypressRecord[column]?.cell || ''"
 				(click)="handleRowClicked(row, index)"
 			>
 				<ng-container
@@ -158,6 +160,7 @@
 			<td
 				*cdkFooterCellDef="let row"
 				class="ngx-table-cell ngx-table-footer-cell"
+				[attr.data-cy]="tableCypressRecord[column]?.footer || ''"
 				cdk-footer-cell
 			>
 				<ng-template

@@ -33,12 +33,14 @@
 		</ng-template>
 		<ng-template *ngIf="showDetail" #detailRowTmpl let-row let-index="index">
 			{{ row | json }}
-			{{index}}
+			{{ index }}
 		</ng-template>
 
-		<ng-template #loadingTmpl>
-			Loading
-		</ng-template>
+		<ngx-table-cell column="firstName" [cypressDataTags]="{ cell: 'cell-tag' }">
+			<ng-template #headerTmpl> First name </ng-template>
+		</ngx-table-cell>
+
+		<ng-template #loadingTmpl> Loading </ng-template>
 	</ngx-table>
 
 	<p>
