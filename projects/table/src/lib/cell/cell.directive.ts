@@ -1,7 +1,7 @@
 import { Directive, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
 
 import { NgxTableSortDirection } from '../enums/sort-direction.enum';
-import { NgxTableSortEvent } from '../interfaces';
+import { NgxTableCypressDataTags, NgxTableSortEvent } from '../interfaces';
 
 @Directive({
 	selector: 'ngx-abstract-table-cell',
@@ -10,12 +10,18 @@ export class NgxAbstractTableCellDirective {
 	/**
 	 * The name of the column we want this cell to represent
 	 */
-	@Input() public column: string;
+	@Input({ required: true }) public column: string;
 
 	/**
 	 * Whether or not the cell is sortable
 	 */
 	@Input() public sortable: boolean = false;
+
+	/**
+	 * A tag that can be added to a column in the table, set according to the cypress best practices
+	 * See https://docs.cypress.io/guides/references/best-practices#Selecting-Elements
+	 */
+	@Input() public cypressDataTags: NgxTableCypressDataTags;
 
 	@Output() sort = new EventEmitter<NgxTableSortEvent>();
 

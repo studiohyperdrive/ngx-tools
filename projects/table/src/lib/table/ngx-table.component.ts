@@ -24,7 +24,7 @@ import { Subject } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
 
 import { NgxAbstractTableCellDirective } from '../cell/cell.directive';
-import { NgxTableSortEvent } from '../interfaces';
+import { NgxTableCypressDataTags, NgxTableSortEvent } from '../interfaces';
 import {
 	HideHeaderRowOption,
 	NgxTableConfig,
@@ -241,8 +241,19 @@ export class NgxTableComponent
 
 	@Output() public rowClicked = new EventEmitter<any>();
 
+	/**
+	 * Keeps a record with the column and it's templates
+	 */
 	public tableCellTemplateRecord: Record<string, TableCellTemplate> = {};
+	/**
+	 * Keeps a record of which columns are sortable
+	 */
 	public sortableTableCellRecord: Record<string, NgxAbstractTableCellDirective> = {};
+	/**
+	 * Keeps a record of which cells have a cypress tag
+	 */
+	public tableCypressRecord: Record<string, NgxTableCypressDataTags> = {};
+
 	public dataSource: any[] = [];
 	public openRows: Set<number> = new Set();
 	public readonly rowsFormGroup = new FormGroup({});
@@ -350,9 +361,10 @@ export class NgxTableComponent
 	 * Assigns the templates of each cell to the correct columns
 	 */
 	private handleTableCellTemplates(): void {
-		// Iben: Reset the current table cell and sortable record
+		// Iben: Reset the provided records
 		this.tableCellTemplateRecord = {};
 		this.sortableTableCellRecord = {};
+		this.tableCypressRecord = {};
 
 		// Iben: Loop over all provided table cell templates
 		Array.from(this.tableCellTemplates).forEach((tableCellTemplate) => {
@@ -362,8 +374,15 @@ export class NgxTableComponent
 			}
 
 			// Iben: Add the template to the template record for easy access in the table template
-			const { column, headerTemplate, cellTemplate, footerTemplate, sortable, cellClass } =
-				tableCellTemplate;
+			const {
+				column,
+				headerTemplate,
+				cellTemplate,
+				footerTemplate,
+				sortable,
+				cellClass,
+				cypressDataTags,
+			} = tableCellTemplate;
 
 			this.tableCellTemplateRecord[column] = {
 				headerTemplate,
@@ -375,6 +394,11 @@ export class NgxTableComponent
 			// Iben: If the column is sortable, we add it to the sortable record
 			if (sortable) {
 				this.sortableTableCellRecord[column] = tableCellTemplate;
+			}
+
+			// Iben: If the column has cypress tags, we add them to the record
+			if (cypressDataTags) {
+				this.tableCypressRecord[column] = cypressDataTags;
 			}
 		});
 
