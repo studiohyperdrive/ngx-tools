@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class StoreService {
-	constructor(public readonly store: Store) {}
+	constructor(protected readonly store: Store) {}
 
 	/**
 	 * Select the data of a store slice
