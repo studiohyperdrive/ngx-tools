@@ -1,0 +1,16 @@
+{
+	"name": "@studiohyperdrive/testing",
+	"license": "MIT",
+	"version": "0.0.1",
+	"homepage": "https://github.com/studiohyperdrive/tools/tree/main/packages/testing/README.md",
+	"repository": "https://github.com/studiohyperdrive/tools/tree/main/packages/testing",
+	"dependencies": {
+		"vite": "~4.3.9",
+		"@nx/vite": "16.6.0",
+		"vite-plugin-dts": "~2.3.0",
+		"vite-plugin-static-copy": "0.17.0"
+	},
+	"main": "./index.js",
+	"module": "./index.mjs",
+	"typings": "./index.d.ts"
+}
