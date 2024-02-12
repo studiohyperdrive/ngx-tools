@@ -4,12 +4,12 @@ import { Pipe, PipeTransform } from '@angular/core';
 	name: 'stripHtml',
 })
 export class StripHtmlPipe implements PipeTransform {
-	public transform(value: string): string {
+	public transform(value: string, replaceWith: string = ''): string {
 		return value
 			? String(value)
-					.replace(/<[^>]+>/gm, '')
-					.replace('&nbsp;', '')
-					.replace(/(\r\n|\n|\r)/gm, '')
+					.replace(/<[^>]+>/gm, replaceWith)
+					.replace('&nbsp;', replaceWith)
+					.replace(/(\r\n|\n|\r)/gm, replaceWith)
 			: '';
 	}
 }
