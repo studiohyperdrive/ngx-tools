@@ -8,7 +8,7 @@ export const extendedEmailValidator = (control: AbstractControl): ValidationErro
 	}
 
 	// Validates more strictly than the default email validator. Requires a period in the tld part.
-	return /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/.test(control.value)
+	return /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]+$/gi.test(control.value)
 		? null
 		: { extendedEmail: true };
 };
