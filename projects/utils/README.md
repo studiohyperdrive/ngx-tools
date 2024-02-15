@@ -34,6 +34,12 @@ The HasObserversPipe will check if an Output property has observers.
 
 [Full documentation.](src/lib/pipes/has-observers/has-observers.pipe.md)
 
+### hasOwnProperty
+
+The hasOwnProperty will check whether the specified property exists within the given object.
+
+[Full documentation.](src/lib/pipes/has-own-property/has-own-property.pipe.md)
+
 ### HasValuesPipe
 
 The HasValuesPipe will check if a provided object has values.
@@ -52,6 +58,12 @@ The IbanPipe will format an IBAN number.
 
 [Full documentation.](src/lib/pipes/iban/iban.pipe.md)
 
+### IsNotEmptyPipe
+
+The IsNotEmptyPipe will check if a given argument is an object or array and if it is empty.
+
+[Full documentation.](src/lib/pipes/is-not-empty/is-not-empty.pipe.md)
+
 ### JoinPipe
 
 The JoinPipe will join values in an array.
@@ -64,6 +76,18 @@ The LimitToPipe will limit an array to x-amount of values.
 
 [Full documentation.](src/lib/pipes/limit-to/limit-to.pipe.md)
 
+### LogPipe
+
+The LogPipe will print the provided value to the console, it will not render the value on the page itself.
+
+[Full documentation.](src/lib/pipes/log/log.pipe.md)
+
+### MergeArraysPipe
+
+The MergeArraysPipe is a wrapper around the JS native Array.concat with some added safety.
+
+[Full documentation.](src/lib/pipes/merge-arrays/merge-arrays.pipe.md)
+
 ### SafeHtmlPipe
 
 The SafeHtmlPipe will sanitize a given value with the DomSanitizer.
@@ -75,6 +99,12 @@ The SafeHtmlPipe will sanitize a given value with the DomSanitizer.
 The StripHtmlPipe will strip HTML from a given value.
 
 [Full documentation.](src/lib/pipes/strip-html/strip-html.pipe.md)
+
+### ToArrayPipe
+
+The ToArrayPipe will check if a value is defined and then wrap it in a new array before returning it.
+
+[Full documentation.](src/lib/pipes/to-array/to-array.pipe.md)
 
 ### TransformPipe
 
