@@ -4,6 +4,7 @@ import { NgxTableSortDirection } from '../enums/sort-direction.enum';
 
 @Pipe({
 	name: 'ngxTableSortIcon',
+	standalone: true,
 })
 export class NgxTableSortIconPipe implements PipeTransform {
 	/**

@@ -11,6 +11,7 @@ import { HideHeaderRowOption } from '../../token';
  */
 @Pipe({
 	name: 'ngxTableShowHeader',
+	standalone: true,
 })
 export class NgxTableShowHeaderPipe implements PipeTransform {
 	public transform(

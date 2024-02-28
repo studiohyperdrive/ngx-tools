@@ -5,6 +5,7 @@ import { NgxTableCypressDataTags, NgxTableSortEvent } from '../interfaces';
 
 @Directive({
 	selector: 'ngx-abstract-table-cell',
+	standalone: true,
 })
 export class NgxAbstractTableCellDirective {
 	/**

@@ -1,5 +1,6 @@
 import { Component, ContentChild, Input, TemplateRef, ViewChild } from '@angular/core';
 
+import { CurrencyPipe } from '@angular/common';
 import { NgxAbstractTableCellDirective } from './cell.directive';
 
 @Component({
@@ -15,6 +16,8 @@ import { NgxAbstractTableCellDirective } from './cell.directive';
 			<time>{{ item | currency : currency }}</time>
 		</ng-template>
 	`,
+	standalone: true,
+	imports: [CurrencyPipe],
 })
 export class NgxCurrencyTableCellComponent extends NgxAbstractTableCellDirective {
 	/**

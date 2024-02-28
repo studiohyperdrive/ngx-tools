@@ -1,11 +1,16 @@
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
+import { NgIf, AsyncPipe, JsonPipe } from '@angular/common';
+import { WrapperComponent } from './wrapper/wrapper.component';
+import { NgxTable } from 'projects/table/src/lib';
 
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
 	styleUrls: ['./app.component.scss'],
+	standalone: true,
+	imports: [WrapperComponent, ReactiveFormsModule, NgIf, AsyncPipe, JsonPipe, NgxTable],
 })
 export class AppComponent {
 	private currentSet = 'dataSet1';
