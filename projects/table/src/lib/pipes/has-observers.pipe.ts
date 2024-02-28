@@ -2,6 +2,7 @@ import { Pipe, PipeTransform, EventEmitter } from '@angular/core';
 
 @Pipe({
 	name: 'ngxTableHasObservers',
+	standalone: true,
 })
 export class NgxTableHasObserversPipe implements PipeTransform {
 	/**

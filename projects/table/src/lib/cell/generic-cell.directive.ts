@@ -10,6 +10,7 @@ import { NgxAbstractTableCellDirective } from './cell.directive';
 			useExisting: NgxTableCellDirective,
 		},
 	],
+	standalone: true,
 })
 export class NgxTableCellDirective extends NgxAbstractTableCellDirective {
 	/**

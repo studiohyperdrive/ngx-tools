@@ -1,5 +1,7 @@
 import { Component, ContentChild, Input, TemplateRef, ViewChild } from '@angular/core';
 
+import { NgIf, DatePipe } from '@angular/common';
+import { NgxTableGetPipe } from '../pipes/get-pipe/get.pipe';
 import { NgxAbstractTableCellDirective } from './cell.directive';
 
 @Component({
@@ -29,6 +31,8 @@ import { NgxAbstractTableCellDirective } from './cell.directive';
 			</ng-template>
 		</ng-template>
 	`,
+	standalone: true,
+	imports: [NgIf, DatePipe, NgxTableGetPipe],
 })
 export class NgxDateTableCellComponent extends NgxAbstractTableCellDirective {
 	/**

@@ -17,12 +17,22 @@ import {
 	QueryList,
 	SimpleChanges,
 	TemplateRef,
+	WritableSignal,
+	signal,
 } from '@angular/core';
-import { ControlValueAccessor, FormControl, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {
+	ControlValueAccessor,
+	FormControl,
+	FormGroup,
+	NG_VALUE_ACCESSOR,
+	ReactiveFormsModule,
+} from '@angular/forms';
 import { isEmpty } from 'lodash';
 import { Subject } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
 
+import { NgIf, NgTemplateOutlet, NgFor, NgClass } from '@angular/common';
+import { CdkTableModule } from '@angular/cdk/table';
 import { NgxAbstractTableCellDirective } from '../cell/cell.directive';
 import { NgxTableCypressDataTags, NgxTableSortEvent } from '../interfaces';
 import {
@@ -38,6 +48,9 @@ import {
 	resetNgxTableForm,
 	writeNgxTableValue,
 } from '../utils';
+import { NgxTableShowHeaderPipe } from '../pipes/show-header/show-header.pipe';
+import { NgxTableSortIconPipe } from '../pipes/sort-icon.pipe';
+import { NgxTableHasObserversPipe } from '../pipes/has-observers.pipe';
 
 interface TableCellTemplate {
 	headerTemplate?: TemplateRef<any>;
@@ -58,6 +71,18 @@ interface TableCellTemplate {
 			useExisting: NgxTableComponent,
 		},
 	],
+	standalone: true,
+	imports: [
+		CdkTableModule,
+		NgIf,
+		NgTemplateOutlet,
+		NgFor,
+		NgClass,
+		ReactiveFormsModule,
+		NgxTableHasObserversPipe,
+		NgxTableSortIconPipe,
+		NgxTableShowHeaderPipe,
+	],
 })
 export class NgxTableComponent
 	implements AfterContentChecked, ControlValueAccessor, OnInit, OnChanges, OnDestroy
@@ -67,6 +92,90 @@ export class NgxTableComponent
 	 */
 	@HostBinding('class') private readonly componentClass =
 		this.ngxTableConfig?.ngxTableClass || '';
+
+	/**
+	 * The loading state of our table
+	 */
+	@HostBinding('ngx-table-loading') @Input() public loading: boolean = false;
+
+	/**
+	 * A subject to handle the observables when the component gets destroyed
+	 */
+	private readonly destroyed$ = new Subject();
+	/**
+	 * onTouch function for the control value accessor
+	 */
+	private onTouch: Function = () => {};
+	/**
+	 * onChanged function for the control value accessor
+	 */
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	private onChanged: Function = (_: any) => {};
+
+	/**
+	 * The current sorting event
+	 */
+	private currentSortingEvent: WritableSignal<NgxTableSortEvent | undefined> = signal(undefined);
+
+	/**
+	 * Whether or not the form was generated
+	 */
+	private formGenerated: WritableSignal<boolean> = signal(false);
+
+	/**
+	 * Keeps a record with the column and it's templates
+	 */
+	public tableCellTemplateRecord: WritableSignal<Record<string, TableCellTemplate>> = signal({});
+	/**
+	 * Keeps a record of which columns are sortable
+	 */
+	public sortableTableCellRecord: WritableSignal<Record<string, NgxAbstractTableCellDirective>> =
+		signal({});
+	/**
+	 * Keeps a record of which cells have a cypress tag
+	 */
+	public tableCypressRecord: WritableSignal<Record<string, NgxTableCypressDataTags>> = signal({});
+
+	/**
+	 * A set with all the open rows
+	 */
+	// Iben: Sets are not supported in signals as signals are no longer mutable, hence why we keep them as is
+	public openRows: Set<number> = new Set();
+
+	/**
+	 * A FormGroup that adds a control for each row
+	 */
+	public readonly rowsFormGroup = new FormGroup({});
+
+	/**
+	 * A control for the select all option in the header of the table
+	 */
+	public readonly headerControl = new FormControl();
+
+	/**
+	 * A control for when we use a radio button
+	 */
+	public readonly radioControl = new FormControl();
+
+	/**
+	 * A list of all defined columns
+	 */
+	public definedColumns: WritableSignal<string[]> = signal([]);
+
+	/**
+	 * Whether or not there was a footer template set somewhere in one of the cells
+	 */
+	public hasFooterTemplates: WritableSignal<boolean> = signal(false);
+
+	/**
+	 * Whether or not there was a row selected
+	 */
+	public selectedRow: WritableSignal<number | undefined> = signal(undefined);
+
+	/**
+	 * An array of table columns
+	 */
+	public tableColumns: WritableSignal<string[]> = signal([]);
 
 	/**
 	 * A QueryList of all the table cell templates
@@ -132,11 +241,6 @@ export class NgxTableComponent
 	@Input() public data: any[] = [];
 
 	/**
-	 * The loading state of our table
-	 */
-	@HostBinding('ngx-table-loading') @Input() public loading: boolean = false;
-
-	/**
 	 * An optional property that defines whether multiple rows can be open at once.
 	 * By default, this is false. The default can be overwritten in the NgxTableConfig.
 	 */
@@ -172,7 +276,7 @@ export class NgxTableComponent
 	 * The current sorting event.
 	 */
 	@Input() public set currentSorting(event: NgxTableSortEvent) {
-		this.currentSortingEvent = event;
+		this.currentSortingEvent.set(event);
 		this.handleCurrentSort(event);
 	}
 
@@ -239,43 +343,21 @@ export class NgxTableComponent
 	@Input() public hideHeaderWhen: HideHeaderRowOption =
 		this.ngxTableConfig?.hideHeaderWhen || 'never';
 
+	/**
+	 * Returns the data of the row that was clicked
+	 */
 	@Output() public rowClicked = new EventEmitter<any>();
-
-	/**
-	 * Keeps a record with the column and it's templates
-	 */
-	public tableCellTemplateRecord: Record<string, TableCellTemplate> = {};
-	/**
-	 * Keeps a record of which columns are sortable
-	 */
-	public sortableTableCellRecord: Record<string, NgxAbstractTableCellDirective> = {};
-	/**
-	 * Keeps a record of which cells have a cypress tag
-	 */
-	public tableCypressRecord: Record<string, NgxTableCypressDataTags> = {};
-
-	public dataSource: any[] = [];
-	public openRows: Set<number> = new Set();
-	public readonly rowsFormGroup = new FormGroup({});
-	public readonly headerControl = new FormControl();
-	public readonly radioControl = new FormControl();
-	public definedColumns: string[] = [];
-	public hasFooterTemplates: boolean = false;
-	public selectedRow: number | undefined = undefined;
-	public tableColumns: string[] = [];
-
-	private readonly destroyed$ = new Subject();
-	private onTouch: Function = () => {};
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	private onChanged: Function = (_: any) => {};
-	private currentSortingEvent: NgxTableSortEvent;
-	private formGenerated: boolean = false;
 
 	constructor(
 		private cdRef: ChangeDetectorRef,
 		@Optional() @Inject(NgxTableConfigToken) private readonly ngxTableConfig: NgxTableConfig
 	) {}
 
+	/**
+	 * WriteValue method for the value accessor
+	 *
+	 * @param value - The value patched to the control
+	 */
 	public writeValue(value: string[] | unknown): void {
 		// Iben: In case we're using radio buttons, we set the radio control and early exit
 		if (this.selectableType === 'radio') {
@@ -311,14 +393,25 @@ export class NgxTableComponent
 		this.headerControl.patchValue(true, { emitEvent: false });
 	}
 
+	/**
+	 * Register the onChange function
+	 */
 	public registerOnChange(fn: any): void {
 		this.onChanged = fn;
 	}
 
+	/**
+	 * Register the onTouched function
+	 */
 	public registerOnTouched(fn: any): void {
 		this.onTouch = fn;
 	}
 
+	/**
+	 * Handle the disabled state of the form
+	 *
+	 * @param  isDisabled - Whether or not the form is disabled
+	 */
 	public setDisabledState?(isDisabled: boolean): void {
 		if (isDisabled) {
 			this.rowsFormGroup.disable({ emitEvent: false });
@@ -331,16 +424,22 @@ export class NgxTableComponent
 		}
 	}
 
+	/**
+	 * Handle a click on a row
+	 *
+	 * @param row - The data of the row that was clicked
+	 * @param index - The index of the row that was clicked
+	 */
 	public handleRowClicked(row: any, index: number) {
 		// Iben: Emit a row click event
 		this.rowClicked.emit(row);
 
 		if (this.showSelectedOpenRow) {
-			if (this.selectedRow === index) {
+			if (this.selectedRow() === index) {
 				// Benoit: If you close the selected row, unselect that row
-				this.selectedRow = undefined;
+				this.selectedRow.set(undefined);
 			} else {
-				this.selectedRow = index;
+				this.selectedRow.set(index);
 			}
 		}
 
@@ -362,9 +461,9 @@ export class NgxTableComponent
 	 */
 	private handleTableCellTemplates(): void {
 		// Iben: Reset the provided records
-		this.tableCellTemplateRecord = {};
-		this.sortableTableCellRecord = {};
-		this.tableCypressRecord = {};
+		this.tableCellTemplateRecord.set({});
+		this.sortableTableCellRecord.set({});
+		this.tableCypressRecord.set({});
 
 		// Iben: Loop over all provided table cell templates
 		Array.from(this.tableCellTemplates).forEach((tableCellTemplate) => {
@@ -384,57 +483,86 @@ export class NgxTableComponent
 				cypressDataTags,
 			} = tableCellTemplate;
 
-			this.tableCellTemplateRecord[column] = {
-				headerTemplate,
-				cellTemplate,
-				footerTemplate,
-				cellClass,
-			};
+			this.tableCellTemplateRecord.update((value) => {
+				return {
+					...value,
+					[column]: {
+						headerTemplate,
+						cellTemplate,
+						footerTemplate,
+						cellClass,
+					},
+				};
+			});
 
 			// Iben: If the column is sortable, we add it to the sortable record
 			if (sortable) {
-				this.sortableTableCellRecord[column] = tableCellTemplate;
+				this.sortableTableCellRecord.update((value) => {
+					return {
+						...value,
+						[column]: tableCellTemplate,
+					};
+				});
 			}
 
 			// Iben: If the column has cypress tags, we add them to the record
 			if (cypressDataTags) {
-				this.tableCypressRecord[column] = cypressDataTags;
+				this.tableCypressRecord.update((value) => {
+					return {
+						...value,
+						[column]: cypressDataTags,
+					};
+				});
 			}
 		});
 
 		// Iben: Check if at least one template has a footer template, so that we know whether or not we have to render the footer row
-		this.hasFooterTemplates = Array.from(this.tableCellTemplates).some((cellTemplate) =>
-			Boolean(cellTemplate.footerTemplate)
+		this.hasFooterTemplates.set(
+			Array.from(this.tableCellTemplates).some((cellTemplate) =>
+				Boolean(cellTemplate.footerTemplate)
+			)
 		);
 
 		// Iben:
-		this.handleCurrentSort(this.currentSortingEvent);
+		this.handleCurrentSort(this.currentSortingEvent());
 
 		// Iben: Detect changes to update the view
 		this.cdRef.detectChanges();
 	}
 
+	/**
+	 * Respond to a click on the sort of a column
+	 *
+	 * @param column - The column we clicked on
+	 */
 	public handleSort(column: string): void {
-		if (!this.sortableTableCellRecord[column]) {
+		// Iben: If the column is not sortable we early exit
+		if (!this.sortableTableCellRecord()[column]) {
 			return;
 		}
 
-		Object.entries(this.sortableTableCellRecord).forEach(([cellName, cell]) => {
+		// Iben: Loop over the sortable columns and reset all columns that don't match with the clicked column
+		Object.entries(this.sortableTableCellRecord()).forEach(([cellName, cell]) => {
 			if (cellName === column) {
-				this.sortableTableCellRecord[column].handleSort();
+				this.sortableTableCellRecord()[column].handleSort();
 			} else {
 				cell.resetSortDirection();
 			}
 		});
 	}
 
+	/**
+	 * Handle the changes in sort events
+	 *
+	 * @param event - The new sorting event
+	 */
 	private handleCurrentSort(event: NgxTableSortEvent): void {
 		// Iben: Early exit if the sortable cell record is empty or if the cell already has the sortDirection of the event
 		if (
 			isEmpty(
-				this.sortableTableCellRecord ||
+				this.sortableTableCellRecord() ||
 					(event &&
-						this.sortableTableCellRecord[event.column].sortDirection ===
+						this.sortableTableCellRecord()[event.column].sortDirection ===
 							event.direction)
 			)
 		) {
@@ -442,7 +570,7 @@ export class NgxTableComponent
 		}
 
 		// Iben: We reset all the sort directions by default, so all of them are unsorted.
-		Object.values(this.sortableTableCellRecord).forEach((cell) => cell.resetSortDirection());
+		Object.values(this.sortableTableCellRecord()).forEach((cell) => cell.resetSortDirection());
 
 		// Iben: If there's no sort event passed, we early exit
 		if (!event) {
@@ -450,7 +578,7 @@ export class NgxTableComponent
 		}
 
 		// Iben: In case there was a sorting provided and we set the sorting to the provided column and direction
-		this.sortableTableCellRecord[event.column].setSortDirection(event.direction);
+		this.sortableTableCellRecord()[event.column].setSortDirection(event.direction);
 	}
 
 	/**
@@ -458,15 +586,15 @@ export class NgxTableComponent
 	 */
 	private handleRowColumns(): void {
 		// Iben: Make sure that the select option, the open row state and the defined actions are correctly placed
-		this.definedColumns = [
+		this.definedColumns.set([
 			...(this.selectable ? ['ngxTableSelectColumn'] : []),
 			...(this.columns || []),
 			...(this.actions || []),
 			...(this.showOpenRowState && this.detailRowTemplate ? ['ngxOpenRowStateColumn'] : []),
-		];
+		]);
 
 		// Iben: Set the actual table columns
-		this.tableColumns = [...(this.columns || []), ...(this.actions || [])];
+		this.tableColumns.set([...(this.columns || []), ...(this.actions || [])]);
 	}
 
 	// Lifecycle methods
@@ -480,16 +608,16 @@ export class NgxTableComponent
 	public ngOnChanges(changes: SimpleChanges) {
 		if (changes.data) {
 			// Wouter: Deselect any row that was selected to prevent faulty class toggle.
-			this.selectedRow = undefined;
+			this.selectedRow.set(undefined);
 		}
 
 		// Iben: Setup the form when the data or selectable state changes
 		if ((changes.data || changes.selectable) && this.selectable) {
 			// Iben: If no form was generated, first generate the form we need
-			if (!this.formGenerated) {
+			if (!this.formGenerated()) {
 				generateNgxTableForm(this.rowsFormGroup, this.data, this.selectableKey);
 
-				this.formGenerated = true;
+				this.formGenerated.set(true);
 			} else {
 				// Iben: If a form was generated, reset it as required
 				resetNgxTableForm(

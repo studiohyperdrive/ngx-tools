@@ -10,6 +10,7 @@ import { getProperty } from 'dot-prop';
  */
 @Pipe({
 	name: 'getProp',
+	standalone: true,
 })
 export class NgxTableGetPipe implements PipeTransform {
 	public transform(value: unknown, path: string): any {
@@ -25,7 +26,7 @@ export class NgxTableGetPipe implements PipeTransform {
 		// Iben: If no path was provided, we return the value and warn the user
 		if (!path) {
 			console.warn(
-				'NgxTableGetPipe did not recieve a path to a property and returned an empty string instead.'
+				'NgxTableGetPipe did not receive a path to a property and returned an empty string instead.'
 			);
 
 			return value;
