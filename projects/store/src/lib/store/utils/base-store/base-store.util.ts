@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { createAction, createReducer, createSelector, on, props } from '@ngrx/store';
 import { get } from 'lodash';
 
-import { BaseStore, BaseStoreAssets } from '../../interfaces';
+import { BaseStore, BaseStoreAssets, BaseStoreAssetsGeneratorOptions } from '../../interfaces';
 import { BaseStoreEffectsInterface } from '../../interfaces/effects';
 
 /**
@@ -13,9 +13,10 @@ import { BaseStoreEffectsInterface } from '../../interfaces/effects';
 export const createBaseStoreAssets = <
 	StateInterface,
 	EffectsInterface extends BaseStoreEffectsInterface = any
->(
-	slice: string
-): BaseStoreAssets<StateInterface> => {
+>({
+	slice,
+	initialStateValue,
+}: BaseStoreAssetsGeneratorOptions<StateInterface>): BaseStoreAssets<StateInterface> => {
 	// Iben: Create actions
 	const actions = {
 		set: createAction(`[${slice}]: Set`, props<{ payload: StateInterface }>()),
@@ -37,7 +38,7 @@ export const createBaseStoreAssets = <
 
 	// Iben: Set the initial state
 	const initialState = {
-		data: undefined,
+		data: initialStateValue || undefined,
 		loading: false,
 		error: false,
 		errorMessage: null,

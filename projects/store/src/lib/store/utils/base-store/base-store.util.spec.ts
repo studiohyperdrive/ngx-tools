@@ -2,7 +2,7 @@ import { createBaseStoreAssets } from './base-store.util';
 
 describe('createBaseStoreAssets', () => {
 	it('should return the correct actions based on the slice', () => {
-		const { actions } = createBaseStoreAssets('moustaches');
+		const { actions } = createBaseStoreAssets({ slice: 'moustaches' });
 
 		expect(actions.set.type).toEqual('[moustaches]: Set');
 		expect(actions.clear.type).toEqual('[moustaches]: Clear');
@@ -12,7 +12,7 @@ describe('createBaseStoreAssets', () => {
 	});
 
 	it('should return the reducers/selectors based on the slice', () => {
-		const { reducers, selectors } = createBaseStoreAssets('moustaches');
+		const { reducers, selectors } = createBaseStoreAssets({ slice: 'moustaches' });
 
 		expect(reducers).not.toBeUndefined();
 		expect(selectors).not.toBeUndefined();

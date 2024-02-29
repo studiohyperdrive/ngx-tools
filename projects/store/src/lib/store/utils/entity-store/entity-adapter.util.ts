@@ -1,8 +1,12 @@
-import { EntityAdapter, createEntityAdapter, IdSelector } from '@ngrx/entity';
+import { EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { createAction, createReducer, createSelector, on, props } from '@ngrx/store';
 import { get } from 'lodash';
 
-import { BasicEntityState, EntityStoreAssets } from '../../interfaces';
+import {
+	BasicEntityState,
+	EntityStoreAssets,
+	EntityStoreAssetsGeneratorOptions,
+} from '../../interfaces';
 import { EntityStoreEffectsInterface } from '../../interfaces/effects';
 
 /**
@@ -15,10 +19,11 @@ import { EntityStoreEffectsInterface } from '../../interfaces/effects';
 export const createEntityAdapterStoreAssets = <
 	StateInterface,
 	EffectsInterface extends EntityStoreEffectsInterface = any
->(
-	slice: string,
-	selectId?: IdSelector<StateInterface>
-): EntityStoreAssets<StateInterface> => {
+>({
+	slice,
+	selectId,
+	initialStateValue,
+}: EntityStoreAssetsGeneratorOptions<StateInterface>): EntityStoreAssets<StateInterface> => {
 	// Iben: Fill in unprovided actions
 	const actions = {
 		add: createAction(
@@ -58,6 +63,15 @@ export const createEntityAdapterStoreAssets = <
 
 	// Iben: Create the initial state
 	const initialState: BasicEntityState<StateInterface> = adapter.getInitialState({
+		ids: (initialStateValue || []).map((item) => {
+			return selectId ? selectId(item) : item['id'];
+		}),
+		entities: (initialStateValue || []).reduce((previous, current) => {
+			return {
+				...previous,
+				[selectId ? selectId(current) : current['id']]: current,
+			};
+		}, {}),
 		entityStatus: {
 			loading: false,
 			error: false,

@@ -3,6 +3,10 @@ import { IdSelector } from '@ngrx/entity';
 
 import { BaseStoreAssets } from './base-store';
 import { EntityStoreAssets } from './entity-store-assets';
+import {
+	BaseStoreAssetsGeneratorOptions,
+	EntityStoreAssetsGeneratorOptions,
+} from './store-assets-generator-options';
 
 /**
  * These objects will be used as a blueprint for our store slices
@@ -12,10 +16,11 @@ import { EntityStoreAssets } from './entity-store-assets';
 export interface StoreAssetsOptions<SliceKey extends string | number | symbol> {
 	subSlice: SliceKey;
 	generator:
-		| ((slice: string, selectId?: IdSelector<any>) => EntityStoreAssets<any>)
-		| ((slice: string) => BaseStoreAssets<any>);
+		| ((options: EntityStoreAssetsGeneratorOptions<any>) => EntityStoreAssets<any>)
+		| ((options: BaseStoreAssetsGeneratorOptions<any>) => BaseStoreAssets<any>);
 
 	selectId?: IdSelector<any>;
+	initialValue?: any;
 }
 
 // Iben: The base type for our flow assets which we'll pass to the create generator

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { actions } from '../store/user.store';
+import { tap } from 'rxjs';
+import { actions, selectors } from '../store/user.store';
 
 @Component({
 	selector: 'app-root',
@@ -16,5 +17,7 @@ export class AppComponent {
 		this.store.dispatch(actions.users.effects.set());
 		this.store.dispatch(actions.users.effects.add({ payload: 'serguey' }));
 		this.store.dispatch(actions.paging.effects.set());
+
+		this.store.select(selectors.admins.selectAll).pipe(tap(console.log)).subscribe();
 	}
 }
