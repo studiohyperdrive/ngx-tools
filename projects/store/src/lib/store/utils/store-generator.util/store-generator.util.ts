@@ -18,8 +18,15 @@ export const createStoreAssets = <ResultType extends StoreFlowAssets>(
 		return {
 			...result,
 			[current.subSlice]: current.selectId
-				? current.generator(`${slice}.${current.subSlice.toString()}`, current.selectId)
-				: current.generator(`${slice}.${current.subSlice.toString()}`),
+				? current.generator({
+						slice: `${slice}.${current.subSlice.toString()}`,
+						selectId: current.selectId,
+						initialStateValue: current.initialValue,
+				  })
+				: current.generator({
+						slice: `${slice}.${current.subSlice.toString()}`,
+						initialStateValue: current.initialValue,
+				  }),
 		};
 	}, {} as ResultType);
 

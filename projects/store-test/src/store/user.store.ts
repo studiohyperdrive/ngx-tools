@@ -1,16 +1,18 @@
 import { User } from '../interface/user.interface';
-import { StoreFlowAssets } from 'dist/store/lib/store/interfaces';
 import {
+	BaseStoreAssets,
 	EntityStoreAssets,
+	StoreFlowAssets,
+	createBaseStoreAssets,
 	createEntityAdapterStoreAssets,
 	createStoreAssets,
-	BaseStoreAssets,
-	createBaseStoreAssets,
-} from 'store';
+} from 'projects/store/src/public-api';
 
 interface UserStore extends StoreFlowAssets {
 	users: EntityStoreAssets<User, { set: void; add: string }>;
 	paging: BaseStoreAssets<string>;
+	hello: BaseStoreAssets<string>;
+	admins: EntityStoreAssets<User>;
 }
 
 export const { actions, reducers, selectors } = createStoreAssets<UserStore>('users', [
@@ -21,5 +23,15 @@ export const { actions, reducers, selectors } = createStoreAssets<UserStore>('us
 	{
 		subSlice: 'paging',
 		generator: createBaseStoreAssets<string>,
+	},
+	{
+		subSlice: 'hello',
+		generator: createBaseStoreAssets<string>,
+		initialValue: 'world',
+	},
+	{
+		subSlice: 'admins',
+		generator: createEntityAdapterStoreAssets<User>,
+		initialValue: [{ id: 'iben', name: 'Iben' }],
 	},
 ]);

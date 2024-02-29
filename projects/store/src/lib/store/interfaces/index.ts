@@ -4,3 +4,4 @@ export * from './entity-store-assets';
 export * from './store';
 export * from './store-generator';
 export * from './effects';
+export * from './store-assets-generator-options';
