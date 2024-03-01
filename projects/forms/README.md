@@ -30,6 +30,9 @@ A validator that checks whether two dates are in chronological order.
 ### dateRangeValidator
 A validator that checks whether a date falls between a provided range. The start and end date of the range are exclusive.
 
+### hasFutureDateValidator
+A validator which validates if a date is not in the future.
+
 ### set/clearFormError
 In custom validators, it is often useful to be able to quickly add or remove a specific error from the control. Using the `setFormError` we can easily set a specific error on a control, whilst `clearFormError` will remove said error.
 
