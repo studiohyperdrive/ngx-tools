@@ -101,8 +101,8 @@ export class NgxValidators {
 	/**
 	 * Form control validator which validates if a date is not in the future.
 	 */
-	static hasFutureDateValidator = (): ValidatorFn => {
-		return this.hasFutureDateValidator();
+	static hasNoFutureDateValidator = (): ValidatorFn => {
+		return this.hasNoFutureDateValidator();
 	};
 
 	// Add other custom validators :-)

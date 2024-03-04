@@ -1,11 +1,11 @@
 import { FormControl } from '@angular/forms';
-import { hasFutureDateValidator } from './has-future-date.validator';
+import { hasNoFutureDateValidator } from './has-no-future-date.validator';
 
-describe('hasFutureDateValidator', () => {
+describe('hasNoFutureDateValidator', () => {
 	let control: FormControl;
 
 	beforeEach(() => {
-		control = new FormControl(null, hasFutureDateValidator());
+		control = new FormControl(null, hasNoFutureDateValidator());
 	});
 
 	it('should return null when the date is in the past', () => {
@@ -25,7 +25,7 @@ describe('hasFutureDateValidator', () => {
 		futureDate.setDate(futureDate.getDate() + 1);
 		const formattedDate = futureDate.toISOString().substring(0, 10);
 		control.setValue(formattedDate);
-		expect(control.errors).toEqual({ invalidDate: { valid: false } });
+		expect(control.errors).toEqual({ isFutureDate: { valid: false } });
 	});
 
 	it('should return null when the control value is empty', () => {
