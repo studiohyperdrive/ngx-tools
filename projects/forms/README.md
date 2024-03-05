@@ -30,7 +30,7 @@ A validator that checks whether two dates are in chronological order.
 ### dateRangeValidator
 A validator that checks whether a date falls between a provided range. The start and end date of the range are exclusive.
 
-### hasFutureDateValidator
+### hasNoFutureDateValidator
 A validator which validates if a date is not in the future.
 
 ### set/clearFormError
