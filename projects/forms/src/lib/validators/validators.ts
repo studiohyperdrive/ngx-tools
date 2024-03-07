@@ -9,6 +9,7 @@ import { dependedRequiredValidator } from './depended-required/depended-required
 import { decimalsAfterCommaValidator } from './decimals-after-comma/decimals-after-comma.validator';
 import { chronologicalDatesValidator } from './chronological-dates/chronological-dates.validator';
 import { extendedEmailValidator } from './email/extended-email.validator';
+import { hasNoFutureDateValidator } from './has-no-future-date/has-no-future-date.validator';
 
 /**
  * Exported Class
@@ -102,7 +103,7 @@ export class NgxValidators {
 	 * Form control validator which validates if a date is not in the future.
 	 */
 	static hasNoFutureDateValidator = (): ValidatorFn => {
-		return this.hasNoFutureDateValidator();
+		return hasNoFutureDateValidator();
 	};
 
 	// Add other custom validators :-)
