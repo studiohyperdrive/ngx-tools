@@ -7,6 +7,7 @@ export * from './lib/injects';
 export * from './lib/services';
 export * from './lib/pipes';
 export * from './lib/types';
+export * from './lib/abstracts';
 
 export * from './lib/utils.const';
 

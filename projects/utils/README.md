@@ -142,6 +142,12 @@ This service is a solution to end RxJS subscriptions when component is destroyed
 
 [Full documentation.](src/lib/services/subscription-service/subscription.service.md)
 
+## Abstracts
+### 1. NgxQueryParamFormSyncComponent
+This abstract component provides a way to sync the queryParams with a reactive form. This is ideal to handle filtered views, as it automatically syncs selected filters with the url.
+
+[Full documentation.](src/lib/abstracts/query-param-form-sync/query-param-form-sync.component.abstract.md)
+
 ## build information
 This project has been build with:
 - Angular CLI : `16.1.4`
