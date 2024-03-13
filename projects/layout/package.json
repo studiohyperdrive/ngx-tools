@@ -2,9 +2,9 @@
 	"name": "@studiohyperdrive/layout",
 	"version": "17.0.0",
 	"peerDependencies": {
-		"@angular/common": "^17.0.0",
-		"@angular/core": "^17.0.0",
-		"@studiohyperdrive/ngx-forms": "^17.2.1"
+    "@angular/common": "^17.0.4",
+    "@angular/core": "^17.0.4",
+    "@angular/forms": "^17.0.4"
 	},
 	"dependencies": {
 		"tslib": "^2.3.0"

@@ -1,3 +1,6 @@
 <ng-container *ngFor="let key of form.value">
-	<ng-template [ngTemplateOutlet]="itemTemplateRecord[key]"></ng-template>
+	<ng-template
+		*ngIf="itemTemplateRecord()[key]"
+		[ngTemplateOutlet]="itemTemplateRecord()[key]"
+	></ng-template>
 </ng-container>

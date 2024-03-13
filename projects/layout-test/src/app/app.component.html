@@ -1,8 +1,48 @@
-<ngx-configurable-layout [keys]="['1', '2']">
-	<ngx-configurable-layout-item key="1">
-		<p>hello</p>
+<div class="disclaimer">
+	<b>Disclaimer:</b>
+	<p>
+		This is a test application to use during development of the package. For examples of the
+		entire package, we refer to the
+		<a
+			href="https://stackblitz.com/edit/stackblitz-starters-am9x39?file=src%2Fapp.html"
+			target="_blank"
+			>StackBlitz example</a
+		>
+	</p>
+</div>
+
+<hr />
+
+<ngx-configurable-layout
+	defaultOrientation="column"
+	[formControl]="rowOrderForm"
+	[keys]="['1', '2']"
+	[gridLayout]="gridLayoutForm.value"
+>
+	<ngx-configurable-layout-item key="a">
+		<p class="layout-items">Form key a</p>
 	</ngx-configurable-layout-item>
+
+	<ngx-configurable-layout-item key="b">
+		<p class="layout-items">Form key b</p>
+	</ngx-configurable-layout-item>
+
+	<ngx-configurable-layout-item key="1">
+		<p class="layout-items">Input key 1</p>
+	</ngx-configurable-layout-item>
+
 	<ngx-configurable-layout-item key="2">
-		<p>world</p>
+		<p class="layout-items">Input key 2</p>
 	</ngx-configurable-layout-item>
 </ngx-configurable-layout>
+
+<br />
+<label>
+	Amount of columns:
+	<input type="number" [formControl]="gridLayoutForm.controls.columns" min="0" />
+</label>
+<br />
+<label>
+	Amount of rows:
+	<input type="number" [formControl]="gridLayoutForm.controls.rows" min="0" />
+</label>
