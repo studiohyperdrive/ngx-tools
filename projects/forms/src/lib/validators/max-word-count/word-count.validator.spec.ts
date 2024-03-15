@@ -35,7 +35,7 @@ describe('WordCountValidator', () => {
 		});
 	});
 
-	it('should not give an error when the value is a string that does not exceed the minimum word count', () => {
+	it('should give an error when the value is a string that does not exceed the minimum word count', () => {
 		expect(WordCountValidator({ min: 5 })(new FormControl('These Words Do Not'))).toEqual({
 			minWordCountNotReached: { valid: false },
 		});
