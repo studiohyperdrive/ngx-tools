@@ -1,6 +1,21 @@
-<ng-container *ngFor="let key of form.value">
-	<ng-template
-		*ngIf="itemTemplateRecord()[key]"
-		[ngTemplateOutlet]="itemTemplateRecord()[key]"
-	></ng-template>
-</ng-container>
+<div cdkDropListGroup class="ngx-layout-grid">
+	<ul
+		*ngFor="let row of form.value; let index = index"
+		cdkDropList
+		class="ngx-layout-row"
+		cdkDropListOrientation="horizontal"
+		[cdkDropListDisabled]="!allowDragAndDrop && !form.disabled"
+		[id]="'ngx-layout-row-' + index"
+		[ngStyle]="form.value | ngxConfigurableLayoutItemSize : itemSize"
+		(cdkDropListDropped)="drop($event)"
+	>
+		<ng-container *ngFor="let key of row">
+			<ng-container *ngIf="itemTemplateRecord()[key]">
+				<li cdkDrag class="ngx-layout-item" cdkDragPreviewContainer="parent">
+					<ng-template [ngTemplateOutlet]="itemTemplateRecord()[key]"></ng-template>
+					<div class="ngx-layout-drag-placeholder" *cdkDragPlaceholder></div>
+				</li>
+			</ng-container>
+		</ng-container>
+	</ul>
+</div>

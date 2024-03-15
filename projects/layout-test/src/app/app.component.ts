@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import {
 	NgxConfigurableLayoutComponent,
 	NgxConfigurableLayoutItemComponent,
-	NgxGridLayoutFormOptions,
-	NgxRowColumnCountOption,
-} from 'layout';
+} from 'projects/layout/src/public-api';
 
 @Component({
 	selector: 'app-root',
@@ -20,12 +18,4 @@ import {
 		ReactiveFormsModule,
 	],
 })
-export class AppComponent {
-	public rowOrderForm: FormControl<string[]> = new FormControl<string[]>(['1', 'b']);
-
-	public gridLayoutForm: FormGroup<NgxGridLayoutFormOptions> =
-		new FormGroup<NgxGridLayoutFormOptions>({
-			columns: new FormControl<NgxRowColumnCountOption>(undefined),
-			rows: new FormControl<NgxRowColumnCountOption>(undefined),
-		});
-}
+export class AppComponent {}
