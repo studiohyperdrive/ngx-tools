@@ -4,9 +4,11 @@ import {
 	ContentChildren,
 	HostBinding,
 	Input,
+	OnChanges,
 	OnDestroy,
 	OnInit,
 	QueryList,
+	SimpleChanges,
 	TemplateRef,
 	WritableSignal,
 	forwardRef,
@@ -19,6 +21,15 @@ import { Observable, Subject, takeUntil, tap } from 'rxjs';
 import { NgxConfigurableLayoutItemComponent } from '../configurable-layout-item/configurable-layout-item.component';
 import { NgxDefaultLayoutOrientation, NgxGridLayoutOptions } from './configurable-layout.types';
 
+/**
+ * This component acts essentially as a layout wrapper. In combination with the
+ * `<ngx-configurable-layout-item>` provided with a key as input, this component allows
+ * you to dynamically change the order in which the items get rendered.
+ *
+ * The order of the items in the template does not matter, it gets set by the `[keys]` input.
+ * You may also bind a `FormControl<string[]>` to this component, which will allow you to reactively
+ * change the order in which the elements get rendered. The control will always override the`[keys]` input.
+ */
 @Component({
 	selector: 'ngx-configurable-layout',
 	templateUrl: './configurable-layout.component.html',
@@ -34,7 +45,7 @@ import { NgxDefaultLayoutOrientation, NgxGridLayoutOptions } from './configurabl
 	],
 })
 export class NgxConfigurableLayoutComponent
-	implements ControlValueAccessor, OnInit, AfterContentChecked, OnDestroy
+	implements ControlValueAccessor, OnInit, AfterContentChecked, OnDestroy, OnChanges
 {
 	/**
 	 * Bind the columns to the host to prevent a wrapper in the template.
@@ -123,6 +134,20 @@ export class NgxConfigurableLayoutComponent
 	public ngAfterContentChecked(): void {
 		// Iben: Run with content check so that we can dynamically add templates/columns
 		this.handleItemTemplates();
+
+		if (!this.form.value.length) {
+			console.warn(
+				'NgxLayout: Neither a formControl nor a keys input was provided. Therefore no items can be displayed.'
+			);
+		}
+	}
+
+	public ngOnChanges(changes: SimpleChanges): void {
+		// Wouter: If the gridLayout is provided, we remove the grid auto flow.
+		if (changes.gridLayout) {
+			this.defaultOrientation = undefined;
+			this.getOrientation;
+		}
 	}
 
 	public ngOnDestroy(): void {

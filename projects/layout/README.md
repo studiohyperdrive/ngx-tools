@@ -1,24 +1,44 @@
-# Layout
+# Angular Tools: NgxLayout (`@studiohyperdrive/ngx-layout`)
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.0.
+Install the package first:
 
-## Code scaffolding
+```shell
+npm install @studiohyperdrive/ngx-layout
+```
 
-Run `ng generate component component-name --project layout` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project layout`.
-> Note: Don't forget to add `--project layout` or else it will be added to the default project in your `angular.json` file. 
+## 1. Concept
 
-## Build
+`ngx-layout` is a collection of Angular components related to layout.
 
-Run `ng build layout` to build the project. The build artifacts will be stored in the `dist/` directory.
+## 2. Components
 
-## Publishing
+### 2.1 Configurable layout
 
-After building your library with `ng build layout`, go to the dist folder `cd dist/layout` and run `npm publish`.
+The first in the spotlight is a combination of two standalone components related to dynamic views.
 
-## Running unit tests
+The combination exists of an `<ngx-configurable-layout>` and an `<ngx-configurable-layout-item>` (henceforth named `wrapper` and `item` respectively).
 
-Run `ng test layout` to execute the unit tests via [Karma](https://karma-runner.github.io).
+The idea of these components is that the order of the items within the template.html does not define the order of the items in the DOM. This is especially useful when building a customizable view. The order in which the items will be rendered, depends on either an input or a reactive form control.
 
-## Further help
+```ts
+import { NgxConfigurableLayoutComponent, NgxConfigurableLayoutItemComponent } from '@studiohyperdrive/ngx-layout';
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+@Component({
+	...,
+	standalone: true,
+	imports: [NgxConfigurableLayoutComponent, NgxConfigurableLayoutItemComponent],
+	...
+})
+```
+
+```html
+<ngx-configurable-layout [keys]="['second-item', 'first-item']">
+	<ngx-configurable-layout-item key="first-item">
+		<p>This is the first item in the template.</p>
+	</ngx-configurable-layout-item>
+
+	<ngx-configurable-layout-item key="second-item">
+		<p>This is the first item in the DOM.</p>
+	</ngx-configurable-layout-item>
+</ngx-configurable-layout>
+```
