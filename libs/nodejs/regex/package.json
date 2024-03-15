@@ -1,0 +1,13 @@
+{
+	"name": "@studiohyperdrive/regex-common",
+	"version": "0.0.1",
+	"devDependencies": {
+    "vite": "~4.3.9",
+    "@nx/vite": "16.6.0",
+    "vite-plugin-dts": "~2.3.0",
+    "vite-plugin-static-copy": "0.17.0"
+  },
+	"main": "./index.js",
+	"module": "./index.mjs",
+	"typings": "./index.d.ts"
+}

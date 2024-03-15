@@ -1,0 +1,31 @@
+{
+	"name": "regex-common",
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "packages/regex-common/src",
+	"projectType": "library",
+	"targets": {
+		"build": {
+			"executor": "@nx/vite:build",
+			"outputs": ["{options.outputPath}"],
+			"options": {
+				"outputPath": "dist/packages/regex-common"
+			}
+		},
+		"test": {
+			"executor": "@nx/vite:test",
+			"outputs": ["coverage/packages/regex-common"],
+			"options": {
+				"passWithNoTests": true,
+				"reportsDirectory": "../../coverage/packages/regex-common"
+			}
+		},
+		"lint": {
+			"executor": "@nx/linter:eslint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": ["packages/regex-common/**/*.ts", "packages/regex-common/package.json"]
+			}
+		}
+	},
+	"tags": []
+}
