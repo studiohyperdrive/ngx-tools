@@ -33,6 +33,9 @@ A validator that checks whether a date falls between a provided range. The start
 ### hasNoFutureDateValidator
 A validator which validates if a date is not in the future.
 
+### wordCountValidator
+A validator that will check the amount of words provided in a control.
+
 ### set/clearFormError
 In custom validators, it is often useful to be able to quickly add or remove a specific error from the control. Using the `setFormError` we can easily set a specific error on a control, whilst `clearFormError` will remove said error.
 

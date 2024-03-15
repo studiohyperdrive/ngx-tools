@@ -11,6 +11,7 @@ import { chronologicalDatesValidator } from './chronological-dates/chronological
 import { extendedEmailValidator } from './email/extended-email.validator';
 import { hasNoFutureDateValidator } from './has-no-future-date/has-no-future-date.validator';
 import { dateRangeValidator } from './date-range/date-range.validator';
+import { WordCountValidator } from './max-word-count/word-count.validator';
 
 /**
  * Exported Class
@@ -105,6 +106,13 @@ export class NgxValidators {
 	 */
 	static hasNoFutureDateValidator = (): ValidatorFn => {
 		return hasNoFutureDateValidator();
+	};
+
+	/**
+	 * Form control validator which validates if a provided string does not contain more or less words than a provided min and/or max.
+	 */
+	static wordCountValidator = ({ min, max }: { min: number; max: number }): ValidatorFn => {
+		return WordCountValidator({ min, max });
 	};
 
 	// Add other custom validators :-)
