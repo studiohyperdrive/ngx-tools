@@ -14,13 +14,11 @@
 <hr />
 
 <ngx-configurable-layout
-	defaultOrientation="column"
-	[formControl]="rowOrderForm"
-	[keys]="['1', '2']"
-	[gridLayout]="gridLayoutForm.value"
+	[allowDragAndDrop]="true"
+	[keys]="[['1', '2'], ['a', 'b']]"
 >
 	<ngx-configurable-layout-item key="a">
-		<p class="layout-items">Form key a</p>
+		<p class="layout-items large">Form key a</p>
 	</ngx-configurable-layout-item>
 
 	<ngx-configurable-layout-item key="b">
@@ -36,13 +34,3 @@
 	</ngx-configurable-layout-item>
 </ngx-configurable-layout>
 
-<br />
-<label>
-	Amount of columns:
-	<input type="number" [formControl]="gridLayoutForm.controls.columns" min="0" />
-</label>
-<br />
-<label>
-	Amount of rows:
-	<input type="number" [formControl]="gridLayoutForm.controls.rows" min="0" />
-</label>

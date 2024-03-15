@@ -2,13 +2,10 @@ import {
 	AfterContentChecked,
 	Component,
 	ContentChildren,
-	HostBinding,
 	Input,
-	OnChanges,
 	OnDestroy,
 	OnInit,
 	QueryList,
-	SimpleChanges,
 	TemplateRef,
 	WritableSignal,
 	forwardRef,
@@ -17,9 +14,20 @@ import {
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NgIf, NgFor, NgTemplateOutlet, NgStyle } from '@angular/common';
 
+import {
+	CdkDragDrop,
+	CdkDrag,
+	CdkDropList,
+	CdkDropListGroup,
+	moveItemInArray,
+	transferArrayItem,
+	CdkDragPlaceholder,
+} from '@angular/cdk/drag-drop';
+
 import { Observable, Subject, takeUntil, tap } from 'rxjs';
 import { NgxConfigurableLayoutItemComponent } from '../configurable-layout-item/configurable-layout-item.component';
-import { NgxDefaultLayoutOrientation, NgxGridLayoutOptions } from './configurable-layout.types';
+import { NgxConfigurableLayoutItemSizeOption } from '../../types';
+import { NgxConfigurableLayoutItemSizePipe } from '../../pipes';
 
 /**
  * This component acts essentially as a layout wrapper. In combination with the
@@ -27,7 +35,7 @@ import { NgxDefaultLayoutOrientation, NgxGridLayoutOptions } from './configurabl
  * you to dynamically change the order in which the items get rendered.
  *
  * The order of the items in the template does not matter, it gets set by the `[keys]` input.
- * You may also bind a `FormControl<string[]>` to this component, which will allow you to reactively
+ * You may also bind a `FormControl<string[][]>` to this component, which will allow you to reactively
  * change the order in which the elements get rendered. The control will always override the`[keys]` input.
  */
 @Component({
@@ -35,7 +43,18 @@ import { NgxDefaultLayoutOrientation, NgxGridLayoutOptions } from './configurabl
 	templateUrl: './configurable-layout.component.html',
 	styleUrl: './configurable-layout.component.scss',
 	standalone: true,
-	imports: [NgxConfigurableLayoutItemComponent, NgTemplateOutlet, NgFor, NgIf, NgStyle],
+	imports: [
+		NgxConfigurableLayoutItemComponent,
+		NgTemplateOutlet,
+		NgFor,
+		NgIf,
+		NgStyle,
+		CdkDropListGroup,
+		CdkDropList,
+		CdkDrag,
+		CdkDragPlaceholder,
+		NgxConfigurableLayoutItemSizePipe,
+	],
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
@@ -45,29 +64,8 @@ import { NgxDefaultLayoutOrientation, NgxGridLayoutOptions } from './configurabl
 	],
 })
 export class NgxConfigurableLayoutComponent
-	implements ControlValueAccessor, OnInit, AfterContentChecked, OnDestroy, OnChanges
+	implements ControlValueAccessor, OnInit, AfterContentChecked, OnDestroy
 {
-	/**
-	 * Bind the columns to the host to prevent a wrapper in the template.
-	 */
-	@HostBinding('style.grid-template-columns') get gridColumns() {
-		return this.gridLayout.columns === 'auto'
-			? 'auto'
-			: `repeat(${this.gridLayout.columns}, 1fr)`;
-	}
-	/**
-	 * Bind the rows to the host to prevent a wrapper in the template.
-	 */
-	@HostBinding('style.grid-template-rows') get gridRows() {
-		return this.gridLayout.rows === 'auto' ? 'auto' : `repeat(${this.gridLayout.rows}, 1fr)`;
-	}
-	/**
-	 * Bind the rows to the host to prevent a wrapper in the template.
-	 */
-	@HostBinding('style.grid-auto-flow') get getOrientation() {
-		return this.defaultOrientation;
-	}
-
 	/**
 	 * A list of the configurable item templates.
 	 */
@@ -81,7 +79,7 @@ export class NgxConfigurableLayoutComponent
 	// TODO: use the ngx-forms formAccessor instead of copying its internal way of working
 	private readonly destroyedSubject: Subject<void> = new Subject();
 	private readonly destroyed$: Observable<void> = this.destroyedSubject.asObservable();
-	public readonly form: FormControl<string[]> = new FormControl<string[]>([]);
+	public readonly form: FormControl<string[][]> = new FormControl<string[][]>([]);
 
 	/**
 	 * A record of the templates with the unique item `key` and its `templateRef`.
@@ -95,7 +93,7 @@ export class NgxConfigurableLayoutComponent
 	 * Providing both a `control` and the `keys` input will result in the control overriding
 	 * the input.
 	 */
-	@Input() public set keys(keys: string[]) {
+	@Input() public set keys(keys: string[][]) {
 		// Wouter: If no keys are provided, we prevent the patching of the control.
 		if (!Boolean(keys)) {
 			return;
@@ -103,19 +101,20 @@ export class NgxConfigurableLayoutComponent
 		// Wouter: Patch the provided keys onto the control.
 		this.form.patchValue(keys, { emitEvent: false });
 	}
+
 	/**
-	 * The properties to define the grid in which the items should be displayed. The default
-	 * config is `auto` rows and `1` columns.
+	 * Determines how much space each item takes in the row. By default, this is 'fill'
+	 *
+	 * fill - Will make the items take up the available space
+	 * fit-content - Will make the items take up the space of the provided template
+	 * equal - Will make the items take up equal amount of space throughout the grid
 	 */
-	@Input() public gridLayout: NgxGridLayoutOptions = {
-		columns: 'auto',
-		rows: 'auto',
-	};
+	@Input() public itemSize: NgxConfigurableLayoutItemSizeOption = 'fill';
+
 	/**
-	 * Define whether the auto flow should be vertical (row) or horizontal (column).
-	 * It defaults to vertical (row).
+	 * Whether drag and drop is enabled for the grid
 	 */
-	@Input() public defaultOrientation: NgxDefaultLayoutOrientation = 'row';
+	@Input() public allowDragAndDrop: boolean = false;
 
 	// Lifecycle methods
 	// ==============================
@@ -142,14 +141,6 @@ export class NgxConfigurableLayoutComponent
 		}
 	}
 
-	public ngOnChanges(changes: SimpleChanges): void {
-		// Wouter: If the gridLayout is provided, we remove the grid auto flow.
-		if (changes.gridLayout) {
-			this.defaultOrientation = undefined;
-			this.getOrientation;
-		}
-	}
-
 	public ngOnDestroy(): void {
 		this.destroyedSubject.next();
 		this.destroyedSubject.complete();
@@ -161,7 +152,7 @@ export class NgxConfigurableLayoutComponent
 	onChanged: Function = () => {};
 	onTouched: Function = () => {};
 
-	writeValue(value: string[]): void {
+	writeValue(value: string[][]): void {
 		this.form.setValue(value || [], { emitEvent: false });
 	}
 	registerOnChange(fn: any): void {
@@ -174,6 +165,35 @@ export class NgxConfigurableLayoutComponent
 		isDisabled
 			? this.form.disable({ emitEvent: false })
 			: this.form.enable({ emitEvent: false });
+	}
+
+	/**
+	 * Drag and drop an element in the grid
+	 *
+	 * @param {CdkDragDrop<string[]>} event - The grid element
+	 * @memberof NgxConfigurableLayoutComponent
+	 */
+	public drop(event: CdkDragDrop<string[]>) {
+		// Iben: Fetch the arrays we need to update
+		const startArrayIndex = parseInt(event.previousContainer.id.split('ngx-layout-row-')[1]);
+		const endArrayIndex = parseInt(event.container.id.split('ngx-layout-row-')[1]);
+		const formData = [...this.form.value];
+		const startArray = formData[startArrayIndex];
+		const endArray = formData[endArrayIndex];
+
+		// Iben: If the drag and drop is within the same row, we move
+		if (event.previousContainer === event.container) {
+			moveItemInArray(endArray, event.previousIndex, event.currentIndex);
+		} else {
+			// Iben: If the drag and drop is over multiple rows, we transfer
+			transferArrayItem(startArray, endArray, event.previousIndex, event.currentIndex);
+			formData[startArrayIndex] = startArray;
+		}
+
+		formData[endArrayIndex] = endArray;
+
+		// Iben: Update the form value
+		this.form.setValue(formData);
 	}
 
 	// Component internal working

@@ -1,3 +1,28 @@
 :host {
-	display: grid;
+	.ngx-layout-grid {
+		display: grid;
+		grid-auto-flow: row;
+	}
+
+	.ngx-layout-row {
+		display: grid;
+		grid-auto-flow: column;
+	}
+
+	.ngx-layout-item {
+		list-style-type: none;
+		&.cdk-drag {
+			&:not(.cdk-drag-disabled) {
+				cursor: move;
+			}
+		}
+	}
+
+	// Iben: This is a default styling provided by CDK, this can be overwritten by the end user.
+	.ngx-layout-drag-placeholder {
+		background: #ccc;
+		border: dotted 3px #999;
+		min-height: 60px;
+		transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+	}
 }
