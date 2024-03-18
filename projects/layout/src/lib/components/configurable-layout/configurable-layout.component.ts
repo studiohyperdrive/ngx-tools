@@ -149,8 +149,8 @@ export class NgxConfigurableLayoutComponent
 	// Component methods
 	// ==============================
 	// TODO: use the ngx-forms formAccessor instead of copying its internal way of working
-	onChanged: Function = () => {};
-	onTouched: Function = () => {};
+	private onChanged: Function = () => {};
+	private onTouched: Function = () => {};
 
 	writeValue(value: string[][]): void {
 		this.form.setValue(value || [], { emitEvent: false });

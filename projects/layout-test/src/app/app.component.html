@@ -4,7 +4,7 @@
 		This is a test application to use during development of the package. For examples of the
 		entire package, we refer to the
 		<a
-			href="https://stackblitz.com/edit/stackblitz-starters-am9x39?file=src%2Fapp.html"
+			href="https://stackblitz.com/edit/stackblitz-starters-psubyj?file=src%2Fmain.ts"
 			target="_blank"
 			>StackBlitz example</a
 		>
@@ -15,7 +15,10 @@
 
 <ngx-configurable-layout
 	[allowDragAndDrop]="true"
-	[keys]="[['1', '2'], ['a', 'b']]"
+	[keys]="[
+		['1', '2'],
+		['a', 'b']
+	]"
 >
 	<ngx-configurable-layout-item key="a">
 		<p class="layout-items large">Form key a</p>
@@ -33,4 +36,3 @@
 		<p class="layout-items">Input key 2</p>
 	</ngx-configurable-layout-item>
 </ngx-configurable-layout>
-
