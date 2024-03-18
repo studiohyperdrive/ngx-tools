@@ -15,6 +15,7 @@ export const pluckOr = <ValueType, PropertyType>(
 	}
 
 	// Iben: Map the value to the provided
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	return map<ValueType, PropertyType>((value: any) => {
 		// Iben: Return an empty value if the value is undefined
 		if (!value) {

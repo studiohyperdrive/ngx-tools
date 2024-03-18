@@ -8,22 +8,22 @@ import { EMPTY, of, throwError, catchError } from 'rxjs';
  * @param callback
  * @param handle - How the error has to be handled after catching it. Options are 'throw', 'continue' or 'complete'. Defaults to 'throw'.
  */
-// eslint-disable-next-line @typescript-eslint/ban-types
 export function catchAndCallThrough<Error = unknown>(
-  callback: Function,
-  handle: 'throw' | 'continue' | 'complete' = 'continue'
+	// eslint-disable-next-line @typescript-eslint/ban-types
+	callback: Function,
+	handle: 'throw' | 'continue' | 'complete' = 'continue'
 ): ReturnType<typeof catchError> {
-  return catchError((error: Error) => {
-    callback(error);
+	return catchError((error: Error) => {
+		callback(error);
 
-    if (handle === 'throw') {
-      return throwError(error);
-    }
+		if (handle === 'throw') {
+			return throwError(error);
+		}
 
-    if (handle === 'complete') {
-      return EMPTY;
-    }
+		if (handle === 'complete') {
+			return EMPTY;
+		}
 
-    return of(error);
-  });
+		return of(error);
+	});
 }
