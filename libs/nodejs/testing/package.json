@@ -1,10 +1,10 @@
 {
 	"name": "@studiohyperdrive/testing",
 	"license": "MIT",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"homepage": "https://github.com/studiohyperdrive/tools/tree/main/packages/testing/README.md",
 	"repository": "https://github.com/studiohyperdrive/tools/tree/main/packages/testing",
-	"dependencies": {
+	"devDependencies": {
 		"vite": "~4.3.9",
 		"@nx/vite": "16.6.0",
 		"vite-plugin-dts": "~2.3.0",
