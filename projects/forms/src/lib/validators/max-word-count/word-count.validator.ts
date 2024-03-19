@@ -21,11 +21,23 @@ export const WordCountValidator = ({ min, max }: { min?: number; max?: number })
 		const wordCount = control.value.trim().split(' ').length;
 
 		if (typeof min === 'number' && wordCount <= min) {
-			return { minWordCountNotReached: { valid: false } };
+			return {
+				minWordCountNotReached: {
+					wordCount,
+					min,
+					deficit: min - wordCount,
+				},
+			};
 		}
 
 		if (typeof max === 'number' && wordCount > max) {
-			return { maxWordCountReached: { valid: false } };
+			return {
+				maxWordCountReached: {
+					wordCount,
+					max,
+					surplus: wordCount - max,
+				},
+			};
 		}
 
 		return null;
