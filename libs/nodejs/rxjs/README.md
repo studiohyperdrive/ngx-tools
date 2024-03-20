@@ -15,9 +15,20 @@ An operator that wraps around the default `catchError` and returns a new observa
 [Full documentation.](./docs/operators/catch-and-call-through/catch-and-call-through.operator.md)
 
 ### combineBoolean
-An operator that wraps around the default `combineLatest` and returns a boolean to indicate that all streams have values
+An operator that wraps around the default `combineLatest` and returns a boolean to indicate that all streams have values.
 
 [Full documentation.](./docs/operators/combine-boolean/combine-boolean.operator.md)
+
+
+### populate
+An operator that will populate provided values in an observable, if the provided values are empty or match with a populateIf function.
+
+[Full documentation.](./docs/operators/populate/populate.operator.md)
+
+### fetchIf
+An operator that will return a value from an observable source when present or fetch it when not.
+
+[Full documentation.](./docs/operators/fetch-if/fetch-if.operator.md)
 
 ### pluck
 An operator that is a custom implementation of the RxJS version, the original one is deprecated in favour of map.
