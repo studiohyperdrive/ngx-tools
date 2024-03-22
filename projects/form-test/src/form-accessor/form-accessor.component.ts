@@ -1,12 +1,7 @@
-import { ChangeDetectionStrategy, Component, forwardRef } from '@angular/core';
-import {
-	FormControl,
-	FormGroup,
-	NG_VALIDATORS,
-	NG_VALUE_ACCESSOR,
-	Validators,
-} from '@angular/forms';
-import { BaseFormAccessor, FormAccessor } from 'forms';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormAccessor } from 'forms';
+import { createAccessorProviders } from 'projects/forms/src/public-api';
 
 @Component({
 	selector: 'app-form-accessor',
@@ -23,22 +18,7 @@ import { BaseFormAccessor, FormAccessor } from 'forms';
 		<p>Dates</p>
 		<app-depended-dates formControlName="dates" />
 	</ng-container>`,
-	providers: [
-		{
-			provide: NG_VALUE_ACCESSOR,
-			useExisting: forwardRef(() => FormAccessorComponent),
-			multi: true,
-		},
-		{
-			provide: NG_VALIDATORS,
-			useExisting: forwardRef(() => FormAccessorComponent),
-			multi: true,
-		},
-		{
-			provide: BaseFormAccessor,
-			useExisting: forwardRef(() => FormAccessorComponent),
-		},
-	],
+	providers: [createAccessorProviders(FormAccessorComponent)],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormAccessorComponent extends FormAccessor<any, any> {

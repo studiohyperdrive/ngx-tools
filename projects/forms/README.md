@@ -118,6 +118,14 @@ A special case of the FormAccessor, the DataFormAccessor allows you to provide a
 
 Given that the DataFormAccessor is a special case of the regular FormAccessor, all earlier mentioned methods and @Inputs are still applicable. 
 
+### createAccessorProviders
+
+In order to make a component accessible through an `AbstractControl`, the `NG_VALUE_ACCESSOR` needs to be provided to the component. In the same vain, in order to make the validation work, the `NG_VALIDATORS` needs to be provided.
+
+To simplify this process, `ngx-forms` provides a helpful util function called `createAccessorProviders`. This will automatically generate all the necessary providers for the `ngx-forms` workflow.
+
+In the examples section you will find out how this is implemented.
+
 ### Examples
 
 #### Simple example
@@ -136,18 +144,7 @@ interface UserNameForm {
 @Component({
 	selector: 'user-name-form',
 	templateUrl: './user-name.component.html',
-	providers: [
-		{
-			provide: NG_VALUE_ACCESSOR,
-			useExisting: forwardRef(() => UserNameFormComponent),
-			multi: true
-		},
-		{
-			provide: NG_VALIDATORS,
-			useExisting: forwardRef(() => UserNameFormComponent),
-			multi: true
-		}
-	]
+	providers: [createAccessorProviders(UserNameFormComponent)]
 })
 export class UserNameFormComponent extends FormAccessor<UserName, FormGroup<UserNameForm>> implements OnChanges {
 	constructor(readonly cdRef: ChangeDetectorRef, private readonly formBuilder: FormBuilder) {
@@ -179,18 +176,7 @@ interface UserNameForm {
 @Component({
 	selector: 'user-name-form',
 	templateUrl: './user-name.component.html',
-	providers: [
-		{
-			provide: NG_VALUE_ACCESSOR,
-			useExisting: forwardRef(() => UserNameFormComponent),
-			multi: true
-		},
-		{
-			provide: NG_VALIDATORS,
-			useExisting: forwardRef(() => UserNameFormComponent),
-			multi: true
-		}
-	]
+	providers: [createAccessorProviders(UserNameFormComponent)]
 })
 export class UserNameFormComponent extends FormAccessor<string, FormGroup<UserNameForm>, UserName> implements OnChanges {
 	constructor(readonly cdRef: ChangeDetectorRef, private readonly formBuilder: FormBuilder) {
@@ -232,18 +218,7 @@ interface UserNameForm {
 @Component({
 	selector: 'user-name-form',
 	templateUrl: './user-name.component.html',
-	providers: [
-		{
-			provide: NG_VALUE_ACCESSOR,
-			useExisting: forwardRef(() => UserNameFormComponent),
-			multi: true
-		},
-		{
-			provide: NG_VALIDATORS,
-			useExisting: forwardRef(() => UserNameFormComponent),
-			multi: true
-		}
-	]
+	providers: [createAccessorProviders(UserNameFormComponent)]
 })
 export class UserNameFormComponent extends FormAccessor<UserName, FormGroup<UserNameForm>> implements OnChanges {
 	constructor(readonly cdRef: ChangeDetectorRef, private readonly formBuilder: FormBuilder) {
@@ -278,18 +253,7 @@ interface SurveyForm {
 @Component({
 	selector: 'survey-form',
 	templateUrl: './survey.component.html',
-	providers: [
-		{
-			provide: NG_VALUE_ACCESSOR,
-			useExisting: forwardRef(() => SurveyFormComponent),
-			multi: true
-		},
-		{
-			provide: NG_VALIDATORS,
-			useExisting: forwardRef(() => SurveyFormComponent),
-			multi: true
-		}
-	]
+	providers: [createAccessorProviders(SurveyFormComponent)]
 })
 export class SurveyFormComponent extends DataFormAccessor<SurveyQuestion[], Record<string, string>, FormGroup<SurveyForm>> implements OnChanges {
 	constructor(readonly cdRef: ChangeDetectorRef, private readonly formBuilder: FormBuilder) {
@@ -316,6 +280,8 @@ export class SurveyFormComponent extends DataFormAccessor<SurveyQuestion[], Reco
 In order to mark all controls of several (nested) `FormAccessors` as touched or dirty or update the value and validity, we use the `FormAccessorContainer`. 
 
 ### BaseFormAccessor
+
+If you're using the `createAccessorProviders` util, this step is not needed. If you provide your accessors manually, this next step is important when you work with a `FormAccessorContainer`.
 
 In order to reach all FormAccessors and their children, we need to provide the `BaseFormAccessor` value in the providers array of the accessors.
 
