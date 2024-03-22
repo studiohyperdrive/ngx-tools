@@ -1,4 +1,9 @@
-<div cdkDropListGroup class="ngx-layout-grid">
+<div
+	cdkDropListGroup
+	class="ngx-layout-grid"
+	[class.ngx-layout-equal-size]="itemSize === 'equal'"
+	[style.row-gap]="rowGap"
+>
 	<ul
 		*ngFor="let row of form.value; let index = index"
 		cdkDropList
@@ -7,6 +12,7 @@
 		[cdkDropListDisabled]="!allowDragAndDrop && !form.disabled"
 		[id]="'ngx-layout-row-' + index"
 		[ngStyle]="form.value | ngxConfigurableLayoutItemSize : itemSize"
+		[style.column-gap]="columnGap"
 		(cdkDropListDropped)="drop($event)"
 	>
 		<ng-container *ngFor="let key of row">
