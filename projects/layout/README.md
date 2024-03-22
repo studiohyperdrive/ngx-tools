@@ -59,16 +59,22 @@ By using the option `fill`, which is the default option, the components will be 
 
 By using the option `fit-content`, the size of the components themselves will define how much space they take up.
 
-By using the option `equal`, all items in the entire grid will take up an equal amount of space.
+By using the option `equal`, all items in the entire grid will take up an equal amount of space. This also applies to the height of the elements, but this will require you to set the height of your items to `height:100%` for this to take effect.
 
-#### 2.1.3 Drag and drop
+#### 2.1.3 Gaps
 
-`ngx-layout` provides drag and drop through the Angular CDK implementation. By default, the drag and drop functionality is disabled, and can be enabled through `alowDragAndDrop`.
+In order to create spacing between items in the layout, `ngx-configurable-layout` provides two inputs, `columnGap` and `rowGap`.
+
+Both properties expect a CSS based amount (in px, rem, %, etc.) and are both optional. This is the preferred way of adding spacing between your items, as using margins can sometimes create unexpected results due to the CSS Grid based implementation. 
+
+#### 2.1.4 Drag and drop
+
+`ngx-configurable-layout` provides drag and drop through the Angular CDK implementation. By default, the drag and drop functionality is disabled, and can be enabled through `alowDragAndDrop`.
 
 By default, the package uses the demo styling provided by the Angular CDK team. This can be overwritten by custom styling, using the classes provided in the section `Styling`.
 
-#### 2.1.4 Styling
-By default, `ngx-layout` always provides minimal styling. Several classes are provided to further style the grid as needed.
+#### 2.1.5 Styling
+By default, `ngx-configurable-layout` always provides minimal styling. Several classes are provided to further style the grid as needed.
 
 | Class | |
 |--|--|

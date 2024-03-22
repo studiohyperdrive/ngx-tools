@@ -112,7 +112,21 @@ export class NgxConfigurableLayoutComponent
 	@Input() public itemSize: NgxConfigurableLayoutItemSizeOption = 'fill';
 
 	/**
-	 * Whether drag and drop is enabled for the grid
+	 * An optional row gap we can provide to create a gap between the rows of the layout.
+	 *
+	 * This input requires an amount in px, rem, %, etc.
+	 */
+	@Input() public rowGap: string;
+
+	/**
+	 * An optional column gap we can provide to create a gap between the columns of the layout.
+	 *
+	 * This input requires an amount in px, rem, %, etc.
+	 */
+	@Input() public columnGap: string;
+
+	/**
+	 * Whether drag and drop is enabled for the layout.
 	 */
 	@Input() public allowDragAndDrop: boolean = false;
 
