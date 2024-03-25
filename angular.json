@@ -263,15 +263,6 @@
 						"buildTarget": "i18n-test:build"
 					}
 				},
-				"test": {
-					"builder": "@angular-devkit/build-angular:karma",
-					"options": {
-						"main": "projects/i18n-test/src/test.ts",
-						"tsConfig": "projects/i18n-test/tsconfig.spec.json",
-						"karmaConfig": "projects/i18n-test/karma.conf.js",
-						"watch": false
-					}
-				},
 				"lint": {
 					"builder": "@angular-eslint/builder:lint",
 					"options": {
@@ -353,15 +344,6 @@
 					"builder": "@angular-devkit/build-angular:extract-i18n",
 					"options": {
 						"buildTarget": "table-test:build"
-					}
-				},
-				"test": {
-					"builder": "@angular-devkit/build-angular:karma",
-					"options": {
-						"main": "projects/table-test/src/test.ts",
-						"tsConfig": "projects/table-test/tsconfig.spec.json",
-						"karmaConfig": "projects/table-test/karma.conf.js",
-						"watch": false
 					}
 				},
 				"lint": {
@@ -566,8 +548,10 @@
 					"builder": "@angular-devkit/build-angular:karma",
 					"options": {
 						"tsConfig": "projects/layout/tsconfig.spec.json",
-						"polyfills": ["zone.js", "zone.js/testing"]
-					}
+						"polyfills": ["zone.js", "zone.js/testing"],
+            "karmaConfig": "projects/layout/karma.conf.js",
+            "watch": false
+          }
 				},
 				"lint": {
 					"builder": "@angular-eslint/builder:lint",
@@ -647,15 +631,6 @@
 					"builder": "@angular-devkit/build-angular:extract-i18n",
 					"options": {
 						"buildTarget": "layout-test:build"
-					}
-				},
-				"test": {
-					"builder": "@angular-devkit/build-angular:karma",
-					"options": {
-						"main": "projects/layout-test/src/test.ts",
-						"tsConfig": "projects/layout-test/tsconfig.spec.json",
-						"karmaConfig": "projects/layout-test/karma.conf.js",
-						"watch": false
 					}
 				},
 				"lint": {
