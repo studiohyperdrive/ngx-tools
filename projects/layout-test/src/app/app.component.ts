@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import {
 	NgxConfigurableLayoutComponent,
+	NgxConfigurableLayoutGrid,
 	NgxConfigurableLayoutItemComponent,
 } from 'projects/layout/src/public-api';
 
@@ -18,4 +19,17 @@ import {
 		ReactiveFormsModule,
 	],
 })
-export class AppComponent {}
+export class AppComponent {
+	public control: FormControl<NgxConfigurableLayoutGrid> = new FormControl([
+		[
+			{ key: '1', isActive: true },
+			{ key: '2', isActive: true },
+		],
+		[
+			{ key: 'a', isActive: true },
+			{ key: 'b', isActive: false },
+		],
+	]);
+	public isActive: FormControl<boolean> = new FormControl(false);
+	public dragAndDrop: FormControl<boolean> = new FormControl(false);
+}
