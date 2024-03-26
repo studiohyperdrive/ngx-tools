@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { NgxConfigurableLayoutItemSizeOption } from '../../types';
+import { NgxConfigurableLayoutItemEntity, NgxConfigurableLayoutItemSizeOption } from '../../types';
 
 @Pipe({
 	name: 'ngxConfigurableLayoutItemSize',
@@ -13,7 +13,7 @@ export class NgxConfigurableLayoutItemSizePipe implements PipeTransform {
 	 * @param itemSize - The itemSize used by the layout
 	 */
 	transform(
-		keys: string[][],
+		keys: NgxConfigurableLayoutItemEntity[][],
 		itemSize: NgxConfigurableLayoutItemSizeOption
 	): Record<string, any> {
 		// Iben: If non data source is provided or if the itemSize is 'fill',

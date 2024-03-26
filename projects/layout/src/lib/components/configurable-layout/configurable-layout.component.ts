@@ -1,18 +1,27 @@
 import {
 	AfterContentChecked,
 	Component,
+	ContentChild,
 	ContentChildren,
 	Input,
+	OnChanges,
 	OnDestroy,
 	OnInit,
 	QueryList,
+	SimpleChanges,
 	TemplateRef,
 	WritableSignal,
 	forwardRef,
 	signal,
 } from '@angular/core';
-import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { NgIf, NgFor, NgTemplateOutlet, NgStyle } from '@angular/common';
+import {
+	ControlValueAccessor,
+	FormControl,
+	FormRecord,
+	NG_VALUE_ACCESSOR,
+	ReactiveFormsModule,
+} from '@angular/forms';
+import { NgIf, NgFor, NgTemplateOutlet, NgStyle, CommonModule } from '@angular/common';
 
 import {
 	CdkDragDrop,
@@ -24,9 +33,13 @@ import {
 	CdkDragPlaceholder,
 } from '@angular/cdk/drag-drop';
 
-import { Observable, Subject, takeUntil, tap } from 'rxjs';
+import { Observable, Subject, switchMap, take, takeUntil, tap } from 'rxjs';
 import { NgxConfigurableLayoutItemComponent } from '../configurable-layout-item/configurable-layout-item.component';
-import { NgxConfigurableLayoutItemSizeOption } from '../../types';
+import {
+	NgxConfigurableLayoutGrid,
+	NgxConfigurableLayoutItemSizeOption,
+	NgxConfigurableLayoutType,
+} from '../../types';
 import { NgxConfigurableLayoutItemSizePipe } from '../../pipes';
 
 /**
@@ -54,6 +67,8 @@ import { NgxConfigurableLayoutItemSizePipe } from '../../pipes';
 		CdkDrag,
 		CdkDragPlaceholder,
 		NgxConfigurableLayoutItemSizePipe,
+		ReactiveFormsModule,
+		CommonModule,
 	],
 	providers: [
 		{
@@ -64,13 +79,23 @@ import { NgxConfigurableLayoutItemSizePipe } from '../../pipes';
 	],
 })
 export class NgxConfigurableLayoutComponent
-	implements ControlValueAccessor, OnInit, AfterContentChecked, OnDestroy
+	implements ControlValueAccessor, OnInit, AfterContentChecked, OnDestroy, OnChanges
 {
+	/**
+	 * A subject to mark the isActiveFormRecord as initialized
+	 */
+	private isActiveFormRecordInitializedSubject: Subject<void> = new Subject();
+
 	/**
 	 * A list of the configurable item templates.
 	 */
 	@ContentChildren(NgxConfigurableLayoutItemComponent)
 	public configurableItemTemplates: QueryList<NgxConfigurableLayoutItemComponent>;
+
+	/**
+	 * An optional template to overwrite the default checkbox
+	 */
+	@ContentChild('checkboxTmpl') public readonly checkboxTemplate?: TemplateRef<any>;
 
 	// This component uses the internal implementation of the `ngx-forms` library.
 	// Until we have moved to an NX workspace setup, we are unable to install the required
@@ -79,7 +104,9 @@ export class NgxConfigurableLayoutComponent
 	// TODO: use the ngx-forms formAccessor instead of copying its internal way of working
 	private readonly destroyedSubject: Subject<void> = new Subject();
 	private readonly destroyed$: Observable<void> = this.destroyedSubject.asObservable();
-	public readonly form: FormControl<string[][]> = new FormControl<string[][]>([]);
+	public readonly form: FormControl<NgxConfigurableLayoutGrid> =
+		new FormControl<NgxConfigurableLayoutGrid>([]);
+	public readonly isActiveFormRecord: FormRecord<FormControl<boolean>> = new FormRecord({});
 
 	/**
 	 * A record of the templates with the unique item `key` and its `templateRef`.
@@ -87,20 +114,46 @@ export class NgxConfigurableLayoutComponent
 	public itemTemplateRecord: WritableSignal<Record<string, TemplateRef<any>>> = signal({});
 
 	/**
+	 * Whether the layout is static or editable.
+	 *
+	 * If the layout is `static`, a two dimensional array of key strings needs to be provided to the layout through the `keys` input.
+	 * If the layout is `editable`, a form control needs to be provided to the layout requiring a two dimensional array with {key, isActive} pairs.
+	 */
+	@Input({ required: true }) public layoutType: NgxConfigurableLayoutType;
+
+	/**
 	 * The keys will determine the order of the `ngx-configurable-layout-item` layout items.
 	 *
-	 * It is not necessary to provide this input when using a formControl.
-	 * Providing both a `control` and the `keys` input will result in the control overriding
-	 * the input.
+	 * This property can only be used when the layoutType  is set to `static`.
 	 */
 	@Input() public set keys(keys: string[][]) {
 		// Wouter: If no keys are provided, we prevent the patching of the control.
 		if (!Boolean(keys)) {
 			return;
 		}
+
 		// Wouter: Patch the provided keys onto the control.
-		this.form.patchValue(keys, { emitEvent: false });
+		this.form.patchValue(
+			[...keys].map((row) => {
+				return [...row].map((key) => ({ key, isActive: true }));
+			}),
+			{ emitEvent: false }
+		);
 	}
+
+	/**
+	 * Whether the inactive items should be visible in the layout.
+	 *
+	 * This property can only be used when the layoutType is set to `editable`.
+	 */
+	@Input() public showInactive: boolean = undefined;
+
+	/**
+	 * Whether drag and drop is enabled for the layout.
+	 *
+	 * This property can only be used when the layoutType is set to `editable`
+	 */
+	@Input() public allowDragAndDrop: boolean = undefined;
 
 	/**
 	 * Determines how much space each item takes in the row. By default, this is 'fill'
@@ -124,15 +177,10 @@ export class NgxConfigurableLayoutComponent
 	 * This input requires an amount in px, rem, %, etc.
 	 */
 	@Input() public columnGap: string;
-
-	/**
-	 * Whether drag and drop is enabled for the layout.
-	 */
-	@Input() public allowDragAndDrop: boolean = false;
-
 	// Lifecycle methods
 	// ==============================
 	public ngOnInit(): void {
+		// Iben: Listen to the form
 		this.form.valueChanges
 			.pipe(
 				tap(() => {
@@ -142,17 +190,66 @@ export class NgxConfigurableLayoutComponent
 				takeUntil(this.destroyed$)
 			)
 			.subscribe();
+
+		// Iben: Listen to the valueChanges of the isActiveFormRecord and update accordingly
+		this.isActiveFormRecordInitializedSubject
+			.pipe(
+				take(1),
+				switchMap(() => this.isActiveFormRecord.valueChanges),
+				tap(() => {
+					const result = [];
+
+					// Iben: Loop over all keys and update the new isActive
+					this.form.value.forEach((row) => {
+						result.push(
+							[...row].map(({ key }) => {
+								return {
+									key,
+									isActive: this.isActiveFormRecord.value[key],
+								};
+							})
+						);
+					});
+
+					// Iben: Update the parent form
+					this.form.setValue(result);
+				}),
+				takeUntil(this.destroyed$)
+			)
+			.subscribe();
+	}
+
+	public ngOnChanges(changes: SimpleChanges) {
+		if ((changes.layoutType?.currentValue || this.layoutType) === 'static') {
+			// Iben: If no keys are provided, we return an error, as without it, there nothing will be rendered and the layout will not work.
+			if (!(changes.keys?.currentValue || this.keys)) {
+				console.error(
+					'NgxLayout: The configurable layout was set to "static" but no 2D array of keys was provided. Provide an 2D array of keys to visualize the items. For more information, check the readme.'
+				);
+			}
+
+			// Iben: If either of the properties was set, we simply warn the user that these will have no effect as this will not influence the setup.
+			if (
+				(changes.allowDragAndDrop?.currentValue || this.allowDragAndDrop) !== undefined ||
+				(changes.showInactive?.currentValue || this.showInactive) !== undefined
+			) {
+				console.warn(
+					'NgxLayout: The configurable layout was set to "static". Properties "allowDragAndDrop" and "showInactive" will have no effect. For more information, check the readme.'
+				);
+			}
+		} else {
+			// Iben: If keys are provided, there's possible inconsistent behavior. We return an error so the user is notified.
+			if (changes.keys?.currentValue || this.keys) {
+				console.error(
+					'NgxLayout: The configurable layout was set to "editable". The property "keys" will have cause inconsistent behavior. For more information, check the readme.'
+				);
+			}
+		}
 	}
 
 	public ngAfterContentChecked(): void {
 		// Iben: Run with content check so that we can dynamically add templates/columns
 		this.handleItemTemplates();
-
-		if (!this.form.value.length) {
-			console.warn(
-				'NgxLayout: Neither a formControl nor a keys input was provided. Therefore no items can be displayed.'
-			);
-		}
 	}
 
 	public ngOnDestroy(): void {
@@ -166,8 +263,19 @@ export class NgxConfigurableLayoutComponent
 	private onChanged: Function = () => {};
 	private onTouched: Function = () => {};
 
-	writeValue(value: string[][]): void {
+	writeValue(value: NgxConfigurableLayoutGrid): void {
+		// Iben: Update the inner form.
 		this.form.setValue(value || [], { emitEvent: false });
+
+		// Iben: Setup the isActive form
+		(value || []).forEach((row) => {
+			row.forEach(({ key, isActive }) => {
+				this.isActiveFormRecord.setControl(key, new FormControl(isActive));
+			});
+		});
+
+		// Iben: Notify that the form has been initialized
+		this.isActiveFormRecordInitializedSubject.next();
 	}
 	registerOnChange(fn: any): void {
 		this.onChanged = fn;
