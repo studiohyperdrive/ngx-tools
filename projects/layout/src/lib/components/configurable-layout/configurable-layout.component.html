@@ -12,7 +12,7 @@
 		cdkDropListOrientation="horizontal"
 		[cdkDropListDisabled]="!allowDragAndDrop && !form.disabled"
 		[id]="'ngx-layout-row-' + index"
-		[ngStyle]="form.value | ngxConfigurableLayoutItemSize : itemSize"
+		[ngStyle]="{keys: form.value, showInactive} | ngxConfigurableLayoutItemSize : itemSize"
 		[style.column-gap]="columnGap"
 		(cdkDropListDropped)="drop($event)"
 	>

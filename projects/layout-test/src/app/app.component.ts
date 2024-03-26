@@ -24,11 +24,9 @@ export class AppComponent {
 		[
 			{ key: '1', isActive: true },
 			{ key: '2', isActive: true },
+			{ key: 'a', isActive: false },
 		],
-		[
-			{ key: 'a', isActive: true },
-			{ key: 'b', isActive: false },
-		],
+		[{ key: 'b', isActive: true }],
 	]);
 	public isActive: FormControl<boolean> = new FormControl(false);
 	public dragAndDrop: FormControl<boolean> = new FormControl(false);

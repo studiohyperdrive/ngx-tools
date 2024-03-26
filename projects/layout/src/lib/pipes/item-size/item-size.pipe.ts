@@ -10,10 +10,14 @@ export class NgxConfigurableLayoutItemSizePipe implements PipeTransform {
 	 * Returns the needed styling for the ngx-configurable-layout component
 	 *
 	 * @param keys - The keys used in the grid
+	 * @param showInactive - Whether we want to show inactive items
 	 * @param itemSize - The itemSize used by the layout
 	 */
 	transform(
-		keys: NgxConfigurableLayoutItemEntity[][],
+		{
+			keys,
+			showInactive,
+		}: { keys: NgxConfigurableLayoutItemEntity[][]; showInactive: boolean },
 		itemSize: NgxConfigurableLayoutItemSizeOption
 	): Record<string, any> {
 		// Iben: If non data source is provided or if the itemSize is 'fill',
@@ -31,7 +35,17 @@ export class NgxConfigurableLayoutItemSizePipe implements PipeTransform {
 
 		// Iben: If itemSize is 'equal', all items in the grid need to be of equal size.
 		// For this, we grab the row with the largest amount of items, which will define the amount of columns
-		const longestRow = Math.max(...[...keys].map((item) => item.length));
+		const longestRow = Math.max(
+			...[...keys].map((item) => {
+				return item.filter((key) => {
+					if (!showInactive) {
+						return key.isActive;
+					}
+
+					return true;
+				}).length;
+			})
+		);
 
 		return {
 			'grid-template-columns': `repeat(${longestRow}, minmax(0, 1fr))`,
