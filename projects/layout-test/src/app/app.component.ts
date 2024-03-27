@@ -20,14 +20,22 @@ import {
 	],
 })
 export class AppComponent {
-	public control: FormControl<NgxConfigurableLayoutGrid> = new FormControl([
-		[
-			{ key: '1', isActive: true },
-			{ key: '2', isActive: true },
-			{ key: 'a', isActive: false },
-		],
-		[{ key: 'b', isActive: true }],
-	]);
+	public control: FormControl<NgxConfigurableLayoutGrid> = new FormControl([]);
 	public isActive: FormControl<boolean> = new FormControl(false);
 	public dragAndDrop: FormControl<boolean> = new FormControl(false);
+
+	ngOnInit() {
+		this.control.valueChanges.subscribe(console.log);
+
+		setTimeout(() => {
+			this.control.patchValue([
+				[
+					{ key: '1', isActive: true },
+					{ key: '2', isActive: true },
+					{ key: 'a', isActive: false },
+				],
+				[{ key: 'b', isActive: true }],
+			]);
+		}, 5000);
+	}
 }
