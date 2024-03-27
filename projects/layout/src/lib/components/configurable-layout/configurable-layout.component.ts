@@ -33,7 +33,16 @@ import {
 	CdkDragPlaceholder,
 } from '@angular/cdk/drag-drop';
 
-import { Observable, Subject, switchMap, take, takeUntil, tap } from 'rxjs';
+import {
+	BehaviorSubject,
+	Observable,
+	Subject,
+	filter,
+	switchMap,
+	take,
+	takeUntil,
+	tap,
+} from 'rxjs';
 import { NgxConfigurableLayoutItemComponent } from '../configurable-layout-item/configurable-layout-item.component';
 import {
 	NgxConfigurableLayoutGrid,
@@ -84,13 +93,14 @@ export class NgxConfigurableLayoutComponent
 	/**
 	 * A subject to mark the isActiveFormRecord as initialized
 	 */
-	private isActiveFormRecordInitializedSubject: Subject<void> = new Subject();
+	private readonly isActiveFormRecordInitializedSubject: BehaviorSubject<boolean> =
+		new BehaviorSubject(false);
 
 	/**
 	 * A list of the configurable item templates.
 	 */
 	@ContentChildren(NgxConfigurableLayoutItemComponent)
-	public configurableItemTemplates: QueryList<NgxConfigurableLayoutItemComponent>;
+	public readonly configurableItemTemplates: QueryList<NgxConfigurableLayoutItemComponent>;
 
 	/**
 	 * An optional template to overwrite the default checkbox
@@ -194,6 +204,7 @@ export class NgxConfigurableLayoutComponent
 		// Iben: Listen to the valueChanges of the isActiveFormRecord and update accordingly
 		this.isActiveFormRecordInitializedSubject
 			.pipe(
+				filter(Boolean),
 				take(1),
 				switchMap(() => this.isActiveFormRecord.valueChanges),
 				tap(() => {
@@ -270,13 +281,18 @@ export class NgxConfigurableLayoutComponent
 		// Iben: Setup the isActive form
 		(value || []).forEach((row) => {
 			row.forEach(({ key, isActive }) => {
-				this.isActiveFormRecord.setControl(key, new FormControl(isActive));
+				this.isActiveFormRecord.setControl(key, new FormControl(isActive), {
+					emitEvent: false,
+				});
 			});
 		});
 
 		// Iben: Notify that the form has been initialized
-		this.isActiveFormRecordInitializedSubject.next();
+		if (!this.isActiveFormRecordInitializedSubject.getValue()) {
+			this.isActiveFormRecordInitializedSubject.next(true);
+		}
 	}
+
 	registerOnChange(fn: any): void {
 		this.onChanged = fn;
 	}
