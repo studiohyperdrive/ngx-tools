@@ -18,6 +18,9 @@ A FormGroup validator that checks whether either all controls in a FormGroup are
 ### atLeastOneRequired
 A FormGroup validator that checks whether at least one of the provided controls was filled in. A separate function to determine the filled in state can be provided.
 
+### compareValidator
+A FormGroup validator that will compare child control values with a provided comparator.
+
 ### dependedRequired
 A FormGroup validator that checks whether a series of controls are filled in when another control was filled in. A separate function to determine the filled in state can be provided.
 
