@@ -1,0 +1,78 @@
+{
+	"name": "i18n-test",
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"projectType": "application",
+	"generators": {
+		"@schematics/angular:component": {
+			"style": "scss"
+		}
+	},
+	"sourceRoot": "apps/i18n-test/src",
+	"prefix": "app",
+	"targets": {
+		"build": {
+			"executor": "@angular-devkit/build-angular:browser",
+			"options": {
+				"outputPath": "dist/apps/i18n-test",
+				"index": "apps/i18n-test/src/index.html",
+				"main": "apps/i18n-test/src/main.ts",
+				"polyfills": ["zone.js"],
+				"tsConfig": "apps/i18n-test/tsconfig.app.json",
+				"inlineStyleLanguage": "scss",
+				"assets": ["apps/i18n-test/src/favicon.ico", "apps/i18n-test/src/assets"],
+				"styles": ["apps/i18n-test/src/styles.scss"],
+				"scripts": []
+			},
+			"configurations": {
+				"production": {
+					"budgets": [
+						{
+							"type": "initial",
+							"maximumWarning": "500kb",
+							"maximumError": "1mb"
+						},
+						{
+							"type": "anyComponentStyle",
+							"maximumWarning": "2kb",
+							"maximumError": "4kb"
+						}
+					],
+					"outputHashing": "all"
+				},
+				"development": {
+					"buildOptimizer": false,
+					"optimization": false,
+					"vendorChunk": true,
+					"extractLicenses": false,
+					"sourceMap": true,
+					"namedChunks": true
+				}
+			},
+			"defaultConfiguration": "production"
+		},
+		"serve": {
+			"executor": "@angular-devkit/build-angular:dev-server",
+			"configurations": {
+				"production": {
+					"buildTarget": "i18n-test:build:production"
+				},
+				"development": {
+					"buildTarget": "i18n-test:build:development"
+				}
+			},
+			"defaultConfiguration": "development"
+		},
+		"extract-i18n": {
+			"executor": "@angular-devkit/build-angular:extract-i18n",
+			"options": {
+				"buildTarget": "i18n-test:build"
+			}
+		},
+		"lint": {
+			"executor": "@nx/eslint:lint",
+			"options": {
+				"lintFilePatterns": ["apps/i18n-test/**/*.ts", "apps/i18n-test/**/*.html"]
+			}
+		}
+	}
+}

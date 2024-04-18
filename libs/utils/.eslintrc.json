@@ -1,0 +1,46 @@
+{
+	"extends": "../../.eslintrc.json",
+	"ignorePatterns": ["!**/*"],
+	"overrides": [
+		{
+			"files": ["*.ts"],
+			"parserOptions": {
+				"project": ["libs/utils/tsconfig.*?.json"],
+				"createDefaultProgram": true
+			},
+			"rules": {
+				"@angular-eslint/component-class-suffix": [
+					"error",
+					{
+						"suffixes": ["Component", "Container", "Page"]
+					}
+				],
+				"@angular-eslint/component-selector": [
+					"error",
+					{
+						"type": "element",
+						"prefix": "utils",
+						"style": "kebab-case"
+					}
+				],
+				"@angular-eslint/directive-selector": "off",
+				"@typescript-eslint/no-inferrable-types": "off",
+				"comma-dangle": [
+					"error",
+					{
+						"arrays": "always-multiline",
+						"exports": "always-multiline",
+						"functions": "never",
+						"imports": "always-multiline",
+						"objects": "always-multiline"
+					}
+				],
+				"import/order": "error"
+			}
+		},
+		{
+			"files": ["*.html"],
+			"rules": {}
+		}
+	]
+}

@@ -1,102 +1,98 @@
 {
-  "root": true,
-  "ignorePatterns": [
-    "projects/**/*"
-  ],
-  "rules": {
-    "no-unused-vars": "off",
-    "unused-imports/no-unused-imports": "error",
-    "unused-imports/no-unused-vars": [
-      "warn",
-      {
-        "vars": "all",
-        "varsIgnorePattern": "^_",
-        "args": "after-used",
-        "argsIgnorePattern": "^_"
-      }
-    ]
-  },
-  "overrides": [
-    {
-      "files": [
-        "*.ts"
-      ],
-      "parserOptions": {
-        "project": [
-          "tsconfig.json"
-        ],
-        "createDefaultProgram": true
-      },
-      "extends": [
-        "prettier",
-        "plugin:prettier/recommended",
-        "plugin:@angular-eslint/template/process-inline-templates",
-        "plugin:import/recommended",
-        "plugin:import/typescript"
-      ],
-      "settings": {
-        "import/parsers": {
-          "@typescript-eslint/parser": [".ts"]
-        },
-        "import/resolver": {
-          "typescript": {
-            "alwaysTryTypes": true,
-            "project": "./tsconfig.json"
-          }
-        }
-      },
-      "plugins": [
-        "import",
-        "prettier",
-        "@typescript-eslint",
-        "@angular-eslint"
-      ],
-      "rules": {
-        "prettier/prettier": "error",
-        "@angular-eslint/component-class-suffix": [
-          "error",
-          {
-            "suffixes": [
-              "Component",
-              "Container",
-              "Page"
-            ]
-          }
-        ],
-        "@angular-eslint/component-selector": [
-          "error",
-          {
-            "type": "element",
-            "prefix": "kp",
-            "style": "kebab-case"
-          }
-        ],
-        "@typescript-eslint/no-inferrable-types": "off",
-        "comma-dangle": [
-          "error",
-          {
-            "arrays": "always-multiline",
-            "exports": "always-multiline",
-            "functions": "never",
-            "imports": "always-multiline",
-            "objects": "always-multiline"
-          }
-        ],
-        "import/order": "error",
-        "import/no-unresolved": "error"
-      }
-    },
-    {
-      "files": [
-        "*.html"
-      ],
-      "extends": [
-        "plugin:@angular-eslint/template/recommended"
-      ],
-      "rules": {}
-    }
-  ],
-  "plugins": [
-    "unused-imports"
-  ]
+	"root": true,
+	"ignorePatterns": ["**/*"],
+	"rules": {
+		"no-unused-vars": "off",
+		"unused-imports/no-unused-imports": "error",
+		"unused-imports/no-unused-vars": [
+			"warn",
+			{
+				"vars": "all",
+				"varsIgnorePattern": "^_",
+				"args": "after-used",
+				"argsIgnorePattern": "^_"
+			}
+		]
+	},
+	"overrides": [
+		{
+			"files": ["*.ts"],
+			"parserOptions": {
+				"createDefaultProgram": true
+			},
+			"extends": [
+				"prettier",
+				"plugin:prettier/recommended",
+				"plugin:@angular-eslint/template/process-inline-templates",
+				"plugin:import/recommended",
+				"plugin:import/typescript"
+			],
+			"settings": {
+				"import/parsers": {
+					"@typescript-eslint/parser": [".ts"]
+				},
+				"import/resolver": {
+					"typescript": {
+						"alwaysTryTypes": true,
+						"project": "./tsconfig.json"
+					}
+				}
+			},
+			"plugins": ["import", "prettier", "@typescript-eslint", "@angular-eslint"],
+			"rules": {
+				"prettier/prettier": "error",
+				"@angular-eslint/component-class-suffix": [
+					"error",
+					{
+						"suffixes": ["Component", "Container", "Page"]
+					}
+				],
+				"@angular-eslint/component-selector": [
+					"error",
+					{
+						"type": "element",
+						"prefix": "kp",
+						"style": "kebab-case"
+					}
+				],
+				"@typescript-eslint/no-inferrable-types": "off",
+				"comma-dangle": [
+					"error",
+					{
+						"arrays": "always-multiline",
+						"exports": "always-multiline",
+						"functions": "never",
+						"imports": "always-multiline",
+						"objects": "always-multiline"
+					}
+				],
+				"import/order": "error",
+				"import/no-unresolved": "error"
+			}
+		},
+		{
+			"files": ["*.html"],
+			"extends": ["plugin:@angular-eslint/template/recommended"],
+			"rules": {}
+		},
+		{
+			"files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+			"rules": {
+				"@nx/enforce-module-boundaries": [
+					"error",
+					{
+						"enforceBuildableLibDependency": true,
+						"allow": [],
+						"depConstraints": [
+							{
+								"sourceTag": "*",
+								"onlyDependOnLibsWithTags": ["*"]
+							}
+						]
+					}
+				]
+			}
+		}
+	],
+	"plugins": ["unused-imports", "@nx"]
 }
