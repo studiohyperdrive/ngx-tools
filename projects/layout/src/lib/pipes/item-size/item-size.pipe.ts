@@ -17,7 +17,10 @@ export class NgxConfigurableLayoutItemSizePipe implements PipeTransform {
 		{
 			keys,
 			showInactive,
-		}: { keys: NgxConfigurableLayoutItemEntity[][]; showInactive: boolean },
+		}: { keys: NgxConfigurableLayoutItemEntity[][]; showInactive: boolean } = {
+			keys: null,
+			showInactive: true,
+		},
 		itemSize: NgxConfigurableLayoutItemSizeOption
 	): Record<string, any> {
 		// Iben: If non data source is provided or if the itemSize is 'fill',

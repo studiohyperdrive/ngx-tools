@@ -1,4 +1,10 @@
-import { AbstractControl, FormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
+import {
+	AbstractControl,
+	FormControl,
+	FormGroup,
+	ValidationErrors,
+	ValidatorFn,
+} from '@angular/forms';
 
 import { allOrNothingRequiredValidator } from './all-or-nothing-required/all-or-nothing-required.validator';
 import {
@@ -12,6 +18,7 @@ import { extendedEmailValidator } from './email/extended-email.validator';
 import { hasNoFutureDateValidator } from './has-no-future-date/has-no-future-date.validator';
 import { dateRangeValidator } from './date-range/date-range.validator';
 import { WordCountValidator } from './max-word-count/word-count.validator';
+import { CompareValidator } from './compare/compare.validator';
 
 /**
  * Exported Class
@@ -49,6 +56,31 @@ export class NgxValidators {
 		options?: AtLeastOneRequiredValidatorOptions<KeyType>
 	): ValidatorFn {
 		return atLeastOneRequiredValidator<KeyType>(options);
+	}
+
+	/**
+	 * The compareValidator will return a validator that compares the values of two FormControls
+	 * within a FormGroup based on a given comparator function.
+	 *
+	 * @param keys {string[]}
+	 * @param comparatorFn {(...args: ValueType[]) => boolean}
+	 * @param setErrorOnKey {string}
+	 * @returns {(group: FormGroup<{ [key: string]: FormControl<ValueType>; }>) => ValidationErrors}
+	 *
+	 * Note: This validator will only set an error on the group it is set to
+	 * unless the `setErrorOnKey` argument is given.
+	 *
+	 */
+	static compareValidator<ValueType = unknown>(
+		keys: string[],
+		comparatorFn: (...args: ValueType[]) => boolean,
+		setErrorOnKey?: string
+	): (
+		group: FormGroup<{
+			[key: string]: FormControl<ValueType>;
+		}>
+	) => ValidationErrors {
+		return CompareValidator(keys, comparatorFn, setErrorOnKey);
 	}
 
 	/**
