@@ -5,3 +5,4 @@ export * from './store';
 export * from './store-generator';
 export * from './effects';
 export * from './store-assets-generator-options';
+export * from './store-state';

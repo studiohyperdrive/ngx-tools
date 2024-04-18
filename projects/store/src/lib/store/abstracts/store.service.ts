@@ -1,10 +1,34 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, Optional } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { NgxStoreSelectors, StoreFlowAssets, StoreState } from '../interfaces';
 
 @Injectable()
-export class StoreService {
-	constructor(protected readonly store: Store) {}
+export class StoreService<StoreAssetsType extends StoreFlowAssets = any> {
+	/**
+	 * A wrapper object for the store state selectors
+	 */
+	private stateWrapper: StoreState<StoreAssetsType>;
+
+	constructor(
+		protected readonly store: Store,
+		@Optional()
+		@Inject('selectors')
+		selectors?: NgxStoreSelectors<StoreAssetsType>
+	) {
+		// Iben: If the selectors are provided, we create an object that will create an object with selectors for each slice in the state
+		if (selectors) {
+			this.stateWrapper = Object.keys(selectors).reduce((previous, key) => {
+				return {
+					...previous,
+					[`${key}$`]: this.selectFromStore(selectors[key]),
+					[`${key}Loading$`]: this.selectErrorFromStore(selectors[key]),
+					[`${key}Error$`]: this.selectLoadingFromStore(selectors[key]),
+					[`${key}ErrorMessage$`]: this.selectErrorMessageFromStore(selectors[key]),
+				};
+			}, {}) as StoreState<StoreAssetsType>;
+		}
+	}
 
 	/**
 	 * Select the data of a store slice
@@ -41,5 +65,24 @@ export class StoreService {
 	 */
 	public selectErrorMessageFromStore<ErrorMessage>(selector: any): Observable<ErrorMessage> {
 		return this.store.pipe(select(selector.errorMessage || selector.selectErrorMessage));
+	}
+
+	/**
+	 * An object that holds all the state selectors of the provided store slice.
+	 *
+	 * The generated selectors need to be provided to the constructor of the service in order for this object not to be undefined.
+	 */
+	public get state(): StoreState<StoreAssetsType> {
+		// Iben: If no selectors were provided, we throw an error informing the user
+		if (!this.stateWrapper) {
+			console.error(
+				'NgxStore: No selectors were provided to the constructor of the StoreService extender. Without it, the state object cannot be created and will result in an error.'
+			);
+
+			return undefined;
+		}
+
+		// Iben: Return the stateWrapper
+		return this.stateWrapper;
 	}
 }

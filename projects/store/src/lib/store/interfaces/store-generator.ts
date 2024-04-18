@@ -28,13 +28,13 @@ export type StoreFlowAssets = Record<string, EntityStoreAssets<any> | BaseStoreA
 
 // Iben: Type to extract the selectors from the provided ResultType, so that we know if we have a BaseStoreSelector or an EntityStoreSelector, this way
 // we get correct typing in our services
-type StoreSelectors<ResultType extends StoreFlowAssets> = {
+export type NgxStoreSelectors<ResultType extends StoreFlowAssets> = {
 	[Key in keyof ResultType]: ResultType[Key]['selectors'];
 };
 
 // Iben: Type to extract the actions from the provided ResultType, so that we know if we have a BaseStoreAction or an EntityStoreAction, this way
 // we get correct typing in our services
-type StoreActions<ResultType extends StoreFlowAssets> = {
+type NgxStoreActions<ResultType extends StoreFlowAssets> = {
 	[Key in keyof ResultType]: ResultType[Key]['actions'];
 };
 
@@ -44,7 +44,7 @@ type StoreActions<ResultType extends StoreFlowAssets> = {
  * @template ResultType - The typing we wish to see for our actions, reducers and selectors
  */
 export interface NgxStore<ResultType extends StoreFlowAssets> {
-	selectors: StoreSelectors<ResultType>;
-	actions: StoreActions<ResultType>;
+	selectors: NgxStoreSelectors<ResultType>;
+	actions: NgxStoreActions<ResultType>;
 	reducers: ActionReducer<any, Action>;
 }
