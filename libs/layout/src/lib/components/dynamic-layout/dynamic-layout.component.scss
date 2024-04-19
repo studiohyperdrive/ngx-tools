@@ -1,0 +1,22 @@
+:host {
+	&.is-editable {
+		.ngx-dynamic-layout-container {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	ul {
+		padding: unset;
+
+		li {
+			list-style: none;
+		}
+	}
+
+	.ngx-dynamic-layout-node-list {
+		padding: 15px;
+		margin: 10px 0;
+		border: 1px solid black;
+	}
+}

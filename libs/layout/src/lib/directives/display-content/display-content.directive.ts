@@ -137,6 +137,8 @@ export class NgxDisplayContentDirective implements AfterViewInit, OnDestroy {
 				takeUntil(this.onDestroySubject.asObservable())
 			)
 			.subscribe();
+
+		this.updateViewSubject.next();
 	}
 
 	public ngOnDestroy(): void {

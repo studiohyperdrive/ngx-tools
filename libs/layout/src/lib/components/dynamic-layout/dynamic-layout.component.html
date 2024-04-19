@@ -1,0 +1,96 @@
+<div cdkDropListGroup class="ngx-dynamic-layout-container">
+	<div class="ngx-dynamic-layout-content">
+		<ng-content select="[content-header]"></ng-content>
+		<ul
+			cdkDropList
+			class="ngx-dynamic-layout-list ngx-dynamic-layout-content-list"
+			id="ngx-dynamic-layout-content-list"
+			[cdkDropListData]="items"
+			[cdkDropListDisabled]="!isEditable"
+			[cdkDropListConnectedTo]="dropLists"
+			(cdkDropListDropped)="drop($event)"
+		>
+			@for (item of items || []; track item.id; let index = $index) {
+			<ng-template
+				[ngTemplateOutlet]="nodeTmpl"
+				[ngTemplateOutletContext]="{ $implicit: item, index: index }"
+			>
+			</ng-template>
+			}
+
+			<ng-template #nodeTmpl let-item let-itemIndex="index">
+				<li
+					cdkDrag
+					cdkDragPreviewContainer="parent"
+					[cdkDragDisabled]="item.fixed"
+					[cdkDragData]="item"
+					[class.ngx-dynamic-layout-container-item]="item.isContainer"
+					class="ngx-dynamic-layout-list-item ngx-dynamic-layout-content-list-item"
+				>
+					@if(item.isContainer) {
+					<ul
+						cdkDropList
+						class="ngx-dynamic-layout-list ngx-dynamic-layout-content-list ngx-dynamic-layout-node-list"
+						cdkDropListOrientation="vertical"
+						[id]="item.id"
+						[class.ngx-dynamic-layout-fixed-item]="item.fixed"
+						[cdkDropListConnectedTo]="dropLists"
+						[cdkDropListData]="item.children"
+						[cdkDropListDisabled]="!isEditable"
+						(cdkDropListDropped)="drop($event)"
+					>
+						@for (childItem of item.children; track childItem.id; let childIndex =
+						$index) {
+						<ng-template
+							[ngTemplateOutlet]="nodeTmpl"
+							[ngTemplateOutletContext]="{ $implicit: childItem, index: childIndex }"
+						>
+						</ng-template>
+						}
+					</ul>
+					} @else if(templateRecord[item.key]){
+					<ng-template
+						[ngTemplateOutlet]="templateRecord[item.key].content"
+						[ngTemplateOutletContext]="{ $implicit: item['data'], itemIndex }"
+					>
+					</ng-template>
+					}
+				</li>
+			</ng-template>
+		</ul>
+		<ng-content select="[content-footer]"></ng-content>
+	</div>
+
+	<!-- @if (isEditable) {
+	<div class="ngx-dynamic-layout-source">
+		<ng-content select="[source-header]"></ng-content>
+		<ul
+			cdkDropList
+			id="ngx-dynamic-layout-source-list"
+			class="ngx-dynamic-layout-list ngx-dynamic-layout-source-list"
+			cdkDropListOrientation="vertical"
+			[cdkDropListData]="keys"
+			[cdkDropListDisabled]="!isEditable"
+			[cdkDropListConnectedTo]="dropLists"
+		>
+			@for (key of keys || []; track key; let index = $index) { @if
+			(templateRecord[key]?.source || templateRecord[key]?.content) {
+			<li
+				cdkDrag
+				cdkDragPreviewContainer="parent"
+				class="ngx-dynamic-layout-list-item ngx-dynamic-layout-source-list-item"
+				[cdkDragData]="{key}"
+				[id]="key"
+			>
+				<ng-template
+					[ngTemplateOutlet]="templateRecord[key].source || templateRecord[key].content"
+					[ngTemplateOutletContext]="{ index }"
+				>
+				</ng-template>
+			</li>
+			} }
+		</ul>
+		<ng-content select="[source-footer]"></ng-content>
+	</div>
+	} -->
+</div>

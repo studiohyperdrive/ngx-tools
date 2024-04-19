@@ -13,7 +13,116 @@
 
 <hr />
 
-<button (click)="sayHello()">Say hello!</button>
+<!-- <button (click)="sayHello()">Say hello!</button>
 <button (click)="confirm()">Confirm!</button>
 
 <router-outlet/>
+
+<h1>Static</h1>
+<ngx-configurable-layout
+	layoutType="static"
+	itemSize="equal"
+	[keys]="[
+		['1', '2'],
+		['a', 'b']
+	]"
+	rowGap="10px"
+	columnGap="10px"
+>
+	<ngx-configurable-layout-item key="a">
+		<div class="layout-items large">Form key a</div>
+	</ngx-configurable-layout-item>
+
+	<ngx-configurable-layout-item key="b">
+		<div class="layout-items">Form key b</div>
+	</ngx-configurable-layout-item>
+
+	<ngx-configurable-layout-item key="1">
+		<div class="layout-items">
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum veritatis laudantium
+			ut officia omnis, impedit eligendi, ea molestiae magnam odit et animi quod illo eius.
+			Fuga nihil adipisci molestiae magni?
+		</div>
+	</ngx-configurable-layout-item>
+
+	<ngx-configurable-layout-item key="2">
+		<div class="layout-items">Input key 2</div>
+	</ngx-configurable-layout-item>
+</ngx-configurable-layout>
+
+<h1>Editable</h1>
+
+<label for="">
+	<input type="checkbox" [formControl]="isActive" />
+	Show inactive
+</label>
+
+<label for="">
+	<input type="checkbox" [formControl]="dragAndDrop" />
+	Drag and drop
+</label>
+<ngx-configurable-layout
+	layoutType="editable"
+	itemSize="equal"
+	[formControl]="control"
+	[showInactive]="isActive.value"
+	[allowDragAndDrop]="dragAndDrop.value"
+	[dropPredicate]="drop"
+	rowGap="10px"
+	columnGap="10px"
+>
+	<ngx-configurable-layout-item key="a">
+		<div class="layout-items large">Form key a</div>
+	</ngx-configurable-layout-item>
+
+	<ngx-configurable-layout-item key="b">
+		<div class="layout-items">Form key b</div>
+	</ngx-configurable-layout-item>
+
+	<ngx-configurable-layout-item key="1">
+		<div class="layout-items">
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum veritatis laudantium
+			ut officia omnis, impedit eligendi, ea molestiae magnam odit et animi quod illo eius.
+			Fuga nihil adipisci molestiae magni?
+		</div>
+	</ngx-configurable-layout-item>
+
+	<ngx-configurable-layout-item key="2">
+		<div class="layout-items">Input key 2</div>
+	</ngx-configurable-layout-item>
+</ngx-configurable-layout> -->
+
+<h1>Dynamic layout</h1>
+
+<label for="">
+	<input type="checkbox" [formControl]="isEditable" />
+	Layout editable
+</label>
+<ngx-dynamic-layout [isEditable]="isEditable.value" [data]="dynamicLayoutData">
+	<h1 content-header>Jouw formulier</h1>
+	<ngx-dynamic-layout-item key="a">
+		<ng-template #contentTmpl let-data>
+			<div class="layout-items">
+				Dit is component A
+				{{ data | json }}
+			</div>
+		</ng-template>
+
+		<ng-template #sourceTmpl> <div class="layout-items">Component A</div> </ng-template>
+	</ngx-dynamic-layout-item>
+	<div content-footer>
+		<button>Opslaan</button>
+	</div>
+
+	<h1 source-header>Formulier componenten</h1>
+	<ngx-dynamic-layout-item key="b">
+		<ng-template #contentTmpl let-data>
+			<div class="layout-items">
+				Dit is component B
+				{{ data | json }}
+			</div>
+		</ng-template>
+
+		<ng-template #sourceTmpl> <div class="layout-items">Component B</div> </ng-template>
+	</ngx-dynamic-layout-item>
+</ngx-dynamic-layout>

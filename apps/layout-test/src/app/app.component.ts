@@ -2,15 +2,34 @@ import { Component } from '@angular/core';
 
 import { RouterModule } from '@angular/router';
 import { tap } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ModalComponent } from '../modal/modal.component';
 import { NgxMediaQueryService } from '@ngx/utils';
 import { NgxModalService } from '@ngx/inform';
+import {
+	NgxConfigurableLayoutComponent,
+	NgxConfigurableLayoutItemComponent,
+	NgxConfigurableLayoutGrid,
+	NgxConfigurableLayoutItemDropEvent,
+	NgxDynamicLayoutData,
+	NgxDynamicLayoutComponent,
+	NgxDynamicLayoutItemComponent,
+} from '@ngx/layout';
 
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
 	standalone: true,
-	imports: [RouterModule],
+	imports: [
+		RouterModule,
+		CommonModule,
+		NgxConfigurableLayoutComponent,
+		NgxConfigurableLayoutItemComponent,
+		ReactiveFormsModule,
+		NgxDynamicLayoutComponent,
+		NgxDynamicLayoutItemComponent,
+	],
 })
 export class AppComponent {
 	constructor(
@@ -59,5 +78,107 @@ export class AppComponent {
 				})
 			)
 			.subscribe();
+	}
+
+	public control: FormControl<NgxConfigurableLayoutGrid> = new FormControl([]);
+	public isActive: FormControl<boolean> = new FormControl(false);
+	public dragAndDrop: FormControl<boolean> = new FormControl(true);
+	public dynamicLayoutData: NgxDynamicLayoutData[] = [
+		{
+			id: 'container-1',
+			isContainer: true,
+			children: [
+				{
+					id: 'container-2',
+					isContainer: true,
+					children: [
+						{
+							id: 'b1',
+							key: 'b',
+							isContainer: false,
+							data: [
+								{
+									hello: 'iben',
+								},
+							],
+						},
+						{
+							id: 'b2',
+							key: 'b',
+							isContainer: false,
+							data: [
+								{
+									hello: 'iben',
+								},
+							],
+						},
+					],
+				},
+				{
+					id: 'a1',
+					key: 'a',
+					isContainer: false,
+					data: [
+						{
+							hello: 'test',
+						},
+					],
+				},
+			],
+		},
+		{
+			id: 'a2',
+			key: 'a',
+			isContainer: false,
+			data: [
+				{
+					hello: 'world',
+				},
+			],
+		},
+		{
+			id: 'a3',
+			key: 'a',
+			isContainer: false,
+			data: [
+				{
+					hello: 'test',
+				},
+			],
+		},
+		{
+			id: 'a4',
+			key: 'b',
+			isContainer: false,
+			data: [
+				{
+					hello: 'iben',
+				},
+			],
+		},
+	];
+	public isEditable: FormControl<boolean> = new FormControl<boolean>(true);
+
+	ngOnInit() {
+		this.control.patchValue([
+			[
+				{ key: '1', isActive: true },
+				{ key: '2', isActive: true },
+				{ key: 'a', isActive: false },
+			],
+			[{ key: 'b', isActive: true }],
+		]);
+	}
+
+	drop(event: NgxConfigurableLayoutItemDropEvent): boolean {
+		if (event.eventType == 'sorting') {
+			return true;
+		}
+
+		const grid = event.showInactive
+			? event.currentGrid
+			: [...event.currentGrid].map((row) => row.filter((item) => item.isActive));
+
+		return grid[event.targetRowIndex].length < 2;
 	}
 }
