@@ -86,3 +86,38 @@
 		<div class="layout-items">Input key 2</div>
 	</ngx-configurable-layout-item>
 </ngx-configurable-layout>
+
+<h1>Dynamic layout</h1>
+
+<label for="">
+	<input type="checkbox" [formControl]="isEditable" />
+	Layout editable
+</label>
+<ngx-dynamic-layout [isEditable]="isEditable.value" [data]="dynamicLayoutData">
+	<h1 content-header>Jouw formulier</h1>
+	<ngx-dynamic-layout-item key="a">
+		<ng-template #contentTmpl let-data>
+			<div class="layout-items">
+				Dit is component A
+				{{ data | json }}
+			</div>
+		</ng-template>
+
+		<ng-template #sourceTmpl> <div class="layout-items">Component A</div> </ng-template>
+	</ngx-dynamic-layout-item>
+	<div content-footer>
+		<button>Opslaan</button>
+	</div>
+
+	<h1 source-header>Formulier componenten</h1>
+	<ngx-dynamic-layout-item key="b">
+		<ng-template #contentTmpl let-data>
+			<div class="layout-items">
+				Dit is component B
+				{{ data | json }}
+			</div>
+		</ng-template>
+
+		<ng-template #sourceTmpl> <div class="layout-items">Component B</div> </ng-template>
+	</ngx-dynamic-layout-item>
+</ngx-dynamic-layout>

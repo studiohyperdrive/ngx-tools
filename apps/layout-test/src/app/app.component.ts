@@ -6,6 +6,9 @@ import {
 	NgxConfigurableLayoutItemComponent,
 	NgxConfigurableLayoutGrid,
 	NgxConfigurableLayoutItemDropEvent,
+	NgxDynamicLayoutData,
+	NgxDynamicLayoutComponent,
+	NgxDynamicLayoutItemComponent,
 } from '@ngx/layout';
 
 @Component({
@@ -18,12 +21,68 @@ import {
 		NgxConfigurableLayoutComponent,
 		NgxConfigurableLayoutItemComponent,
 		ReactiveFormsModule,
+		NgxDynamicLayoutComponent,
+		NgxDynamicLayoutItemComponent,
 	],
 })
 export class AppComponent {
 	public control: FormControl<NgxConfigurableLayoutGrid> = new FormControl([]);
 	public isActive: FormControl<boolean> = new FormControl(false);
 	public dragAndDrop: FormControl<boolean> = new FormControl(true);
+	public dynamicLayoutData: NgxDynamicLayoutData[] = [
+		{
+			id: 'container-1',
+			isContainer: true,
+			children: [
+				{
+					key: 'a',
+					isContainer: false,
+					data: [
+						{
+							hello: 'world',
+						},
+					],
+				},
+				{
+					key: 'a',
+					isContainer: false,
+					data: [
+						{
+							hello: 'test',
+						},
+					],
+				},
+			],
+		},
+		{
+			key: 'a',
+			isContainer: false,
+			data: [
+				{
+					hello: 'world',
+				},
+			],
+		},
+		{
+			key: 'a',
+			isContainer: false,
+			data: [
+				{
+					hello: 'test',
+				},
+			],
+		},
+		{
+			key: 'b',
+			isContainer: false,
+			data: [
+				{
+					hello: 'iben',
+				},
+			],
+		},
+	];
+	public isEditable: FormControl<boolean> = new FormControl<boolean>(false);
 
 	ngOnInit() {
 		this.control.patchValue([

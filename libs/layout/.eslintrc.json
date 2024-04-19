@@ -5,14 +5,7 @@
 		{
 			"files": ["*.ts"],
 			"rules": {
-				"@angular-eslint/directive-selector": [
-					"error",
-					{
-						"type": "attribute",
-						"prefix": "ngx",
-						"style": "camelCase"
-					}
-				],
+				"@angular-eslint/directive-selector": [],
 				"@angular-eslint/component-selector": [
 					"error",
 					{
