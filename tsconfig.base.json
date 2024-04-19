@@ -1,0 +1,37 @@
+{
+	"compileOnSave": false,
+	"compilerOptions": {
+		"baseUrl": ".",
+		"outDir": "./dist/out-tsc",
+		"forceConsistentCasingInFileNames": true,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+		"sourceMap": true,
+		"declaration": false,
+		"downlevelIteration": true,
+		"experimentalDecorators": true,
+		"moduleResolution": "node",
+		"importHelpers": true,
+		"target": "ES2022",
+		"module": "es2020",
+		"lib": ["es2022", "dom"],
+		"paths": {
+			"@ngx/forms": ["libs/forms/src/public-api.ts"],
+			"@ngx/i18n": ["libs/i18n/src/public-api.ts"],
+			"@ngx/layout": ["libs/layout/src/public-api.ts"],
+			"@ngx/store": ["libs/store/src/public-api.ts"],
+			"@ngx/table": ["libs/table/src/public-api.ts"],
+			"@ngx/utils": ["libs/utils/src/public-api.ts"]
+		},
+		"useDefineForClassFields": false,
+		"skipLibCheck": true,
+		"rootDir": "."
+	},
+	"angularCompilerOptions": {
+		"enableI18nLegacyMessageIdFormat": false,
+		"strictInjectionParameters": true,
+		"strictInputAccessModifiers": true,
+		"strictTemplates": true
+	},
+	"exclude": ["node_modules", "tmp"]
+}

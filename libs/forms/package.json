@@ -1,0 +1,16 @@
+{
+	"name": "@studiohyperdrive/ngx-forms",
+	"homepage": "https://github.com/studiohyperdrive/ngx-tools/blob/master/projects/forms/README.md",
+	"version": "17.5.0",
+	"license": "MIT",
+	"peerDependencies": {
+		"@angular/common": "^17.0.4",
+		"@angular/core": "^17.0.4",
+		"@angular/forms": "^17.0.4",
+		"obj-clean": "^3.0.1",
+		"date-fns": "2.30.0"
+	},
+	"dependencies": {
+		"tslib": "^2.5.0"
+	}
+}

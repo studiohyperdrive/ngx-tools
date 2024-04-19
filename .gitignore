@@ -50,3 +50,6 @@ Thumbs.db
 
 # Local caching
 .nx
+
+
+.nx/cache
