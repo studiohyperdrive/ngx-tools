@@ -43,15 +43,44 @@ describe('populate', () => {
 		const populateRecord = {
 			ads: (data: any) => of([data.ads]),
 			link: () => of({ url: 'youtube.com/@Iben' }),
+			'hello.world': () => {
+				return of('');
+			},
 		};
 
 		it('should correctly populate the missing keys', async () => {
-			page.pipe(populate(populateRecord, (value) => isString(value))).subscribe((result) => {
+			page.pipe(populate(populateRecord, (value) => typeof value === 'string')).subscribe((result) => {
 				expect(result).toEqual({
 					title: 'Test',
 					description: 'Test',
 					link: { url: 'youtube.com/@Iben' },
 					ads: ['1'],
+				});
+			});
+		});
+	});
+
+	describe('Default populateIf', () => {
+		const page = of({
+			title: 'Test',
+			description: 'Test',
+			ads: '1',
+			link: '1',
+		});
+		const populateRecord = {
+			'hello.world': () => {
+				console.log('I AM RUNNING');
+				return of('');
+			},
+		};
+
+		it('should correctly populate the missing keys', async () => {
+			page.pipe(populate(populateRecord, (value) => typeof value === 'string')).subscribe((result) => {
+				expect(result).toEqual({
+					title: 'Test',
+					description: 'Test',
+					link: '1',
+					ads: '1',
 				});
 			});
 		});

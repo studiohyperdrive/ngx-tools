@@ -1,4 +1,4 @@
-import { Observable, OperatorFunction, combineLatest, map, switchMap } from 'rxjs';
+import { Observable, OperatorFunction, combineLatest, map, of, switchMap } from 'rxjs';
 import { cloneDeep, get, set } from 'lodash';
 
 //TODO: Iben: Find out a way to type this better than with any, but without introducing a complex typing hell
@@ -26,8 +26,16 @@ export const populate = <DataType extends object>(
 			return populateIf(value);
 		});
 
-		// Iben: Loop over each value and
-		return combineLatest([...keys].map((key) => populater[key](data))).pipe(
+		// Iben: Map the keys to their corresponding observables
+		const observables = [...keys].map((key) => populater[key](data));
+
+		// Iben: If no Observables were generated, return the data as is
+		if (observables.length === 0) {
+			return of(data);
+		}
+
+		// Iben: Loop over the provided observables and populate the data
+		return combineLatest(observables).pipe(
 			map((results) => {
 				// Iben: Use cloneDeep to avoid issues with readonly properties
 				const result = cloneDeep(data) as DataType;
