@@ -46,6 +46,8 @@ import {
 import { NgxConfigurableLayoutItemComponent } from '../configurable-layout-item/configurable-layout-item.component';
 import {
 	NgxConfigurableLayoutGrid,
+	NgxConfigurableLayoutItemDropEvent,
+	NgxConfigurableLayoutItemEntity,
 	NgxConfigurableLayoutItemSizeOption,
 	NgxConfigurableLayoutType,
 } from '../../types';
@@ -182,6 +184,13 @@ export class NgxConfigurableLayoutComponent
 	@Input() public rowGap: string;
 
 	/**
+	 * An optional predicate we can use to allow or disallow items to be dropped
+	 *
+	 * @memberof NgxConfigurableLayoutComponent
+	 */
+	@Input() public dropPredicate: (event: NgxConfigurableLayoutItemDropEvent) => boolean;
+
+	/**
 	 * An optional column gap we can provide to create a gap between the columns of the layout.
 	 *
 	 * This input requires an amount in px, rem, %, etc.
@@ -311,7 +320,7 @@ export class NgxConfigurableLayoutComponent
 	 * @param {CdkDragDrop<string[]>} event - The grid element
 	 * @memberof NgxConfigurableLayoutComponent
 	 */
-	public drop(event: CdkDragDrop<string[]>) {
+	public drop(event: CdkDragDrop<string[]>): void {
 		// Iben: Fetch the arrays we need to update
 		const startArrayIndex = parseInt(event.previousContainer.id.split('ngx-layout-row-')[1]);
 		const endArrayIndex = parseInt(event.container.id.split('ngx-layout-row-')[1]);
@@ -334,6 +343,59 @@ export class NgxConfigurableLayoutComponent
 		this.form.setValue(formData);
 	}
 
+	/**
+	 * The predicate we run before sorting
+	 *
+	 * @param  draggedElement - The dragged element
+	 * @param  list - The list into which we're dragging the element
+	 */
+	public beforeSort(_: number, draggedElement: CdkDrag, list: CdkDropList): boolean {
+		return this.dropPredicateHandler('sorting', draggedElement, list);
+	}
+
+	/**
+	 * The predicate we run before moving
+	 *
+	 * @param  draggedElement - The dragged element
+	 * @param  list - The list into which we're dragging the element
+	 */
+	public beforeDrop(draggedElement: CdkDrag, list: CdkDropList): boolean {
+		return this.dropPredicateHandler('moving', draggedElement, list);
+	}
+
+	/**
+	 * Handles the drop predicate
+	 *
+	 * @private
+	 * @param eventType - Whether we're moving or sorting
+	 * @param draggedElement - The element that's being dragged
+	 * @param list - The list into which we're dragging the element
+	 */
+	private dropPredicateHandler(
+		eventType: 'sorting' | 'moving',
+		draggedElement: CdkDrag<NgxConfigurableLayoutItemEntity>,
+		list: CdkDropList
+	): boolean {
+		// Iben: If no predicate is passed, we always return true
+		if (!this.dropPredicate) {
+			return true;
+		}
+
+		// Iben: Fetch the index of the target
+		const targetRowIndex = parseInt(list.id.split('ngx-layout-row-')[1]);
+
+		// Iben: Fetch the current element
+		const element = draggedElement.data;
+
+		// Iben: Call the dropPredicate with the needed information
+		return this.dropPredicate({
+			eventType,
+			currentGrid: [...this.form.value],
+			element,
+			showInactive: this.showInactive,
+			targetRowIndex,
+		});
+	}
 	// Component internal working
 	/**
 	 * Update the item layout template order.

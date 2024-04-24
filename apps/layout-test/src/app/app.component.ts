@@ -5,6 +5,7 @@ import {
 	NgxConfigurableLayoutComponent,
 	NgxConfigurableLayoutItemComponent,
 	NgxConfigurableLayoutGrid,
+	NgxConfigurableLayoutItemDropEvent,
 } from '@ngx/layout';
 
 @Component({
@@ -22,20 +23,28 @@ import {
 export class AppComponent {
 	public control: FormControl<NgxConfigurableLayoutGrid> = new FormControl([]);
 	public isActive: FormControl<boolean> = new FormControl(false);
-	public dragAndDrop: FormControl<boolean> = new FormControl(false);
+	public dragAndDrop: FormControl<boolean> = new FormControl(true);
 
 	ngOnInit() {
-		this.control.valueChanges.subscribe(console.log);
+		this.control.patchValue([
+			[
+				{ key: '1', isActive: true },
+				{ key: '2', isActive: true },
+				{ key: 'a', isActive: false },
+			],
+			[{ key: 'b', isActive: true }],
+		]);
+	}
 
-		setTimeout(() => {
-			this.control.patchValue([
-				[
-					{ key: '1', isActive: true },
-					{ key: '2', isActive: true },
-					{ key: 'a', isActive: false },
-				],
-				[{ key: 'b', isActive: true }],
-			]);
-		}, 5000);
+	drop(event: NgxConfigurableLayoutItemDropEvent): boolean {
+		if (event.eventType == 'sorting') {
+			return true;
+		}
+
+		const grid = event.showInactive
+			? event.currentGrid
+			: [...event.currentGrid].map((row) => row.filter((item) => item.isActive));
+
+		return grid[event.targetRowIndex].length < 2;
 	}
 }
