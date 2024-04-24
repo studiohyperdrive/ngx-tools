@@ -14,9 +14,11 @@
 		[id]="'ngx-layout-row-' + index"
 		[ngStyle]="{ keys: form.value, showInactive } | ngxConfigurableLayoutItemSize : itemSize"
 		[style.column-gap]="columnGap"
+		[cdkDropListSortPredicate]="beforeSort.bind(this)"
+		[cdkDropListEnterPredicate]="beforeDrop.bind(this)"
 		(cdkDropListDropped)="drop($event)"
 	>
-		<ng-container *ngFor="let item of row">
+		<ng-container *ngFor="let item of row;">
 			<ng-container *ngIf="itemTemplateRecord()[item.key]">
 				<ng-container *ngIf="showInactive || item.isActive">
 					<li
@@ -25,6 +27,7 @@
 						[class.ngx-layout-item-inactive]="!item.isActive"
 						[class.ngx-layout-item-disabled]="item.disabled"
 						cdkDragPreviewContainer="parent"
+						[cdkDragData]="item"
 					>
 						<ng-template
 							[ngTemplateOutlet]="itemTemplateRecord()[item.key]"

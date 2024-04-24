@@ -9,3 +9,11 @@ export interface NgxConfigurableLayoutItemEntity {
 }
 
 export type NgxConfigurableLayoutGrid = NgxConfigurableLayoutItemEntity[][];
+
+export interface NgxConfigurableLayoutItemDropEvent {
+	currentGrid: NgxConfigurableLayoutGrid;
+	eventType: 'sorting' | 'moving';
+	element: NgxConfigurableLayoutItemEntity;
+	showInactive: boolean;
+	targetRowIndex: number;
+}

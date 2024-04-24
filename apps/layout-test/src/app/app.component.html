@@ -56,13 +56,13 @@
 	<input type="checkbox" [formControl]="dragAndDrop" />
 	Drag and drop
 </label>
-
 <ngx-configurable-layout
 	layoutType="editable"
 	itemSize="equal"
 	[formControl]="control"
 	[showInactive]="isActive.value"
 	[allowDragAndDrop]="dragAndDrop.value"
+	[dropPredicate]="drop"
 	rowGap="10px"
 	columnGap="10px"
 >

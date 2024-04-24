@@ -118,6 +118,8 @@ public readonly control: FormControl<NgxConfigurableLayoutGrid> = new FormContro
 
 By default, the package uses the demo styling provided by the Angular CDK team. This can be overwritten by custom styling, using the classes provided in the section `Styling`.
 
+When `allowDragAndDrop` is enabled, we can pass a `dropPredicate`. This function is bound to the layout component and will allow you to determine whether dropping an element in a specific spot is allowed by returning true or false. For more information on the predicate, we refer to the CDK Drag and Drop documentation.
+
 #### 2.1.5 Item size
 
 To determine how much space an item takes up in the grid, we use the `itemSize` input.
