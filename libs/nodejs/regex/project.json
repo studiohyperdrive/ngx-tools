@@ -13,7 +13,7 @@
 		},
 		"test": {
 			"executor": "@nx/vite:test",
-			"outputs": ["coverage/packages/regex-common"],
+			"outputs": ["{workspaceRoot}/coverage/packages/regex-common"],
 			"options": {
 				"passWithNoTests": true,
 				"reportsDirectory": "../../coverage/packages/regex-common"
