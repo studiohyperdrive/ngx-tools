@@ -8,7 +8,7 @@ For example
     [
         { title: 'This is the title', description: 'This is the description' },
         { title: 'This is the title' }
-    ] | arrayContains: ['description']
+    ] | arrayContainsOne: ['description']
 }}
 // Output: true
 ```
@@ -16,7 +16,7 @@ For example
 ## How to use
 ```angular2html
 <span>
-  {{ value | arrayContains : ['prop1', 'prop2'] }}
+  {{ value | arrayContainsOne : ['prop1', 'prop2'] }}
 </span>
 ```
 

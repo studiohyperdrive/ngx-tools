@@ -1,10 +1,10 @@
-import { ArrayContainsPipe } from './array-contains.pipe';
+import { ArrayContainsOnePipe } from './array-contains-one.pipe';
 
 describe('ArrayContainsPipe', () => {
-	let pipe: ArrayContainsPipe;
+	let pipe: ArrayContainsOnePipe;
 
 	beforeEach(() => {
-		pipe = new ArrayContainsPipe();
+		pipe = new ArrayContainsOnePipe();
 	});
 
 	it('should return false if no values are provided', () => {

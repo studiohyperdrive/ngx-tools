@@ -1,4 +1,4 @@
-import { ArrayContainsPipe } from './array-contains/array-contains.pipe';
+import { ArrayContainsOnePipe } from './array-contains-one/array-contains-one.pipe';
 import { BtwPipe } from './btw/btw.pipe';
 import { CleanArrayPipe } from './clean-array/clean-array.pipe';
 import { EntriesPipe } from './entries/entries.pipe';
@@ -21,7 +21,7 @@ import { UniqByPipe } from './unique-by/uniq-by.pipe';
 import { WithRouterLinkPipe } from './with-router-links/with-router-links.pipe';
 
 export const Pipes = [
-	ArrayContainsPipe,
+	ArrayContainsOnePipe,
 	BtwPipe,
 	CleanArrayPipe,
 	CleanArrayPipe,
@@ -45,7 +45,7 @@ export const Pipes = [
 	WithRouterLinkPipe,
 ];
 
-export { ArrayContainsPipe } from './array-contains/array-contains.pipe';
+export { ArrayContainsOnePipe } from './array-contains-one/array-contains-one.pipe';
 export { BtwPipe } from './btw/btw.pipe';
 export { CleanArrayPipe } from './clean-array/clean-array.pipe';
 export { EntriesPipe } from './entries/entries.pipe';
