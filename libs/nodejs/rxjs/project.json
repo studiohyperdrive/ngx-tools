@@ -13,7 +13,7 @@
 		},
 		"test": {
 			"executor": "@nx/vite:test",
-			"outputs": ["coverage/packages/rxjs-utils"],
+			"outputs": ["{workspaceRoot}/coverage/packages/rxjs-utils"],
 			"options": {
 				"passWithNoTests": true,
 				"reportsDirectory": "../../coverage/packages/rxjs-utils"
