@@ -27,12 +27,8 @@ export class ArrayContainsOnePipe implements PipeTransform {
 			return false;
 		}
 
-		return values.some((item: unknown) => {
-			const propsWithValues = checkProps.filter(
-				(key: string) => typeof item[key] !== 'undefined' && item[key] !== null
-			);
-
-			return propsWithValues.length === checkProps.length;
-		});
+		return values.some((item: unknown) =>
+			checkProps.some((key) => item[key] !== null && item[key] !== undefined)
+		);
 	}
 }
