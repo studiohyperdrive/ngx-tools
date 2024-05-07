@@ -25,6 +25,8 @@ export class FormAccessorContainer implements OnDestroy {
 	protected readonly destroyed$ = new Subject();
 
 	/**
+	 * @deprecated This method should no longer be used, use the markAsDirty on the form itself instead
+	 *
 	 * Marks the form and all the inputs of every subsequent form-accessors as dirty
 	 *
 	 * @param  form - The form used in the component
@@ -37,6 +39,8 @@ export class FormAccessorContainer implements OnDestroy {
 	}
 
 	/**
+	 * @deprecated This method should no longer be used, use the markAsTouched on the form itself instead
+	 *
 	 * Marks the form and all the inputs of every subsequent form-accessors as touched
 	 *
 	 * @param  form - The form used in the component

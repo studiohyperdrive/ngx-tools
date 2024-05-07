@@ -5,3 +5,22 @@
 <button (click)="disableForm()">Disable/enable</button>
 
 <button (click)="markAllAsTouched(control)">Mark as touched</button>
+
+{{ control.value | json }}
+
+<hr />
+
+<div [formGroup]="form">
+	<label for="">
+		Start
+		<app-date-input formControlName="start" />
+	</label>
+
+	<label for="">
+		End
+		<app-date-input formControlName="end" />
+	</label>
+</div>
+
+<button (click)="form.get('start').markAsTouched()">Mark start as touched</button>
+<button (click)="form.get('end').markAsTouched()">Mark end as touched</button>

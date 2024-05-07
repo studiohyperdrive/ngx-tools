@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { FormAccessorContainer } from '@ngx/forms';
 
 @Component({
@@ -9,6 +9,11 @@ import { FormAccessorContainer } from '@ngx/forms';
 })
 export class AppComponent extends FormAccessorContainer {
 	public readonly control = new FormControl();
+
+	public readonly form = new FormGroup({
+		start: new FormControl(''),
+		end: new FormControl(''),
+	});
 
 	checkValues() {
 		this.updateAllValueAndValidity(this.control);
