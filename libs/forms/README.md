@@ -304,7 +304,7 @@ export class SurveyFormComponent
 
 ## 3. FormAccessorContainer
 
-In order to mark all controls of several (nested) `FormAccessors` as touched or dirty or update the value and validity, we use the `FormAccessorContainer`.
+In order to update the value and validity of all controls of several (nested) `FormAccessors`, we use the `FormAccessorContainer`.
 
 ### BaseFormAccessor
 
@@ -318,14 +318,6 @@ In order to reach all FormAccessors and their children, we need to provide the `
 			useExisting: forwardRef(() => BasicRegistrationDataFormComponent)
 		}
 ```
-
-### markAllAsTouched
-
-Calling this method on a `FormAccessorContainer` will recursively mark each `FormAccessor` and their corresponding `FormAccessor` children in the template as touched.
-
-### markAsDirty
-
-Calling this method on a `FormAccessorContainer` will recursively mark each `FormAccessor` and their corresponding `FormAccessor` children in the template as dirty.
 
 ### UpdateValueAndValidity
 

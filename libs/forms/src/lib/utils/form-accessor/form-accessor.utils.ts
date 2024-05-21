@@ -151,6 +151,25 @@ export const handleFormAccessorMarkAsTouched = (
 };
 
 /**
+ * Marks a form and all the form-accessors this form is based on as pristine
+ *
+ * @param form - The form we wish to mark as pristine
+ * @param accessors - An array of all the accessors we wish to mark as pristine
+ * @param options - Form state options we wish to provide
+ */
+export const handleFormAccessorMarkAsPristine = (
+	form: AbstractControl,
+	accessors: (FormAccessor | DataFormAccessor)[],
+	options: FormStateOptionsEntity = {}
+) => {
+	// Iben: Mark all the controls and the children as touched
+	form.markAsPristine();
+
+	// Iben: Loop over each form accessor and call the mark as touched function, so all subsequent accessors are also marked as touched
+	accessors.forEach((accessor) => accessor.markAsPristine(options));
+};
+
+/**
  * Updates a form and all the form-accessors this form i
  *
  * @param form - The form we wish to update the value and validity of

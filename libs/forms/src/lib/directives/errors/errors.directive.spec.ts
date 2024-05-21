@@ -1,9 +1,10 @@
-import { Component, forwardRef } from '@angular/core';
+import { ChangeDetectorRef, Component, Injector, forwardRef } from '@angular/core';
 import {
 	FormControl,
 	FormGroup,
 	NG_VALIDATORS,
 	NG_VALUE_ACCESSOR,
+	NgControl,
 	ReactiveFormsModule,
 	Validators,
 } from '@angular/forms';
@@ -68,6 +69,7 @@ describe('NgxFormsErrorsDirective', () => {
 					ReactiveFormsModule,
 					NgxFormsErrorsModule.forRoot({ showWhen: 'dirty', errors }),
 				],
+				providers: [ChangeDetectorRef, Injector, NgControl],
 			});
 
 			fixture = TestBed.createComponent(FormAccessorComponent);
@@ -119,6 +121,7 @@ describe('NgxFormsErrorsDirective', () => {
 						component: FormErrorComponent,
 					}),
 				],
+				providers: [ChangeDetectorRef, Injector, NgControl],
 			});
 
 			fixture = TestBed.createComponent(FormAccessorComponent);
