@@ -21,7 +21,8 @@
 			"@ngx/layout": ["libs/layout/src/public-api.ts"],
 			"@ngx/store": ["libs/store/src/public-api.ts"],
 			"@ngx/table": ["libs/table/src/public-api.ts"],
-			"@ngx/utils": ["libs/utils/src/public-api.ts"]
+			"@ngx/utils": ["libs/utils/src/public-api.ts"],
+			"@ngx/cookies": ["libs/cookies/src/index.ts"]
 		},
 		"useDefineForClassFields": false,
 		"skipLibCheck": true,
