@@ -1,0 +1,21 @@
+This is the test
+
+<button (click)="showCookies()">Show modal</button>
+
+<p>
+	General accepted:
+	{{ generalAccepted$ | async }}
+</p>
+<p>
+	Analytics accepted:
+	{{ analyticsAccepted$ | async }}
+</p>
+
+<p>
+	YouTube accepted:
+	{{ youtubeAccepted$ | async }}
+</p>
+
+<p *hasCookie="{ category: 'analytics', services: ['ga'] }">
+	GA was accepted!
+</p>
