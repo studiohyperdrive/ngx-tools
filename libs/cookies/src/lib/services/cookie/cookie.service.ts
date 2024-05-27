@@ -197,4 +197,47 @@ export class NgxCookieService {
 	public showModal(): void {
 		CookieConsent.show(true);
 	}
+
+	/**
+	 * Removes a (set of) cookie(s)
+	 *
+	 * @param cookies - A (set of) cookie(s)
+	 * @param path - The path to the cookie(s)
+	 * @param domain - The domain of the cookie(s)
+	 */
+	public removeCookies(
+		cookies: string | RegExp | (string | RegExp)[],
+		path?: string,
+		domain?: string
+	): void {
+		return CookieConsent.eraseCookies(cookies, path, domain);
+	}
+
+	/**
+	 * Get a cookie
+	 *
+	 * @param cookie - Name of the cookie
+	 */
+	public getCookie(cookie?: keyof CookieConsent.CookieValue): CookieConsent.CookieValue {
+		return CookieConsent.getCookie(cookie);
+	}
+
+	/**
+	 * Get a cookie as an observable
+	 *
+	 * @param cookie - Name of the cookie
+	 */
+	public getCookieObservable(
+		cookie?: keyof CookieConsent.CookieValue
+	): Observable<CookieConsent.CookieValue | undefined> {
+		// Iben: Return every time the cookie consent has changed
+		return combineLatest([
+			this.cookiesConsented$.pipe(startWith(undefined)),
+			this.cookiesConsentChanged$.pipe(startWith(undefined)),
+		]).pipe(
+			map(() => {
+				return CookieConsent.getCookie(cookie);
+			})
+		);
+	}
 }
