@@ -26,6 +26,9 @@ The package refrains from adding too much custom logic and is entirely based on 
 
 ## NgxCookieService
 
+The `NgxCookieService` provides two functionalities. On one side it allows you to handle the cookie consent flow for the end-user, on the other side it allows you to set/remove cookies and listen to the changes.
+
+### Cookie Consent
 Using the `NgxCookieService` we can initialize the CookieConsent cookie handler. It is important that this setup method, `setupCookiesHandler`, is called in the `ngAfterViewInit`. For more information on how to configure the cookie modal, check the [configuration](https://cookieconsent.orestbida.com/essential/getting-started.html#configuration) documentation.
 
 This handler will automatically set the callbacks for the provided events, which will in turn update the provided Observables. These observables are: `firstCookiesConsented`, `cookiesConsented`, `cookiesConsentChanged` and `modalVisible$`.
@@ -37,6 +40,16 @@ The `firstCookiesConsented` and `cookiesConsented` will emit when the cookies ar
 The service also provides ways to see whether a category or a service within a category of cookies has been accepted, and allows the category or service to be accepted as well. These methods are `hasAcceptedCategory`, `acceptCategory`, `hasAcceptedService` and `acceptService`.
 
 Finally, using the `showModal` method, we can trigger the modal at any point in the application.
+
+### Setting and removing cookies
+
+We can also use the `NgxCookieService` to set, get and remove cookies. This can be done with the `setCookie`, `getCookie` and `removeCookie` methods respectively.
+
+As this package provides a reactive approach to the cookie handling, `ngx-cookies` also provides two observable handlers, the `cookiesChanged$` observable and the `getCookieObservable` method.
+
+`cookiesChanged$` is an observable that emits whenever the `setCookie` or the `removeCookie` gets called. It's important to keep in mind that, _if_ the cookies were already set in the past and the value is not updated, the `cookiesChanged$` observable will not emit. Keep this in mind, as this observable therefor might not always emit on startup.
+
+`getCookieObservable` will listen to the provided cookie and will return either the value or `undefined` based on the set status. Unlike the `cookiesChanged$`, this observable does have the initial value regardless of whether the cookie value changed since last startup.
 
 ## hasCookieDirective
 

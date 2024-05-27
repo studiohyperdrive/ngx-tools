@@ -19,3 +19,11 @@ This is the test
 <p *hasCookie="{ category: 'analytics', services: ['ga'] }">
 	GA was accepted!
 </p>
+
+<p>
+	Is authenticated: {{isAuthenticated$ | async}}
+
+	<button (click)="removeCookie('authenticated')">
+		Remove cookie
+	</button>
+</p>
