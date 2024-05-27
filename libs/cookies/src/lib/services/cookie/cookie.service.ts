@@ -2,13 +2,22 @@ import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import * as CookieConsent from 'vanilla-cookieconsent';
 
-import { BehaviorSubject, Observable, Subject, combineLatest, map, startWith } from 'rxjs';
+import {
+	BehaviorSubject,
+	Observable,
+	Subject,
+	combineLatest,
+	distinctUntilChanged,
+	map,
+	startWith,
+} from 'rxjs';
 import {
 	NgxCookieCategories,
 	NgxCookieChangedEvent,
 	NgxCookieConfiguration,
 	NgxCookieEvent,
 	NgxCookieLanguageConfiguration,
+	NgxCookieValue,
 } from '../../types';
 
 /**
@@ -39,6 +48,11 @@ export class NgxCookieService {
 	);
 
 	/**
+	 * Subject to hold the cookiesChanged event
+	 */
+	private readonly cookiesChangedSubject: Subject<Record<string, any>> = new Subject();
+
+	/**
 	 * An event triggered only the very first time that the user expresses their choice of consent
 	 */
 	public readonly firstCookiesConsented$: Observable<NgxCookieEvent> =
@@ -60,6 +74,12 @@ export class NgxCookieService {
 	 * Whether the cookies modal is currently visible
 	 */
 	public readonly modalVisible$: Observable<boolean> = this.modalVisibleSubject.asObservable();
+
+	/**
+	 * Emits every time the set cookies have been changed
+	 */
+	public readonly cookiesChanged$: Observable<Record<string, any>> =
+		this.cookiesChangedSubject.asObservable();
 
 	constructor(@Inject(PLATFORM_ID) private platformId: string) {}
 
@@ -199,27 +219,12 @@ export class NgxCookieService {
 	}
 
 	/**
-	 * Removes a (set of) cookie(s)
-	 *
-	 * @param cookies - A (set of) cookie(s)
-	 * @param path - The path to the cookie(s)
-	 * @param domain - The domain of the cookie(s)
-	 */
-	public removeCookies(
-		cookies: string | RegExp | (string | RegExp)[],
-		path?: string,
-		domain?: string
-	): void {
-		return CookieConsent.eraseCookies(cookies, path, domain);
-	}
-
-	/**
 	 * Get a cookie
 	 *
 	 * @param cookie - Name of the cookie
 	 */
-	public getCookie(cookie?: keyof CookieConsent.CookieValue): CookieConsent.CookieValue {
-		return CookieConsent.getCookie(cookie);
+	public getCookie<DataType = any>(cookie: string): DataType | undefined {
+		return (CookieConsent.getCookie('data') || {})[cookie];
 	}
 
 	/**
@@ -227,17 +232,61 @@ export class NgxCookieService {
 	 *
 	 * @param cookie - Name of the cookie
 	 */
-	public getCookieObservable(
-		cookie?: keyof CookieConsent.CookieValue
-	): Observable<CookieConsent.CookieValue | undefined> {
-		// Iben: Return every time the cookie consent has changed
-		return combineLatest([
-			this.cookiesConsented$.pipe(startWith(undefined)),
-			this.cookiesConsentChanged$.pipe(startWith(undefined)),
-		]).pipe(
+	public getCookieObservable<DataType = any>(cookie: string): Observable<DataType | undefined> {
+		// Iben: Return every time the set cookies are changed
+		return this.cookiesChanged$.pipe(
+			startWith(CookieConsent.getCookie('data') || {}),
+			// Iben: Get the cookie value
 			map(() => {
-				return CookieConsent.getCookie(cookie);
-			})
+				return this.getCookie<DataType>(cookie);
+			}),
+			// Iben: As the cookiesChanged event emits every time all cookies are rest, we check if the cookie value was really changed
+			distinctUntilChanged()
 		);
+	}
+
+	/**
+	 * Set a cookie
+	 *
+	 * @param cookie - The cookie we wish to set
+	 */
+	public setCookie(cookie: NgxCookieValue): void {
+		// Iben: Set the cookie
+		const isSet = CookieConsent.setCookieData({
+			value: { [cookie.name]: cookie.value },
+			mode: 'update',
+		});
+
+		// Iben: If the cookie was not set, we return
+		if (!isSet) {
+			return;
+		}
+
+		// Iben: Update the subject so we can notify listeners
+		this.cookiesChangedSubject.next(CookieConsent.getCookie('data'));
+	}
+
+	/**
+	 * Remove a cookie
+	 *
+	 * @param cookie - The cookie we wish to remove
+	 */
+	public removeCookie(cookie: string): void {
+		// Iben: Get the current cookies
+		const currentCookies = CookieConsent.getCookie('data') || {};
+
+		// Iben: Remove the cookie from the currently set cookies
+		const { [cookie]: _removedValue, ...value } = currentCookies;
+
+		// Iben: Remove the cookie from the cookies holder
+		const isSet = CookieConsent.setCookieData({ value, mode: 'overwrite' });
+
+		// Iben: If the cookie was not set, we return
+		if (!isSet) {
+			return;
+		}
+
+		// Iben: Update the subject so we can notify listeners
+		this.cookiesChangedSubject.next(CookieConsent.getCookie('data'));
 	}
 }

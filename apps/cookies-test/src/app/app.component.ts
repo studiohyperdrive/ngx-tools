@@ -32,6 +32,8 @@ export class AppComponent {
 		'analytics',
 		'youtube'
 	);
+	isAuthenticated$: Observable<boolean> =
+		this.ngxCookieService.getCookieObservable<boolean>('authenticated');
 
 	constructor(private readonly ngxCookieService: NgxCookieService) {}
 
@@ -58,11 +60,20 @@ export class AppComponent {
 		);
 	}
 
+	ngOnInit() {
+		this.ngxCookieService.setCookie({ name: 'authenticated', value: true });
+		this.ngxCookieService.setCookie({ name: 'kbo', value: true });
+	}
+
 	showCookies() {
 		this.ngxCookieService.showModal();
 	}
 
 	acceptGA() {
 		this.ngxCookieService.acceptService('analytics', 'ga');
+	}
+
+	removeCookie(cookie: string) {
+		this.ngxCookieService.removeCookie(cookie);
 	}
 }
