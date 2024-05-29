@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { ActivatedRouteSnapshot, Router, convertToParamMap } from '@angular/router';
 
-import { I18nService } from '../../services';
+import { I18nService, RootI18nService } from '../../services';
 
 import { I18N_CONFIG } from '../../i18n.const';
 import { I18nGuard } from './i18n.guard';
@@ -35,6 +35,7 @@ describe('I18nGuard', () => {
 					provide: Router,
 					useValue: router,
 				},
+				RootI18nService,
 			],
 		});
 	});

@@ -16,7 +16,7 @@ export class I18nService implements AbstractI18nService {
 	 * Returns the current language of the application
 	 */
 	public get currentLanguage(): string {
-		return this.translateService.currentLang || this.rootI18nService.currentLanguage;
+		return this.rootI18nService.currentLanguage;
 	}
 
 	/**
@@ -56,6 +56,7 @@ export class I18nService implements AbstractI18nService {
 	 */
 	public setLanguage = (language: string): void => {
 		this.translateService.use(language);
+		this.rootI18nService.setCurrentLanguage(language);
 	};
 
 	/**

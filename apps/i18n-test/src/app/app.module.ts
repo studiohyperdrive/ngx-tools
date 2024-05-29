@@ -14,7 +14,7 @@ import { NgxI18nModule } from '@ngx/i18n';
 		HttpClientModule,
 		NgxI18nModule.forRoot({
 			defaultLanguage: 'nl',
-			availableLanguages: ['nl'],
+			availableLanguages: ['nl', 'fr'],
 			defaultAssetPaths: ['./assets/shared/'],
 		}),
 	],
