@@ -16,27 +16,38 @@ export const I18nGuard: CanActivateFn = (route: ActivatedRouteSnapshot): boolean
 	const i18nService = inject(I18nService);
 	const config: I18nConfig = inject(I18N_CONFIG);
 
+	// Iben: Get the two language params
 	const currentLanguage = i18nService.currentLanguage || config.defaultLanguage;
 	const routeLanguage = getLanguage(route, config);
 
+	// Iben: If both languages are the same, we can continue
 	if (currentLanguage === routeLanguage) {
 		return true;
 	}
 
-	if (i18nService.availableLanguages.includes(routeLanguage)) {
+	// Iben: If the router language differs, we check if it is available
+	if (config?.availableLanguages.includes(routeLanguage)) {
+		// Iben: Update the language
 		i18nService.setLanguage(routeLanguage);
 
-		// Re-route to the new language
+		//Iben: Re-route to the new language
 		router.navigate(['/', routeLanguage]);
+
 		return true;
 	}
 
-	// The current language is set to "default" when no previous language exists.
+	//Iben: The current language is set to "default" when no previous language exists.
 	router.navigate(['/', currentLanguage]);
 
 	return false;
 };
 
+/**
+ * Fetches the language from the route
+ *
+ * @param route - The provided route
+ * @param config - The provided config
+ */
 const getLanguage = (route: ActivatedRouteSnapshot, config: I18nConfig): string => {
 	const language = route?.paramMap.get(config.languageRouteParam || 'language');
 	const parent = route?.parent;
