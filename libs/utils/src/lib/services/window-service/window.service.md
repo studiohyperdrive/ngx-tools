@@ -142,3 +142,24 @@ export class YourComponent {
 	}
 }
 ```
+
+
+### runInBrowser
+
+The `runInBrowser`-method is provided to run a specific callback only when in the browser.
+
+The callback has access to the window and the document elements provided in its parameters.
+
+```typescript
+import { WindowService } from '@studiohyperdrive/ngx-utils';
+
+export class YourComponent {
+	constructor(private windowService: WindowService) {}
+
+	public aCoolMethod(): void {
+		this.windowService.runInBrowser(({browserWindow, browserDocument}) => {
+            // Do something with the browser window or document
+        })
+	}
+}
+```
