@@ -80,6 +80,21 @@ export class WindowService {
 		return isPlatformBrowser(this.platformId);
 	}
 
+	/**
+	 * Run a provided function only when we're in the browser and not in a server side rendered application
+	 *
+	 * @param action - Function we want to run in the browser
+	 */
+	public runInBrowser(
+		action: (data: { browserWindow: Window; browserDocument: Document }) => void
+	) {
+		if (this.isBrowser) {
+			action({ browserWindow: this.window, browserDocument: this.document });
+		} else {
+			console.warn('Browser depended function has not run.');
+		}
+	}
+
 	private handleContentScroll(): void {
 		if (window.pageYOffset > this.currentScrollPosition) {
 			this.scrollingUpSubject$.next(false);

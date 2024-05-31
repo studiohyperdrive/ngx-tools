@@ -32,4 +32,5 @@ export const windowServiceMock = (spy: unknown, width: number = 1200) => ({
 	scrollTo: () => null,
 	hasDocument: () => true,
 	isBrowser: () => true,
+	runInBrowser: (callback: () => void) => callback(),
 });
