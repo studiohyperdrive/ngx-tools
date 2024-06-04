@@ -82,6 +82,14 @@ describe('NgxStore', () => {
 
 			expect(spy.getValues()).toEqual([false]);
 		});
+
+		it('should emit initial falsy values', () => {
+			const spy = subscribeSpyTo(service.subscriberCount$);
+			const darkMode = subscribeSpyTo(service.darkMode$);
+
+			expect(spy.getValues()).toEqual([0]);
+			expect(darkMode.getValues()).toEqual([false]);
+		});
 	});
 
 	describe('EntityStoreAssets', () => {

@@ -10,6 +10,7 @@ import {
 export interface CoursesStore extends StoreFlowAssets {
 	courses: EntityStoreAssets<string>;
 	completed: BaseStoreAssets<boolean>;
+	amount: BaseStoreAssets<number>;
 }
 
 export const { selectors, reducers, actions } = createStoreAssets<CoursesStore>('courses', [
@@ -21,5 +22,10 @@ export const { selectors, reducers, actions } = createStoreAssets<CoursesStore>(
 	{
 		subSlice: 'completed',
 		generator: createBaseStoreAssets<boolean>,
+	},
+	{
+		subSlice: 'amount',
+		generator: createBaseStoreAssets<number>,
+		initialValue: 0,
 	},
 ]);

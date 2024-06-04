@@ -26,6 +26,9 @@ export class AppComponent {
 			console.log('Loading ', result)
 		);
 		this.courseService.state.courses$.subscribe((result) => console.log('Courses ', result));
+		this.courseService.state.amount$.subscribe((result) => {
+			console.log('Amount ', result);
+		});
 
 		setTimeout(() => {
 			this.courseService.setCompleted();
