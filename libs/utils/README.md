@@ -153,6 +153,12 @@ This service is a solution to end RxJS subscriptions when component is destroyed
 
 [Full documentation.](src/lib/services/subscription-service/subscription.service.md)
 
+### 3. NgxStorageService
+
+This service provides a SSR proof Observable based approach to both the local- and the sessionStorage.
+
+[Full documentation.](src/lib/services/storage-service/storage.service.md)
+
 ## Abstracts
 
 ### 1. NgxQueryParamFormSyncComponent

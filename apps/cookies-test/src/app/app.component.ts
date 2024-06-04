@@ -7,6 +7,7 @@ import {
 	NgxCookiesFallbackComponentToken,
 	NgxHasCookieDirective,
 } from '@ngx/cookies';
+import { NgxStorageService } from '@ngx/utils';
 
 @Component({
 	standalone: true,
@@ -35,7 +36,10 @@ export class AppComponent {
 	isAuthenticated$: Observable<boolean> =
 		this.ngxCookieService.getCookieObservable<boolean>('authenticated');
 
-	constructor(private readonly ngxCookieService: NgxCookieService) {}
+	constructor(
+		private readonly ngxCookieService: NgxCookieService,
+		private readonly sessionService: NgxStorageService
+	) {}
 
 	ngAfterViewInit() {
 		this.ngxCookieService.setupCookiesHandler(
@@ -63,6 +67,13 @@ export class AppComponent {
 	ngOnInit() {
 		this.ngxCookieService.setCookie({ name: 'authenticated', value: true });
 		this.ngxCookieService.setCookie({ name: 'kbo', value: true });
+
+		this.sessionService.storageEvents$.subscribe(console.log);
+
+		this.sessionService.localStorage.setItem('Hello', 0);
+		this.sessionService.sessionStorage.setItem('Test', { hello: 'world' });
+
+		this.sessionService.sessionStorage.removeItem('Test');
 	}
 
 	showCookies() {
