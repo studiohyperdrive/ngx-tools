@@ -38,7 +38,7 @@ export const createBaseStoreAssets = <
 
 	// Iben: Set the initial state
 	const initialState = {
-		data: initialStateValue || undefined,
+		data: initialStateValue,
 		loading: false,
 		error: false,
 		errorMessage: null,

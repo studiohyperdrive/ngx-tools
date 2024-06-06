@@ -32,6 +32,10 @@ export class SpecStoreService extends StoreService {
 	public readonly videosErrorMessage$: Observable<string> = this.selectErrorMessageFromStore(
 		selectors.videos
 	);
+	public readonly subscriberCount$: Observable<number> = this.selectFromStore(
+		selectors.subscriberCount
+	);
+	public readonly darkMode$: Observable<boolean> = this.selectFromStore(selectors.darkMode);
 
 	constructor(public readonly store: Store, private readonly httpClient: HttpClient) {
 		super(store);
