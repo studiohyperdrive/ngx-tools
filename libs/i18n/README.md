@@ -1,4 +1,8 @@
-# Angular Tools: NgxI18nModule (`@studiohyperdrive/ngx-i18n`)
+# Angular Tools: NgxI18n (`@studiohyperdrive/ngx-i18n`)
+
+This library provides a lazy-loaded modular approach to translations.
+
+## Installation
 
 Install the package first:
 
@@ -6,13 +10,23 @@ Install the package first:
 npm install @studiohyperdrive/ngx-i18n
 ```
 
-## 1. Concept
+## Versioning and build information
+
+This package will follow a semver-like format, `major.minor.patch`, in which:
+
+- `major`: Follows the Angular major version
+- `minor`: Introduces new features and (potential) breaking changes
+- `patch`: Introduces bugfixes and minor non-breaking changes
+
+For more information about the build process, authors, contributions and issues, we refer to the [ngx-tools](https://github.com/studiohyperdrive/ngx-tools) repository.
+
+## Concept
 
 `ngx-1i8n` is a layer on top of `ngx-translate` that allows for a lazy-loaded modular approach to translations. This approach allows the user to split up the translations into several independent files, which can be lazy-loaded whenever they're needed.
 
 This approach only works for module-based projects. There is currently no support for standalone-components.
 
-## 2. Modular
+### Modular
 
 In order for a modular translation system, we provide a `TranslationLoader` to each `forChild` method of the `NgxI18nModule`. This loader uses a similar approach as @rbalet's [MultiTranslateHttpLoader](https://github.com/rbalet/ngx-translate-multi-http-loader).
 
@@ -28,7 +42,7 @@ export function ExampleTranslationLoader(http: HttpBackend) {
 
 If no custom `TranslationLoader` is provided, than the module will use a fall-back loader which has a default array of paths that can be set in the config file.
 
-## 3. Lazy-loaded
+### Lazy-loaded
 
 In order to provide a lazy loaded translation system, the translations only get loaded when routing to a specific route.
 
@@ -36,13 +50,15 @@ For this purpose we've provided a `TranslationLoaderGuard` which will automatica
 
 At any given time you can query the `I18nLoadingService` to see whether the translations have been loaded into the application. There are two Observables provided, being `translationsLoading$` and `translationsFailed$`;
 
-## 4. I18nGuard
+## Implementation
+
+### I18nGuard
 
 The `@studiohyperdrive/ngx-i18n` package also provides us with a `I18nGuard` which will automatically prefix the routes of your application with a language parameter.
 
 The name of the route parameter is `language` by default, but can be overwritten in the config file. The same config file will also provide the opportunity to define a set of permitted languages and a default language for when no language is provided.
 
-## 5. Setup
+### Setup
 
 In this simple example we'll provide the basic setup for the `NgxI18nModule` approach.
 
@@ -98,23 +114,19 @@ export class FeatureModule {}
 
 With this setup, the translations will be loaded only when navigating to the FeatureModule.
 
-## build information
+### Standalone
 
-This project has been build with:
+`ngx-i18n` also works with stand-alone components. In order to provide translations as done using modules, we use the `provideWithTranslations` function. Wrapping a `Route` with this function will provide the translations for said route.
 
--   Angular CLI : `16.1.4`
--   Angular: `16.1.5`
--   nodejs: `18.17.0`
--   npm: `9.6.7`
-
-For a complete list of packages and version check out the `package.json` file.
-
-## Team
-
-This bundle of tools has been created and is maintained by [Studio Hyperdrive](https://studiohyperdrive.be).
-
-Contributors:
-
--   [Denis Valcke](https://github.com/DenisValcke)
--   [Iben Van de Veire](https://github.com/IbenTesara)
--   [Wouter Heirstrate](https://github.com/WHeirstrate)
+```ts
+export const TestRoutes: Routes = [
+	provideWithTranslations(
+		{
+			path: '',
+			component: TestComponent
+			canActivate: [TranslationLoaderGuard],
+		},
+		TestTranslationLoader
+	)
+];
+```

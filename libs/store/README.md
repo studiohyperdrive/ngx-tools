@@ -1,4 +1,4 @@
-# NGX-Store
+# Angular Tools: NgxStore (`@studiohyperdrive/ngx-store`)
 
 NGX-store aims to reduce the boilerplate that comes with `@ngrx`, `@ngrx/effects` and `@ngrx/entity`; whilst still including the benefits of said packages.
 
@@ -12,6 +12,16 @@ Install the package first:
 npm install @studiohyperdrive/ngx-store
 ```
 
+## Versioning and build information
+
+This package will follow a semver-like format, `major.minor.patch`, in which:
+
+- `major`: Follows the Angular major version
+- `minor`: Introduces new features and (potential) breaking changes
+- `patch`: Introduces bugfixes and minor non-breaking changes
+
+For more information about the build process, authors, contributions and issues, we refer to the [ngx-tools](https://github.com/studiohyperdrive/ngx-tools) repository.
+
 ## Concept
 
 As mentioned before, `ngx-store` works in tandem with `@ngrx`. The package aims to optimize the workflow for (complex) projects that currently already use this redux implementation.
@@ -20,9 +30,11 @@ With this in mind, our goal is to make this package as flexible as possible. We 
 
 Because of this approach, our implementation has to take into account these constraints and will therefore deviate from the standard redux implementation.
 
-## Store utils
+## Implementation
 
-### createStoreAssets
+### Store utils
+
+#### createStoreAssets
 
 In order to reduce the boilerplate of actions, reducers and selectors; and in the effort of creating a coherent store setup, NGX-Store uses the `createStoreAssets` util to setup a slice of the store.
 
@@ -82,9 +94,9 @@ On top of the provided actions and reducers, the util also provides the followin
 | selectError        | Selects the error state of the provided data from the store         |
 | selectErrorMessage | Selects the provided error data of the provided data from the store |
 
-### Effects
+#### Effects
 
-#### Actions
+##### Actions
 
 To support `@ngrx-effects` the generator automatically generates a series of actions that can be used to handle effects. These can be found under the `effects` property, and match the `set, add, update` and `delete` actions.
 
@@ -110,7 +122,7 @@ export const { actions, reducers, selectors } = createStoreAssets<UserStore>('us
 ]);
 ```
 
-#### handleEffect
+##### handleEffect
 
 As additional support to effects, the package provides a `handleEffect` operator which will automatically take care of any of the provided actions. By defining which sub-slice we wish to use, the action we wish to handle and the corresponding data source, the `handleEffect` operator will perform all the necessary actions required.
 
@@ -124,7 +136,7 @@ A short example can be found here
 	});
 ```
 
-### dispatchDataToSTore
+#### dispatchDataToSTore
 
 An additional util that works in tandem with the aforementioned store assets is the `dispatchDataToStore` util. Using the assets, the util will automatically handle the loading and error state of the provided data.
 
@@ -142,7 +154,7 @@ A short example can be found here
 
 The util returns an Observable for easy further chaining throughout the application.
 
-### StoreService
+#### StoreService
 
 Just as the aforementioned `dispatchDataToStore` util, the `StoreService` abstraction works best in tandem with the `createStoreAssets` util.
 
@@ -184,22 +196,3 @@ const state = storeStateService.state;
 // Contains: isCompleted$, isCompletedLoading$, isCompletedError$ and isCompletedErrorMessage$
 ```
 
-## build information
-
-This project has been build with:
-
--   Angular CLI : `16.1.4`
--   Angular: `16.1.5`
--   nodejs: `18.17.0`
--   npm: `9.6.7`
-
-For a complete list of packages and version check out the `package.json` file.
-
-## Team
-
-This bundle of tools has been created and is maintained by [Studio Hyperdrive](https://studiohyperdrive.be).
-
-Contributors:
-
--   [Denis Valcke](https://github.com/DenisValcke)
--   [Iben Van de Veire](https://github.com/IbenTesara)

@@ -1,4 +1,4 @@
-# NgxCookies
+# # Angular Tools: NgxCookies (`@studiohyperdrive/ngx-cookies`)
 
 This library provides a quick and easy wrapper for [CookieConsent V3](https://cookieconsent.orestbida.com).
 
@@ -18,17 +18,30 @@ Add the CookieConsent CSS to the build step.
         ],
 ```
 
+
+## Versioning and build information
+
+This package will follow a semver-like format, `major.minor.patch`, in which:
+
+- `major`: Follows the Angular major version
+- `minor`: Introduces new features and (potential) breaking changes
+- `patch`: Introduces bugfixes and minor non-breaking changes
+
+For more information about the build process, authors, contributions and issues, we refer to the [ngx-tools](https://github.com/studiohyperdrive/ngx-tools) repository.
+
 ## Concept
 
 The `ngx-cookies` package was made as an extension on top of the vanilla CookieConsent in order to provide several Angular based functionalities such as a setup through a server, Observables for the provided events and a directive to handle cookie based content.
 
 The package refrains from adding too much custom logic and is entirely based on the existing CookieConsent API. We refer to the documentation of said package for more information regarding the setup of the cookie handler.
 
-## NgxCookieService
+## Implementation
+
+### NgxCookieService
 
 The `NgxCookieService` provides two functionalities. On one side it allows you to handle the cookie consent flow for the end-user, on the other side it allows you to set/remove cookies and listen to the changes.
 
-### Cookie Consent
+#### Cookie Consent
 Using the `NgxCookieService` we can initialize the CookieConsent cookie handler. It is important that this setup method, `setupCookiesHandler`, is called in the `ngAfterViewInit`. For more information on how to configure the cookie modal, check the [configuration](https://cookieconsent.orestbida.com/essential/getting-started.html#configuration) documentation.
 
 This handler will automatically set the callbacks for the provided events, which will in turn update the provided Observables. These observables are: `firstCookiesConsented`, `cookiesConsented`, `cookiesConsentChanged` and `modalVisible$`.
@@ -41,7 +54,7 @@ The service also provides ways to see whether a category or a service within a c
 
 Finally, using the `showModal` method, we can trigger the modal at any point in the application.
 
-### Setting and removing cookies
+#### Setting and removing cookies
 
 We can also use the `NgxCookieService` to set, get and remove cookies. This can be done with the `setCookie`, `getCookie` and `removeCookie` methods respectively.
 
@@ -51,7 +64,7 @@ As this package provides a reactive approach to the cookie handling, `ngx-cookie
 
 `getCookieObservable` will listen to the provided cookie and will return either the value or `undefined` based on the set status. Unlike the `cookiesChanged$`, this observable does have the initial value regardless of whether the cookie value changed since last startup.
 
-## hasCookieDirective
+### hasCookieDirective
 
 The `*hasCookie` directive is a structural directive which will render the content based on wether the provided (set of) cookie(s) are accepted by the user. If accepted, the content will be shown.
 
@@ -87,6 +100,3 @@ export class CookieAlertComponent extends NgxCookiesFallBackComponent {}
 ```
 
 Just like any structural directives, we can pass an `else` template to the `*hasCookie` directive. This template always has priority over the default component we provided. This way, you are always able to get a custom template even when a default is implemented.
-
-
-#
