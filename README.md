@@ -1,41 +1,8 @@
-# Studio Hyperdrive: Angular Tools (_shd_angular_tools_)
+# Studio Hyperdrive: Angular Tools (ngx-tools)
 
-## General
+`ngx-tools` is a mono-repo providing several of the Angular based packages created and maintained by the [Studio Hyperdrive](https://studiohyperdrive.be/) team.
 
-This repo contains general usage libraries for shd Angular projects. Those libraries are:
-
--   utils (`@studiohyperdrive/ngx-utils`) :
-
-    -   general purpose utilities (services, pipes, injects, ...)
-
--   forms (`@studiohyperdrive/ngx-forms`):
-
-    -   custom validators & abstracts for creating custom form components
-
--   store (`@studiohyperdrive/ngx-store`):
-
-    -   ngrx and ngrx/entity wrapper to create store setups with less boilerplating
-
--   table (`@studiohyperdrive/ngx-table`):
-
-    -   a quick and easy template based table builder using the Angular CDK Table
-
--   i18n (`@studiohyperdrive/ngx-i18n`):
-    -   a layer on top of ngx-translate that provides lazy-loaded translations
-
-You can find detailed explanations in their respective README’s.
-
-It is build with:
-
--   Angular CLI : `17.0.3`
--   Nx: `18.3.1`
--   Angular: `16.1.5`
--   nodejs: `18.14.0`
--   npm: `9.3.1`
-
-For a complete list of packages and version check out the `package.json` file.
-
-### Clone and install dependencies
+## Installation
 
 To setup this project, clone the repo and run `npm i` to install the dependencies.
 
@@ -49,9 +16,58 @@ The available command are:
 | test    | runs `nx test`       |
 | lint    | runs `nx lint --fix` |
 
-<br>
 
-## Contribute
+## Versioning and build information
+
+This package will follow a semver-like format, `major.minor.patch`, in which:
+
+- `major`: Follows the Angular major version
+- `minor`: Introduces new features and (potential) breaking changes
+- `patch`: Introduces bugfixes and minor non-breaking changes
+
+It is build with:
+
+-   Angular CLI : `17.0.4`
+-   Nx: `18.3.1`
+-   Angular: `17.0.4`
+-   nodejs: `18.14.0`
+-   npm: `9.3.1`
+
+For a complete list of packages and version check out the `package.json` file.
+
+
+## Concept
+
+This repo contains general usage libraries for shd Angular projects. Those libraries are:
+
+-   utils (`@studiohyperdrive/ngx-utils`) :
+
+    -   This library provides several independent utilities to facilitate common use-cases for users and developers.
+
+-   forms (`@studiohyperdrive/ngx-forms`):
+
+    -   This library provides multiple utilities for complex form use-cases.
+
+-   store (`@studiohyperdrive/ngx-store`):
+
+    -   This library provides several utils and abstractions to improve the Redux workflow
+
+-   table (`@studiohyperdrive/ngx-table`):
+
+    -   This library provides a quick and easy template based table builder using the Angular CDK Table.
+
+-   i18n (`@studiohyperdrive/ngx-i18n`):
+    -   This library provides a lazy-loaded modular approach to translations.
+
+-   cookies (`@studiohyperdrive/ngx-cookies`):
+    -   This library provides a quick and easy wrapper for [CookieConsent V3](https://cookieconsent.orestbida.com).
+
+-   layout (`@studiohyperdrive/ngx-layout`):
+    -   `ngx-layout` is a collection of Angular components related to layout.
+
+You can find detailed explanations in their respective README’s.
+
+## Contributions
 
 ### Add a new library
 

@@ -1,8 +1,26 @@
-# NgxTable
+# Angular Tools: NgxTable (`@studiohyperdrive/ngx-table`)
 
 This library provides a quick and easy template based table builder using the Angular CDK Table.
 
-## 1. Concept
+## Installation
+
+Install the package first:
+
+```shell
+npm install @studiohyperdrive/ngx-table
+```
+
+## Versioning and build information
+
+This package will follow a semver-like format, `major.minor.patch`, in which:
+
+- `major`: Follows the Angular major version
+- `minor`: Introduces new features and (potential) breaking changes
+- `patch`: Introduces bugfixes and minor non-breaking changes
+
+For more information about the build process, authors, contributions and issues, we refer to the [ngx-tools](https://github.com/studiohyperdrive/ngx-tools) repository.
+
+## Concept
 
 The Angular CDK Table is a very useful tool to build tables with, but is known to have a rather complex syntax and does not feature a bunch of common use-cases out of the box.
 
@@ -12,7 +30,9 @@ Whilst this package is opinionated, the `ngx-table` works primarily with a ng-te
 
 You can find a StackBlitz example [here](https://stackblitz.com/edit/stackblitz-starters-am9x39).
 
-## 2. Simple example
+## Implementation
+
+### Simple example
 
 Starting off with a simple example, the `ngx-table` works with two primary inputs, the `columns` and the `data` inputs.
 
@@ -92,7 +112,7 @@ In the `cellTmpl` template we have several props at our disposal to work with. T
 
 The `ngx-table` package comes with two extra cells that are used in common use-cases, being the `ngx-date-table-cell` and the `ngx-currency-cell`. These special cells were made to represent date and currency based data; but are optional. For more information about making your own custom cells, see the topic Custom Cells.
 
-## 2. Detail row
+### Detail row
 
 `ngx-table` provides a built-in way to add detail rows to your table. This can be done by providing the `#detailRowTmpl` template as a `ContentChild`. When provided, the row automatically becomes clickable and can be toggled open and close. The default props provided to the template are the entire data object and the index. We can listen to a row being clicked by adding a listener to the `rowClicked` Output.
 
@@ -130,7 +150,7 @@ We can also visualize the open state of the row by setting the `showOpenRowState
 </ngx-table>
 ```
 
-## 3. Loading and empty state
+### Loading and empty state
 
 `ngx-table` also provides a default error, loading and empty state to the table. You can overwrite these templates with the `emptyTmpl` and `loadingTmpl` templates.
 
@@ -146,7 +166,7 @@ We can also visualize the open state of the row by setting the `showOpenRowState
 </ngx-table>
 ```
 
-## 4. Sorting by column, selecting rows, row-actions and column sorting
+### Sorting by column, selecting rows, row-actions and column sorting
 
 Common use-cases such as sorting columns, selecting rows and providing actions on the table are also provided by the `ngx-table` package.
 
@@ -245,13 +265,13 @@ Optionally, you can provide an array of `actions` in the same vain you can add `
 
 As mentioned earlier, the `columns` input defines the order of the columns by using the order of the provided strings. These columns can be changed on the fly, allowing users to reorder the columns by hand or showing/hiding columns in certain specific situations. A built-in solution to allow drag-and-drop column sorting is not yet provided, but will be in the future.
 
-## 5. Header
+### Header
 
 By default, the header row is always visible, even when no data is provided or when the loading state is active. This behavior can be overwritten in individual tables by `hideHeaderWhen`, but can also be overwritten globally using the `NgxTableConfig`.
 
 If you want the header to not be visible when loading or empty or both, you can pass an array of states that define when the headers are not shown. You can pass just `when-empty` or `when-loading`, but both can also be applied.
 
-## 6. Custom Cells
+### Custom Cells
 
 By using a template-based approach to our cells, we have the ability the create default cells we can use throughout our application. This does not only benefit developers, as it allows for quicker setups of tables, but also provides a consistent look and feel for the users.
 
@@ -300,7 +320,7 @@ export class UserTableCellComponent extends NgxAbstractTableCellDirective {
 
 In the example above, we create a simple user name cell. Instead of using a `ContentChild` template for our cell template, we use a `ViewChild` template. This way, we can provide a default approach to the user name cell, without having to provide it again and again throughout the entire application.
 
-## 7. Defaults and NgxTableConfig
+### Defaults and NgxTableConfig
 
 The table provides several properties that can be set using an `@Input`. The majority of these properties are optional and come with a series of default values for easy use. These defaults can be overwritten using the `NgxTableConfig`.
 
@@ -331,7 +351,7 @@ providers: [
 ];
 ```
 
-## 8. Styling
+### Styling
 
 By default the `ngx-table` comes with very minimal styling. Several classes have been provided to help with styling specific parts of the table. As the package was built upon the `cdk-table`, all styling rules that apply to that table also apply here. Check out the documentation of the `cdk-table` for more information.
 
@@ -365,17 +385,7 @@ If you wish to provide a custom class to the row of your tables, you can provide
 
 Cells can also have a default class we want to provide to all cells of that kind. All `ngx-date-table-cell` cells have the `ngx-date-table-cell` class and the same applies for the `ngx-currency-table-cell`.
 
-## 9. Acknowledgements
+## Acknowledgements
 
 A big thanks goes out to [Sam Verschueren](https://github.com/SamVerschueren) for his help with the initial implementation of this table. Without his help, this table would not have existed.
 
-## 10. Team
-
-This bundle of tools has been created and is maintained by [Studio Hyperdrive](https://studiohyperdrive.be).
-
-Contributors:
-
--   Benoît Dossoine
--   [Denis Valcke](https://github.com/DenisValcke)
--   [Iben Van de Veire](https://github.com/IbenTesara)
--   [Wouter Heirstrate](https://github.com/WHeirstrate)

@@ -1,28 +1,45 @@
 # Angular Tools: NgxLayout (`@studiohyperdrive/ngx-layout`)
 
+`ngx-layout` is a collection of Angular components related to layout.
+
+## Installation
 Install the package first:
 
 ```shell
 npm install @studiohyperdrive/ngx-layout
 ```
 
-## 1. Concept
+## Versioning and build information
 
-`ngx-layout` is a collection of Angular components related to layout.
+This package will follow a semver-like format, `major.minor.patch`, in which:
 
-## 2. Components
+- `major`: Follows the Angular major version
+- `minor`: Introduces new features and (potential) breaking changes
+- `patch`: Introduces bugfixes and minor non-breaking changes
 
-### 2.1 Configurable layout
+For more information about the build process, authors, contributions and issues, we refer to the [ngx-tools](https://github.com/studiohyperdrive/ngx-tools) repository.
+
+## Concept
+
+`ngx-layout` is a package to help facilitate common layout use-cases.
+
+Currently the package provides a `configurable layout` component which can be used to render components in a grid based on provided templates. This approach is ideal for use-cases such as a custom configurable dashboard.
+
+## Implementation
+
+### Components
+
+#### Configurable layout
 
 The `configurable layout` provides the ability to render components in a grid depending on a provided two dimensional array of keys and corresponding items with a provided template. The combination exists of an `ngx-configurable-layout` and an `ngx-configurable-layout-item`.
 
-#### 2.1.1 Setup
+##### Setup
 
 By using content projection, we render our components inside of a `ngx-configurable-layout-item`. Each item requires a `key` as an input, which will be used to match the provided component with the two dimensional array we provide to the `ngx-configurable-layout` component.
 
 This means that the order of rendering is now no longer depended on how you provide the components in the template, but by the two dimensional array provided to the `ngx-configurable-layout` component. This significantly streamlines the process and allows you to easily refactor existing flows. In the chapters below we'll explain how to provide the two dimensional array to the component.
 
-#### 2.1.2 Static
+##### Static
 
 Earlier we mentioned that the layout is build up using a provided two dimensional array. Depending on whether you want this layout to be `static` or `editable`, we provide the array in a different fashion.
 
@@ -62,7 +79,7 @@ import { NgxConfigurableLayoutComponent, NgxConfigurableLayoutItemComponent } fr
 </ngx-configurable-layout>
 ```
 
-#### 2.1.3 Editable
+##### Editable
 
 Unlike with the `static` layout, the `editable` layout allows the user to readjust on the spot by the end user. This means that the end user can toggle items and ,when enabled, reorder these items through drag and drop. A use-case that fits this approach is a fully configurable dashboard, where an end user can pick and choose which items they wish to see.
 
@@ -112,7 +129,7 @@ public readonly control: FormControl<NgxConfigurableLayoutGrid> = new FormContro
 </ngx-configurable-layout>
 ```
 
-#### 2.1.4 Drag and drop
+##### Drag and drop
 
 `ngx-configurable-layout` provides drag and drop through the Angular CDK implementation. By default, the drag and drop functionality is disabled, and can be enabled through `allowDragAndDrop`.
 
@@ -120,7 +137,7 @@ By default, the package uses the demo styling provided by the Angular CDK team. 
 
 When `allowDragAndDrop` is enabled, we can pass a `dropPredicate`. This function is bound to the layout component and will allow you to determine whether dropping an element in a specific spot is allowed by returning true or false. For more information on the predicate, we refer to the CDK Drag and Drop documentation.
 
-#### 2.1.5 Item size
+##### Item size
 
 To determine how much space an item takes up in the grid, we use the `itemSize` input.
 
@@ -130,13 +147,13 @@ By using the option `fit-content`, the size of the components themselves will de
 
 By using the option `equal`, all items in the entire grid will take up an equal amount of space. This also applies to the height of the elements, but this will require you to set the height of your items to `height:100%` for this to take effect.
 
-#### 2.1.6 Gaps
+##### Gaps
 
 In order to create spacing between items in the layout, `ngx-configurable-layout` provides two inputs, `columnGap` and `rowGap`.
 
 Both properties expect a CSS based amount (in px, rem, %, etc.) and are both optional. This is the preferred way of adding spacing between your items, as using margins can sometimes create unexpected results due to the CSS Grid based implementation.
 
-#### 2.1.7 Styling
+##### Styling
 
 By default, `ngx-configurable-layout` always provides minimal styling. Several classes are provided to further style the grid as needed.
 
