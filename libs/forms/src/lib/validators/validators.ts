@@ -39,6 +39,8 @@ export class NgxValidators {
 	 * Particularly useful in situations where a form group field within itself is optional,
 	 * but all fields are required in case it does get filled in
 	 *
+	 * Returns an `allOrNothingRequiredError` error on the provided FormGroup and a `required` error on the individual controls
+	 *
 	 * @param control - A form group control
 	 */
 	static allOrNothingRequired(control: FormGroup): ValidationErrors | null {
@@ -47,6 +49,8 @@ export class NgxValidators {
 
 	/**
 	 * A validator to check if at least one of the provided controls of the form group are filled in
+	 *
+	 * Returns an `atLeastOneRequiredError` error on the provided FormGroup and a `required` error on the individual controls
 	 *
 	 * @param options - An optional object with configuration options, see below params for more info
 	 * @param controlNames - Optional list of controls, if not provided the validator is applied to all controls of the group
@@ -62,13 +66,12 @@ export class NgxValidators {
 	 * The compareValidator will return a validator that compares the values of two FormControls
 	 * within a FormGroup based on a given comparator function.
 	 *
+	 * Returns a `compareError` on the provided FormGroup and on the individual controls if the `setErrorKey` argument is provided.
+	 *
 	 * @param keys {string[]}
 	 * @param comparatorFn {(...args: ValueType[]) => boolean}
 	 * @param setErrorOnKey {string}
 	 * @returns {(group: FormGroup<{ [key: string]: FormControl<ValueType>; }>) => ValidationErrors}
-	 *
-	 * Note: This validator will only set an error on the group it is set to
-	 * unless the `setErrorOnKey` argument is given.
 	 *
 	 */
 	static compareValidator<ValueType = unknown>(
@@ -86,6 +89,8 @@ export class NgxValidators {
 	/**
 	 * FormGroup validator which checks if an array of controls in the control are filled in if the depended control is filled in
 	 *
+	 * Returns a `hasDependedRequiredError` error on the provided FormGroup and a `required` error on the individual controls
+	 *
 	 * @param controls - An array of controls.
 	 * @param dependedControlKey - A control within the group which the other controls depend on.
 	 * @param matchFunction - Optional function the dependedControl should check
@@ -101,6 +106,8 @@ export class NgxValidators {
 	/**
 	 * Validates whether the inputted value has exceeded the maximum amount of decimals after the comma
 	 *
+	 * Returns an `invalidDecimalsAfterComma` error on the provided control
+	 *
 	 * @param max - The maximum number of decimals after the comma
 	 */
 	static decimalsAfterComma(max: number): ValidatorFn {
@@ -109,6 +116,8 @@ export class NgxValidators {
 
 	/**
 	 * A FormGroup validator to check whether a start and end date are chronologically correct
+	 *
+	 * Returns an `incorrectChronologicalDates` error on the provided FormGroup and a `incorrectChronologicalDate` on the endControl
 	 *
 	 * @param startControlKey - The key of the control containing the start date value
 	 * @param endControlKey - The key of the control containing the end date value
@@ -125,6 +134,8 @@ export class NgxValidators {
 	/**
 	 * Form control validator which validates if a date is between a provided range
 	 *
+	 * Returns an `invalidRange` error
+	 *
 	 * @param minDate - Minimum valid date
 	 * @param maxDate - Maximum valid date
 	 * @param format - Optional format used for all 3 dates, by default YYYY-MM-DD
@@ -135,6 +146,8 @@ export class NgxValidators {
 
 	/**
 	 * Form control validator which validates if a date is not in the future.
+	 *
+	 * Returns an `isFutureDate` error
 	 */
 	static hasNoFutureDateValidator = (): ValidatorFn => {
 		return hasNoFutureDateValidator();
@@ -142,6 +155,8 @@ export class NgxValidators {
 
 	/**
 	 * Form control validator which validates if a provided string does not contain more or less words than a provided min and/or max.
+	 *
+	 * Returns either a `minWordCountNotReached` or a `maxWordCountReached`
 	 */
 	static wordCountValidator = ({ min, max }: { min: number; max: number }): ValidatorFn => {
 		return WordCountValidator({ min, max });
