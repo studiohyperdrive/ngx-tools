@@ -10,7 +10,8 @@ import {
 } from '@angular/forms';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BaseFormAccessor, FormAccessor, NgxFormsErrorAbstractComponent } from '../../abstracts';
-import { NgxFormsErrorsModule } from '../../ngx-forms-errors.module';
+import { NgxFormsErrorsConfigurationToken } from '../../tokens';
+import { NgxFormsErrorsDirective } from './errors.directive';
 
 @Component({
 	selector: 'kp-form-accessor',
@@ -37,6 +38,8 @@ import { NgxFormsErrorsModule } from '../../ngx-forms-errors.module';
 			useExisting: forwardRef(() => FormAccessorComponent),
 		},
 	],
+	standalone: true,
+	imports: [ReactiveFormsModule, NgxFormsErrorsDirective],
 })
 export class FormAccessorComponent extends FormAccessor<any, any> {
 	initForm() {
@@ -50,6 +53,8 @@ export class FormAccessorComponent extends FormAccessor<any, any> {
 @Component({
 	selector: 'kp-error',
 	template: `<p class="kp-error">{{ errors[0] }}</p>`,
+	standalone: true,
+	imports: [ReactiveFormsModule],
 })
 export class FormErrorComponent extends NgxFormsErrorAbstractComponent {}
 
@@ -64,12 +69,16 @@ describe('NgxFormsErrorsDirective', () => {
 
 		beforeEach(() => {
 			TestBed.configureTestingModule({
-				declarations: [FormAccessorComponent],
-				imports: [
-					ReactiveFormsModule,
-					NgxFormsErrorsModule.forRoot({ showWhen: 'dirty', errors }),
+				imports: [ReactiveFormsModule, FormAccessorComponent],
+				providers: [
+					ChangeDetectorRef,
+					Injector,
+					NgControl,
+					{
+						provide: NgxFormsErrorsConfigurationToken,
+						useValue: { showWhen: 'dirty', errors },
+					},
 				],
-				providers: [ChangeDetectorRef, Injector, NgControl],
 			});
 
 			fixture = TestBed.createComponent(FormAccessorComponent);
@@ -112,16 +121,16 @@ describe('NgxFormsErrorsDirective', () => {
 
 		beforeEach(() => {
 			TestBed.configureTestingModule({
-				declarations: [FormAccessorComponent, FormErrorComponent],
-				imports: [
-					ReactiveFormsModule,
-					NgxFormsErrorsModule.forRoot({
-						showWhen: 'touched',
-						errors,
-						component: FormErrorComponent,
-					}),
+				imports: [ReactiveFormsModule, FormAccessorComponent, FormErrorComponent],
+				providers: [
+					ChangeDetectorRef,
+					Injector,
+					NgControl,
+					{
+						provide: NgxFormsErrorsConfigurationToken,
+						useValue: { showWhen: 'touched', errors, component: FormErrorComponent },
+					},
 				],
-				providers: [ChangeDetectorRef, Injector, NgControl],
 			});
 
 			fixture = TestBed.createComponent(FormAccessorComponent);

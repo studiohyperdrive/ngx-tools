@@ -2,6 +2,7 @@ import { Directive, EventEmitter, HostBinding, HostListener, Input, Output } fro
 
 @Directive({
 	selector: '[focusClick]',
+	standalone: true,
 })
 export class FocusClickDirective {
 	// Allow the button to ignore click events when set to true

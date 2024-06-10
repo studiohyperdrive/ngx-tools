@@ -1,6 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-@Pipe({ name: 'limitTo' })
+@Pipe({
+	name: 'limitTo',
+	standalone: true,
+})
 export class LimitToPipe implements PipeTransform {
 	/**
 	 * Limits an array to a specific value

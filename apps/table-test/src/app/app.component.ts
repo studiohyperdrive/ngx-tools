@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
-import { NgIf, AsyncPipe, JsonPipe } from '@angular/common';
+import { AsyncPipe, JsonPipe } from '@angular/common';
 import { WrapperComponent } from './wrapper/wrapper.component';
 import { NgxTable } from '@ngx/table';
 
@@ -10,7 +10,7 @@ import { NgxTable } from '@ngx/table';
 	templateUrl: './app.component.html',
 	styleUrls: ['./app.component.scss'],
 	standalone: true,
-	imports: [WrapperComponent, ReactiveFormsModule, NgIf, AsyncPipe, JsonPipe, NgxTable],
+	imports: [WrapperComponent, ReactiveFormsModule, AsyncPipe, JsonPipe, NgxTable],
 })
 export class AppComponent {
 	private currentSet = 'dataSet1';

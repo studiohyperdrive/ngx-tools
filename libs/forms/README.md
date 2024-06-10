@@ -360,23 +360,36 @@ The error message is always rendered right below the element the `ngxErrors` dir
 
 #### Configuration
 
-To implement the `ngxErrors` directive, we have to import the `NgxFormsErrorsModule` on root level and provide the necessary config in the `forRoot` method.
+To implement the `ngxErrors` directive, we have to provide the necessary configuration on root level and import the `NgxFormsErrorsDirective` where used.
 
 A simple example is shown below.
 
 ```ts
-		NgxFormsErrorsModule.forRoot({
-			errors: {
-				required: 'This is a required field.',
-				email: 'This field is not a valid email address.'
-			},
-			showWhen: 'touched',
-		}),
+    // Root
+    providers: [
+		{
+            provide: NgxFormsErrorsConfigurationToken,
+            useValue: {
+                errors: {
+                    required: 'This is a required field.',
+                    email: 'This field is not a valid email address.'
+                },
+                showWhen: 'touched',
+            }
+        },
+    ]
+
+    // Component
+    @Component({
+        selector: 'test',
+        standalone: true,
+        imports: [NgxFormsErrorsDirective]
+    })
 ```
 
 #### Basic implementation
 
-By default, only two properties are required when setting up the `NgxFormsErrorsModule`.
+By default, only two properties are required when setting up the `NgxFormsErrorsDirective`.
 
 The provided `errors` record makes sure that the error key that is found in the `ValidationErrors` of a control will be matched with the message we wish to show to our users.
 
@@ -402,14 +415,20 @@ Of course, in many projects we do not simply want to add a `p` element. Instead,
 We can do this by providing a custom component to the `component` property in the configuration.
 
 ```ts
-		NgxFormsErrorsModule.forRoot({
-			errors: {
-				required: 'This is a required field.',
-				email: 'This field is not a valid email address.'
-			},
-			showWhen: 'touched',
+// Root
+    providers: [
+		{
+            provide: NgxFormsErrorsConfigurationToken,
+            useValue: {
+                errors: {
+                    required: 'This is a required field.',
+                    email: 'This field is not a valid email address.'
+                },
+                showWhen: 'touched',
             component: CustomErrorComponent,
-		}),
+            }
+        },
+    ]
 ```
 
 This `CustomErrorComponent` has to extend the `NgxFormsErrorAbstractComponent`. This will provide the component with several inputs that can be used in our custom component.

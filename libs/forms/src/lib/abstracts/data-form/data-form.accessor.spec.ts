@@ -9,6 +9,8 @@ import { DataFormAccessor } from './data-form.accessor';
 	selector: 'kp-form-accessor',
 	template: ``,
 	providers: [createAccessorProviders(FormAccessorComponent)],
+	standalone: true,
+	imports: [ReactiveFormsModule],
 })
 export class FormAccessorComponent extends DataFormAccessor<string[], any, any> {
 	initForm(data: string[]) {
@@ -34,8 +36,7 @@ describe('FormAccessor', () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [FormAccessorComponent],
-			imports: [ReactiveFormsModule],
+			imports: [ReactiveFormsModule, FormAccessorComponent],
 			providers: [ChangeDetectorRef, Injector, NgControl],
 		});
 

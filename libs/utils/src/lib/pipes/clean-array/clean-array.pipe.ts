@@ -2,6 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
 	name: 'cleanArray',
+	standalone: true,
 })
 export class CleanArrayPipe implements PipeTransform {
 	/**

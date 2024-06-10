@@ -1,6 +1,6 @@
 import { Component, ContentChild, Input, TemplateRef, ViewChild } from '@angular/core';
 
-import { NgIf, DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { NgxTableGetPipe } from '../pipes/get-pipe/get.pipe';
 import { NgxAbstractTableCellDirective } from './cell.directive';
 
@@ -14,25 +14,21 @@ import { NgxAbstractTableCellDirective } from './cell.directive';
 	],
 	template: `
 		<ng-template #cellTmpl let-item let-row="row">
-			<ng-container *ngIf="rowKey; else itemTemplate">
-				<time *ngIf="row | getProp : rowKey as rowItem; else emptyTemplate">
-					{{ rowItem | date : format }}
-				</time>
-			</ng-container>
-
-			<ng-template #itemTemplate>
-				<time *ngIf="item; else emptyTemplate">{{
-					(itemKey ? item[itemKey] : item) | date : format
-				}}</time>
-			</ng-template>
-
-			<ng-template #emptyTemplate>
-				<i>{{ emptyLabel }}</i>
-			</ng-template>
+			@if (rowKey) { @if (row | getProp : rowKey; as rowItem) {
+			<time>
+				{{ rowItem | date : format }}
+			</time>
+			} @else {
+			<i>{{ emptyLabel }}</i>
+			} } @else { @if (item) {
+			<time>{{ (itemKey ? item[itemKey] : item) | date : format }}</time>
+			} @else {
+			<i>{{ emptyLabel }}</i>
+			} }
 		</ng-template>
 	`,
 	standalone: true,
-	imports: [NgIf, DatePipe, NgxTableGetPipe],
+	imports: [DatePipe, NgxTableGetPipe],
 })
 export class NgxDateTableCellComponent extends NgxAbstractTableCellDirective {
 	/**

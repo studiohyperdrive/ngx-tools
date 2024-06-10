@@ -31,7 +31,7 @@ import { isEmpty } from 'lodash';
 import { Subject } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
 
-import { NgIf, NgTemplateOutlet, NgFor, NgClass } from '@angular/common';
+import { NgTemplateOutlet, NgClass } from '@angular/common';
 import { CdkTableModule } from '@angular/cdk/table';
 import { NgxAbstractTableCellDirective } from '../cell/cell.directive';
 import { NgxTableCypressDataTags, NgxTableSortEvent } from '../interfaces';
@@ -74,9 +74,7 @@ interface TableCellTemplate {
 	standalone: true,
 	imports: [
 		CdkTableModule,
-		NgIf,
 		NgTemplateOutlet,
-		NgFor,
 		NgClass,
 		ReactiveFormsModule,
 		NgxTableHasObserversPipe,

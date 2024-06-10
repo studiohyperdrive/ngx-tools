@@ -27,6 +27,7 @@ import { touchedEventListener } from '../../utils';
 
 @Directive({
 	selector: '[ngxFormsErrors]',
+	standalone: true,
 })
 export class NgxFormsErrorsDirective implements AfterViewInit, OnDestroy {
 	// Iben: Handle the OnDestroy flow

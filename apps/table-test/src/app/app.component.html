@@ -31,10 +31,12 @@
 				[value]="row.id"
 			/>
 		</ng-template>
-		<ng-template *ngIf="showDetail" #detailRowTmpl let-row let-index="index">
+		@if(showDetail) {
+		<ng-template #detailRowTmpl let-row let-index="index">
 			{{ row | json }}
 			{{ index }}
 		</ng-template>
+		}
 
 		<ngx-table-cell column="firstName" [cypressDataTags]="{ cell: 'cell-tag' }">
 			<ng-template #headerTmpl> First name </ng-template>

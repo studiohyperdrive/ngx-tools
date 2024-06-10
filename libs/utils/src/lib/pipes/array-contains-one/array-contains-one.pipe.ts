@@ -15,7 +15,10 @@ import { Pipe, PipeTransform } from '@angular/core';
  * 	}}
  * 	Output: true
  */
-@Pipe({ name: 'arrayContainsOne' })
+@Pipe({
+	name: 'arrayContainsOne',
+	standalone: true,
+})
 export class ArrayContainsOnePipe implements PipeTransform {
 	public transform(values: unknown[], checkProps: string[] = []): boolean {
 		if (

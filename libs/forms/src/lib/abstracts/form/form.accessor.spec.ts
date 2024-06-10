@@ -9,6 +9,8 @@ import { createAccessorProviders } from '../../utils';
 	selector: 'kp-form-accessor',
 	template: ``,
 	providers: [createAccessorProviders(FormAccessorComponent)],
+	standalone: true,
+	imports: [ReactiveFormsModule],
 })
 export class FormAccessorComponent extends FormAccessor<any, any> {
 	initForm() {
@@ -25,8 +27,7 @@ describe('FormAccessor', () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [FormAccessorComponent],
-			imports: [ReactiveFormsModule],
+			imports: [ReactiveFormsModule, FormAccessorComponent],
 			providers: [ChangeDetectorRef, Injector, NgControl],
 		});
 
@@ -78,6 +79,8 @@ describe('FormAccessor', () => {
 	selector: 'kp-test-form-accessor',
 	template: ``,
 	providers: [createAccessorProviders(FormAccessorComponent)],
+	standalone: true,
+	imports: [ReactiveFormsModule],
 })
 export class TestComponent extends FormAccessor<string, FormControl<number>, number> {
 	initForm() {
@@ -99,8 +102,7 @@ describe('FormAccessor with mapper', () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [TestComponent],
-			imports: [ReactiveFormsModule],
+			imports: [ReactiveFormsModule, TestComponent],
 			providers: [ChangeDetectorRef, Injector, NgControl],
 		});
 
