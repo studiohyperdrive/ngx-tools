@@ -2,6 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
 	name: 'mergeArrays',
+	standalone: true,
 })
 export class MergeArraysPipe implements PipeTransform {
 	/**

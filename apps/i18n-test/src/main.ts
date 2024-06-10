@@ -1,7 +1,21 @@
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { importProvidersFrom } from '@angular/core';
+import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { AppComponent } from './app/app.component';
+import { AppRoutingModule } from './app/app-routing.module';
+import { NgxI18nModule } from '@ngx/i18n';
 
-import { AppModule } from './app/app.module';
-
-platformBrowserDynamic()
-	.bootstrapModule(AppModule)
-	.catch((err) => console.error(err));
+bootstrapApplication(AppComponent, {
+	providers: [
+		importProvidersFrom(
+			BrowserModule,
+			AppRoutingModule,
+			NgxI18nModule.forRoot({
+				defaultLanguage: 'nl',
+				availableLanguages: ['nl', 'fr'],
+				defaultAssetPaths: ['./assets/shared/'],
+			})
+		),
+		provideHttpClient(withInterceptorsFromDi()),
+	],
+}).catch((err) => console.error(err));

@@ -6,7 +6,7 @@ const routes: Routes = [
 	{
 		path: ':language',
 		canActivate: [I18nGuard],
-		loadChildren: () => import('../feature/feature.module').then((m) => m.FeatureModule),
+		loadChildren: () => import('../feature/feature.routes').then((m) => m.FeatureRoutes),
 	},
 ];
 

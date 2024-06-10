@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import {
 	NgxConfigurableLayoutComponent,
@@ -14,7 +14,6 @@ import {
 	styleUrl: './app.component.scss',
 	standalone: true,
 	imports: [
-		CommonModule,
 		NgxConfigurableLayoutComponent,
 		NgxConfigurableLayoutItemComponent,
 		ReactiveFormsModule,

@@ -3,6 +3,7 @@ import { isObject } from 'lodash';
 
 @Pipe({
 	name: 'entries',
+	standalone: true,
 })
 export class EntriesPipe implements PipeTransform {
 	/**

@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { DateInputComponent } from '../date-input/date-input.component';
 import { DependedDatesValidator } from './depended-dates.validator';
-import { FormAccessor, createAccessorProviders } from '@ngx/forms';
+import { FormAccessor, NgxFormsErrorsDirective, createAccessorProviders } from '@ngx/forms';
 
 @Component({
 	selector: 'app-depended-dates',
 	templateUrl: './depended-dates.component.html',
 	providers: [createAccessorProviders(DependedDatesComponent)],
+	standalone: true,
+	imports: [ReactiveFormsModule, DateInputComponent, NgxFormsErrorsDirective],
 })
 export class DependedDatesComponent extends FormAccessor<any, FormGroup<any>> {
 	initForm(): FormGroup<any> {

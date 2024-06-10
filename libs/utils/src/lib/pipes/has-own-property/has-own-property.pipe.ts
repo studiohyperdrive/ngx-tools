@@ -2,6 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
 	name: 'hasOwnProperty',
+	standalone: true,
 })
 export class HasOwnProperty implements PipeTransform {
 	/**

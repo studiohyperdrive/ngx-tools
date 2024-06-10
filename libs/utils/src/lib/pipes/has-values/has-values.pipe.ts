@@ -4,6 +4,7 @@ import * as clean from 'obj-clean';
 
 @Pipe({
 	name: 'hasValues',
+	standalone: true,
 })
 export class HasValuesPipe implements PipeTransform {
 	/**

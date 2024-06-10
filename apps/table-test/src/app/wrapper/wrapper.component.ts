@@ -1,13 +1,15 @@
-import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
 	selector: 'app-wrapper',
-	imports: [CommonModule],
+	imports: [],
 	standalone: true,
 	template: `
-		<p *ngIf="!contentVisible">Loading...</p>
-		<ng-content *ngIf="contentVisible"></ng-content>
+		@if (!contentVisible) {
+		<p>Loading...</p>
+		} @if (contentVisible) {
+		<ng-content></ng-content>
+		}
 	`,
 })
 export class WrapperComponent {

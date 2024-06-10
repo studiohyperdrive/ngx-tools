@@ -21,7 +21,7 @@ import {
 	NG_VALUE_ACCESSOR,
 	ReactiveFormsModule,
 } from '@angular/forms';
-import { NgIf, NgFor, NgTemplateOutlet, NgStyle, CommonModule } from '@angular/common';
+import { NgTemplateOutlet, NgStyle, CommonModule } from '@angular/common';
 
 import {
 	CdkDragDrop,
@@ -70,8 +70,6 @@ import { NgxConfigurableLayoutItemSizePipe } from '../../pipes';
 	imports: [
 		NgxConfigurableLayoutItemComponent,
 		NgTemplateOutlet,
-		NgFor,
-		NgIf,
 		NgStyle,
 		CdkDropListGroup,
 		CdkDropList,

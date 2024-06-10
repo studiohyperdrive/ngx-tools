@@ -10,5 +10,3 @@ export * from './lib/types';
 export * from './lib/abstracts';
 
 export * from './lib/utils.const';
-
-export * from './lib/utils.module';

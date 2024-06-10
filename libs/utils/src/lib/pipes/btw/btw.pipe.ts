@@ -2,6 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
 	name: 'btw',
+	standalone: true,
 })
 export class BtwPipe implements PipeTransform {
 	/**

@@ -5,5 +5,6 @@ import { NgxFormsErrorAbstractComponent } from '@ngx/forms';
 	selector: 'app-form-error',
 	template: `Dit is de error: {{ errors[0] }}`,
 	styleUrls: ['./error.component.scss'],
+	standalone: true,
 })
 export class FormErrorComponent extends NgxFormsErrorAbstractComponent {}

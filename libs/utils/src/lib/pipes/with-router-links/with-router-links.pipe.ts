@@ -9,6 +9,7 @@ import { WITH_ROUTER_LINKS_CONFIG } from './with-router-links.config';
  */
 @Pipe({
 	name: 'withRouterLinks',
+	standalone: true,
 })
 export class WithRouterLinkPipe implements PipeTransform {
 	constructor(
