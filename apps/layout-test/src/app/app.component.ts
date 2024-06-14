@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import {
 	NgxConfigurableLayoutComponent,
 	NgxConfigurableLayoutItemComponent,
 	NgxConfigurableLayoutGrid,
 	NgxConfigurableLayoutItemDropEvent,
+	NgxDisplayContentDirective,
 } from '@ngx/layout';
 
 @Component({
@@ -17,12 +18,18 @@ import {
 		NgxConfigurableLayoutComponent,
 		NgxConfigurableLayoutItemComponent,
 		ReactiveFormsModule,
+		NgxDisplayContentDirective,
 	],
 })
 export class AppComponent {
 	public control: FormControl<NgxConfigurableLayoutGrid> = new FormControl([]);
 	public isActive: FormControl<boolean> = new FormControl(false);
 	public dragAndDrop: FormControl<boolean> = new FormControl(true);
+	public form: FormGroup = new FormGroup({
+		loading: new FormControl<boolean>(false),
+		offline: new FormControl<boolean>(false),
+		error: new FormControl<boolean>(false),
+	});
 
 	ngOnInit() {
 		this.control.patchValue([
