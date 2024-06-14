@@ -1,7 +1,11 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { ActionCreator, DefaultProjectorFn, MemoizedSelector } from '@ngrx/store';
-// eslint-disable-next-line import/no-unresolved
-import { Action, ActionReducer, TypedAction } from '@ngrx/store/src/models';
+import {
+	ActionCreator,
+	DefaultProjectorFn,
+	MemoizedSelector,
+	Action,
+	ActionReducer,
+} from '@ngrx/store';
 import { BaseStoreEffectsInterface } from './effects';
 
 export interface BaseStore<StateInterface, ErrorInterface = unknown> {
@@ -33,25 +37,25 @@ export interface BaseStoreActions<
 > {
 	set: ActionCreator<
 		string,
-		(props: { payload: StateInterface }) => { payload: StateInterface } & TypedAction<string>
+		(props: { payload: StateInterface }) => { payload: StateInterface } & Action<string>
 	>;
 	loading: ActionCreator<
 		string,
-		(props: { payload: boolean }) => { payload: boolean } & TypedAction<string>
+		(props: { payload: boolean }) => { payload: boolean } & Action<string>
 	>;
 	error: ActionCreator<
 		string,
 		(props: {
 			payload: boolean | ErrorInterface;
-		}) => { payload: boolean | ErrorInterface } & TypedAction<string>
+		}) => { payload: boolean | ErrorInterface } & Action<string>
 	>;
-	clear: ActionCreator<string, () => TypedAction<string>>;
+	clear: ActionCreator<string, () => Action<string>>;
 	effects?: {
 		set: ActionCreator<
 			string,
 			(props?: {
 				payload: EffectsInterface['set'];
-			}) => { payload: EffectsInterface['set'] } & TypedAction<string>
+			}) => { payload: EffectsInterface['set'] } & Action<string>
 		>;
 	};
 }

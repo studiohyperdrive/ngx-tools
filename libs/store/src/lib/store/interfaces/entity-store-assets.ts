@@ -5,8 +5,6 @@ import {
 	DefaultProjectorFn,
 	ActionCreator,
 } from '@ngrx/store';
-// eslint-disable-next-line import/no-unresolved
-import { TypedAction } from '@ngrx/store/src/models';
 
 import { BasicEntityState } from './entity-adapter-reducers';
 import { EntityStoreEffectsInterface } from './effects';
@@ -35,55 +33,53 @@ export interface EntityStoreActions<
 		string,
 		(props: {
 			payload: StateInterface | StateInterface[];
-		}) => { payload: StateInterface | StateInterface[] } & TypedAction<string>
+		}) => { payload: StateInterface | StateInterface[] } & Action<string>
 	>;
 	set: ActionCreator<
 		string,
-		(props: {
-			payload: StateInterface[];
-		}) => { payload: StateInterface[] } & TypedAction<string>
+		(props: { payload: StateInterface[] }) => { payload: StateInterface[] } & Action<string>
 	>;
 	update: ActionCreator<
 		string,
-		(props: { payload: StateInterface }) => { payload: StateInterface } & TypedAction<string>
+		(props: { payload: StateInterface }) => { payload: StateInterface } & Action<string>
 	>;
 	delete: ActionCreator<
 		string,
-		(props: { payload: StateInterface }) => { payload: StateInterface } & TypedAction<string>
+		(props: { payload: StateInterface }) => { payload: StateInterface } & Action<string>
 	>;
 	loading: ActionCreator<
 		string,
-		(props: { payload: boolean }) => { payload: boolean } & TypedAction<string>
+		(props: { payload: boolean }) => { payload: boolean } & Action<string>
 	>;
 	error: ActionCreator<
 		string,
-		(props: { payload: boolean }) => { payload: boolean } & TypedAction<string>
+		(props: { payload: boolean }) => { payload: boolean } & Action<string>
 	>;
-	clear: ActionCreator<string, () => TypedAction<string>>;
+	clear: ActionCreator<string, () => Action<string>>;
 	effects?: {
 		add: ActionCreator<
 			string,
 			(props?: {
 				payload: EffectsInterface['add'];
-			}) => { payload: EffectsInterface['add'] } & TypedAction<string>
+			}) => { payload: EffectsInterface['add'] } & Action<string>
 		>;
 		set: ActionCreator<
 			string,
 			(props?: {
 				payload: EffectsInterface['set'];
-			}) => { payload: EffectsInterface['set'] } & TypedAction<string>
+			}) => { payload: EffectsInterface['set'] } & Action<string>
 		>;
 		update: ActionCreator<
 			string,
 			(props?: {
 				payload: EffectsInterface['update'];
-			}) => { payload: EffectsInterface['update'] } & TypedAction<string>
+			}) => { payload: EffectsInterface['update'] } & Action<string>
 		>;
 		delete: ActionCreator<
 			string,
 			(props?: {
 				payload: EffectsInterface['delete'];
-			}) => { payload: EffectsInterface['delete'] } & TypedAction<string>
+			}) => { payload: EffectsInterface['delete'] } & Action<string>
 		>;
 	};
 }
