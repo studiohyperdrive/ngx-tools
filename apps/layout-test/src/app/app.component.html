@@ -13,7 +13,45 @@
 
 <hr />
 
-<h1>Static</h1>
+<h1>NgxDisplayContent</h1>
+<div>
+	<p *displayContent="form.value; configuration: { error: { data: 'I am an error' } }">
+		Hello this is the content we wish to show!
+	</p>
+</div>
+
+<div>
+	<p *displayContent="form.value; configuration: { loading: { template: loadingTmpl } }">
+		Hello, this is content with a custom template for loading!
+	</p>
+</div>
+
+<ng-template #loadingTmpl> Hello, this is a custom loading! </ng-template>
+
+<form [formGroup]="form">
+	<fieldset>
+		<label for="">
+			<input type="checkbox" formControlName="loading" />
+			Loading
+		</label>
+	</fieldset>
+	<fieldset>
+		<label for="">
+			<input type="checkbox" formControlName="error" />
+			Error
+		</label>
+	</fieldset>
+	<fieldset>
+		<label for="">
+			<input type="checkbox" formControlName="offline" />
+			Offline
+		</label>
+	</fieldset>
+</form>
+
+<h1>NgxConfigurableLayout</h1>
+
+<h2>Static</h2>
 <ngx-configurable-layout
 	layoutType="static"
 	itemSize="equal"
@@ -45,7 +83,7 @@
 	</ngx-configurable-layout-item>
 </ngx-configurable-layout>
 
-<h1>Editable</h1>
+<h2>Editable</h2>
 
 <label for="">
 	<input type="checkbox" [formControl]="isActive" />
