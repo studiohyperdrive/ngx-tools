@@ -1,0 +1,128 @@
+<h1>
+	NgxTour
+</h1>
+
+<button (click)="startTour()">
+	Start the tour!
+</button>
+
+<h1 tourItem="start">NgxDisplayContent</h1>
+<div>
+	<p *displayContent="form.value; configuration: { error: { data: 'I am an error' } }">
+		Hello this is the content we wish to show!
+	</p>
+</div>
+
+<div>
+	<p *displayContent="form.value; configuration: { loading: { template: loadingTmpl } }">
+		Hello, this is content with a custom template for loading!
+	</p>
+</div>
+
+<ng-template #loadingTmpl> Hello, this is a custom loading! </ng-template>
+
+<form [formGroup]="form">
+	<fieldset>
+		<label for="">
+			<input type="checkbox" formControlName="loading" />
+			Loading
+		</label>
+	</fieldset>
+	<fieldset>
+		<label for="">
+			<input type="checkbox" formControlName="error" />
+			Error
+		</label>
+	</fieldset>
+	<fieldset>
+		<label for="">
+			<input type="checkbox" formControlName="offline" />
+			Offline
+		</label>
+	</fieldset>
+</form>
+
+<h1 tourItem="middle">NgxConfigurableLayout</h1>
+
+<h2>Static</h2>
+<ngx-configurable-layout
+	layoutType="static"
+	itemSize="equal"
+	[keys]="[
+		['1', '2'],
+		['a', 'b']
+	]"
+	rowGap="10px"
+	columnGap="10px"
+>
+	<ngx-configurable-layout-item key="a">
+		<div class="layout-items large">Form key a</div>
+	</ngx-configurable-layout-item>
+
+	<ngx-configurable-layout-item key="b">
+		<div class="layout-items">Form key b</div>
+	</ngx-configurable-layout-item>
+
+	<ngx-configurable-layout-item key="1">
+		<div class="layout-items">
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum veritatis laudantium
+			ut officia omnis, impedit eligendi, ea molestiae magnam odit et animi quod illo eius.
+			Fuga nihil adipisci molestiae magni?
+		</div>
+	</ngx-configurable-layout-item>
+
+	<ngx-configurable-layout-item key="2">
+		<div class="layout-items">Input key 2</div>
+	</ngx-configurable-layout-item>
+</ngx-configurable-layout>
+
+<h2>Editable</h2>
+
+<label for="">
+	<input type="checkbox" [formControl]="isActive" />
+	Show inactive
+</label>
+
+<label for="">
+	<input type="checkbox" [formControl]="dragAndDrop" />
+	Drag and drop
+</label>
+<ngx-configurable-layout
+	layoutType="editable"
+	itemSize="equal"
+	[formControl]="control"
+	[showInactive]="isActive.value"
+	[allowDragAndDrop]="dragAndDrop.value"
+	[dropPredicate]="drop"
+	rowGap="10px"
+	columnGap="10px"
+>
+	<ngx-configurable-layout-item key="a">
+		<div class="layout-items large">Form key a</div>
+	</ngx-configurable-layout-item>
+
+	<ngx-configurable-layout-item key="b">
+		<div class="layout-items">Form key b</div>
+	</ngx-configurable-layout-item>
+
+	<ngx-configurable-layout-item key="1">
+		<div class="layout-items">
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum veritatis laudantium
+			ut officia omnis, impedit eligendi, ea molestiae magnam odit et animi quod illo eius.
+			Fuga nihil adipisci molestiae magni?
+		</div>
+	</ngx-configurable-layout-item>
+
+	<ngx-configurable-layout-item key="2">
+		<div class="layout-items">Input key 2</div>
+	</ngx-configurable-layout-item>
+</ngx-configurable-layout>
+
+
+<div class="space-between">
+	Space between
+</div>
+
+<p tourItem="scrollToMe">
+	Scroll to me during the tour
+</p>

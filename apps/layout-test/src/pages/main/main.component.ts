@@ -1,0 +1,143 @@
+import { ChangeDetectorRef, Component } from '@angular/core';
+
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { from, of, tap } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SpecialTourItemComponent } from '../../tour/special-tour.component';
+import {
+	NgxConfigurableLayoutComponent,
+	NgxConfigurableLayoutItemComponent,
+	NgxConfigurableLayoutGrid,
+	NgxConfigurableLayoutItemDropEvent,
+	NgxDisplayContentDirective,
+} from '@ngx/layout';
+import { NgxTourItemDirective, NgxTourService } from '@ngx/tour';
+
+@Component({
+	selector: 'main',
+	templateUrl: './main.component.html',
+	styleUrl: './main.component.scss',
+	standalone: true,
+	imports: [
+		NgxConfigurableLayoutComponent,
+		NgxConfigurableLayoutItemComponent,
+		ReactiveFormsModule,
+		NgxDisplayContentDirective,
+		NgxTourItemDirective,
+	],
+})
+export class MainComponent {
+	public control: FormControl<NgxConfigurableLayoutGrid> = new FormControl([]);
+	public isActive: FormControl<boolean> = new FormControl(false);
+	public dragAndDrop: FormControl<boolean> = new FormControl(true);
+	public form: FormGroup = new FormGroup({
+		loading: new FormControl<boolean>(false),
+		offline: new FormControl<boolean>(false),
+		error: new FormControl<boolean>(false),
+	});
+
+	constructor(
+		private readonly tourService: NgxTourService,
+		private readonly router: Router,
+		private readonly route: ActivatedRoute,
+		private readonly cdRef: ChangeDetectorRef
+	) {}
+
+	ngOnInit() {
+		this.control.patchValue([
+			[
+				{ key: '1', isActive: true },
+				{ key: '2', isActive: true },
+				{ key: 'a', isActive: false },
+			],
+			[{ key: 'b', isActive: true }],
+		]);
+	}
+
+	drop(event: NgxConfigurableLayoutItemDropEvent): boolean {
+		if (event.eventType == 'sorting') {
+			return true;
+		}
+
+		const grid = event.showInactive
+			? event.currentGrid
+			: [...event.currentGrid].map((row) => row.filter((item) => item.isActive));
+
+		return grid[event.targetRowIndex].length < 2;
+	}
+
+	startTour() {
+		this.tourService
+			.startTour(
+				[
+					{
+						title: 'Welcome to the tour',
+						content: 'This is a test!',
+					},
+					{
+						tourItem: 'start',
+						content: 'This is a test',
+						title: 'Hello world',
+						beforeVisible: () => {
+							return of(undefined).pipe(
+								tap(() => console.log('Running this before step 1'))
+							);
+						},
+						afterVisible: () => {
+							console.log('Running this after visible step 1');
+						},
+					},
+					{
+						tourItem: 'middle',
+						content: 'This is a test',
+						title: 'Hello world 1',
+						component: SpecialTourItemComponent,
+					},
+					{
+						beforeVisible: () => {
+							this.router.navigate(['']);
+						},
+						tourItem: 'not-existing',
+						content: 'This is a test',
+						title: 'Hello world 1',
+					},
+					{
+						tourItem: 'secondary',
+						content: 'Secondary',
+						title: 'Secondary',
+						beforeVisible: () => {
+							this.router.navigate(['secondary'], { relativeTo: this.route });
+						},
+					},
+					{
+						delay: 1000,
+						tourItem: 'async',
+						content: 'Async content',
+						title: 'Async',
+					},
+					{
+						beforeVisible: () => {
+							this.router.navigate(['']);
+						},
+						tourItem: 'middle',
+						content: 'This is a test',
+						title: 'Hello world 1',
+					},
+					{
+						tourItem: 'scrollToMe',
+						content: 'This is a test',
+						title: 'Hello world 2',
+						position: 'above',
+					},
+				],
+				() => {
+					return from(this.router.navigate([''])).pipe(
+						tap(() => {
+							this.cdRef.detectChanges();
+						})
+					);
+				}
+			)
+			.subscribe();
+	}
+}

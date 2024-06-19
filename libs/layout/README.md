@@ -25,6 +25,8 @@ For more information about the build process, authors, contributions and issues,
 
 Currently the package provides a `configurable layout` component which can be used to render components in a grid based on provided templates. This approach is ideal for use-cases such as a custom configurable dashboard.
 
+
+
 ## Implementation
 
 ### Components
@@ -260,3 +262,5 @@ Sometimes, we do not wish to use the default component at all, and want to provi
 #### NgxOnlineService
 
 `ngx-layout` provides a root service `NgxOnlineService` that offers a SSR friendly approach to the online status of the application. Listening to the `online$` Observable will provide you with a simple true or false based on the current status.
+
+
