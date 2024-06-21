@@ -1,7 +1,7 @@
 {
 	"name": "@studiohyperdrive/ngx-table",
 	"homepage": "https://github.com/studiohyperdrive/ngx-tools/blob/master/projects/table/README.md",
-	"version": "18.0.0",
+	"version": "18.0.1",
 	"license": "MIT",
 	"peerDependencies": {
 		"@angular/common": "^18.0.2",
