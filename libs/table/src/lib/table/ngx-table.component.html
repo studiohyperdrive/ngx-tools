@@ -94,7 +94,7 @@
 					tableCellTemplateRecord()[column]?.cellClass || ''
 				]"
         [class.ngx-table-sortable-cell]="sortableTableCellRecord()[column]"
-        [attr.data-cy]="tableCypressRecord[column]?.header || ''"
+        [attr.data-cy]="tableCypressRecord()[column]?.header || ''"
         (click)="handleSort(column)"
         >
         @if (
@@ -133,7 +133,7 @@
 					'ngx-table-row-cell',
 					tableCellTemplateRecord()[column]?.cellClass || ''
 				]"
-        [attr.data-cy]="tableCypressRecord[column]?.cell || ''"
+        [attr.data-cy]="tableCypressRecord()[column]?.cell || ''"
         (click)="handleRowClicked(row, index)"
         >
         @if (tableCellTemplateRecord()[column]?.cellTemplate) {
@@ -157,7 +157,7 @@
       <td
         *cdkFooterCellDef="let row"
         class="ngx-table-cell ngx-table-footer-cell"
-        [attr.data-cy]="tableCypressRecord[column]?.footer || ''"
+        [attr.data-cy]="tableCypressRecord()[column]?.footer || ''"
         cdk-footer-cell
         >
         @if (tableCellTemplateRecord()[column]?.footerTemplate) {
