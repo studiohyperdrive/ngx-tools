@@ -1,0 +1,14 @@
+<div>
+	<h1 tourItem="secondary">NgxDisplayContent</h1>
+	<div>
+		<p>
+			Hello this is the content we wish to show!
+		</p>
+	</div>
+</div>
+
+@if(data$ | async) {
+	<p tourItem="async">
+		{{data$ | async}}
+	</p>
+}

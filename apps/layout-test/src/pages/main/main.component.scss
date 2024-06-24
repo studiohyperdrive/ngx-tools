@@ -25,3 +25,19 @@ label {
 		}
 	}
 }
+
+h1 {
+	display: block;
+	min-width: 400px;
+	max-width: max-content;
+	background: black;
+	border-radius: 5px;
+	padding: 5px;
+	color: white;
+}
+
+.space-between {
+	height: 400px;
+	display: grid;
+	place-items: center;
+}
