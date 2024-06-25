@@ -2,6 +2,7 @@ import { Observable } from 'rxjs';
 import { Type } from '@angular/core';
 import { NavigationExtras } from '@angular/router';
 import { NgxTourStepComponent } from '../abstracts';
+import { NgxTourItemDirective } from '../directives';
 
 export type NgxTourDirection = 'next' | 'back';
 
@@ -9,12 +10,24 @@ export type NgxTourInteraction = NgxTourDirection | 'close';
 
 export type NgxTourStepPosition = 'above' | 'below' | 'right' | 'left';
 
+export type NgxTourRegistrationEvent = {
+	tourItem: string;
+	element?: NgxTourItemDirective;
+	type: 'register' | 'unregister';
+};
+
 export interface NgxTourRouteOptions {
 	route: string[];
 	extras: NavigationExtras;
 }
+export interface NgxTourBackdropClipEvent {
+	backdrop: HTMLElement;
+	cutoutMargin: number;
+	item?: HTMLElement;
+}
 
 export type NgxTourAction = (step: NgxTourStep, index: number) => void | Observable<unknown>;
+
 export interface NgxTourStep<DataType = any> {
 	/**
 	 * The title we wish to display on the step
@@ -75,4 +88,9 @@ export interface NgxTourStep<DataType = any> {
 	 * An optional margin we can set for the cutout around an element. By default, this is set to 5px
 	 */
 	cutoutMargin?: number;
+
+	/**
+	 * An optional class we can attach to the step
+	 */
+	stepClass?: string;
 }
