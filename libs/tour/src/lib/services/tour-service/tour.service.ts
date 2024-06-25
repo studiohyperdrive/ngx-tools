@@ -1,13 +1,15 @@
-import { ComponentRef, Inject, Injectable, PLATFORM_ID, Type } from '@angular/core';
+import { ComponentRef, Inject, Injectable, OnDestroy, PLATFORM_ID, Type } from '@angular/core';
 import {
 	BehaviorSubject,
 	Observable,
 	Subject,
 	auditTime,
+	combineLatest,
 	concatMap,
 	distinctUntilChanged,
 	filter,
 	of,
+	startWith,
 	switchMap,
 	take,
 	takeUntil,
@@ -26,6 +28,8 @@ import {
 	NgxTourStep,
 	NgxTourInteraction,
 	NgxTourStepPosition,
+	NgxTourRegistrationEvent,
+	NgxTourBackdropClipEvent,
 } from '../../types';
 import { elementIsVisibleInViewport } from '../../utils';
 
@@ -35,11 +39,28 @@ import { elementIsVisibleInViewport } from '../../utils';
 @Injectable({
 	providedIn: 'root',
 })
-export class NgxTourService {
+export class NgxTourService implements OnDestroy {
+	/**
+	 * A subject to hold the destroyed event
+	 */
+	private readonly destroyedSubject: Subject<void> = new Subject<void>();
+
+	/**
+	 * A subject to hold the window resize event
+	 */
+	private readonly windowResizeSubject: Subject<void> = new Subject<void>();
+
+	/**
+	 * A subject to hold the backdrop clip event
+	 */
+	private readonly backdropClipEventSubject: Subject<NgxTourBackdropClipEvent> =
+		new Subject<NgxTourBackdropClipEvent>();
+
 	/**
 	 * A record of registered step elements we wish to highlight
 	 */
 	private elements: Record<string, BehaviorSubject<NgxTourItemDirective>> = {};
+
 	/**
 	 * A record of positions to place the
 	 */
@@ -100,6 +121,12 @@ export class NgxTourService {
 	>(undefined);
 
 	/**
+	 * A subject to hold the registration events
+	 */
+	private readonly registerElementSubject: Subject<NgxTourRegistrationEvent> =
+		new Subject<NgxTourRegistrationEvent>();
+
+	/**
 	 * The start scroll position of the page
 	 */
 	private startingScrollPosition: number;
@@ -145,7 +172,25 @@ export class NgxTourService {
 		private readonly cdkOverlayService: Overlay,
 		@Inject(PLATFORM_ID) private readonly platformId: string,
 		@Inject(NgxTourStepToken) private readonly component: Type<NgxTourStepComponent>
-	) {}
+	) {
+		// Iben: We use a subject with concatMap here because we want each event to be handled correctly and the elements record should finish updating before updating it again.
+		this.registerElementSubject
+			.pipe(
+				filter(Boolean),
+				concatMap((event) => {
+					return this.handleRegistrationEvent(event);
+				}),
+				takeUntil(this.destroyedSubject)
+			)
+			.subscribe();
+
+		// Iben: Listen to the onresize event of the window
+		this.runInBrowser(() => {
+			window.onresize = () => {
+				this.windowResizeSubject.next();
+			};
+		});
+	}
 
 	/**
 	 * Start a provided tour
@@ -196,8 +241,22 @@ export class NgxTourService {
 			)
 			.subscribe();
 
+		// Iben: Listen to the window resize and the backdrop clip event, so that when the window resizes, the clip path still works correctly
+		combineLatest([
+			this.windowResizeSubject.pipe(startWith(undefined)),
+			this.backdropClipEventSubject,
+		])
+			.pipe(
+				tap(([, event]) => {
+					// Iben: Set the clip path based on the event
+					this.setClipPath(event);
+				}),
+				takeUntil(this.tourEnded$)
+			)
+			.subscribe();
+
 		// Iben: Start the first tour, and run it until the tour is ended
-		return this.setStep(tour[startIndex]).pipe(takeUntil(this.tourEndedSubject.asObservable()));
+		return this.setStep(tour[startIndex]).pipe(takeUntil(this.tourEnded$));
 	}
 
 	/**
@@ -206,29 +265,23 @@ export class NgxTourService {
 	 * @param element - The highlighted element
 	 */
 	public registerElement(element: NgxTourItemDirective): void {
-		// Iben: Early exit if no element was found
-		if (!element) {
-			return;
-		}
-
-		// Iben: Check if there is already an item with the current id. If it is, update it, if not, make a new BehaviorSubject
-		const elementSubject = this.elements[element.tourItem];
-
-		if (elementSubject) {
-			elementSubject.next(element);
-			return;
-		}
-
-		this.elements[element.tourItem] = new BehaviorSubject<NgxTourItemDirective>(element);
+		this.registerElementSubject.next({
+			tourItem: element.tourItem,
+			element,
+			type: 'register',
+		});
 	}
 
 	/**
 	 * Removes an element from the record
 	 *
-	 * @param element - The id of the element
+	 * @param tourItem - The id of the element
 	 */
-	public unregisterElement(element: string): void {
-		this.elements[element]?.next(undefined);
+	public unregisterElement(tourItem: string): void {
+		this.registerElementSubject.next({
+			tourItem,
+			type: 'unregister',
+		});
 	}
 
 	/**
@@ -250,6 +303,21 @@ export class NgxTourService {
 
 		// Iben: Return an empty Observable
 		return of(null);
+	}
+
+	ngOnDestroy(): void {
+		// Iben: Complete all subscriptions
+		this.destroyedSubject.next();
+		this.destroyedSubject.complete();
+		this.tourEndedSubject.next();
+		this.tourEndedSubject.complete();
+		this.windowResizeSubject.next();
+		this.windowResizeSubject.complete();
+
+		// Iben: Get rid of the onresize event
+		this.runInBrowser(() => {
+			window.onresize = null;
+		});
 	}
 
 	/**
@@ -356,11 +424,18 @@ export class NgxTourService {
 			}
 		});
 
+		// Iben: Calculate the defaultOffsets so that the steps is rendered relatively to the cutout
+		const margin = this.getCutoutMargin(currentStep);
+		const offsetY = currentStep.position === 'above' ? -margin : margin;
+		const offsetX = currentStep.position === 'right' ? margin : -margin;
+
 		// Iben: Determine the position of the item based on whether a tourItem was provided
 		const positionStrategy = item
 			? this.cdkOverlayService
 					.position()
 					.flexibleConnectedTo(item.elementRef)
+					.withDefaultOffsetY(offsetY)
+					.withDefaultOffsetX(offsetX)
 					.withPositions([this.positionMap[currentStep.position || 'below']])
 			: this.cdkOverlayService.position().global().centerHorizontally().centerVertically();
 
@@ -386,21 +461,24 @@ export class NgxTourService {
 		// Iben: Update the data of the component
 		component.content = currentStep.content;
 		component.title = currentStep.title;
+		component.data = currentStep.data;
 		component.currentStep = this.currentIndexSubject.getValue();
 		component.amountOfSteps = this.amountOfSteps;
+		component.position = item ? currentStep.position || 'below' : undefined;
+		component.stepClass = currentStep.stepClass;
 
 		// Iben: Highlight the current html item as active if one is provided
 		if (item) {
 			// Iben: Set the active class of the item
 			item.setActive(true);
-
-			// Iben: Set the clip path of the backdrop
-			this.setClipPath(
-				this.overlayRef.backdropElement,
-				item.elementRef.nativeElement,
-				currentStep.cutoutMargin === undefined ? 5 : currentStep.cutoutMargin
-			);
 		}
+
+		// Iben: Set the clip path of the backdrop
+		this.backdropClipEventSubject.next({
+			backdrop: this.overlayRef.backdropElement,
+			item: item?.elementRef?.nativeElement,
+			cutoutMargin: this.getCutoutMargin(currentStep),
+		});
 
 		// Iben: Return the new component
 		return componentRef;
@@ -421,6 +499,7 @@ export class NgxTourService {
 
 		return this.runStepFunction(currentStep.onVisible).pipe(
 			concatMap(() => {
+				// Iben: Listen to the component interactions and respond accordingly
 				return componentRef.instance.handleInteraction.pipe(
 					take(1),
 					concatMap((interaction: NgxTourInteraction) => {
@@ -462,7 +541,9 @@ export class NgxTourService {
 	 * @param item - The item we wish to surround
 	 * @param cutoutMargin - The amount of margin we want around the item
 	 */
-	private setClipPath(backdrop: HTMLElement, item: HTMLElement, cutoutMargin: number): void {
+	private setClipPath(event: NgxTourBackdropClipEvent): void {
+		const { backdrop, item, cutoutMargin } = event;
+
 		// Iben: Early exit in case no backdrop or item is present
 		if (!backdrop || !item) {
 			return;
@@ -480,6 +561,56 @@ export class NgxTourService {
 
 		// Iben: Clip the box out of the backdrop
 		backdrop.style.clipPath = `polygon(evenodd, 0% 0%, 0% 100%, 100% 100%, 100% 0%, 0% 0%,${box})`;
+	}
+
+	/**
+	 * Handles the registration event
+	 *
+	 * @param event - The registration event we wish to handle
+	 */
+	private handleRegistrationEvent(event: NgxTourRegistrationEvent): Observable<null> {
+		// Iben: Early exit if no event was found
+		if (!event) {
+			return of(null);
+		}
+
+		// Iben: Unregister the element if it's an unregister event
+		if (event.type === 'unregister') {
+			this.elements[event.tourItem]?.next(undefined);
+			return of(null);
+		}
+
+		// Iben: Early exit if no element was found
+		if (!event.element) {
+			return of(null);
+		}
+
+		// Iben: Check if there is already an item with the current id. If it is, update it, if not, make a new BehaviorSubject
+		const elementSubject = this.elements[event.tourItem];
+
+		// Iben: If we have an element subject already, we check if it already has an element
+		if (elementSubject) {
+			// Iben: If the current value is undefined, we register the element
+			if (elementSubject.getValue() === undefined) {
+				elementSubject.next(event.element);
+			}
+
+			return of(null);
+		}
+
+		// Iben: If no BehaviorSubject exists, we create one
+		this.elements[event.tourItem] = new BehaviorSubject<NgxTourItemDirective>(event.element);
+
+		return of(null);
+	}
+
+	/**
+	 * Returns the provided cutoutMargin of a step, or 5px if none is provided
+	 *
+	 * @param step - The current step
+	 */
+	private getCutoutMargin(step: NgxTourStep): number {
+		return step?.cutoutMargin === undefined ? 5 : step.cutoutMargin;
 	}
 
 	//TODO: Iben: Remove this function in service of the WindowService once it is shared

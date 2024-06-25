@@ -78,6 +78,7 @@ export class MainComponent {
 						tourItem: 'start',
 						content: 'This is a test',
 						title: 'Hello world',
+						stepClass: 'hello-world',
 						beforeVisible: () => {
 							return of(undefined).pipe(
 								tap(() => console.log('Running this before step 1'))
@@ -102,6 +103,10 @@ export class MainComponent {
 						title: 'Hello world 1',
 					},
 					{
+						title: 'Navigating to the next page',
+						content: 'This is a test!',
+					},
+					{
 						tourItem: 'secondary',
 						content: 'Secondary',
 						title: 'Secondary',
@@ -114,6 +119,11 @@ export class MainComponent {
 						tourItem: 'async',
 						content: 'Async content',
 						title: 'Async',
+					},
+					{
+						tourItem: 'item',
+						content: 'Get the first repeated item',
+						title: 'Repeated item',
 					},
 					{
 						beforeVisible: () => {
