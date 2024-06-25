@@ -333,6 +333,11 @@ export class NgxTourService implements OnDestroy {
 			this.overlayRef = undefined;
 		}
 
+		// Iben: Early exit if there's no current step
+		if (!currentStep) {
+			return of('close');
+		}
+
 		// Iben: Get the previous step, if it exists
 		const previousStep = this.currentStepSubject.getValue();
 		const previousItem = this.elements[previousStep?.tourItem]?.getValue();
@@ -417,8 +422,11 @@ export class NgxTourService implements OnDestroy {
 		this.previousStepSubject.next(this.currentStepSubject.getValue());
 		this.currentStepSubject.next(currentStep);
 
-		// Iben: Scroll item into view if it's not in view
 		this.runInBrowser(() => {
+			// Iben: Scroll to the top before each step to get consistent behavior when going back and forth
+			window.scrollTo({ top: 0 });
+
+			// Iben: Scroll to the element if it's not in view
 			if (item && !elementIsVisibleInViewport(item.elementRef.nativeElement)) {
 				item.elementRef.nativeElement.scrollIntoView();
 			}
