@@ -62,6 +62,11 @@ export class NgxTourService implements OnDestroy {
 	private elements: Record<string, BehaviorSubject<NgxTourItemDirective>> = {};
 
 	/**
+	 * Property to hold the current body overflow behavior
+	 */
+	private bodyOverflow: string;
+
+	/**
 	 * A record of positions to place the
 	 */
 	private readonly positionMap: Record<NgxTourStepPosition, ConnectedPosition> = {
@@ -204,9 +209,12 @@ export class NgxTourService implements OnDestroy {
 		onClose?: NgxTourAction,
 		startIndex = 0
 	): Observable<NgxTourInteraction> {
-		// Iben: Save the current scroll position so we can return to it when we close the tour
 		this.runInBrowser(() => {
+			// Iben: Save the current scroll position so we can return to it when we close the tour
 			this.startingScrollPosition = window.scrollY;
+
+			// Iben: Save the current
+			this.bodyOverflow = document.body.style.overflow;
 		});
 
 		// Iben: Loop over the tour and set subjects for all elements that haven't been found yet
@@ -233,9 +241,12 @@ export class NgxTourService implements OnDestroy {
 				take(1),
 				switchMap(() => this.runStepFunction(onClose)),
 				tap(() => {
-					// Iben: Scroll back to the starting position
 					this.runInBrowser(() => {
+						// Iben: Scroll back to the starting position
 						window.scrollTo({ top: this.startingScrollPosition });
+
+						// Iben: Restore the body overflow
+						document.body.style.overflow = this.bodyOverflow;
 					});
 				})
 			)
@@ -423,6 +434,9 @@ export class NgxTourService implements OnDestroy {
 		this.currentStepSubject.next(currentStep);
 
 		this.runInBrowser(() => {
+			// Iben: Restore the body overflow so we can scroll to the right element
+			document.body.style.overflow = this.bodyOverflow;
+
 			// Iben: Scroll to the top before each step to get consistent behavior when going back and forth
 			window.scrollTo({ top: 0 });
 
@@ -430,6 +444,9 @@ export class NgxTourService implements OnDestroy {
 			if (item && !elementIsVisibleInViewport(item.elementRef.nativeElement)) {
 				item.elementRef.nativeElement.scrollIntoView();
 			}
+
+			// Iben: Disable scrolling
+			document.body.style.overflow = 'hidden';
 		});
 
 		// Iben: Calculate the defaultOffsets so that the steps is rendered relatively to the cutout
@@ -450,7 +467,8 @@ export class NgxTourService implements OnDestroy {
 		// Iben: Create an overlay
 		const config = new OverlayConfig({
 			hasBackdrop: !currentStep.disableBackDrop,
-			scrollStrategy: this.cdkOverlayService.scrollStrategies.block(),
+			// Iben: Due to issues with how the scrollingStrategy.block() works with scrolling to items that are not in view, we set this to noop
+			scrollStrategy: this.cdkOverlayService.scrollStrategies.noop(),
 			positionStrategy,
 		});
 
