@@ -1,6 +1,6 @@
 {
 	"name": "@studiohyperdrive/ngx-tour",
-	"version": "18.1.3",
+	"version": "18.1.4",
 	"peerDependencies": {
 		"@angular/common": "^18.0.2",
 		"@angular/core": "^18.0.2",
