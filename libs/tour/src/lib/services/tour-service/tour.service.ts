@@ -344,9 +344,9 @@ export class NgxTourService implements OnDestroy {
 			this.overlayRef = undefined;
 		}
 
-		// Iben: Early exit if there's no current step
+		// Iben: Early exit and close tour if there's no current step
 		if (!currentStep) {
-			return of('close');
+			return this.closeTour();
 		}
 
 		// Iben: Get the previous step, if it exists

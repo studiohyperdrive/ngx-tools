@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { from, of, tap } from 'rxjs';
+import { from, map, of, tap } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SpecialTourItemComponent } from '../../tour/special-tour.component';
 import {
@@ -52,6 +52,13 @@ export class MainComponent {
 			],
 			[{ key: 'b', isActive: true }],
 		]);
+
+		this.tourService.currentTour$
+			.pipe(
+				map((tour) => Boolean(tour)),
+				tap((isTourActive) => console.log('Tour active:', isTourActive))
+			)
+			.subscribe();
 	}
 
 	drop(event: NgxConfigurableLayoutItemDropEvent): boolean {
