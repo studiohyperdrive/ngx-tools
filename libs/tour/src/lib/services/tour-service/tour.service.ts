@@ -305,6 +305,14 @@ export class NgxTourService implements OnDestroy {
 			this.overlayRef = undefined;
 		}
 
+		// Iben: Set the current and previous item to inactive
+		this.elements[this.currentStepSubject.getValue()?.tourItem]?.getValue()?.setActive(false);
+		this.elements[this.previousStepSubject.getValue()?.tourItem]?.getValue()?.setActive(false);
+
+		// Iben: Reset the subjects
+		this.currentStepSubject.next(undefined);
+		this.previousStepSubject.next(undefined);
+
 		// Iben: Reset the tour and the tour length
 		this.currentTourSubject.next(undefined);
 		this.amountOfSteps = 0;
@@ -344,11 +352,6 @@ export class NgxTourService implements OnDestroy {
 			this.overlayRef = undefined;
 		}
 
-		// Iben: Early exit and close tour if there's no current step
-		if (!currentStep) {
-			return this.closeTour();
-		}
-
 		// Iben: Get the previous step, if it exists
 		const previousStep = this.currentStepSubject.getValue();
 		const previousItem = this.elements[previousStep?.tourItem]?.getValue();
@@ -356,6 +359,11 @@ export class NgxTourService implements OnDestroy {
 		// Iben: Set the previous item back to inactive
 		if (previousItem) {
 			previousItem.setActive(false);
+		}
+
+		// Iben: Early exit and close tour if there's no current step
+		if (!currentStep) {
+			return this.closeTour();
 		}
 
 		// Iben: Run the afterVisible of the previous step
