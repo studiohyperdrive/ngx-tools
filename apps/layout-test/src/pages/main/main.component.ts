@@ -3,6 +3,7 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { from, map, of, tap } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { SpecialTourItemComponent } from '../../tour/special-tour.component';
 import {
 	NgxConfigurableLayoutComponent,
@@ -11,7 +12,7 @@ import {
 	NgxConfigurableLayoutItemDropEvent,
 	NgxDisplayContentDirective,
 } from '@ngx/layout';
-import { NgxTourItemDirective, NgxTourService } from '@ngx/tour';
+import { NgxTourItemDirective, NgxTourService, useMockDataDuringTour } from '@ngx/tour';
 
 @Component({
 	selector: 'main',
@@ -24,6 +25,7 @@ import { NgxTourItemDirective, NgxTourService } from '@ngx/tour';
 		ReactiveFormsModule,
 		NgxDisplayContentDirective,
 		NgxTourItemDirective,
+		CommonModule,
 	],
 })
 export class MainComponent {
@@ -35,6 +37,10 @@ export class MainComponent {
 		offline: new FormControl<boolean>(false),
 		error: new FormControl<boolean>(false),
 	});
+
+	public dataString$ = of('Start the tour!').pipe(
+		useMockDataDuringTour<string>('The tour is running!')
+	);
 
 	constructor(
 		private readonly tourService: NgxTourService,

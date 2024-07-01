@@ -6,8 +6,10 @@ import {
 	auditTime,
 	combineLatest,
 	concatMap,
+	delay,
 	distinctUntilChanged,
 	filter,
+	map,
 	of,
 	startWith,
 	switchMap,
@@ -173,6 +175,13 @@ export class NgxTourService implements OnDestroy {
 	 */
 	public readonly tourStarted$: Observable<void> = this.tourStartedSubject.asObservable();
 
+	/**
+	 * Whether the tour is active
+	 */
+	public readonly tourActive$: Observable<boolean> = this.currentStepSubject
+		.asObservable()
+		.pipe(map(Boolean));
+
 	constructor(
 		private readonly cdkOverlayService: Overlay,
 		@Inject(PLATFORM_ID) private readonly platformId: string,
@@ -267,7 +276,11 @@ export class NgxTourService implements OnDestroy {
 			.subscribe();
 
 		// Iben: Start the first tour, and run it until the tour is ended
-		return this.setStep(tour[startIndex]).pipe(takeUntil(this.tourEnded$));
+		return this.setStep(tour[startIndex]).pipe(
+			// Iben: We add a delay of 1ms to allow for the change detection to be run
+			delay(1),
+			takeUntil(this.tourEnded$)
+		);
 	}
 
 	/**
@@ -345,13 +358,6 @@ export class NgxTourService implements OnDestroy {
 	 * @param currentStep - The provided step we want to set
 	 */
 	private setStep(currentStep: NgxTourStep): Observable<NgxTourInteraction> {
-		// Iben: If there's already an overlay, detach it
-		if (this.overlayRef) {
-			this.overlayRef.detach();
-			this.overlayRef.dispose();
-			this.overlayRef = undefined;
-		}
-
 		// Iben: Get the previous step, if it exists
 		const previousStep = this.currentStepSubject.getValue();
 		const previousItem = this.elements[previousStep?.tourItem]?.getValue();
@@ -472,16 +478,30 @@ export class NgxTourService implements OnDestroy {
 					.withPositions([this.positionMap[currentStep.position || 'below']])
 			: this.cdkOverlayService.position().global().centerHorizontally().centerVertically();
 
-		// Iben: Create an overlay
-		const config = new OverlayConfig({
-			hasBackdrop: !currentStep.disableBackDrop,
-			// Iben: Due to issues with how the scrollingStrategy.block() works with scrolling to items that are not in view, we set this to noop
-			scrollStrategy: this.cdkOverlayService.scrollStrategies.noop(),
-			positionStrategy,
-		});
+		// Iben: Create an overlay if it does not exist
+		if (!this.overlayRef) {
+			// Iben: Create an overlay config
+			const config = new OverlayConfig({
+				hasBackdrop: !currentStep.disableBackDrop,
+				// Iben: Due to issues with how the scrollingStrategy.block() works with scrolling to items that are not in view, we set this to noop
+				scrollStrategy: this.cdkOverlayService.scrollStrategies.noop(),
+				positionStrategy,
+			});
 
-		// Iben: Create an overlay
-		this.overlayRef = this.cdkOverlayService.create(config);
+			// Create the overlay
+			this.overlayRef = this.cdkOverlayService.create(config);
+		} else {
+			// Iben: Detach the previous portal
+			this.overlayRef.detach();
+
+			// Iben: If the overlay exists, we update the position strategy
+			this.overlayRef.updatePositionStrategy(positionStrategy);
+
+			// Iben: If the current step has no backdrop, we detach the backdrop
+			if (currentStep.disableBackDrop) {
+				this.overlayRef.detachBackdrop();
+			}
+		}
 
 		// Iben: Create a portal and attach the component
 		const portal = new ComponentPortal<NgxTourStepComponent>(
