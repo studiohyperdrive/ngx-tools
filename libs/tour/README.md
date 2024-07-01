@@ -168,6 +168,20 @@ The `position` and `stepClass` inputs are used to automatically set classes to t
 
 In order to navigate through the tour and close it when needed, the component has an Output called `handleInteraction` that takes three possible states, being `next`, `back` and `close`. Each of these interactions will continue the tour, go back in the tour or close the tour respectively.
 
+### useMockDataDuringTour
+
+During a tour, we might want to show different data in our views, to ensure that everything fits just right for the tour. We can use the `useMockDataDuringTour` operator to do so! Provide mock data to the operator, and depending on whether the tour is active, the correct data will be shown.
+
+```ts
+...
+
+public readonly label$: Observable<string> = this.dataService.label$.pipe(
+    useMockDataDuringTour('This is a mock!')
+)
+```
+
+This operator only works within an injection context, and therefor cannot be used in methods or outside of the constructor.
+
 ## Known issues
 
 ### Navigation

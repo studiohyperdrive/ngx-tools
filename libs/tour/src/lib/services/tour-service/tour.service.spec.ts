@@ -1,30 +1,15 @@
-import { Component } from '@angular/core';
 import { subscribeSpyTo } from '@hirez_io/observer-spy';
 
-import { NgxTourStepComponent } from '../../abstracts';
+import { MockTourStepComponent, OverlayMock } from '../../mocks';
 import { NgxTourService } from './tour.service';
 
 //TODO: Iben: Add Cypress tests so we can test the actual flow and the remaining methods
 
-@Component({
-	standalone: true,
-	template: '',
-})
-class TestStepComponent extends NgxTourStepComponent {}
-
 describe('NgxTourService', () => {
 	let service: NgxTourService;
 
-	const overlay: any = {
-		position: jest.fn(),
-		scrollStrategies: {
-			block: jest.fn(),
-		},
-		create: jest.fn(),
-	};
-
 	beforeEach(() => {
-		service = new NgxTourService(overlay, 'server', TestStepComponent);
+		service = new NgxTourService(OverlayMock, 'server', MockTourStepComponent);
 	});
 
 	it('should emit when the tour has started', () => {
