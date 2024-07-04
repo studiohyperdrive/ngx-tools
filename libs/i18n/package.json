@@ -1,7 +1,28 @@
 {
 	"name": "@studiohyperdrive/ngx-i18n",
 	"version": "18.0.0",
-	"license": "MIT",
+  "description": "A modular lazy loaded Angular approach to translations using ngx-translate.",
+  "keywords": [
+    "angular",
+    "angular2",
+    "translate",
+    "ngx-translate",
+    "lazy-loaded",
+    "json",
+    "i18n",
+    "modular"
+  ],
+  "homepage": "https://github.com/studiohyperdrive/ngx-tools/tree/master/libs/i18n",
+  "license": "MIT",
+  "author": {
+    "name": "Studio Hyperdrive",
+    "url": "https://studiohyperdrive.be/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/studiohyperdrive/ngx-tools",
+    "directory": "libs/i18n/src"
+  },
 	"peerDependencies": {
 		"@angular/common": "^18.0.2",
 		"@angular/core": "^18.0.2",
