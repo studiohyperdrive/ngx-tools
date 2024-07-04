@@ -1,6 +1,6 @@
 {
   "name": "@studiohyperdrive/ngx-cookies",
-  "version": "18.0.0",
+  "version": "18.0.1",
   "description": "An integrated Angular approach to the vanilla cookieconsent library.",
   "keywords": [
     "angular",
