@@ -1,6 +1,6 @@
 {
 	"name": "@studiohyperdrive/ngx-i18n",
-	"version": "18.0.0",
+	"version": "18.0.1",
   "description": "A modular lazy loaded Angular approach to translations using ngx-translate.",
   "keywords": [
     "angular",
