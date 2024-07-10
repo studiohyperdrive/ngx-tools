@@ -217,7 +217,7 @@ export class NgxTourService implements OnDestroy {
 		tour: NgxTourStep[],
 		onClose?: NgxTourAction,
 		startIndex = 0
-	): Observable<NgxTourInteraction> {
+	): Observable<void> {
 		this.runInBrowser(() => {
 			// Iben: Save the current scroll position so we can return to it when we close the tour
 			this.startingScrollPosition = window.scrollY;
@@ -243,24 +243,6 @@ export class NgxTourService implements OnDestroy {
 		this.currentIndexSubject.next(startIndex);
 		this.tourStartedSubject.next();
 
-		// Iben: Listen to the end of the tour and run the end function when needed
-		this.tourEndedSubject
-			.asObservable()
-			.pipe(
-				take(1),
-				switchMap(() => this.runStepFunction(onClose)),
-				tap(() => {
-					this.runInBrowser(() => {
-						// Iben: Scroll back to the starting position
-						window.scrollTo({ top: this.startingScrollPosition });
-
-						// Iben: Restore the body overflow
-						document.body.style.overflow = this.bodyOverflow;
-					});
-				})
-			)
-			.subscribe();
-
 		// Iben: Listen to the window resize and the backdrop clip event, so that when the window resizes, the clip path still works correctly
 		combineLatest([
 			this.windowResizeSubject.pipe(startWith(undefined)),
@@ -276,10 +258,28 @@ export class NgxTourService implements OnDestroy {
 			.subscribe();
 
 		// Iben: Start the first tour, and run it until the tour is ended
-		return this.setStep(tour[startIndex]).pipe(
-			// Iben: We add a delay of 1ms to allow for the change detection to be run
-			delay(1),
-			takeUntil(this.tourEnded$)
+		this.setStep(tour[startIndex])
+			.pipe(
+				// Iben: We add a delay of 1ms to allow for the change detection to be run
+				delay(1),
+				takeUntil(this.tourEnded$)
+			)
+			.subscribe();
+
+		// Iben: Listen to the end of the tour and run the end function when needed
+		return this.tourEndedSubject.asObservable().pipe(
+			take(1),
+			switchMap(() => this.runStepFunction(onClose)),
+			tap(() => {
+				this.runInBrowser(() => {
+					// Iben: Scroll back to the starting position
+					window.scrollTo({ top: this.startingScrollPosition });
+
+					// Iben: Restore the body overflow
+					document.body.style.overflow = this.bodyOverflow;
+				});
+			}),
+			map(() => undefined)
 		);
 	}
 
