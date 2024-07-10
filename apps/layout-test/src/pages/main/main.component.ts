@@ -157,9 +157,17 @@ export class MainComponent {
 					return from(this.router.navigate([''])).pipe(
 						tap(() => {
 							this.cdRef.detectChanges();
+							console.log('This is the onClose callback');
 						})
 					);
 				}
+			)
+			.pipe(
+				tap(() => {
+					console.log(
+						'The tour has ended and all is reverted to their original state. This is ran at the very last.'
+					);
+				})
 			)
 			.subscribe();
 	}
