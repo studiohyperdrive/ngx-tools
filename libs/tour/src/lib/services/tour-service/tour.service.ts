@@ -258,13 +258,7 @@ export class NgxTourService implements OnDestroy {
 			.subscribe();
 
 		// Iben: Start the first tour, and run it until the tour is ended
-		this.setStep(tour[startIndex])
-			.pipe(
-				// Iben: We add a delay of 1ms to allow for the change detection to be run
-				delay(1),
-				takeUntil(this.tourEnded$)
-			)
-			.subscribe();
+		this.setStep(tour[startIndex]).pipe(takeUntil(this.tourEnded$)).subscribe();
 
 		// Iben: Listen to the end of the tour and run the end function when needed
 		return this.tourEndedSubject.asObservable().pipe(
@@ -378,6 +372,9 @@ export class NgxTourService implements OnDestroy {
 			concatMap(() => {
 				return this.runStepFunction(currentStep.beforeVisible);
 			}),
+			// Wouter: Add a delay to allow the change detection to be ran before the step is visualized.
+			// This makes sure the bounding box of the highlighted element is correct.
+			delay(1),
 			concatMap(() => {
 				// Iben: If no tourItem was provided, we render the step in the center of the page
 				if (!currentStep.tourItem) {
