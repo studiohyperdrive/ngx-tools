@@ -1,6 +1,6 @@
 {
 	"name": "@studiohyperdrive/ngx-tour",
-	"version": "18.2.3",
+	"version": "18.2.4",
 	"description": "A lightweight and customizable Angular help tour approach using Angular CDK.",
 	"keywords": [
 		"angular",
