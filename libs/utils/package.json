@@ -28,7 +28,11 @@
     "unique by",
     "with router links",
     "query params",
-    "query param form sync"
+    "query param form sync",
+    "media query",
+    "window resize",
+    "match media",
+    "viewport"
   ],
   "homepage": "https://github.com/studiohyperdrive/ngx-tools/tree/master/libs/utils",
   "license": "MIT",
