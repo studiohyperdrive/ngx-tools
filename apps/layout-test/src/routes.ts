@@ -11,4 +11,9 @@ export const routes: Routes = [
 		loadComponent: () =>
 			import('./pages/secondary/secondary.component').then((m) => m.SecondaryComponent),
 	},
+	{
+		path: 'queries',
+		loadComponent: () =>
+			import('./pages/mediaquery/mediaquery.component').then((m) => m.MediaQueryComponent),
+	},
 ];

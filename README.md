@@ -57,13 +57,19 @@ This repo contains general usage libraries for shd Angular projects. Those libra
     -   This library provides a quick and easy template based table builder using the Angular CDK Table.
 
 -   i18n (`@studiohyperdrive/ngx-i18n`):
+
     -   This library provides a lazy-loaded modular approach to translations.
 
 -   cookies (`@studiohyperdrive/ngx-cookies`):
+
     -   This library provides a quick and easy wrapper for [CookieConsent V3](https://cookieconsent.orestbida.com).
 
 -   layout (`@studiohyperdrive/ngx-layout`):
-    -   `ngx-layout` is a collection of Angular components related to layout.
+
+    -   This library is a collection of Angular components related to layout.
+
+-   tour (`@studiohyperdrive/ngx-tour`):
+    -   This library provides the tools to build a guided walkthrough of one or more pages.
 
 You can find detailed explanations in their respective README’s.
 
@@ -72,7 +78,7 @@ You can find detailed explanations in their respective README’s.
 ### Add a new library
 
 To add a new library, consult the Angular CLI documentation:
-https://angular.io/guide/creating-libraries
+https://angular.dev/tools/libraries/creating-libraries
 
 After adding your library, make sure to check the karma set-up is consistent with other projects.  
 Check the following files:

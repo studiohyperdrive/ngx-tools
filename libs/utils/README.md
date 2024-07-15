@@ -181,6 +181,12 @@ This service provides a SSR proof Observable based approach to both the local- a
 
 [Full documentation.](src/lib/services/storage-service/storage.service.md)
 
+#### NgxMediaQueryService
+
+This service provides a SSR proof way to set and subscribe to the window's media query changes.
+
+[Full documentation.](src/lib/services/media-query/query.service.md)
+
 ### Abstracts
 
 #### NgxQueryParamFormSyncComponent
