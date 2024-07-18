@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { from, map, of, tap } from 'rxjs';
+import { finalize, from, map, of, tap } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { SpecialTourItemComponent } from '../../tour/special-tour.component';
@@ -160,6 +160,12 @@ export class MainComponent {
 						})
 					);
 				}
+			)
+			.pipe(
+				tap(console.log),
+				finalize(() => {
+					console.log('End');
+				})
 			)
 			.subscribe();
 	}

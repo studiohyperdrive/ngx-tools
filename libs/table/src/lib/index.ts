@@ -7,6 +7,7 @@ export * from './interfaces';
 export * from './enums';
 export * from './pipes';
 export * from './token';
+export * from './providers';
 
 /** All the necessary ngx-table components */
 export const NgxTable = [NgxTableComponent, ...Cells];

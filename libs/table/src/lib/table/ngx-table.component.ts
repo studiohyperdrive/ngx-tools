@@ -34,7 +34,7 @@ import { takeUntil, tap } from 'rxjs/operators';
 import { NgTemplateOutlet, NgClass } from '@angular/common';
 import { CdkTableModule } from '@angular/cdk/table';
 import { NgxAbstractTableCellDirective } from '../cell/cell.directive';
-import { NgxTableCypressDataTags, NgxTableSortEvent } from '../interfaces';
+import { NgxTableCypressDataTags, NgxTableInputs, NgxTableSortEvent } from '../interfaces';
 import {
 	HideHeaderRowOption,
 	NgxTableConfig,
@@ -340,6 +340,8 @@ export class NgxTableComponent
 	 */
 	@Input() public hideHeaderWhen: HideHeaderRowOption =
 		this.ngxTableConfig?.hideHeaderWhen || 'never';
+
+	@Input() public componentsInput: NgxTableInputs;
 
 	/**
 	 * Returns the data of the row that was clicked
