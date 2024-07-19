@@ -3,16 +3,22 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { WithRouterLinksConfig } from '../../types';
 import { WithRouterLinkPipe } from './with-router-links.pipe';
 
-describe('WithRouterLinkPipe', () => {
-	const config: WithRouterLinksConfig = {
-		replaceElementSelector: 'my-link',
-		linkAttributeName: 'to',
-		dataLinkIdAttributeName: 'data-link-id',
-	};
+fdescribe('WithRouterLinkPipe', () => {
+	let config: WithRouterLinksConfig;
+	let pipe: WithRouterLinkPipe;
 	const sanitizer: DomSanitizer = {
 		bypassSecurityTrustHtml: jasmine.createSpy().and.callFake((value) => value),
 	} as any as DomSanitizer;
-	const pipe: WithRouterLinkPipe = new WithRouterLinkPipe(config, sanitizer);
+
+	beforeEach(() => {
+		config = {
+			replaceElementSelector: 'my-link',
+			linkAttributeName: 'to',
+			dataLinkIdAttributeName: 'data-link-id',
+		};
+
+		pipe = new WithRouterLinkPipe(config, sanitizer);
+	});
 
 	it('should convert a single link with a an array link & global config', () => {
 		const result = pipe.transform(
@@ -110,6 +116,43 @@ describe('WithRouterLinkPipe', () => {
 
 		expect(result).toBe(
 			`<head></head><body>This is a text with multiple links: <my-link to="path/in/app">link 1</my-link>, <a href="https://studiohyperdrive.be">link 2</a>, <a data-link-id="someUniqueId3">link 3</a>.</body>`
+		);
+	});
+
+	it('should include the class of the global config', () => {
+		config.hostClass = 'globalClass';
+
+		const result = pipe.transform(
+			'This is a text with a <a data-link-id="someUniqueId">link</a>.',
+			[
+				{
+					dataLinkId: 'someUniqueId',
+					link: ['path', 'in', 'app'],
+				},
+			]
+		);
+
+		expect(result).toBe(
+			`<head></head><body>This is a text with a <my-link to="path/in/app" class="globalClass">link</my-link>.</body>`
+		);
+	});
+
+	it('should include the class of the global config', () => {
+		config.hostClass = 'globalClass';
+
+		const result = pipe.transform(
+			'This is a text with a <a data-link-id="someUniqueId">link</a>.',
+			[
+				{
+					dataLinkId: 'someUniqueId',
+					link: ['path', 'in', 'app'],
+					hostClass: 'pipeClass',
+				},
+			]
+		);
+
+		expect(result).toBe(
+			`<head></head><body>This is a text with a <my-link to="path/in/app" class="pipeClass">link</my-link>.</body>`
 		);
 	});
 });

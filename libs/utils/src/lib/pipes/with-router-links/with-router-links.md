@@ -90,7 +90,9 @@ Within the template you can now provide the string and transform it like this:
 }]"></p>
 ```
 
-The linkTo will transform your array to a string. It also expects plain string paths instead of arrays.
+The `linkTo` will transform your array to a string. It also expects plain string paths instead of arrays.
+
+The `hostClass` will allow you to set a class onto the host of the substitute element.
 
 #### Deviating from the global settings
 
@@ -102,7 +104,10 @@ If you'd want to deviate from the global settings and use a different component 
     link: ['somewhere', 'in', 'the', 'app'],
     replaceElementSelector: 'my-other-el',
 	toAttribute: 'input-prop',
+    hostClass: 'someClass',
 }]"></p>
 ```
+
+It is possible to redefine a `hostClass` here. Be aware that this will overwrite the `hostClass` defined by the global style.
 
 Do note, again, that Angular will always lowercase attributes on HTML provided through the innerHTML & outerHTML directives.

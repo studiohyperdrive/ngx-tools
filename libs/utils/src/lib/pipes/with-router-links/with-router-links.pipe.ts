@@ -42,10 +42,16 @@ export class WithRouterLinkPipe implements PipeTransform {
 		// The argument defaults to an empty array, if no linkReferences are provided,
 		// it will loop over an empty array.
 		linkReferences.forEach(
-			({ dataLinkId, link, replaceElementSelector, toAttribute }: LinkReference) => {
+			({
+				dataLinkId,
+				link,
+				replaceElementSelector,
+				toAttribute,
+				hostClass,
+			}: LinkReference) => {
 				// Denis: construct the selector string
 				const selector: string = `a[${this.config.dataLinkIdAttributeName}="${dataLinkId}"]`;
-				// Denis: select the palceholder element within the parsed Document.
+				// Denis: select the placeholder element within the parsed Document.
 				const placeholderLink: HTMLElement = body.querySelector(selector);
 
 				// Denis: if no placeholder is found, early return.
@@ -61,6 +67,7 @@ export class WithRouterLinkPipe implements PipeTransform {
 				const parsedLink: HTMLElement = body.createElement(
 					replaceElementSelector || this.config.replaceElementSelector
 				);
+
 				// Denis: because setAttribute expects a string value,
 				// check if the provided routerLinkValue is an Array. If so, join it.
 				const routerLinkValue: string = Array.isArray(link) ? link.join('/') : link;
@@ -72,6 +79,13 @@ export class WithRouterLinkPipe implements PipeTransform {
 					toAttribute || this.config.linkAttributeName,
 					routerLinkValue
 				);
+
+				// Wouter: If provided, set the hostClass provided by the pipe's transform. If no class is defined,
+				// the global config will be used. If no global config is defined either, the class will not be set.
+				if (hostClass || this.config.hostClass) {
+					parsedLink.setAttribute('class', hostClass || this.config.hostClass);
+				}
+
 				// Denis: copy the innerText of the placeholder element to the new element.
 				parsedLink.innerText = placeholderLink.innerText;
 
