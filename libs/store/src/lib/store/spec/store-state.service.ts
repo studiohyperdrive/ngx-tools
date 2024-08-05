@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { BaseStoreAssets, EntityStoreAssets, StoreFlowAssets } from '../interfaces';
 import {
 	createBaseStoreAssets,
@@ -31,6 +31,14 @@ export const { actions, reducers, selectors } = createStoreAssets<StoreState>('s
 export class StoreStateService extends StoreService<StoreState> {
 	constructor(protected readonly store: Store) {
 		super(store, selectors);
+	}
+
+	setWithError(): Observable<never> {
+		return dispatchDataToStore(
+			actions.data,
+			throwError(() => new Error('This is an error')),
+			this.store
+		);
 	}
 
 	setData(payload: string[]): Observable<string[]> {

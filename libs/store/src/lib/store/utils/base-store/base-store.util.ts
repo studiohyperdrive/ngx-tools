@@ -78,15 +78,15 @@ export const createBaseStoreAssets = <
 		select: createSelector(featureSelector, (state: BaseStore<StateInterface>) => state.data),
 		selectLoading: createSelector(
 			featureSelector,
-			(state: BaseStore<StateInterface>) => state.loading
+			(state: BaseStore<StateInterface>) => state?.loading
 		),
 		selectError: createSelector(
 			featureSelector,
-			(state: BaseStore<StateInterface>) => state.error
+			(state: BaseStore<StateInterface>) => state?.error
 		),
 		selectErrorMessage: createSelector(
 			featureSelector,
-			(state: BaseStore<StateInterface>) => state.errorMessage
+			(state: BaseStore<StateInterface>) => state?.errorMessage
 		),
 	};
 

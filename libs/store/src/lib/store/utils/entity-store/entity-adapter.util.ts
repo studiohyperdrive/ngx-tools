@@ -86,15 +86,15 @@ export const createEntityAdapterStoreAssets = <
 		selectAll: createSelector(featureSelector, adapter.getSelectors().selectAll),
 		selectLoading: createSelector(
 			featureSelector,
-			(state: BasicEntityState<StateInterface>): boolean => state.entityStatus.loading
+			(state: BasicEntityState<StateInterface>): boolean => state?.entityStatus.loading
 		),
 		selectError: createSelector(
 			featureSelector,
-			(state: BasicEntityState<StateInterface>): boolean => state.entityStatus.error
+			(state: BasicEntityState<StateInterface>): boolean => state?.entityStatus.error
 		),
 		selectErrorMessage: createSelector(
 			featureSelector,
-			(state: BasicEntityState<StateInterface>) => state.entityStatus.errorMessage
+			(state: BasicEntityState<StateInterface>) => state?.entityStatus.errorMessage
 		),
 	};
 
