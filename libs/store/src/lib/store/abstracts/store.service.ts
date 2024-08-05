@@ -22,8 +22,8 @@ export class StoreService<StoreAssetsType extends StoreFlowAssets = any> {
 				return {
 					...previous,
 					[`${key}$`]: this.selectFromStore(selectors[key]),
-					[`${key}Loading$`]: this.selectErrorFromStore(selectors[key]),
-					[`${key}Error$`]: this.selectLoadingFromStore(selectors[key]),
+					[`${key}Loading$`]: this.selectLoadingFromStore(selectors[key]),
+					[`${key}Error$`]: this.selectErrorFromStore(selectors[key]),
 					[`${key}ErrorMessage$`]: this.selectErrorMessageFromStore(selectors[key]),
 				};
 			}, {}) as StoreState<StoreAssetsType>;
