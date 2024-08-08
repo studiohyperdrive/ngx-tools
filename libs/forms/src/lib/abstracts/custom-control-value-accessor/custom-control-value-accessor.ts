@@ -154,90 +154,96 @@ export abstract class NgxFormsControlValueAccessor<
 	constructor() {
 		// Iben: Use setTimeOut to avoid the circular dependency issue
 		setTimeout(() => {
-			const parentControl = this.injector.get(NgControl);
+			try {
+				const parentControl = this.injector.get(NgControl);
 
-			// Iben: If for some reason we can't find the control or the ngControl, early exit and throw an error
-			if (!parentControl?.control) {
-				console.error(
-					'NgxForms: No control was found after initializing. Check if a control was assigned to the FormAccessor.'
+				// Iben: If for some reason we can't find the control or the ngControl, early exit and throw an error
+				if (!parentControl?.control) {
+					console.error(
+						'NgxForms: No control was found after initializing. Check if a control was assigned to the FormAccessor.'
+					);
+
+					return;
+				}
+
+				this.parentControlSubject$.next(parentControl.control);
+
+				// Iben: Grab the control from the parent container
+				const control = parentControl.control;
+
+				// Iben: Setup the markAsTouched flow
+				// Iben: Keep a reference to the original `markAsTouched` handler.
+				const markAsTouched = control.markAsTouched.bind(control);
+
+				// Iben: Override the `markAsTouched` handler with our own.
+				control.markAsTouched = (options?: FormStateOptionsEntity) => {
+					// Iben: If the control is already marked as touched, we early exit
+					if (control.touched) {
+						return;
+					}
+
+					// Iben: Invoke the original `markAsTouchedHandler`.
+					markAsTouched(options);
+
+					// Iben: If the onlySelf flag is set to true, we early exit
+					if (options?.onlySelf) {
+						return;
+					}
+
+					// Iben: Invoke the custom `markAsTouchedHandler`.
+					this.markAsTouched(options);
+				};
+
+				// Iben: Setup the markAsDirty flow
+				// Iben: Keep a reference to the original `markAsDirty` handler.
+				const markAsDirty = control.markAsDirty.bind(control);
+
+				// Iben: Override the `markAsDirty` handler with our own.
+				control.markAsDirty = (options?: FormStateOptionsEntity) => {
+					// Iben: If the control is already marked as dirty, we early exit
+					if (control.dirty) {
+						return;
+					}
+
+					// Iben: Invoke the original `markAsDirtyHandler`.
+					markAsDirty(options);
+
+					// Iben: If the onlySelf flag is set to true, we early exit
+					if (options?.onlySelf) {
+						return;
+					}
+
+					// Iben: Invoke the custom `markAsDirtyHandler`.
+					this.markAsDirty(options);
+				};
+
+				// Iben: Setup the markAsPristine flow
+				// Iben: Keep a reference to the original `markAsPristine` handler.
+				const markAsPristine = control.markAsPristine.bind(control);
+
+				// Iben: Override the `markAsPristine` handler with our own.
+				control.markAsPristine = (options?: FormStateOptionsEntity) => {
+					// Iben: If the control is already marked as pristine, we early exit
+					if (control.pristine) {
+						return;
+					}
+
+					// Iben: Invoke the original `markAsPristineHandler`.
+					markAsPristine(options);
+
+					// Iben: If the onlySelf flag is set to true, we early exit
+					if (options?.onlySelf) {
+						return;
+					}
+
+					// Iben: Invoke the custom `markAsPristineHandler`.
+					this.markAsPristine(options);
+				};
+			} catch (error) {
+				console.warn(
+					'NgxForms: No parent control was found while trying to set up the form accessor.'
 				);
-
-				return;
 			}
-
-			this.parentControlSubject$.next(parentControl.control);
-
-			// Iben: Grab the control from the parent container
-			const control = parentControl.control;
-
-			// Iben: Setup the markAsTouched flow
-			// Iben: Keep a reference to the original `markAsTouched` handler.
-			const markAsTouched = control.markAsTouched.bind(control);
-
-			// Iben: Override the `markAsTouched` handler with our own.
-			control.markAsTouched = (options?: FormStateOptionsEntity) => {
-				// Iben: If the control is already marked as touched, we early exit
-				if (control.touched) {
-					return;
-				}
-
-				// Iben: Invoke the original `markAsTouchedHandler`.
-				markAsTouched(options);
-
-				// Iben: If the onlySelf flag is set to true, we early exit
-				if (options?.onlySelf) {
-					return;
-				}
-
-				// Iben: Invoke the custom `markAsTouchedHandler`.
-				this.markAsTouched(options);
-			};
-
-			// Iben: Setup the markAsDirty flow
-			// Iben: Keep a reference to the original `markAsDirty` handler.
-			const markAsDirty = control.markAsDirty.bind(control);
-
-			// Iben: Override the `markAsDirty` handler with our own.
-			control.markAsDirty = (options?: FormStateOptionsEntity) => {
-				// Iben: If the control is already marked as dirty, we early exit
-				if (control.dirty) {
-					return;
-				}
-
-				// Iben: Invoke the original `markAsDirtyHandler`.
-				markAsDirty(options);
-
-				// Iben: If the onlySelf flag is set to true, we early exit
-				if (options?.onlySelf) {
-					return;
-				}
-
-				// Iben: Invoke the custom `markAsDirtyHandler`.
-				this.markAsDirty(options);
-			};
-
-			// Iben: Setup the markAsPristine flow
-			// Iben: Keep a reference to the original `markAsPristine` handler.
-			const markAsPristine = control.markAsPristine.bind(control);
-
-			// Iben: Override the `markAsPristine` handler with our own.
-			control.markAsPristine = (options?: FormStateOptionsEntity) => {
-				// Iben: If the control is already marked as pristine, we early exit
-				if (control.pristine) {
-					return;
-				}
-
-				// Iben: Invoke the original `markAsPristineHandler`.
-				markAsPristine(options);
-
-				// Iben: If the onlySelf flag is set to true, we early exit
-				if (options?.onlySelf) {
-					return;
-				}
-
-				// Iben: Invoke the custom `markAsPristineHandler`.
-				this.markAsPristine(options);
-			};
 		});
 	}
 
