@@ -1,12 +1,10 @@
-<h1>
-	NgxTour
-</h1>
+<h1>NgxTour</h1>
 
 <button (click)="startTour()">
-	{{dataString$ | async}}
+	{{ dataString$ | async }}
 </button>
 
-<h1 tourItem="start">NgxDisplayContent</h1>
+<h1 tourItem="start" contenteditable="true">NgxDisplayContent</h1>
 <div>
 	<p *displayContent="form.value; configuration: { error: { data: 'I am an error' } }">
 		Hello this is the content we wish to show!
@@ -118,11 +116,6 @@
 	</ngx-configurable-layout-item>
 </ngx-configurable-layout>
 
+<div class="space-between">Space between</div>
 
-<div class="space-between">
-	Space between
-</div>
-
-<p tourItem="scrollToMe">
-	Scroll to me during the tour
-</p>
+<p tourItem="scrollToMe">Scroll to me during the tour</p>

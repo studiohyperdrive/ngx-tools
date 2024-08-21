@@ -4,3 +4,9 @@
 .ngx-tour-item-active {
 	background: white;
 }
+
+.ngx-tour-active {
+	app-root {
+		pointer-events: none;
+	}
+}
