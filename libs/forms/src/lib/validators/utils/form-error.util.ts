@@ -1,5 +1,5 @@
 import { AbstractControl } from '@angular/forms';
-import * as clean from 'obj-clean';
+import clean from 'obj-clean';
 
 /**
  * Removes an error from a form control

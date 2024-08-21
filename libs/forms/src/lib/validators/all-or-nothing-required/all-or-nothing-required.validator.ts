@@ -1,5 +1,5 @@
 import { FormGroup } from '@angular/forms';
-import * as clean from 'obj-clean';
+import clean from 'obj-clean';
 
 import { clearFormError, setFormError } from '../utils';
 
