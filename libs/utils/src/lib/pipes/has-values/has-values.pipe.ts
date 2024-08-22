@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { isObject } from 'lodash';
-import * as clean from 'obj-clean';
+import clean from 'obj-clean';
 
 @Pipe({
 	name: 'hasValues',
