@@ -32,7 +32,9 @@
 		"media query",
 		"window resize",
 		"match media",
-		"viewport"
+		"viewport",
+    "replace elements",
+    "web components"
 	],
 	"homepage": "https://github.com/studiohyperdrive/ngx-tools/tree/master/libs/utils",
 	"license": "MIT",
