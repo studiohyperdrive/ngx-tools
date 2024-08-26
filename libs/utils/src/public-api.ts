@@ -9,5 +9,6 @@ export * from './lib/pipes';
 export * from './lib/types';
 export * from './lib/abstracts';
 export * from './lib/providers';
+export * from './lib/tokens';
 
 export * from './lib/utils.const';

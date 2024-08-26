@@ -12,6 +12,7 @@ import { JoinPipe } from './join/join.pipe';
 import { LimitToPipe } from './limit-to/limit-to.pipe';
 import { LogPipe } from './log/log.pipe';
 import { MergeArraysPipe } from './merge-arrays/merge-arrays.pipe';
+import { NgxReplaceElementsPipe } from './replace-elements/replace-elements.pipe';
 import { SafeHtmlPipe } from './safe-html/safe-html.pipe';
 import { StripHtmlPipe } from './strip-html/strip-html.pipe';
 import { ToArrayPipe } from './to-array/to-array.pipe';
@@ -43,6 +44,7 @@ export const Pipes = [
 	TruncateTextPipe,
 	UniqByPipe,
 	WithRouterLinkPipe,
+	NgxReplaceElementsPipe
 ];
 
 export { ArrayContainsOnePipe } from './array-contains-one/array-contains-one.pipe';
@@ -66,3 +68,5 @@ export { TransformPipe } from './transform/transform.pipe';
 export { TruncateTextPipe } from './truncate-text/truncate-text.pipe';
 export { UniqByPipe } from './unique-by/uniq-by.pipe';
 export { WithRouterLinkPipe } from './with-router-links/with-router-links.pipe';
+export { NgxReplaceElementsPipe } from './replace-elements/replace-elements.pipe';
+
