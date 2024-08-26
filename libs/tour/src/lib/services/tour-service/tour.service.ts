@@ -19,7 +19,7 @@ import {
 } from 'rxjs';
 import { ConnectedPosition, Overlay, OverlayConfig, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 
 import { NgxTourStepComponent } from '../../abstracts';
 import { NgxTourItemDirective } from '../../directives';
@@ -218,6 +218,15 @@ export class NgxTourService implements OnDestroy {
 		onClose?: NgxTourAction,
 		startIndex = 0
 	): Observable<void> {
+		// Wouter: Early exit if the tour is run on the server, for which this service is not intended
+		if (isPlatformServer(this.platformId)) {
+			console.warn(
+				'NgxTourService: The tour service is not intended to be run on the server. The tour will not be started.'
+			);
+
+			return of(null);
+		}
+
 		this.runInBrowser(() => {
 			// Iben: Save the current scroll position so we can return to it when we close the tour
 			this.startingScrollPosition = window.scrollY;
@@ -243,6 +252,9 @@ export class NgxTourService implements OnDestroy {
 		this.currentIndexSubject.next(startIndex);
 		this.tourStartedSubject.next();
 
+		// Wouter: Set a class onto the body to indicate onto which styling can be added by the user
+		this.handleBodyClass('set');
+
 		// Iben: Listen to the window resize and the backdrop clip event, so that when the window resizes, the clip path still works correctly
 		combineLatest([
 			this.windowResizeSubject.pipe(startWith(undefined)),
@@ -258,7 +270,15 @@ export class NgxTourService implements OnDestroy {
 			.subscribe();
 
 		// Iben: Start the first tour, and run it until the tour is ended
-		this.setStep(tour[startIndex]).pipe(takeUntil(this.tourEnded$)).subscribe();
+		this.setStep(tour[startIndex])
+			.pipe(
+				switchMap(() => this.tourEnded$),
+				// Wouter: switchMap and tap are not triggered. Is this because the tourEnded$ is undefined by default?
+				tap((tourEnded) => console.log('service: startTour: tourEnded', tourEnded)),
+				takeUntil(this.tourEnded$)
+			)
+			.subscribe();
+		console.log('service: startTour: currentStep', this.currentStepSubject.getValue());
 
 		// Iben: Listen to the end of the tour and run the end function when needed
 		return this.tourEndedSubject.asObservable().pipe(
@@ -324,6 +344,9 @@ export class NgxTourService implements OnDestroy {
 		this.currentTourSubject.next(undefined);
 		this.amountOfSteps = 0;
 
+		// Wouter: Remove the body class
+		this.handleBodyClass('remove');
+
 		// Iben: Emit the end of the tour
 		this.tourEndedSubject.next();
 
@@ -339,6 +362,9 @@ export class NgxTourService implements OnDestroy {
 		this.tourEndedSubject.complete();
 		this.windowResizeSubject.next();
 		this.windowResizeSubject.complete();
+
+		// Wouter: Remove the body class
+		this.handleBodyClass('remove');
 
 		// Iben: Get rid of the onresize event
 		this.runInBrowser(() => {
@@ -376,6 +402,7 @@ export class NgxTourService implements OnDestroy {
 			// This makes sure the bounding box of the highlighted element is correct.
 			delay(1),
 			concatMap(() => {
+				console.log('service: setStep:', currentStep);
 				// Iben: If no tourItem was provided, we render the step in the center of the page
 				if (!currentStep.tourItem) {
 					return this.handleStepInteractions(currentStep);
@@ -443,6 +470,7 @@ export class NgxTourService implements OnDestroy {
 		// Iben: Update the previous and current step subject
 		this.previousStepSubject.next(this.currentStepSubject.getValue());
 		this.currentStepSubject.next(currentStep);
+		console.log('service: visualizeStep: currentStep set to', currentStep);
 
 		this.runInBrowser(() => {
 			// Iben: Restore the body overflow so we can scroll to the right element
@@ -545,6 +573,7 @@ export class NgxTourService implements OnDestroy {
 		currentStep: NgxTourStep,
 		item?: NgxTourItemDirective
 	): Observable<NgxTourInteraction> {
+		console.log('service: handleStepInteractions:', currentStep);
 		// Iben: If the item was found, we visualize the step
 		const componentRef = this.visualizeStep(currentStep, item);
 
@@ -662,6 +691,19 @@ export class NgxTourService implements OnDestroy {
 	 */
 	private getCutoutMargin(step: NgxTourStep): number {
 		return step?.cutoutMargin === undefined ? 5 : step.cutoutMargin;
+	}
+
+	/**
+	 * Sets or removes the body class to indicate the tour is active
+	 */
+	private handleBodyClass(action: 'set' | 'remove'): void {
+		this.runInBrowser(() => {
+			if (action === 'set') {
+				document.body.classList.add('ngx-tour-active');
+			} else {
+				document.body.classList.remove('ngx-tour-active');
+			}
+		});
 	}
 
 	//TODO: Iben: Remove this function in service of the WindowService once it is shared
