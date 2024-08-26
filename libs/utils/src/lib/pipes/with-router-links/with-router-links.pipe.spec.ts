@@ -3,7 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { WithRouterLinksConfig } from '../../types';
 import { WithRouterLinkPipe } from './with-router-links.pipe';
 
-fdescribe('WithRouterLinkPipe', () => {
+describe('WithRouterLinkPipe', () => {
 	let config: WithRouterLinksConfig;
 	let pipe: WithRouterLinkPipe;
 	const sanitizer: DomSanitizer = {

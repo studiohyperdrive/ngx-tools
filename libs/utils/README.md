@@ -160,6 +160,12 @@ The withRouterLinks pipe will provide a way to transform a string that contains 
 
 [Full documentation.](src/lib/pipes/with-router-links/with-router-links.md)
 
+#### NgxReplaceElementsPipe
+
+The ngxReplaceElements pipe will provide a way to transform a string that contains one or more parts that need an Angular component by taking advantage of Angular web components.
+
+[Full documentation.](src/lib/pipes/replace-elements/replace-elements.pipe.md)
+
 ### Services
 
 #### Window service
