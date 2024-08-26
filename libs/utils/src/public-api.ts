@@ -8,5 +8,6 @@ export * from './lib/services';
 export * from './lib/pipes';
 export * from './lib/types';
 export * from './lib/abstracts';
+export * from './lib/providers';
 
 export * from './lib/utils.const';
