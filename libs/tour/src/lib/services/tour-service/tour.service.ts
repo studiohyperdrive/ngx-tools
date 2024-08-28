@@ -270,15 +270,7 @@ export class NgxTourService implements OnDestroy {
 			.subscribe();
 
 		// Iben: Start the first tour, and run it until the tour is ended
-		this.setStep(tour[startIndex])
-			.pipe(
-				switchMap(() => this.tourEnded$),
-				// Wouter: switchMap and tap are not triggered. Is this because the tourEnded$ is undefined by default?
-				tap((tourEnded) => console.log('service: startTour: tourEnded', tourEnded)),
-				takeUntil(this.tourEnded$)
-			)
-			.subscribe();
-		console.log('service: startTour: currentStep', this.currentStepSubject.getValue());
+		this.setStep(tour[startIndex]).pipe(takeUntil(this.tourEnded$)).subscribe();
 
 		// Iben: Listen to the end of the tour and run the end function when needed
 		return this.tourEndedSubject.asObservable().pipe(
@@ -402,7 +394,6 @@ export class NgxTourService implements OnDestroy {
 			// This makes sure the bounding box of the highlighted element is correct.
 			delay(1),
 			concatMap(() => {
-				console.log('service: setStep:', currentStep);
 				// Iben: If no tourItem was provided, we render the step in the center of the page
 				if (!currentStep.tourItem) {
 					return this.handleStepInteractions(currentStep);
@@ -470,7 +461,6 @@ export class NgxTourService implements OnDestroy {
 		// Iben: Update the previous and current step subject
 		this.previousStepSubject.next(this.currentStepSubject.getValue());
 		this.currentStepSubject.next(currentStep);
-		console.log('service: visualizeStep: currentStep set to', currentStep);
 
 		this.runInBrowser(() => {
 			// Iben: Restore the body overflow so we can scroll to the right element
@@ -573,7 +563,6 @@ export class NgxTourService implements OnDestroy {
 		currentStep: NgxTourStep,
 		item?: NgxTourItemDirective
 	): Observable<NgxTourInteraction> {
-		console.log('service: handleStepInteractions:', currentStep);
 		// Iben: If the item was found, we visualize the step
 		const componentRef = this.visualizeStep(currentStep, item);
 

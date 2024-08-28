@@ -45,8 +45,6 @@ xdescribe('NgxTourService Browser', () => {
 
 		service.startTour([{ title: 'hello', content: 'world' }]).subscribe();
 
-		console.log('spec: step values: ', stepSpy.getValues());
-
 		expect(indexSpy.getValues()).toEqual([0]);
 		expect(stepSpy.receivedNext()).toBe(true);
 		expect(stepSpy.getValues()).toEqual([{ title: 'hello', content: 'world' }]);
