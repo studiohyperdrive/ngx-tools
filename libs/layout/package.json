@@ -10,7 +10,8 @@
     "error",
     "dynamic dashboard",
     "dynamic layout",
-    "visual"
+    "visual",
+    "tooltip"
   ],
   "homepage": "https://github.com/studiohyperdrive/ngx-tools/tree/master/libs/layout",
   "license": "MIT",

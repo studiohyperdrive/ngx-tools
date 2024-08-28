@@ -1,4 +1,4 @@
-<h1>NgxTour</h1>
+<h1 [ngxTooltip]="tooltipWithLinkText" ngxTooltipId="tourTitle">NgxTour</h1>
 
 <button (click)="startTour()">
 	{{ dataString$ | async }}
@@ -19,7 +19,7 @@
 
 <ng-template #loadingTmpl> Hello, this is a custom loading! </ng-template>
 
-<form [formGroup]="form">
+<form [formGroup]="form" ngxTooltip="This is the form" ngxTooltipPosition="below"  ngxTooltipId="form">
 	<fieldset>
 		<label for="">
 			<input type="checkbox" formControlName="loading" />
@@ -40,7 +40,7 @@
 	</fieldset>
 </form>
 
-<h1 tourItem="middle">NgxConfigurableLayout</h1>
+<h1 tourItem="middle" ngxTooltip="This is another tip" ngxTooltipPosition="right"  ngxTooltipId="middle">NgxConfigurableLayout</h1>
 
 <h2>Static</h2>
 <ngx-configurable-layout
@@ -116,6 +116,10 @@
 	</ngx-configurable-layout-item>
 </ngx-configurable-layout>
 
-<div class="space-between">Space between</div>
+<div class="space-between">
+	<p ngxTooltip="This will positioned left" ngxTooltipPosition="left"  ngxTooltipId="spaceBetween">
+		Space between
+	</p>
+</div>
 
 <p tourItem="scrollToMe">Scroll to me during the tour</p>

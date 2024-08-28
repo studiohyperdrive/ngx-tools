@@ -7,7 +7,8 @@ import {
 } from '../display-content';
 import { TourItemComponent } from '../tour/tour.component';
 import { routes } from '../routes';
-import { provideNgxDisplayContentConfiguration } from '@ngx/layout';
+import { TooltipComponent } from '../tooltip/tooltip.component';
+import { provideNgxDisplayContentConfiguration, provideNgxTooltipConfiguration } from '@ngx/layout';
 import { provideNgxTourConfiguration } from '@ngx/tour';
 
 export const appConfig: ApplicationConfig = {
@@ -22,6 +23,7 @@ export const appConfig: ApplicationConfig = {
 			},
 		}),
 		provideNgxTourConfiguration(TourItemComponent),
+		provideNgxTooltipConfiguration({ component: TooltipComponent }),
 		provideRouter(routes),
 	],
 };

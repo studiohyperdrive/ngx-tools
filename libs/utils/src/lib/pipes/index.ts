@@ -44,7 +44,7 @@ export const Pipes = [
 	TruncateTextPipe,
 	UniqByPipe,
 	WithRouterLinkPipe,
-	NgxReplaceElementsPipe
+	NgxReplaceElementsPipe,
 ];
 
 export { ArrayContainsOnePipe } from './array-contains-one/array-contains-one.pipe';
@@ -69,4 +69,3 @@ export { TruncateTextPipe } from './truncate-text/truncate-text.pipe';
 export { UniqByPipe } from './unique-by/uniq-by.pipe';
 export { WithRouterLinkPipe } from './with-router-links/with-router-links.pipe';
 export { NgxReplaceElementsPipe } from './replace-elements/replace-elements.pipe';
-

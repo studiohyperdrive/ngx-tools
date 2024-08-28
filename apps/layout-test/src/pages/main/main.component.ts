@@ -11,6 +11,7 @@ import {
 	NgxConfigurableLayoutGrid,
 	NgxConfigurableLayoutItemDropEvent,
 	NgxDisplayContentDirective,
+	NgxTooltipDirective,
 } from '@ngx/layout';
 import { NgxTourItemDirective, NgxTourService, useMockDataDuringTour } from '@ngx/tour';
 
@@ -26,6 +27,7 @@ import { NgxTourItemDirective, NgxTourService, useMockDataDuringTour } from '@ng
 		NgxDisplayContentDirective,
 		NgxTourItemDirective,
 		CommonModule,
+		NgxTooltipDirective,
 	],
 })
 export class MainComponent {
@@ -37,6 +39,8 @@ export class MainComponent {
 		offline: new FormControl<boolean>(false),
 		error: new FormControl<boolean>(false),
 	});
+	public tooltipWithLinkText =
+		'This is a test with a link! <a tabIndex="0" href="www.google.com" target="_blank">Link me!</a>';
 
 	public dataString$ = of('Start the tour!').pipe(
 		useMockDataDuringTour<string>('The tour is running!')
