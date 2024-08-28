@@ -3,14 +3,21 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { AsyncPipe, JsonPipe } from '@angular/common';
 import { WrapperComponent } from './wrapper/wrapper.component';
-import { NgxTable } from '@ngx/table';
+import { NgxCurrencyTableCellComponent, NgxTable } from '@ngx/table';
 
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
 	styleUrls: ['./app.component.scss'],
 	standalone: true,
-	imports: [WrapperComponent, ReactiveFormsModule, AsyncPipe, JsonPipe, NgxTable],
+	imports: [
+		WrapperComponent,
+		ReactiveFormsModule,
+		AsyncPipe,
+		JsonPipe,
+		NgxTable,
+		NgxCurrencyTableCellComponent,
+	],
 })
 export class AppComponent {
 	private currentSet = 'dataSet1';
@@ -22,6 +29,7 @@ export class AppComponent {
 			active: false,
 			id: 'id1',
 			hello: 'world',
+			amount: 37,
 		},
 		{
 			name: 'Hyperdrive',
@@ -29,6 +37,7 @@ export class AppComponent {
 			active: true,
 			id: 'SHD',
 			hello: 'world',
+			amount: 5000,
 		},
 	];
 
@@ -39,12 +48,13 @@ export class AppComponent {
 			active: true,
 			id: 'id3',
 			hello: 'world',
+			amount: 0.5,
 		},
 	];
 
 	public data = new BehaviorSubject(this.dataSet1);
 
-	public readonly columns = ['firstName', 'name', 'active'];
+	public readonly columns = ['firstName', 'name', 'amount', 'active'];
 
 	public showDetail = true;
 

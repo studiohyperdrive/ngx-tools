@@ -13,7 +13,7 @@ import { NgxAbstractTableCellDirective } from './cell.directive';
 	],
 	template: `
 		<ng-template #cellTmpl let-item>
-			<time>{{ item | currency : currency }}</time>
+			{{ item | currency : currency }}
 		</ng-template>
 	`,
 	standalone: true,
@@ -21,7 +21,7 @@ import { NgxAbstractTableCellDirective } from './cell.directive';
 })
 export class NgxCurrencyTableCellComponent extends NgxAbstractTableCellDirective {
 	/**
-	 * The format of the provided date, by default `dd/MM/yyyy`
+	 * The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format of the provided amount, by default `EUR`
 	 */
 	@Input() public currency = 'EUR';
 
