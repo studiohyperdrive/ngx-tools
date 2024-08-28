@@ -1,26 +1,26 @@
 {
 	"name": "@studiohyperdrive/ngx-table",
-	"version": "18.0.2",
-  "description": "An Angular based approach for customizable large scale datatables using Angular CDK.",
-  "keywords": [
-    "angular",
-    "angular2",
-    "datatable",
-    "angular cdk",
-    "cdk",
-    "table",
-    "detail row"
-  ],
-  "homepage": "https://github.com/studiohyperdrive/ngx-tools/tree/master/libs/table",
-  "author": {
-    "name": "Studio Hyperdrive",
-    "url": "https://studiohyperdrive.be/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/studiohyperdrive/ngx-tools",
-    "directory": "libs/table/src"
-  },
+	"version": "18.0.3",
+	"description": "An Angular based approach for customizable large scale datatables using Angular CDK.",
+	"keywords": [
+		"angular",
+		"angular2",
+		"datatable",
+		"angular cdk",
+		"cdk",
+		"table",
+		"detail row"
+	],
+	"homepage": "https://github.com/studiohyperdrive/ngx-tools/tree/master/libs/table",
+	"author": {
+		"name": "Studio Hyperdrive",
+		"url": "https://studiohyperdrive.be/"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/studiohyperdrive/ngx-tools",
+		"directory": "libs/table/src"
+	},
 	"license": "MIT",
 	"peerDependencies": {
 		"@angular/common": "^18.0.2",
