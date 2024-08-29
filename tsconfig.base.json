@@ -22,13 +22,14 @@
 			"@ngx/layout": ["libs/layout/src/public-api.ts"],
 			"@ngx/store": ["libs/store/src/public-api.ts"],
 			"@ngx/table": ["libs/table/src/public-api.ts"],
+			"@ngx/tour": ["libs/tour/src/index.ts"],
 			"@ngx/utils": ["libs/utils/src/public-api.ts"],
-			"@ngx/tour": ["libs/tour/src/index.ts"]
+			"@studiohyperdrive/ngx-inform": ["libs/inform/src/index.ts"]
 		},
 		"useDefineForClassFields": false,
 		"skipLibCheck": true,
 		"rootDir": ".",
-    "allowSyntheticDefaultImports": true
+		"allowSyntheticDefaultImports": true
 	},
 	"angularCompilerOptions": {
 		"enableI18nLegacyMessageIdFormat": false,
