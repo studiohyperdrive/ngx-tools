@@ -78,6 +78,11 @@ export class NgxTooltipDirective {
 	// Iben: The default is set in the NgxTooltipService
 	@Input() public ngxTooltipPosition: NgxTooltipPosition;
 
+	/**
+	 * Prevent the tooltip from being shown, by default this is false.
+	 */
+	@Input() public ngxTooltipDisabled: boolean = false;
+
 	constructor(
 		private readonly tooltipService: NgxTooltipService,
 		private readonly elementRef: ElementRef
@@ -87,6 +92,11 @@ export class NgxTooltipDirective {
 	 * Show the tooltip if it is not visible yet
 	 */
 	private showTooltip(): void {
+		// Iben: Early exit when the tooltip is disabled
+		if (this.ngxTooltipDisabled) {
+			return;
+		}
+
 		// Iben: Show the tooltip
 		this.tooltipService.showToolTip({
 			text: this.ngxTooltip,

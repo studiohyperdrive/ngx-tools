@@ -81,3 +81,5 @@ On top of these two inputs, we have two additional inputs, being `ngxTooltipComp
 ``` html
 <h1 ngxTooltip="This is a tooltip!" ngxTooltipId="title_1" ngxTooltipPosition="right" [ngxTooltipComponent]="MyCustomTooltipComponent">Title 1</h1>
 ```
+
+When you wish to disable a tooltip and thus prevent it from being shown, you can use the `ngxTooltipDisabled` property. By default, this property is false.
