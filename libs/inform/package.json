@@ -25,7 +25,8 @@
 	"peerDependencies": {
 		"@angular/common": "^18.0.0",
 		"@angular/core": "^18.0.0",
-		"@angular/cdk": "^18.0.0"
+		"@angular/cdk": "^18.0.0",
+    "angular2-uuid": "^1.1.1"
 	},
 	"sideEffects": false
 }

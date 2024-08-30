@@ -70,7 +70,9 @@ The `NgxTooltipAbstractComponent` comes with several properties we can use for f
 
 ##### NgxTooltip
 
-Once we've defined and provided our component, we can add the tooltip to any existing element. There are two required inputs, the `ngxTooltip` input that represents the text we wish to provide to the tooltip and the `ngxTooltipId` which is needed to make the tooltip ARIA compliant.
+Once we've defined and provided our component, we can add the tooltip to any existing element. There is only one required input, the `ngxTooltip` input that represents the text we wish to provide to the tooltip. 
+
+By default, for accessibility, the directive adds a generated UUID id to the component. If you want to replace this with a custom id, you can overwrite this using `ngxTooltipId`. Be aware that **every id should be unique** to be ARIA compliant.
 
 ``` html
 <h1 ngxTooltip="This is a tooltip!" ngxTooltipId="title_1">Title 1</h1>
@@ -81,3 +83,5 @@ On top of these two inputs, we have two additional inputs, being `ngxTooltipComp
 ``` html
 <h1 ngxTooltip="This is a tooltip!" ngxTooltipId="title_1" ngxTooltipPosition="right" [ngxTooltipComponent]="MyCustomTooltipComponent">Title 1</h1>
 ```
+
+When you wish to disable a tooltip and thus prevent it from being shown, you can use the `ngxTooltipDisabled` property. By default, this property is false.
