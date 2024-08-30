@@ -41,3 +41,17 @@ h1 {
 	display: grid;
 	place-items: center;
 }
+
+nav {
+	li {
+		display: grid;
+		place-items: center;
+		height: 45px;
+		width: 45px;
+		overflow: hidden;
+
+		&:hover {
+			background-color: grey;
+		}
+	}
+}

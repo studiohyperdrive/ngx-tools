@@ -9,15 +9,22 @@ export abstract class NgxTooltipAbstractComponent {
 	 * Set tooltip as active
 	 */
 	@HostListener('mouseenter') showOnMouseEnter() {
-		this.ngxTooltipService.setTooltipIsHovered(true);
+		this.ngxTooltipService.setToolTipEvent({
+			id: this.id,
+			source: 'tooltip',
+			active: true,
+		});
 	}
 
 	/**
 	 * Set the tooltip as inactive
 	 */
 	@HostListener('mouseleave') removeOnMouseOut() {
-		this.ngxTooltipService.setTooltipIsHovered(false);
-		this.ngxTooltipService.removeToolTip();
+		this.ngxTooltipService.setToolTipEvent({
+			id: this.id,
+			source: 'tooltip',
+			active: false,
+		});
 	}
 
 	/**

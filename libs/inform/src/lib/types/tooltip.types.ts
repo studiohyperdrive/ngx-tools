@@ -17,3 +17,30 @@ export interface NgxTooltipItem {
 	component?: Type<NgxTooltipAbstractComponent>;
 	position?: NgxTooltipPosition;
 }
+
+interface NgxTooltipBaseEvent {
+	source: 'tooltip' | 'element';
+	id: string;
+	active: boolean;
+}
+interface NgxTooltipInactiveEvent extends NgxTooltipBaseEvent {
+	active: false;
+}
+interface NgxTooltipActiveElementEvent extends NgxTooltipBaseEvent {
+	active: true;
+	source: 'element';
+	elementRef: ElementRef;
+	component?: Type<NgxTooltipAbstractComponent>;
+	position?: NgxTooltipPosition;
+	text: string;
+}
+
+interface NgxTooltipActiveTooltipEvent extends NgxTooltipBaseEvent {
+	active: true;
+	source: 'tooltip';
+}
+
+export type NgxTooltipEvent =
+	| NgxTooltipInactiveEvent
+	| NgxTooltipActiveElementEvent
+	| NgxTooltipActiveTooltipEvent;
