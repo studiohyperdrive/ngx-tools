@@ -20,7 +20,6 @@ export class NgxTooltipDirective {
 	 * Show the tooltip on hover
 	 */
 	@HostListener('mouseenter') showOnMouseEnter() {
-		this.tooltipService.setElementIsHovered(true);
 		this.showTooltip();
 	}
 
@@ -35,7 +34,6 @@ export class NgxTooltipDirective {
 	 * Remove the tooltip on leaving hover
 	 */
 	@HostListener('mouseleave') removeOnMouseOut() {
-		this.tooltipService.setElementIsHovered(false);
 		this.removeTooltip();
 	}
 
@@ -50,7 +48,7 @@ export class NgxTooltipDirective {
 	 * Remove the tooltip on escape pressed
 	 */
 	@HostListener('document:keydown.escape') onEscape() {
-		this.tooltipService.removeToolTip(true);
+		this.tooltipService.removeToolTip();
 	}
 
 	/**
@@ -99,12 +97,14 @@ export class NgxTooltipDirective {
 		}
 
 		// Iben: Show the tooltip
-		this.tooltipService.showToolTip({
+		this.tooltipService.setToolTipEvent({
 			text: this.ngxTooltip,
 			position: this.ngxTooltipPosition,
 			component: this.ngxTooltipComponent,
 			elementRef: this.elementRef,
 			id: this.ngxTooltipId,
+			source: 'element',
+			active: true,
 		});
 	}
 
@@ -112,6 +112,16 @@ export class NgxTooltipDirective {
 	 * Remove the tooltip
 	 */
 	private removeTooltip(): void {
-		this.tooltipService.removeToolTip();
+		// Iben: Early exit when the tooltip is disabled
+		if (this.ngxTooltipDisabled) {
+			return;
+		}
+
+		// Iben: Emit a remove event
+		this.tooltipService.setToolTipEvent({
+			id: this.ngxTooltipId,
+			source: 'element',
+			active: false,
+		});
 	}
 }

@@ -4,30 +4,40 @@ import {
 	OverlayPositionBuilder,
 	OverlayRef,
 } from '@angular/cdk/overlay';
-import { Inject, Injectable } from '@angular/core';
+import { Inject, Injectable, OnDestroy } from '@angular/core';
 import { ComponentPortal } from '@angular/cdk/portal';
 
+import { BehaviorSubject, pairwise, Subject, takeUntil, tap } from 'rxjs';
 import { NgxTooltipConfigurationToken } from '../../tokens';
-import { NgxTooltipConfiguration, NgxTooltipItem, NgxTooltipPosition } from '../../types';
+import {
+	NgxTooltipConfiguration,
+	NgxTooltipEvent,
+	NgxTooltipItem,
+	NgxTooltipPosition,
+} from '../../types';
 
 @Injectable({
 	providedIn: 'root',
 })
-export class NgxTooltipService {
+export class NgxTooltipService implements OnDestroy {
+	// Iben: The id of the active tooltip
+	private activeTooltip: string = undefined;
+
+	/**
+	 * A subject to hold the tooltip events
+	 */
+	private readonly tooltipEventsSubject: BehaviorSubject<NgxTooltipEvent | undefined> =
+		new BehaviorSubject<NgxTooltipEvent | undefined>(undefined);
+
+	/**
+	 * A subject to hold the destroy event
+	 */
+	private readonly onDestroySubject: Subject<void> = new Subject();
+
 	/**
 	 * The overlayRef used to attach the tooltip too
 	 */
 	private overlayRef: OverlayRef;
-
-	/**
-	 * Whether the tooltip is hovered
-	 */
-	private tooltipIsHovered: boolean = false;
-
-	/**
-	 * Whether the element itself is hovered
-	 */
-	private elementIsHovered: boolean = false;
 
 	/**
 	 * The position record for the tooltip
@@ -44,7 +54,66 @@ export class NgxTooltipService {
 		private readonly configuration: NgxTooltipConfiguration,
 		private readonly overlayService: Overlay,
 		private readonly overlayPositionBuilder: OverlayPositionBuilder
-	) {}
+	) {
+		// Iben: Listen to the tooltip events and handle accordingly
+		this.tooltipEventsSubject
+			.pipe(
+				pairwise(),
+				tap(([previous, next]) => {
+					// Iben: When we enter an element, we show the tooltip
+					if (next.active && next.source === 'element') {
+						// Iben: Check if we have a previous element, and if so, if we have to remove it
+						if (
+							previous &&
+							this.overlayRef?.hasAttached() &&
+							this.activeTooltip !== next.id
+						) {
+							this.removeToolTip();
+						}
+
+						// Iben: Add the new tooltip
+						const { component, text, position, elementRef, id } = next;
+
+						this.showToolTip({
+							component: component,
+							text: text,
+							position: position,
+							elementRef: elementRef,
+							id: id,
+						});
+
+						return;
+					}
+
+					// Iben: We do a check on previous here so we can continue safely in the upcoming checks
+					if (!previous) {
+						return;
+					}
+
+					// Iben: If we're entering a new element, we early exit
+					if (previous.id !== next.id) {
+						return;
+					}
+
+					// Iben: If the sources are the same, we check if we need to remove the tooltip
+					// In this case we either leave the tooltip or leave the element
+					if (previous.source === next.source) {
+						if (!next.active) {
+							this.removeToolTip();
+
+							return;
+						}
+					}
+
+					// Iben: If both actives are false (element => tooltip => outside or tooltip => element => outside), we remove the tooltip
+					if (!next.active && !previous.active) {
+						this.removeToolTip();
+					}
+				}),
+				takeUntil(this.onDestroySubject.asObservable())
+			)
+			.subscribe();
+	}
 
 	/**
 	 * Show a tooltip
@@ -59,6 +128,9 @@ export class NgxTooltipService {
 
 		// Iben: Get the configuration of the tooltip
 		const { text, component, position, elementRef, id } = tooltip;
+
+		// Iben: Set the active tooltip
+		this.activeTooltip = id;
 
 		// Iben: Get the tooltip position. If no position was provided by the tooltip, we use the configured default, if none is configured we use 'above'
 		const tooltipPosition = position || this.configuration.defaultPosition || 'above';
@@ -95,38 +167,36 @@ export class NgxTooltipService {
 	}
 
 	/**
-	 * Indicate when a tooltip is being hovered over
-	 *
-	 * @param isHovered - Whether the tooltip is currently hovered over
+	 * Removes the tooltip.
 	 */
-	public setTooltipIsHovered(isHovered: boolean): void {
-		this.tooltipIsHovered = isHovered;
+	public removeToolTip() {
+		// Iben: Unset the active tooltip
+		this.activeTooltip = undefined;
+
+		// Iben: Remove the active tooltip from view
+		this.overlayRef.detach();
 	}
 
 	/**
-	 * Indicate when an element is being hovered over
+	 * Dispatches the tooltip event to the subject
 	 *
-	 * @param isHovered - Whether the tooltip is currently hovered over
+	 * @param event - A tooltip event
 	 */
-	public setElementIsHovered(isHovered: boolean): void {
-		this.elementIsHovered = isHovered;
+	public setToolTipEvent(event: NgxTooltipEvent) {
+		// Iben: We add a delay so that the user can navigate between the tooltip and the element
+		setTimeout(
+			() => {
+				this.tooltipEventsSubject.next(event);
+			},
+			event.active ? 0 : 100
+		);
 	}
 
 	/**
-	 * Attempts to remove the tooltip
-	 *
-	 * @param force - Whether want to close the tooltip regardless of whether it is being hovered. By default this is false.
+	 * Emit the destroy event
 	 */
-	public removeToolTip(force: boolean = false) {
-		// Iben: Use a setTimeout so we can let the user hover over the tooltip or focus on it first and keep it open accordingly
-		setTimeout(() => {
-			// Iben: If the tooltip or element is currently hovered, we don't remove the tooltip unless we force it
-			if (!force && (this.tooltipIsHovered || this.elementIsHovered)) {
-				return;
-			}
-
-			// Iben: Remove the tooltip
-			this.overlayRef.detach();
-		}, 100);
+	public ngOnDestroy(): void {
+		this.onDestroySubject.next();
+		this.onDestroySubject.complete();
 	}
 }

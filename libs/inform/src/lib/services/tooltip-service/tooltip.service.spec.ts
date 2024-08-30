@@ -50,18 +50,8 @@ describe('NgxTooltipService', () => {
 
 	it('should remove a tooltip', () => {
 		service.showToolTip({ text: 'Hello', id: 'test', elementRef: {} as any });
-		service.removeToolTip(true);
-
-		setTimeout(() => {
-			expect(overlayRef.detach).toHaveBeenCalled();
-		}, 100);
-	});
-
-	it('should not remove a tooltip when the current tooltip is active', () => {
-		service.showToolTip({ text: 'Hello', id: 'test', elementRef: {} as any });
-		service.setTooltipIsHovered(true);
 		service.removeToolTip();
 
-		expect(overlayRef.detach).not.toHaveBeenCalled();
+		expect(overlayRef.detach).toHaveBeenCalled();
 	});
 });
