@@ -1,32 +1,32 @@
 {
 	"name": "@studiohyperdrive/ngx-inform",
-	"version": "18.1.1",
-  "description": "A lightweight ARIA compliant customizable approach for common and complex inform flows in Angular.",
-  "keywords": [
-    "angular",
-    "angular2",
-    "inform",
-    "ARIA",
-    "tooltip",
-    "tip",
-    "accessibility"
-  ],
-  "homepage": "https://github.com/studiohyperdrive/ngx-tools/tree/master/libs/inform",
-  "license": "MIT",
-  "author": {
-    "name": "Studio Hyperdrive",
-    "url": "https://studiohyperdrive.be/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/studiohyperdrive/ngx-tools",
-    "directory": "libs/inform/src"
-  },
+	"version": "18.1.2",
+	"description": "A lightweight ARIA compliant customizable approach for common and complex inform flows in Angular.",
+	"keywords": [
+		"angular",
+		"angular2",
+		"inform",
+		"ARIA",
+		"tooltip",
+		"tip",
+		"accessibility"
+	],
+	"homepage": "https://github.com/studiohyperdrive/ngx-tools/tree/master/libs/inform",
+	"license": "MIT",
+	"author": {
+		"name": "Studio Hyperdrive",
+		"url": "https://studiohyperdrive.be/"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/studiohyperdrive/ngx-tools",
+		"directory": "libs/inform/src"
+	},
 	"peerDependencies": {
 		"@angular/common": "^18.0.0",
 		"@angular/core": "^18.0.0",
 		"@angular/cdk": "^18.0.0",
-    "angular2-uuid": "^1.1.1"
+		"angular2-uuid": "^1.1.1"
 	},
 	"sideEffects": false
 }
