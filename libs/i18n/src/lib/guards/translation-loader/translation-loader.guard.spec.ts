@@ -1,11 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { ActivatedRouteSnapshot, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { TranslationLoaderResolver } from '../../resolvers';
-import { I18nService } from '../../services';
-import { TranslationLoaderGuard } from './translation-loader.guard';
+import { NgxI18nTranslationLoaderResolver } from '../../resolvers';
+import { NgxI18nService } from '../../services';
+import { NgxI18nTranslationLoaderGuard } from './translation-loader.guard';
 
-describe('TranslationLoaderGuard', () => {
+describe('NgxI18nTranslationLoaderGuard', () => {
 	describe('with resolver provided', () => {
 		const router: any = {
 			navigate: jasmine.createSpy(),
@@ -19,7 +19,7 @@ describe('TranslationLoaderGuard', () => {
 						useValue: router,
 					},
 					{
-						provide: TranslationLoaderResolver,
+						provide: NgxI18nTranslationLoaderResolver,
 						useValue: null,
 					},
 				],
@@ -30,7 +30,7 @@ describe('TranslationLoaderGuard', () => {
 			TestBed.runInInjectionContext(() => {
 				const route = {} as ActivatedRouteSnapshot;
 
-				expect(TranslationLoaderGuard(route, null)).toBe(false);
+				expect(NgxI18nTranslationLoaderGuard(route, null)).toBe(false);
 			});
 		});
 	});
@@ -41,7 +41,6 @@ describe('TranslationLoaderGuard', () => {
 		};
 		const i18nService: any = {
 			currentLanguage: 'nl',
-			getCurrentLanguageForRoute: jasmine.createSpy().and.returnValue('nl'),
 			availableLanguages: ['nl', 'en'],
 			setLanguage: jasmine.createSpy(),
 			initI18n: jasmine.createSpy().and.returnValue(of(true)),
@@ -55,10 +54,10 @@ describe('TranslationLoaderGuard', () => {
 						useValue: router,
 					},
 					{
-						provide: I18nService,
+						provide: NgxI18nService,
 						useValue: i18nService,
 					},
-					TranslationLoaderResolver,
+					NgxI18nTranslationLoaderResolver,
 				],
 			});
 		});
@@ -67,7 +66,7 @@ describe('TranslationLoaderGuard', () => {
 			TestBed.runInInjectionContext(() => {
 				const route = {} as ActivatedRouteSnapshot;
 
-				expect(TranslationLoaderGuard(route, null)).toBeInstanceOf(Observable);
+				expect(NgxI18nTranslationLoaderGuard(route, null)).toBeInstanceOf(Observable);
 			});
 		});
 	});

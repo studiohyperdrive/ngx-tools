@@ -3,8 +3,8 @@ import { HttpBackend } from '@angular/common/http';
 
 import { Route } from '@angular/router';
 import { NgxI18nModule } from '../i18n.module';
-import { I18nConfig } from '../i18n.types';
-import { MultiTranslationHttpLoader } from '../loader';
+import { NgxI18nConfiguration } from '../i18n.types';
+import { NgxI18nMultiTranslationHttpLoader } from '../loader';
 
 /**
  * Returns the root providers for the NgxI18nModule
@@ -13,8 +13,8 @@ import { MultiTranslationHttpLoader } from '../loader';
  * @param translationLoader - An optional translation loader
  */
 export const importNgxI18nProviders = (
-	config: I18nConfig,
-	translationLoader?: (http: HttpBackend) => MultiTranslationHttpLoader
+	config: NgxI18nConfiguration,
+	translationLoader?: (http: HttpBackend) => NgxI18nMultiTranslationHttpLoader
 ): (Provider | EnvironmentProviders)[] => {
 	// Iben: Return the providers from the module
 	return [importProvidersFrom(NgxI18nModule.forRoot(config, translationLoader))];
@@ -28,7 +28,7 @@ export const importNgxI18nProviders = (
  */
 export const provideWithTranslations = (
 	route: Route,
-	translationLoader?: (http: HttpBackend) => MultiTranslationHttpLoader
+	translationLoader?: (http: HttpBackend) => NgxI18nMultiTranslationHttpLoader
 ): Route => {
 	// Iben: Grab the existing route and extend the providers with the providers from the module
 	return {

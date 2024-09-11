@@ -1,14 +1,14 @@
 import { inject } from '@angular/core';
 import { CanActivateFn } from '@angular/router';
 
-import { TranslationLoaderResolver } from '../../resolvers';
+import { NgxI18nTranslationLoaderResolver } from '../../resolvers';
 
 /**
  * Loads in all translations for a specific module
  */
-export const TranslationLoaderGuard: CanActivateFn = (): ReturnType<CanActivateFn> => {
+export const NgxI18nTranslationLoaderGuard: CanActivateFn = (): ReturnType<CanActivateFn> => {
 	// Iben: Fetch all injectables
-	const loader: TranslationLoaderResolver = inject(TranslationLoaderResolver);
+	const loader: NgxI18nTranslationLoaderResolver = inject(NgxI18nTranslationLoaderResolver);
 
 	if (!loader) {
 		return false;

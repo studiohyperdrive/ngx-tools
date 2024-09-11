@@ -1,20 +1,20 @@
 import { inject } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivateFn, Router } from '@angular/router';
 
-import { I18nService } from '../../services';
-import { I18N_CONFIG } from '../../i18n.const';
-import { I18nConfig } from '../../i18n.types';
+import { NgxI18nRootService } from '../../services';
+import { NgxI18nConfiguration } from '../../i18n.types';
+import { NgxI18nConfigurationToken } from '../../tokens';
 
 /**
  * Set the language in the url of the route
  *
  * @param route - The provided route
  */
-export const I18nGuard: CanActivateFn = (route: ActivatedRouteSnapshot): boolean => {
+export const NgxI18nGuard: CanActivateFn = (route: ActivatedRouteSnapshot): boolean => {
 	// Iben: Fetch all injectables
 	const router: Router = inject(Router);
-	const i18nService = inject(I18nService);
-	const config: I18nConfig = inject(I18N_CONFIG);
+	const i18nService = inject(NgxI18nRootService);
+	const config: NgxI18nConfiguration = inject(NgxI18nConfigurationToken);
 
 	// Iben: Get the two language params
 	const currentLanguage = i18nService.currentLanguage || config.defaultLanguage;
@@ -28,7 +28,7 @@ export const I18nGuard: CanActivateFn = (route: ActivatedRouteSnapshot): boolean
 	// Iben: If the router language differs, we check if it is available
 	if (config?.availableLanguages.includes(routeLanguage)) {
 		// Iben: Update the language
-		i18nService.setLanguage(routeLanguage);
+		i18nService.setCurrentLanguage(routeLanguage);
 
 		//Iben: Re-route to the new language
 		router.navigate(['/', routeLanguage]);
@@ -48,7 +48,7 @@ export const I18nGuard: CanActivateFn = (route: ActivatedRouteSnapshot): boolean
  * @param route - The provided route
  * @param config - The provided config
  */
-const getLanguage = (route: ActivatedRouteSnapshot, config: I18nConfig): string => {
+const getLanguage = (route: ActivatedRouteSnapshot, config: NgxI18nConfiguration): string => {
 	const language = route?.paramMap.get(config.languageRouteParam || 'language');
 	const parent = route?.parent;
 

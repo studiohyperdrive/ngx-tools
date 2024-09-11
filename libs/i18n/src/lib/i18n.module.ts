@@ -2,18 +2,18 @@ import { ModuleWithProviders, NgModule, inject } from '@angular/core';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { HttpBackend } from '@angular/common/http';
-import { I18nConfig } from './i18n.types';
-import { I18N_CONFIG } from './i18n.const';
-import { MultiTranslationHttpLoader } from './loader';
-import { I18nService } from './services';
-import { TranslationLoaderResolver } from './resolvers';
+import { NgxI18nConfiguration } from './i18n.types';
+import { NgxI18nConfigurationToken } from './tokens/i18n.token';
+import { NgxI18nMultiTranslationHttpLoader } from './loader';
+import { NgxI18nService } from './services';
+import { NgxI18nTranslationLoaderResolver } from './resolvers';
 
 function FallBackTranslationLoader(http: HttpBackend) {
 	// Iben: Inject the config
-	const config = inject(I18N_CONFIG);
+	const config = inject(NgxI18nConfigurationToken);
 
 	// Iben: Return a default loader
-	return new MultiTranslationHttpLoader(http, config.defaultAssetPaths || []);
+	return new NgxI18nMultiTranslationHttpLoader(http, config.defaultAssetPaths || []);
 }
 
 @NgModule({
@@ -22,8 +22,8 @@ function FallBackTranslationLoader(http: HttpBackend) {
 })
 export class NgxI18nModule {
 	public static forRoot(
-		config: I18nConfig,
-		translationLoader?: (http: HttpBackend) => MultiTranslationHttpLoader
+		config: NgxI18nConfiguration,
+		translationLoader?: (http: HttpBackend) => NgxI18nMultiTranslationHttpLoader
 	): ModuleWithProviders<NgxI18nModule> {
 		const providers = [
 			...TranslateModule.forRoot({
@@ -35,10 +35,10 @@ export class NgxI18nModule {
 				useDefaultLang: true,
 			}).providers,
 			{
-				provide: I18N_CONFIG,
+				provide: NgxI18nConfigurationToken,
 				useValue: config,
 			},
-			I18nService,
+			NgxI18nService,
 		];
 
 		return {
@@ -48,7 +48,7 @@ export class NgxI18nModule {
 	}
 
 	public static forChild(
-		translationLoader?: (http: HttpBackend) => MultiTranslationHttpLoader
+		translationLoader?: (http: HttpBackend) => NgxI18nMultiTranslationHttpLoader
 	): ModuleWithProviders<NgxI18nModule> {
 		const providers = [
 			...TranslateModule.forChild({
@@ -59,8 +59,8 @@ export class NgxI18nModule {
 				},
 				isolate: true,
 			}).providers,
-			I18nService,
-			TranslationLoaderResolver,
+			NgxI18nService,
+			NgxI18nTranslationLoaderResolver,
 		];
 
 		return {

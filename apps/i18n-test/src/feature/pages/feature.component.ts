@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { I18nService } from '@ngx/i18n';
+import { NgxI18nService } from '@ngx/i18n';
 
 @Component({
 	selector: 'app-feature-page',
@@ -11,5 +11,5 @@ import { I18nService } from '@ngx/i18n';
 export class FeaturePageComponent {
 	public readonly currentLanguage = this.i18nService.currentLanguage;
 
-	constructor(private readonly i18nService: I18nService) {}
+	constructor(private readonly i18nService: NgxI18nService) {}
 }

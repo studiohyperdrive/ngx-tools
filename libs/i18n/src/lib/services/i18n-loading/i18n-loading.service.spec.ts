@@ -1,8 +1,8 @@
 import { filter, last, Observable, of, Subscription, switchMap, take } from 'rxjs';
-import { I18nLoadingService } from './i18n-loading.service';
+import { NgxI18nLoadingService } from './i18n-loading.service';
 import { TranslationLoaderActionEntity } from './i18n-loading.types';
 
-describe('I18nLoadingService', () => {
+describe('NgxI18nLoadingService', () => {
 	let subscriptions: Subscription[] = [];
 
 	afterEach(() => {
@@ -12,7 +12,7 @@ describe('I18nLoadingService', () => {
 	xdescribe('observables', () => {
 		describe('translationsLoaded$', () => {
 			it('should return false if no results have been found', (done: DoneFn) => {
-				const service = new I18nLoadingService();
+				const service = new NgxI18nLoadingService();
 
 				subscriptions.push(
 					service['translationLoaderActionsSubject$']
@@ -36,7 +36,7 @@ describe('I18nLoadingService', () => {
 			});
 
 			it('should return true if results have been found', (done: DoneFn) => {
-				const service = new I18nLoadingService();
+				const service = new NgxI18nLoadingService();
 
 				subscriptions.push(
 					service['translationLoaderActionsSubject$']
@@ -63,7 +63,7 @@ describe('I18nLoadingService', () => {
 
 	describe('dispatchTranslationLoaderAction', () => {
 		it('should push a new action to the translationLoaderActionsSubject$', (done: DoneFn) => {
-			const service = new I18nLoadingService();
+			const service = new NgxI18nLoadingService();
 			const action: TranslationLoaderActionEntity = {
 				id: 'test-id',
 				state: 'LOADING',
@@ -85,7 +85,7 @@ describe('I18nLoadingService', () => {
 
 	describe('addLoadedTranslations', () => {
 		it('should merge & push a new value to the translationsSubject$', (done: DoneFn) => {
-			const service = new I18nLoadingService();
+			const service = new NgxI18nLoadingService();
 			const existingTranslations: Record<string, unknown> = {
 				en: 'test-translation',
 			};
@@ -123,7 +123,7 @@ describe('I18nLoadingService', () => {
 
 	describe('getTranslations', () => {
 		it('should get return the current value of the translationsSubject$', (done: DoneFn) => {
-			const service = new I18nLoadingService();
+			const service = new NgxI18nLoadingService();
 			const existingTranslations: Record<string, unknown> = {
 				en: 'test-translation',
 			};
@@ -142,7 +142,7 @@ describe('I18nLoadingService', () => {
 
 	describe('loadTranslations', () => {
 		it('should create a new entries in the translationsLoading record if the path does not exist', (done: DoneFn) => {
-			const service = new I18nLoadingService();
+			const service = new NgxI18nLoadingService();
 
 			service['translationsLoading'] = {};
 
@@ -167,7 +167,7 @@ describe('I18nLoadingService', () => {
 		});
 
 		it('should return the existing observable if it exists', (done: DoneFn) => {
-			const service = new I18nLoadingService();
+			const service = new NgxI18nLoadingService();
 
 			service['translationsLoading'] = {
 				something: of({
@@ -196,7 +196,7 @@ describe('I18nLoadingService', () => {
 
 	describe('markTranslationsLoadedAsFailed', () => {
 		it('should push a false value the translationsFailedSubject$', (done: DoneFn) => {
-			const service = new I18nLoadingService();
+			const service = new NgxI18nLoadingService();
 
 			service['translationsFailedSubject$']
 				.pipe(take(2), last())

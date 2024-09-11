@@ -1,5 +1,5 @@
 import { of, Subscription } from 'rxjs';
-import { I18nService } from './i18n.service';
+import { NgxI18nService } from './i18n.service';
 
 const translateService: any = {
 	currentLang: 'nl',
@@ -19,8 +19,8 @@ const rootI18nService: any = {
 	currentLanguage: translateService.currentLang,
 };
 
-describe('I18nService', () => {
-	const service = new I18nService(translateService, rootI18nService);
+describe('NgxI18nService', () => {
+	const service = new NgxI18nService(translateService, rootI18nService);
 
 	let subscriptions: Subscription[] = [];
 

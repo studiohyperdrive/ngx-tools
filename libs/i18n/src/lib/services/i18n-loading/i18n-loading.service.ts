@@ -7,7 +7,7 @@ import { TranslationLoaderActionEntity } from './i18n-loading.types';
 @Injectable({
 	providedIn: 'root',
 })
-export class I18nLoadingService {
+export class NgxI18nLoadingService {
 	// Iben: Keep a subject to store all the translation loading actions
 	private readonly translationLoaderActionsSubject$ =
 		new Subject<TranslationLoaderActionEntity>();

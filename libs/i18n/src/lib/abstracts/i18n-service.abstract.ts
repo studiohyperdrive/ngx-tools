@@ -1,3 +1,3 @@
-export abstract class AbstractI18nService<Language = string> {
+export abstract class NgxI18nAbstractService<Language = string> {
 	public abstract get currentLanguage(): Language;
 }
