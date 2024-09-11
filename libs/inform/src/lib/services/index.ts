@@ -1,1 +1,2 @@
-export * from './tooltip-service/tooltip.service';
+export * from './tooltip/tooltip.service';
+export * from './modal/modal.service';

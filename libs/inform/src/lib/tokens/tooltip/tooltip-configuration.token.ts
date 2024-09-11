@@ -8,5 +8,5 @@ import { NgxTooltipConfiguration } from '../../types';
  * `provideNgxTooltipConfiguration`.
  */
 export const NgxTooltipConfigurationToken = new InjectionToken<NgxTooltipConfiguration>(
-	'NgxTooltipConfigurationConfiguration'
+	'NgxTooltipConfiguration'
 );

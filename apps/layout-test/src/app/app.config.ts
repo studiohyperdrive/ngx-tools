@@ -8,9 +8,10 @@ import {
 import { TourItemComponent } from '../tour/tour.component';
 import { routes } from '../routes';
 import { TooltipComponent } from '../tooltip/tooltip.component';
+import { ConfirmModalComponent } from '../modal/confirm.component';
 import { provideNgxDisplayContentConfiguration } from '@ngx/layout';
 import { provideNgxTourConfiguration } from '@ngx/tour';
-import { provideNgxTooltipConfiguration } from '@ngx/inform';
+import { provideNgxModalConfiguration, provideNgxTooltipConfiguration } from '@ngx/inform';
 
 export const appConfig: ApplicationConfig = {
 	providers: [
@@ -25,6 +26,14 @@ export const appConfig: ApplicationConfig = {
 		}),
 		provideNgxTourConfiguration(TourItemComponent),
 		provideNgxTooltipConfiguration({ component: TooltipComponent }),
+		provideNgxModalConfiguration({
+			modals: {
+				confirm: {
+					component: ConfirmModalComponent,
+					role: 'alertdialog',
+				},
+			},
+		}),
 		provideRouter(routes),
 	],
 };
