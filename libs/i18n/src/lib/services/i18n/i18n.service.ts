@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 
-import { AbstractI18nService } from '../../abstracts';
-import { RootI18nService } from '../root-i18n/root-i18n.service';
+import { NgxI18nAbstractService } from '../../abstracts';
+import { NgxI18nRootService } from '../root-i18n/root-i18n.service';
 
 @Injectable()
-export class I18nService implements AbstractI18nService {
+export class NgxI18nService implements NgxI18nAbstractService {
 	constructor(
 		private readonly translateService: TranslateService,
-		private readonly rootI18nService: RootI18nService
+		private readonly rootI18nService: NgxI18nRootService
 	) {}
 
 	/**
@@ -44,7 +44,7 @@ export class I18nService implements AbstractI18nService {
 			this.rootI18nService.setCurrentLanguage(language);
 		}
 
-		this.translateService.use(language || this.rootI18nService.currentLanguage);
+		this.translateService.use(this.rootI18nService.currentLanguage);
 
 		return this.translateService.reloadLang(language);
 	}
@@ -55,8 +55,8 @@ export class I18nService implements AbstractI18nService {
 	 * @param language - The provided language
 	 */
 	public setLanguage = (language: string): void => {
-		this.translateService.use(language);
 		this.rootI18nService.setCurrentLanguage(language);
+		this.translateService.use(this.rootI18nService.currentLanguage);
 	};
 
 	/**

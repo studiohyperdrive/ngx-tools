@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { I18nGuard } from '@ngx/i18n';
+import { NgxI18nEmptyComponent, NgxI18nGuard, NgxI18nSetLanguageGuard } from '@ngx/i18n';
 
 const routes: Routes = [
 	{
+		path: '',
+		canActivate: [NgxI18nSetLanguageGuard],
+		component: NgxI18nEmptyComponent,
+	},
+	{
 		path: ':language',
-		canActivate: [I18nGuard],
+		canActivate: [NgxI18nGuard],
 		loadChildren: () => import('../feature/feature.routes').then((m) => m.FeatureRoutes),
 	},
 ];

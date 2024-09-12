@@ -5,10 +5,11 @@ import { deepmerge } from 'deepmerge-ts';
 import { forkJoin, Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { I18nLoadingService } from '../../services';
+import { NgxI18nLoadingService } from '../../services';
 
-export class MultiTranslationHttpLoader implements TranslateLoader {
-	private readonly translationLoadingService: I18nLoadingService = inject(I18nLoadingService);
+export class NgxI18nMultiTranslationHttpLoader implements TranslateLoader {
+	private readonly translationLoadingService: NgxI18nLoadingService =
+		inject(NgxI18nLoadingService);
 
 	constructor(
 		private readonly httpBackend: HttpBackend,

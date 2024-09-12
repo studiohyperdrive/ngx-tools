@@ -2,17 +2,17 @@ import { Injectable } from '@angular/core';
 import { UUID } from 'angular2-uuid';
 import { finalize, map, Observable } from 'rxjs';
 
-import { I18nLoadingService, I18nService } from '../../services';
+import { NgxI18nLoadingService, NgxI18nService } from '../../services';
 
 /**
- * This TranslationLoaderResolver will make sure that the translations are loaded from the moment you route to a detail module
+ * This NgxI18nTranslationLoaderResolver will make sure that the translations are loaded from the moment you route to a detail module
  * It is essential you put this resolver at the root of your modules, whether it be lazy loaded through the guard or calling the resolver in the constructor
  */
 @Injectable()
-export class TranslationLoaderResolver {
+export class NgxI18nTranslationLoaderResolver {
 	constructor(
-		private readonly i18nService: I18nService,
-		private readonly i18nLoadingService: I18nLoadingService
+		private readonly i18nService: NgxI18nService,
+		private readonly i18nLoadingService: NgxI18nLoadingService
 	) {}
 
 	public resolve(): Observable<boolean> {

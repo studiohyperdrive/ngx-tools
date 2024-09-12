@@ -1,4 +1,4 @@
-export interface I18nConfig {
+export interface NgxI18nConfiguration {
 	defaultLanguage: string;
 	availableLanguages: string[];
 	defaultAssetPaths: string[];

@@ -1,41 +1,39 @@
 import { TestBed } from '@angular/core/testing';
 import { ActivatedRouteSnapshot, Router, convertToParamMap } from '@angular/router';
 
-import { I18nService, RootI18nService } from '../../services';
+import { NgxI18nRootService } from '../../services';
 
-import { I18N_CONFIG } from '../../i18n.const';
-import { I18nGuard } from './i18n.guard';
+import { NgxI18nConfigurationToken } from '../../tokens/i18n.token';
+import { NgxI18nGuard } from './i18n.guard';
 
-describe('I18nGuard', () => {
+describe('NgxI18nGuard', () => {
 	const router: any = {
 		navigate: jasmine.createSpy(),
 	};
 	const i18nService: any = {
 		currentLanguage: 'nl',
-		getCurrentLanguageForRoute: jasmine.createSpy().and.returnValue('nl'),
 		availableLanguages: ['nl', 'en'],
-		setLanguage: jasmine.createSpy(),
+		setCurrentLanguage: jasmine.createSpy(),
 	};
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			providers: [
 				{
-					provide: I18N_CONFIG,
+					provide: NgxI18nConfigurationToken,
 					useValue: {
 						defaultLanguage: 'nl',
 						availableLanguages: ['nl', 'en'],
 					},
 				},
 				{
-					provide: I18nService,
+					provide: NgxI18nRootService,
 					useValue: i18nService,
 				},
 				{
 					provide: Router,
 					useValue: router,
 				},
-				RootI18nService,
 			],
 		});
 	});
@@ -46,7 +44,7 @@ describe('I18nGuard', () => {
 				paramMap: convertToParamMap({ language: 'nl' }),
 			} as ActivatedRouteSnapshot;
 
-			expect(I18nGuard(route, undefined)).toBe(true);
+			expect(NgxI18nGuard(route, undefined)).toBe(true);
 
 			route = {
 				parent: {
@@ -55,7 +53,7 @@ describe('I18nGuard', () => {
 				paramMap: convertToParamMap({}),
 			} as ActivatedRouteSnapshot;
 
-			expect(I18nGuard(route, undefined)).toBe(true);
+			expect(NgxI18nGuard(route, undefined)).toBe(true);
 		});
 	});
 
@@ -65,8 +63,8 @@ describe('I18nGuard', () => {
 				paramMap: convertToParamMap({ language: 'en' }),
 			} as ActivatedRouteSnapshot;
 
-			expect(I18nGuard(route, undefined)).toBe(true);
-			expect(i18nService.setLanguage).toHaveBeenCalledWith('en');
+			expect(NgxI18nGuard(route, undefined)).toBe(true);
+			expect(i18nService.setCurrentLanguage).toHaveBeenCalledWith('en');
 			expect(router.navigate).toHaveBeenCalledWith(['/', 'en']);
 
 			route = {
@@ -76,8 +74,8 @@ describe('I18nGuard', () => {
 				paramMap: convertToParamMap({}),
 			} as ActivatedRouteSnapshot;
 
-			expect(I18nGuard(route, undefined)).toBe(true);
-			expect(i18nService.setLanguage).toHaveBeenCalledWith('en');
+			expect(NgxI18nGuard(route, undefined)).toBe(true);
+			expect(i18nService.setCurrentLanguage).toHaveBeenCalledWith('en');
 			expect(router.navigate).toHaveBeenCalledWith(['/', 'en']);
 		});
 	});
@@ -88,7 +86,7 @@ describe('I18nGuard', () => {
 				paramMap: convertToParamMap({ language: 'de' }),
 			} as ActivatedRouteSnapshot;
 
-			expect(I18nGuard(route, undefined)).toBe(false);
+			expect(NgxI18nGuard(route, undefined)).toBe(false);
 			expect(router.navigate).toHaveBeenCalledWith(['/', 'nl']);
 
 			route = {
@@ -98,7 +96,7 @@ describe('I18nGuard', () => {
 				paramMap: convertToParamMap({}),
 			} as ActivatedRouteSnapshot;
 
-			expect(I18nGuard(route, undefined)).toBe(false);
+			expect(NgxI18nGuard(route, undefined)).toBe(false);
 			expect(router.navigate).toHaveBeenCalledWith(['/', 'nl']);
 		});
 	});

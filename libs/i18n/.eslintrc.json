@@ -19,7 +19,6 @@
 					"error",
 					{
 						"type": "element",
-						"prefix": "i18n",
 						"style": "kebab-case"
 					}
 				],
@@ -27,7 +26,6 @@
 					"error",
 					{
 						"type": "attribute",
-						"prefix": "i18n",
 						"style": "camelCase"
 					}
 				],
