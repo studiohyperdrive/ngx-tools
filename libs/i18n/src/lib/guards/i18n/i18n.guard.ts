@@ -16,8 +16,11 @@ export const NgxI18nGuard: CanActivateFn = (route: ActivatedRouteSnapshot): bool
 	const i18nService = inject(NgxI18nRootService);
 	const config: NgxI18nConfiguration = inject(NgxI18nConfigurationToken);
 
+	// Iben: Initialize the current language of the application
+	i18nService.initializeLanguage();
+
 	// Iben: Get the two language params
-	const currentLanguage = i18nService.currentLanguage || config.defaultLanguage;
+	const currentLanguage = i18nService.currentLanguage;
 	const routeLanguage = getLanguage(route, config);
 
 	// Iben: If both languages are the same, we can continue

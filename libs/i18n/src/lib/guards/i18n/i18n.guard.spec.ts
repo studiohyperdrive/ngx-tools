@@ -14,6 +14,7 @@ describe('NgxI18nGuard', () => {
 		currentLanguage: 'nl',
 		availableLanguages: ['nl', 'en'],
 		setCurrentLanguage: jasmine.createSpy(),
+		initializeLanguage: jasmine.createSpy(),
 	};
 
 	beforeEach(() => {
