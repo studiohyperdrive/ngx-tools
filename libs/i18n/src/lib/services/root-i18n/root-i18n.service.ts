@@ -40,24 +40,68 @@ export class NgxI18nRootService {
 	 * @param language - The provided language
 	 */
 	public setCurrentLanguage(language: string): void {
-		// Iben: If a language is set that's not part of the available languages, we return a warn
+		// Iben: get the new language
+		const newLanguage = this.getNewLanguage(language);
+
+		// Iben: Save the current language to the localStorage when we're in the browser
+		if (isPlatformBrowser(this.platformId)) {
+			localStorage.setItem('ngx-i18n-language', newLanguage);
+		}
+
+		// Iben: Update the subject
+		this.currentLanguageSubject.next(newLanguage);
+	}
+
+	/**
+	 * Sets the initial language of the application when no language is set yet.
+	 *
+	 * If a previous language was set in the local storage, said language is used. If not, the default language gets used.
+	 */
+	public initializeLanguage(): void {
+		// Iben: If the current language already exists, we early exit
+		if (this.currentLanguage) {
+			return;
+		}
+
+		// Iben: If the current language does not exist, we check if it exists in the local storage, if not, we use the default config
+		let language = this.configuration.defaultLanguage;
+
+		if (isPlatformBrowser(this.platformId)) {
+			language =
+				localStorage.getItem('ngx-i18n-language') || this.configuration.defaultLanguage;
+		}
+
+		// Iben: We set the new language
+		this.setCurrentLanguage(language);
+	}
+
+	/**
+	 * Checks if the newly proposed language can be set, if not we return either the current language or the default language
+	 *
+	 * @param {string} language - The newly proposed language
+	 */
+	private getNewLanguage(language: string): string {
+		// Iben: Save the currently being set language
+		let newLanguage = language;
+
+		// Iben: Check if the new language is part of the available languages
 		if (!this.configuration.availableLanguages.includes(language)) {
+			// Iben: If a language is set that's not part of the available languages, we return a warn
 			console.warn(
 				`NgxI18n: A language, ${language}, was attempted to be set that was not part of the available languages (${this.configuration.availableLanguages.join(
 					', '
 				)})`
 			);
 
-			// Iben: Early exit
-			return;
+			// Iben: If there is already a language set, we early exit and keep the remaining language
+			if (this.currentLanguage) {
+				return this.currentLanguage;
+			}
+
+			// Iben: If no language exists, we use the default language
+			newLanguage = this.configuration.defaultLanguage;
 		}
 
-		// Iben: Save the current language to the localStorage when we're in the browser
-		if (isPlatformBrowser(this.platformId)) {
-			localStorage.setItem('ngx-language', language);
-		}
-
-		// Iben: Update the subject
-		this.currentLanguageSubject.next(language);
+		return newLanguage;
 	}
 }
