@@ -3,6 +3,9 @@ import { Directive, HostBinding, HostListener, Input } from '@angular/core';
 import { NgxTooltipPosition, NgxTooltipPositionClass } from '../../types';
 import { NgxTooltipService } from '../../services';
 
+/**
+ * An abstract for the NgxTooltipDirective
+ */
 @Directive()
 export abstract class NgxTooltipAbstractComponent {
 	/**

@@ -169,12 +169,14 @@ export class NgxTooltipService implements OnDestroy {
 	/**
 	 * Removes the tooltip.
 	 */
-	public removeToolTip() {
-		// Iben: Unset the active tooltip
-		this.activeTooltip = undefined;
+	public removeToolTip(): void {
+		if (this.activeTooltip) {
+			// Iben: Unset the active tooltip
+			this.activeTooltip = undefined;
 
-		// Iben: Remove the active tooltip from view
-		this.overlayRef.detach();
+			// Iben: Remove the active tooltip from view
+			this.overlayRef.detach();
+		}
 	}
 
 	/**
@@ -182,7 +184,7 @@ export class NgxTooltipService implements OnDestroy {
 	 *
 	 * @param event - A tooltip event
 	 */
-	public setToolTipEvent(event: NgxTooltipEvent) {
+	public setToolTipEvent(event: NgxTooltipEvent): void {
 		// Iben: We add a delay so that the user can navigate between the tooltip and the element
 		setTimeout(
 			() => {

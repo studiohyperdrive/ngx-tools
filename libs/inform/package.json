@@ -7,9 +7,13 @@
 		"angular2",
 		"inform",
 		"ARIA",
+    "WCAG",
 		"tooltip",
 		"tip",
-		"accessibility"
+		"accessibility",
+    "modal",
+    "dialog",
+    "alertdialog"
 	],
 	"homepage": "https://github.com/studiohyperdrive/ngx-tools/tree/master/libs/inform",
 	"license": "MIT",
