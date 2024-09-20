@@ -1,19 +1,19 @@
 {
 	"name": "@studiohyperdrive/ngx-inform",
-	"version": "18.2.0",
+	"version": "18.2.1",
 	"description": "A lightweight ARIA compliant customizable approach for common and complex inform flows in Angular.",
 	"keywords": [
 		"angular",
 		"angular2",
 		"inform",
 		"ARIA",
-    "WCAG",
+		"WCAG",
 		"tooltip",
 		"tip",
 		"accessibility",
-    "modal",
-    "dialog",
-    "alertdialog"
+		"modal",
+		"dialog",
+		"alertdialog"
 	],
 	"homepage": "https://github.com/studiohyperdrive/ngx-tools/tree/master/libs/inform",
 	"license": "MIT",
