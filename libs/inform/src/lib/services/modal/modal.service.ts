@@ -41,8 +41,8 @@ export class NgxModalService {
 	 *
 	 * @param {NgxModalOptions<ActionType>} options - The modal options
 	 */
-	public open<ActionType extends string = string>(
-		options: NgxModalOptions<ActionType>
+	public open<ActionType extends string = string, DataType = any>(
+		options: NgxModalOptions<ActionType, DataType>
 	): Observable<ActionType> {
 		// Iben: If there still is an active subject running, the modal is still active and we early exit
 		if (!this.modalClosedSubject?.closed) {
@@ -58,10 +58,10 @@ export class NgxModalService {
 
 		// Iben: Fetch the type of component we wish to show
 		const configuration = this.configuration?.modals?.[options.type];
-		const component: Type<NgxModalAbstractComponent<ActionType>> =
+		const component: Type<NgxModalAbstractComponent<ActionType, DataType>> =
 			options.component ||
 			(this.configuration?.modals?.[options.type].component as Type<
-				NgxModalAbstractComponent<ActionType>
+				NgxModalAbstractComponent<ActionType, DataType>
 			>);
 
 		// Iben: Check if all the correct parameters are set and return NEVER when they're not correctly set
@@ -70,7 +70,7 @@ export class NgxModalService {
 		}
 
 		// Iben: Render the modal
-		const modal = this.createModalComponent<ActionType>(options, component);
+		const modal = this.createModalComponent<ActionType, DataType>(options, component);
 
 		// Iben: Return the modal action
 		return combineLatest([
@@ -168,9 +168,9 @@ export class NgxModalService {
 	 * @param options - The options of the modal
 	 * @param  component - The component we wish to render
 	 */
-	private createModalComponent<ActionType extends string = string>(
+	private createModalComponent<ActionType extends string = string, DataType = any>(
 		options: NgxModalOptions<ActionType>,
-		component: Type<NgxModalAbstractComponent<ActionType>>
+		component: Type<NgxModalAbstractComponent<ActionType, DataType>>
 	): NgxModalAbstractComponent<ActionType> {
 		const configuration = this.configuration?.modals?.[options.type];
 
