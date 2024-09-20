@@ -44,8 +44,8 @@ export class NgxModalService {
 	public open<ActionType extends string = string, DataType = any>(
 		options: NgxModalOptions<ActionType, DataType>
 	): Observable<ActionType> {
-		// Iben: If there still is an active subject running, the modal is still active and we early exit
-		if (!this.modalClosedSubject?.closed) {
+		// Iben: If there still is an active subject running, the modal is still active and we early exit.
+		if (this.modalClosedSubject !== undefined && !this.modalClosedSubject?.closed) {
 			console.warn(
 				'NgxInform: An active modal is currently displayed, close the active modal before opening a new one'
 			);
