@@ -99,17 +99,17 @@ The `NgxModalService` provides a WCAG/ARIA compliant approach to the Angular CDK
 You can use the `NgxModalService` without any prior setup, but the `ngx-inform` package does provide the ability to provide a global configuration that can be applied for all modals. On top of that, you can provide default modals with your specific configuration.
 
 ``` ts
-		provideNgxModalConfiguration({
-            closeOnNavigation: true,
-            autoClose: true
-			modals: {
-				confirm: {
-					component: ConfirmModalComponent,
-					role: 'alertdialog',
-                    panelClass: 'panel-confirm',
-				},
-			},
-		}),
+provideNgxModalConfiguration({
+	closeOnNavigation: true,
+	autoClose: true,
+	modals: {
+		confirm: {
+			component: ConfirmModalComponent,
+			role: 'alertdialog',
+			panelClass: 'panel-confirm',
+		},
+	},
+}),
 ```
 
 Using the above configuration, we can set several properties that will be applied to the modals globally. These properties are:
@@ -149,43 +149,43 @@ When opening a modal we can overwrite all the globally and modal-specific config
 If we set a predefined modal, we can now call said modal using the `open` method on `NgxModalService`.
 
 ```ts
-		this.modalService
-			.open<'Confirm' | 'Deny'>({
-				type: 'confirm',
-				describedById: 'confirm-button',
-				labelledById: 'confirm-label',
-                data: {
-                    title: 'Please confirm your actions!'
-                }
-			})
-            .pipe(
-                tap(action => {
-                    if(action === 'Confirm') {
-                        // Perform confirm logic
-                    }
+this.modalService
+	.open<'Confirm' | 'Deny'>({
+		type: 'confirm',
+		describedById: 'confirm-button',
+		labelledById: 'confirm-label',
+		data: {
+			title: 'Please confirm your actions!'
+		}
+	})
+	.pipe(
+		tap(action => {
+			if(action === 'Confirm') {
+				// Perform confirm logic
+			}
 
-                    // Perform non-confirm logic
-                })
-            )
-			.subscribe();
+			// Perform non-confirm logic
+		})
+	)
+	.subscribe();
 ```
 #### Custom modal
 
 We can always create a custom modal for feature-specific use-cases. We do this by providing a component.
 
 ``` ts
-		this.modalService
-			.open<'Test'>({
-				component: ModalComponent,
-				label: 'Modal',
-				role: 'dialog',
-			})
-			.pipe(
-				tap((action) => {
-					if (action === 'Test') {
-						console.log('Hello!');
-					}
-				})
-			)
-			.subscribe();
+this.modalService
+	.open<'Test'>({
+		component: ModalComponent,
+		label: 'Modal',
+		role: 'dialog',
+	})
+	.pipe(
+		tap((action) => {
+			if (action === 'Test') {
+				console.log('Hello!');
+			}
+		})
+	)
+	.subscribe();
 ```
