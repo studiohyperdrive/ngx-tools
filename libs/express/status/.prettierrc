@@ -1,0 +1,17 @@
+{
+	"printWidth": 100,
+	"singleQuote": true,
+	"tabWidth": 4,
+	"trailingComma": "es5",
+	"useTabs": true,
+	"endOfLine": "auto",
+	"overrides": [
+		{
+			"files": "{package,package-lock}.json",
+			"options": {
+				"useTabs": false,
+				"tabWidth": 2
+			}
+		}
+	]
+}

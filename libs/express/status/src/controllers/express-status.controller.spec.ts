@@ -1,6 +1,6 @@
 import Express from 'express';
 import Supertest from 'supertest';
-import { ExpressStatusController } from './express-status.controller';
+import { ExpressStatusController } from './express-status.controller.ts';
 
 const expressStatusController = new ExpressStatusController();
 
@@ -36,6 +36,6 @@ describe('Express Status', () => {
 		expect(response.body.node).toHaveProperty('time');
 
 		expect(response.body).toHaveProperty('success');
-		expect(response.body.success).toBeBoolean();
+		expect(response.body.success).toBe(true);
 	});
 });
