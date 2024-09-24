@@ -1,3 +1,5 @@
-export { ExpressStatusController } from './controllers/express-status.controller';
-export { ExpressStatusRouter } from './routers/express-status.router';
-export { ExpressStatusResponse } from './types/express-status.types';
+import { ExpressStatusController } from './controllers/express-status.controller';
+import { ExpressStatusResponse } from './express-status.types';
+import { ExpressStatusRouter } from './routers/express-status.router';
+
+export { ExpressStatusController, ExpressStatusRouter, type ExpressStatusResponse };

@@ -36,6 +36,6 @@ describe('Express Status', () => {
 		expect(response.body.node).toHaveProperty('time');
 
 		expect(response.body).toHaveProperty('success');
-		expect(response.body.success).toBeBoolean();
+		expect(response.body.success).toBe(true);
 	});
 });

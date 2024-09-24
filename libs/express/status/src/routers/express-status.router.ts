@@ -6,6 +6,4 @@ const expressStatusController = new ExpressStatusController();
 
 export const ExpressStatusRouter = Express.Router();
 
-ExpressStatusRouter
-	.route('/status')
-	.get(expressStatusController.get);
+ExpressStatusRouter.route('/status').get(expressStatusController.get);
