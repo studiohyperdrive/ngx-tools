@@ -1,6 +1,6 @@
 import Express from 'express';
 
-import { ExpressStatusController } from '../controllers/express-status.controller.ts';
+import { ExpressStatusController } from '../controllers/express-status.controller';
 
 const expressStatusController = new ExpressStatusController();
 

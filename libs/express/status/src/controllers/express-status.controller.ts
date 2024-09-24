@@ -3,7 +3,7 @@ import HttpCodes from 'http-status-codes';
 
 import { ApiOperationGet, ApiPath, SwaggerDefinitionConstant } from 'swagger-express-ts';
 import Env from '@studiohyperdrive/env';
-import { ExpressStatusResponse } from '../express-status.types.ts';
+import { ExpressStatusResponse } from '../express-status.types';
 
 @ApiPath({
 	name: 'Status',

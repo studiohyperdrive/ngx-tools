@@ -7,7 +7,6 @@
 		"importHelpers": true,
 		"module": "ESNext",
 		"moduleResolution": "node",
-		"allowImportingTsExtensions": true,
 		"strict": true,
 		"target": "ES2022",
 		"lib": [

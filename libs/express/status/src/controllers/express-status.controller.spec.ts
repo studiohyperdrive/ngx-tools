@@ -1,6 +1,6 @@
 import Express from 'express';
 import Supertest from 'supertest';
-import { ExpressStatusController } from './express-status.controller.ts';
+import { ExpressStatusController } from './express-status.controller';
 
 const expressStatusController = new ExpressStatusController();
 
