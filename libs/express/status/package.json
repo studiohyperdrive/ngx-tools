@@ -1,6 +1,6 @@
 {
   "name": "@studiohyperdrive/express-status",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Express status-page solution used at Studio Hyperdrive",
   "main": "dist/index.js",
   "esm": "dist/index.mjs",
