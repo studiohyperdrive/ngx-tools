@@ -9,9 +9,9 @@
 		"moduleResolution": "node",
 		"allowImportingTsExtensions": true,
 		"strict": true,
-		"target": "ES2018",
+		"target": "ES2022",
 		"lib": [
-			"ES2018"
+			"ES2023"
 		],
 		"noEmit": true
 	},
