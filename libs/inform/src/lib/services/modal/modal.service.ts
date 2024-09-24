@@ -1,13 +1,13 @@
 import { Inject, Injectable, Optional, Type } from '@angular/core';
 import { Dialog } from '@angular/cdk/dialog';
 import {
+	BehaviorSubject,
 	combineLatest,
 	filter,
 	map,
 	NEVER,
 	Observable,
 	startWith,
-	Subject,
 	takeUntil,
 	tap,
 } from 'rxjs';
@@ -25,9 +25,14 @@ import { NgxModalAbstractComponent } from '../../abstracts';
 @Injectable({ providedIn: 'root' })
 export class NgxModalService {
 	/**
-	 * A subject to hold the close event
+	 * A subject that keeps track of whether a modal is currently active
 	 */
-	private modalClosedSubject: Subject<void>;
+	private hasModalSubject: BehaviorSubject<boolean> = new BehaviorSubject(false);
+
+	/**
+	 * An observable that keeps track of whether a modal is currently active.
+	 */
+	public readonly hasActiveModal$: Observable<boolean> = this.hasModalSubject.asObservable();
 
 	constructor(
 		@Optional()
@@ -44,8 +49,8 @@ export class NgxModalService {
 	public open<ActionType extends string = string, DataType = any>(
 		options: NgxModalOptions<ActionType, DataType>
 	): Observable<ActionType> {
-		// Iben: If there still is an active subject running, the modal is still active and we early exit.
-		if (this.modalClosedSubject !== undefined && !this.modalClosedSubject?.closed) {
+		// Iben: If a previous modal is still active, we early exit.
+		if (this.hasModalSubject.value) {
 			console.warn(
 				'NgxInform: An active modal is currently displayed, close the active modal before opening a new one'
 			);
@@ -53,16 +58,14 @@ export class NgxModalService {
 			return NEVER;
 		}
 
-		// Iben: Create a new subject
-		this.modalClosedSubject = new Subject();
+		// Iben: Declare the modal as active
+		this.hasModalSubject.next(true);
 
 		// Iben: Fetch the type of component we wish to show
 		const configuration = this.configuration?.modals?.[options.type];
 		const component: Type<NgxModalAbstractComponent<ActionType, DataType>> =
 			options.component ||
-			(this.configuration?.modals?.[options.type].component as Type<
-				NgxModalAbstractComponent<ActionType, DataType>
-			>);
+			(configuration.component as Type<NgxModalAbstractComponent<ActionType, DataType>>);
 
 		// Iben: Check if all the correct parameters are set and return NEVER when they're not correctly set
 		if (!this.runARIAChecks<ActionType>(options, component)) {
@@ -108,7 +111,8 @@ export class NgxModalService {
 			map((action: ActionType | 'NgxModalClose') => {
 				return action === 'NgxModalClose' ? undefined : (action as ActionType);
 			}),
-			takeUntil(this.modalClosedSubject)
+			// Wouter: Unsubscribe wen no modal is open
+			takeUntil(this.hasModalSubject.pipe(filter((hasModal) => !hasModal)))
 		);
 	}
 
@@ -121,10 +125,11 @@ export class NgxModalService {
 		// Iben: Close the modal
 		this.dialogService.closeAll();
 
-		// Iben: Mark the modal as closed
-		this.modalClosedSubject.next();
-		this.modalClosedSubject.complete();
-
+		// Wouter: The setTimeout delay is needed, so that the `open` method can emit before its subscription end gets triggered
+		setTimeout(() => {
+			// Iben: Mark the modal as closed
+			this.hasModalSubject.next(false);
+		});
 		// Iben: Run an optional onClose function
 		if (onClose) {
 			onClose();
