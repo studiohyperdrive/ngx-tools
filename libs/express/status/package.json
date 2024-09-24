@@ -17,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@gitlab.com:studiohyperdrive/projects/intern/express-status.git"
+    "url": "git+ssh://git@gitlab.com/studiohyperdrive/projects/intern/express-status.git"
   },
   "keywords": [
     "express",
