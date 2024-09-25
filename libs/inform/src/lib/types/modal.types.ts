@@ -6,6 +6,13 @@ import { NgxModalAbstractComponent } from '../abstracts';
 
 export type NgxModalRole = 'dialog' | 'alertdialog';
 
+/**
+ * The type of action that should be emitted by the modal.
+ */
+export type NgxModalActionType<StringType extends string = string, EmitDataType = any> =
+	| StringType
+	| { type: StringType; data: EmitDataType };
+
 // Aria configuration
 interface NgxModalAriaLabelBaseOptions {
 	/**
@@ -86,12 +93,12 @@ interface NgxModalCDKModalConfiguration {
 
 // Global configuration
 
-export interface NgxModalComponentConfiguration<DataType = any> {
+export interface NgxModalComponentConfiguration<ActionType extends NgxModalActionType, DataType> {
 	/**
 	 * The component that should be rendered as the modal. This component must extend the
 	 * [`NgxModalAbstractComponent`](../abstracts/modal/modal.abstract.component.ts).
 	 */
-	component: Type<NgxModalAbstractComponent>;
+	component: Type<NgxModalAbstractComponent<ActionType, DataType>>;
 	/**
 	 * The role that should be applied to the modal.
 	 *
@@ -112,13 +119,16 @@ interface NgxModalBaseConfiguration {
 	/**
 	 * The global modals that were configured in the root of the application.
 	 */
-	modals?: Record<string, NgxModalComponentConfiguration & NgxModalGlobalCDKConfiguration>;
+	modals?: Record<
+		string,
+		NgxModalComponentConfiguration<NgxModalActionType, any> & NgxModalGlobalCDKConfiguration
+	>;
 }
 
 export type NgxModalConfiguration = NgxModalBaseConfiguration & NgxModalGlobalCDKConfiguration;
 
 // Modal options
-interface NgxModalBaseOptions<ActionsType extends string, DataType> {
+interface NgxModalBaseOptions<ActionType extends NgxModalActionType, DataType> {
 	/**
 	 * The name of a config object defined in the global config at the root of
 	 * the project.
@@ -133,7 +143,7 @@ interface NgxModalBaseOptions<ActionsType extends string, DataType> {
 	 *
 	 * This property will take precedence over the `type` property.
 	 */
-	component?: Type<NgxModalAbstractComponent<ActionsType, DataType>>;
+	component?: Type<NgxModalAbstractComponent<ActionType, DataType>>;
 	/**
 	 * The data that will be passed to the modal. This data will be accessible in the
 	 * provided component.
@@ -153,17 +163,17 @@ interface NgxModalBaseOptions<ActionsType extends string, DataType> {
 	describedById?: string;
 }
 
-interface NgxModalTypeOptions<ActionsType extends string, DataType>
-	extends NgxModalBaseOptions<ActionsType, DataType> {
+interface NgxModalTypeOptions<ActionType extends NgxModalActionType, DataType>
+	extends NgxModalBaseOptions<ActionType, DataType> {
 	type: string;
 	component?: undefined;
 	role?: undefined;
 }
 
-interface NgxModalComponentOptions<ActionsType extends string, DataType>
-	extends NgxModalBaseOptions<ActionsType, DataType> {
+interface NgxModalComponentOptions<ActionType extends NgxModalActionType, DataType>
+	extends NgxModalBaseOptions<ActionType, DataType> {
 	type?: undefined;
-	component: Type<NgxModalAbstractComponent<ActionsType>>;
+	component: Type<NgxModalAbstractComponent<ActionType, DataType>>;
 	/**
 	 * The role that should be applied to the modal.
 	 *
@@ -175,12 +185,12 @@ interface NgxModalComponentOptions<ActionsType extends string, DataType>
 	role: NgxModalRole;
 }
 
-export type NgxModalOptions<ActionsType extends string = string, DataType = any> =
-	| (NgxModalTypeOptions<ActionsType, DataType> &
+export type NgxModalOptions<ActionType extends NgxModalActionType = string, DataType = any> =
+	| (NgxModalTypeOptions<ActionType, DataType> &
 			NgxModalLabelAriaOptions &
 			NgxModalGlobalCDKConfiguration &
 			NgxModalCDKModalConfiguration)
-	| (NgxModalComponentOptions<ActionsType, DataType> &
+	| (NgxModalComponentOptions<ActionType, DataType> &
 			NgxModalLabelAriaOptions &
 			NgxModalGlobalCDKConfiguration &
 			NgxModalCDKModalConfiguration);

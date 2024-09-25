@@ -12,7 +12,7 @@ import {
 	tap,
 } from 'rxjs';
 
-import { NgxModalConfiguration, NgxModalOptions } from '../../types';
+import { NgxModalActionType, NgxModalConfiguration, NgxModalOptions } from '../../types';
 import { NgxModalConfigurationToken } from '../../tokens';
 import { NgxModalAbstractComponent } from '../../abstracts';
 
@@ -46,7 +46,7 @@ export class NgxModalService {
 	 *
 	 * @param {NgxModalOptions<ActionType>} options - The modal options
 	 */
-	public open<ActionType extends string = string, DataType = any>(
+	public open<ActionType extends NgxModalActionType = string, DataType = any>(
 		options: NgxModalOptions<ActionType, DataType>
 	): Observable<ActionType> {
 		// Iben: If a previous modal is still active, we early exit.
@@ -142,7 +142,7 @@ export class NgxModalService {
 	 * @param options - The options of the modal
 	 * @param  component - The component we wish to render
 	 */
-	private runARIAChecks<ActionType extends string = string>(
+	private runARIAChecks<ActionType extends NgxModalActionType>(
 		options: NgxModalOptions<ActionType>,
 		component: Type<NgxModalAbstractComponent<ActionType>>
 	): boolean {
@@ -173,7 +173,7 @@ export class NgxModalService {
 	 * @param options - The options of the modal
 	 * @param  component - The component we wish to render
 	 */
-	private createModalComponent<ActionType extends string = string, DataType = any>(
+	private createModalComponent<ActionType extends NgxModalActionType, DataType = any>(
 		options: NgxModalOptions<ActionType>,
 		component: Type<NgxModalAbstractComponent<ActionType, DataType>>
 	): NgxModalAbstractComponent<ActionType> {
@@ -213,7 +213,7 @@ export class NgxModalService {
 	 *
 	 * @param options - The options of the modal
 	 */
-	private hasRequiredDescription<ActionType extends string = string>(
+	private hasRequiredDescription<ActionType extends NgxModalActionType>(
 		options: NgxModalOptions<ActionType>
 	): boolean {
 		// Iben: If the options has provided a default type, we check based on the configuration role

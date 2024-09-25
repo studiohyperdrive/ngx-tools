@@ -1,10 +1,11 @@
 import { Directive, EventEmitter, HostListener, Input, Output } from '@angular/core';
+import { NgxModalActionType } from '../../types';
 
 /**
  * An abstract for the NgxModalService
  */
 @Directive()
-export class NgxModalAbstractComponent<ActionType extends string = string, DataType = any> {
+export class NgxModalAbstractComponent<ActionType extends NgxModalActionType, DataType = any> {
 	/**
 	 * Remove the modal on escape pressed
 	 */
