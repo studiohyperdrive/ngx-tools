@@ -9,24 +9,6 @@ import { NgxTableCypressDataTags, NgxTableSortEvent } from '../interfaces';
 })
 export class NgxAbstractTableCellDirective {
 	/**
-	 * The name of the column we want this cell to represent
-	 */
-	@Input({ required: true }) public column: string;
-
-	/**
-	 * Whether or not the cell is sortable
-	 */
-	@Input() public sortable: boolean = false;
-
-	/**
-	 * A tag that can be added to a column in the table, set according to the cypress best practices
-	 * See https://docs.cypress.io/guides/references/best-practices#Selecting-Elements
-	 */
-	@Input() public cypressDataTags: NgxTableCypressDataTags;
-
-	@Output() sort = new EventEmitter<NgxTableSortEvent>();
-
-	/**
 	 * The current sortDirection of the cell
 	 */
 	public sortDirection: NgxTableSortDirection | null = null;
@@ -42,6 +24,32 @@ export class NgxAbstractTableCellDirective {
 	 * An optional class that can be set for the cell
 	 */
 	public cellClass: string;
+
+	/**
+	 * The name of the column we want this cell to represent
+	 */
+	@Input({ required: true }) public column: string;
+
+	/**
+	 * Whether or not the cell is sortable
+	 */
+	@Input() public sortable: boolean = false;
+
+	/**
+	 * A tag that can be added to a column in the table, set according to the cypress best practices
+	 * See https://docs.cypress.io/guides/references/best-practices#Selecting-Elements
+	 */
+	@Input() public cypressDataTags: NgxTableCypressDataTags;
+
+	/**
+	 * Whether the content of a cell is editable. By default, this is set to false
+	 */
+	@Input() public editable: boolean = false;
+
+	/**
+	 * Emits the sortable event if a column is sortable
+	 */
+	@Output() sort = new EventEmitter<NgxTableSortEvent>();
 
 	/**
 	 * Handles the sorting click events

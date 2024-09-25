@@ -9,7 +9,11 @@
 		"angular cdk",
 		"cdk",
 		"table",
-		"detail row"
+		"detail row",
+    "wai",
+    "aria",
+    "wcag",
+    "treegrid"
 	],
 	"homepage": "https://github.com/studiohyperdrive/ngx-tools/tree/master/libs/table",
 	"author": {

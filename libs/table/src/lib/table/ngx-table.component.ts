@@ -23,7 +23,7 @@ import {
 import {
 	ControlValueAccessor,
 	FormControl,
-	FormGroup,
+	FormRecord,
 	NG_VALUE_ACCESSOR,
 	ReactiveFormsModule,
 } from '@angular/forms';
@@ -51,6 +51,8 @@ import {
 import { NgxTableShowHeaderPipe } from '../pipes/show-header/show-header.pipe';
 import { NgxTableSortIconPipe } from '../pipes/sort-icon.pipe';
 import { NgxTableHasObserversPipe } from '../pipes/has-observers.pipe';
+import { NgxAriaSortPipe } from '../pipes';
+import { NgxTreeGrid } from '../directives';
 
 interface TableCellTemplate {
 	headerTemplate?: TemplateRef<any>;
@@ -80,6 +82,8 @@ interface TableCellTemplate {
 		NgxTableHasObserversPipe,
 		NgxTableSortIconPipe,
 		NgxTableShowHeaderPipe,
+		NgxAriaSortPipe,
+		NgxTreeGrid,
 	],
 })
 export class NgxTableComponent
@@ -111,14 +115,14 @@ export class NgxTableComponent
 	private onChanged: Function = (_: any) => {};
 
 	/**
-	 * The current sorting event
-	 */
-	private currentSortingEvent: WritableSignal<NgxTableSortEvent | undefined> = signal(undefined);
-
-	/**
 	 * Whether or not the form was generated
 	 */
 	private formGenerated: WritableSignal<boolean> = signal(false);
+
+	/**
+	 * The current sorting event
+	 */
+	public currentSortingEvent: WritableSignal<NgxTableSortEvent | undefined> = signal(undefined);
 
 	/**
 	 * Keeps a record with the column and it's templates
@@ -133,6 +137,11 @@ export class NgxTableComponent
 	 * Keeps a record of which cells have a cypress tag
 	 */
 	public tableCypressRecord: WritableSignal<Record<string, NgxTableCypressDataTags>> = signal({});
+	/**
+	 * Keeps a record of which cells are editable
+	 */
+	public editableTableCellRecord: WritableSignal<Record<string, NgxAbstractTableCellDirective>> =
+		signal({});
 
 	/**
 	 * A set with all the open rows
@@ -143,7 +152,7 @@ export class NgxTableComponent
 	/**
 	 * A FormGroup that adds a control for each row
 	 */
-	public readonly rowsFormGroup = new FormGroup({});
+	public readonly rowsFormGroup = new FormRecord<FormControl<boolean>>({});
 
 	/**
 	 * A control for the select all option in the header of the table
@@ -174,6 +183,16 @@ export class NgxTableComponent
 	 * An array of table columns
 	 */
 	public tableColumns: WritableSignal<string[]> = signal([]);
+
+	/**
+	 * The currently focussed row
+	 */
+	public focussedRow: string;
+
+	/**
+	 * The currently focussed cell
+	 */
+	public focussedCell: string;
 
 	/**
 	 * A QueryList of all the table cell templates
@@ -432,6 +451,7 @@ export class NgxTableComponent
 		// Iben: Emit a row click event
 		this.rowClicked.emit(row);
 
+		// Iben: Handle the selected open row if needed
 		if (this.showSelectedOpenRow) {
 			if (this.selectedRow() === index) {
 				// Benoit: If you close the selected row, unselect that row
@@ -441,6 +461,17 @@ export class NgxTableComponent
 			}
 		}
 
+		// Iben: Handle the row state
+		this.handleRowState(index, !this.openRows.has(index) ? 'open' : 'close');
+	}
+
+	/**
+	 * Handle the expanded state of a row
+	 *
+	 * @param index - The index of the row
+	 * @param action - Whether the row needs to be opened or closed
+	 */
+	public handleRowState(index: number, action: 'open' | 'close'): void {
 		// Iben: If there's no detail row we early exit
 		if (!this.detailRowTemplate) {
 			return;
@@ -448,9 +479,9 @@ export class NgxTableComponent
 
 		// Iben: Depending on whether we allow multiple rows to be open at the same time, we toggle the open rows accordingly
 		if (this.allowMultipleOpenRows) {
-			!this.openRows.has(index) ? this.openRows.add(index) : this.openRows.delete(index);
+			action === 'open' ? this.openRows.add(index) : this.openRows.delete(index);
 		} else {
-			this.openRows = !this.openRows.has(index) ? new Set([index]) : new Set();
+			this.openRows = action === 'open' ? new Set([index]) : new Set();
 		}
 	}
 
@@ -462,6 +493,7 @@ export class NgxTableComponent
 		this.tableCellTemplateRecord.set({});
 		this.sortableTableCellRecord.set({});
 		this.tableCypressRecord.set({});
+		this.editableTableCellRecord.set({});
 
 		// Iben: Loop over all provided table cell templates
 		Array.from(this.tableCellTemplates).forEach((tableCellTemplate) => {
@@ -479,6 +511,7 @@ export class NgxTableComponent
 				sortable,
 				cellClass,
 				cypressDataTags,
+				editable,
 			} = tableCellTemplate;
 
 			this.tableCellTemplateRecord.update((value) => {
@@ -509,6 +542,16 @@ export class NgxTableComponent
 					return {
 						...value,
 						[column]: cypressDataTags,
+					};
+				});
+			}
+
+			// Iben: If the cell is editable, we add it to the record
+			if (editable) {
+				this.editableTableCellRecord.update((value) => {
+					return {
+						...value,
+						[column]: tableCellTemplate,
 					};
 				});
 			}
@@ -547,6 +590,12 @@ export class NgxTableComponent
 				cell.resetSortDirection();
 			}
 		});
+	}
+
+	public selectRow(index: number): void {
+		this.rowsFormGroup
+			.get(this.selectableKey ? `${this.data[index][this.selectableKey]}` : `${index}`)
+			.patchValue(true);
 	}
 
 	/**

@@ -3,7 +3,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { AsyncPipe, JsonPipe } from '@angular/common';
 import { WrapperComponent } from './wrapper/wrapper.component';
-import { NgxCurrencyTableCellComponent, NgxTable } from '@ngx/table';
+import { NgxCurrencyTableCellComponent, NgxTable, NgxTableSortEvent } from '@ngx/table';
 
 @Component({
 	selector: 'app-root',
@@ -21,6 +21,7 @@ import { NgxCurrencyTableCellComponent, NgxTable } from '@ngx/table';
 })
 export class AppComponent {
 	private currentSet = 'dataSet1';
+	public currentSort: NgxTableSortEvent;
 
 	public dataSet1 = [
 		{
@@ -39,6 +40,14 @@ export class AppComponent {
 			hello: 'world',
 			amount: 5000,
 		},
+		{
+			name: 'Hyperdrive',
+			firstName: 'Studio',
+			active: true,
+			id: 'SHD2',
+			hello: 'world',
+			amount: 5000,
+		},
 	];
 
 	public dataSet2 = [
@@ -54,7 +63,7 @@ export class AppComponent {
 
 	public data = new BehaviorSubject(this.dataSet1);
 
-	public readonly columns = ['firstName', 'name', 'amount', 'active'];
+	public readonly columns = ['firstName', 'name', 'button', 'amount', 'active'];
 
 	public showDetail = true;
 
@@ -84,5 +93,9 @@ export class AppComponent {
 
 	public rowEmitted(data: any) {
 		console.log(data);
+	}
+
+	public sort(event: NgxTableSortEvent) {
+		this.currentSort = event;
 	}
 }
