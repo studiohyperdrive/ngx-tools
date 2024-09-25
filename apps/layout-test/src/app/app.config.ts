@@ -31,8 +31,10 @@ export const appConfig: ApplicationConfig = {
 				confirm: {
 					component: ConfirmModalComponent,
 					role: 'alertdialog',
+					panelClass: 'modeeeeeeel-panel',
 				},
 			},
+			panelClass: 'modal-panelelelelele',
 		}),
 		provideRouter(routes),
 	],

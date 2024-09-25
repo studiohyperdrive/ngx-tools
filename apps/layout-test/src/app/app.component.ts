@@ -31,6 +31,7 @@ export class AppComponent {
 				component: ModalComponent,
 				label: 'Modal',
 				role: 'dialog',
+				panelClass: 'modal-panel',
 			})
 			.pipe(
 				tap((action) => {
@@ -44,11 +45,19 @@ export class AppComponent {
 
 	confirm(): void {
 		this.modalService
-			.open({
+			.open<{
+				type: 'Confirm';
+				data: string;
+			}>({
 				type: 'confirm',
 				describedById: 'id',
 				labelledById: 'hello',
 			})
+			.pipe(
+				tap((value) => {
+					console.log(value);
+				})
+			)
 			.subscribe();
 	}
 }
