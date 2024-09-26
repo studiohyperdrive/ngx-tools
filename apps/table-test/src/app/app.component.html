@@ -18,6 +18,7 @@
 		[data]="data | async"
 		[columns]="columns"
 		[selectable]="true"
+		[currentSorting]="currentSort"
 		selectableKey="id"
 		[resetFormOnNewData]="false"
 		(rowClicked)="rowEmitted($event)"
@@ -38,13 +39,25 @@
 		</ng-template>
 		}
 
-		<ngx-table-cell column="firstName" [cypressDataTags]="{ cell: 'cell-tag' }">
+		<ngx-table-cell
+			column="firstName"
+			[cypressDataTags]="{ cell: 'cell-tag' }"
+			[sortable]="true"
+			(sort)="sort($event)"
+		>
 			<ng-template #headerTmpl> First name </ng-template>
 		</ngx-table-cell>
 
-		<ngx-currency-table-cell column="amount" currency="EUR">
+		<ngx-currency-table-cell column="amount" currency="EUR" [editable]="true">
 			<ng-template #headerTmpl> Amount </ng-template>
 		</ngx-currency-table-cell>
+
+		<ngx-table-cell column="button">
+			<ng-template #cellTmpl>
+				<button>Button 1</button>
+				<button>Button 2</button>
+			</ng-template>
+		</ngx-table-cell>
 
 		<ng-template #loadingTmpl> Loading </ng-template>
 	</ngx-table>

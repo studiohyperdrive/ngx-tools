@@ -385,6 +385,10 @@ If you wish to provide a custom class to the row of your tables, you can provide
 
 Cells can also have a default class we want to provide to all cells of that kind. All `ngx-date-table-cell` cells have the `ngx-date-table-cell` class and the same applies for the `ngx-currency-table-cell`.
 
+### Accessibility
+
+`ngx-table` provides a WCAG and ARIA compliant implementation to tables. When a table has a detail row or is selectable, the role of the table switches from `table` to `treegrid`. Because of that, `ngx-table` follows the [WAI ARIA Treegrid Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/treegrid/).
+
 ## Acknowledgements
 
 A big thanks goes out to [Sam Verschueren](https://github.com/SamVerschueren) for his help with the initial implementation of this table. Without his help, this table would not have existed.
