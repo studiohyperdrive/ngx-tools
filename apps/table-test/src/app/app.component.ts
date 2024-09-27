@@ -31,6 +31,7 @@ export class AppComponent {
 			id: 'id1',
 			hello: 'world',
 			amount: 37,
+			date: '12/02/2023',
 		},
 		{
 			name: 'Hyperdrive',
@@ -39,6 +40,7 @@ export class AppComponent {
 			id: 'SHD',
 			hello: 'world',
 			amount: 5000,
+			date: '12/02/2023',
 		},
 		{
 			name: 'Hyperdrive',
@@ -47,6 +49,7 @@ export class AppComponent {
 			id: 'SHD2',
 			hello: 'world',
 			amount: 5000,
+			date: '12/02/2023',
 		},
 	];
 
@@ -58,12 +61,13 @@ export class AppComponent {
 			id: 'id3',
 			hello: 'world',
 			amount: 0.5,
+			date: '12/02/2023',
 		},
 	];
 
 	public data = new BehaviorSubject(this.dataSet1);
 
-	public readonly columns = ['firstName', 'name', 'button', 'amount', 'active'];
+	public readonly columns = ['firstName', 'name', 'date', 'button', 'amount', 'active'];
 
 	public showDetail = true;
 

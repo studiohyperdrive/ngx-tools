@@ -158,7 +158,7 @@ export class NgxTreeGridCellDirective extends NgxHasFocusDirective {
 				element.focus();
 
 				// Iben: If the current active element is the same as the element we focussed, on, we break
-				if (this.elementRef.nativeElement !== document?.activeElement) {
+				if (element === document?.activeElement) {
 					result = element;
 					this.hasFocus = true;
 
