@@ -207,7 +207,7 @@ As always, this default icon can be overwritten on table level by using the `sor
 
 Another built-in common use case provided by the package is selecting rows. The `ngx-table` component functions as a control value accessor, which means any form control can be attached to the table. By setting the `selectable` property to true, the table will automatically display a checkbox at the start of every row, including a checkbox at the top of the headers to provide a select-all behavior.
 
-By default, the `ngx-table` will use the index as the selected value in the form. If we wish to use a property of the data object instead, we can pass the key of the property to the `selectableKey` Input. Just as in previous use-cases, the default template of the checkbox can be overwritten by a custom template using the `checkboxTmpl`.
+By default, the `ngx-table` will use the index as the selected value in the form. If we wish to use a property of the data object instead, we can pass the key of the property to the `selectableKey` Input. The value of this key should **always** be of type string or number. Just as in previous use-cases, the default template of the checkbox can be overwritten by a custom template using the `checkboxTmpl`.
 
 ```html
 <ngx-table

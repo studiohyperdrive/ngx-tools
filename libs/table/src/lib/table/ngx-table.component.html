@@ -207,7 +207,7 @@
 		[ngxTreeGridRowSelectable]="selectable"
 		[ngxTreeGridRowExpanded]="openRows.has(rowIndex)"
 		[attr.aria-selected]="
-			rowsFormGroup.get(selectableKey ? data[rowIndex][selectableKey] : '' + rowIndex)?.value
+			rowsFormGroup.get(selectableKey ? '' + data[rowIndex][selectableKey] : '' + rowIndex)?.value
 		"
 		(ngxTreeGridRowSelectRow)="selectRow(rowIndex)"
 		(ngxTreeGridRowExpandRow)="handleRowState(rowIndex, $event ? 'open' : 'close')"
