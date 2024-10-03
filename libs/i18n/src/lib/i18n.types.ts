@@ -1,6 +1,6 @@
 export interface NgxI18nConfiguration {
 	defaultLanguage: string;
-	availableLanguages: string[];
+	availableLanguages?: string[];
 	defaultAssetPaths: string[];
 	languageRouteParam?: string;
 }

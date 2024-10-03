@@ -1,6 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, filter, Observable } from 'rxjs';
 
 import { NgxI18nConfiguration } from '../../i18n.types';
 import { NgxI18nConfigurationToken } from '../../tokens';
@@ -15,11 +15,40 @@ export class NgxI18nRootService {
 		undefined
 	);
 
+	/**
+	 * A subject to hold the available languages
+	 */
+	private readonly availableLanguagesSubject: BehaviorSubject<string[]> = new BehaviorSubject([]);
+
+	/**
+	 * The available languages
+	 *
+	 * Only emits once the list contains at least one language
+	 */
+	public readonly availableLanguages$: Observable<string[]> = this.availableLanguagesSubject
+		.asObservable()
+		.pipe(filter((languages) => languages?.length > 0));
+
+	/**
+	 * The default language of the application
+	 */
+	public defaultLanguage: string;
+
+	/**
+	 * The route param we use to set the language, by default this is `language`
+	 */
+	public languageRouteParam: string;
+
 	constructor(
 		@Inject(PLATFORM_ID) private readonly platformId: string,
 		@Inject(NgxI18nConfigurationToken)
 		private readonly configuration: NgxI18nConfiguration
-	) {}
+	) {
+		// Iben: Set the initial values so that we can refer to the services as the source of truth
+		this.defaultLanguage = configuration.defaultLanguage;
+		this.languageRouteParam = configuration.languageRouteParam || 'language';
+		this.availableLanguagesSubject.next(this.configuration.availableLanguages || []);
+	}
 
 	/**
 	 * The current language of the application, as an Observable
@@ -64,15 +93,23 @@ export class NgxI18nRootService {
 		}
 
 		// Iben: If the current language does not exist, we check if it exists in the local storage, if not, we use the default config
-		let language = this.configuration.defaultLanguage;
+		let language = this.defaultLanguage;
 
 		if (isPlatformBrowser(this.platformId)) {
-			language =
-				localStorage.getItem('ngx-i18n-language') || this.configuration.defaultLanguage;
+			language = localStorage.getItem('ngx-i18n-language') || this.defaultLanguage;
 		}
 
 		// Iben: We set the new language
 		this.setCurrentLanguage(language);
+	}
+
+	/**
+	 * Set the list of available languages
+	 *
+	 * @param languages - The list of available languages
+	 */
+	public setAvailableLanguages(languages: string[]): void {
+		this.availableLanguagesSubject.next(languages);
 	}
 
 	/**
@@ -85,12 +122,12 @@ export class NgxI18nRootService {
 		let newLanguage = language;
 
 		// Iben: Check if the new language is part of the available languages
-		if (!this.configuration.availableLanguages.includes(language)) {
+		if (!this.availableLanguagesSubject.getValue().includes(language)) {
 			// Iben: If a language is set that's not part of the available languages, we return a warn
 			console.warn(
-				`NgxI18n: A language, ${language}, was attempted to be set that was not part of the available languages (${this.configuration.availableLanguages.join(
-					', '
-				)})`
+				`NgxI18n: A language, ${language}, was attempted to be set that was not part of the available languages (${this.availableLanguagesSubject
+					.getValue()
+					.join(', ')})`
 			);
 
 			// Iben: If there is already a language set, we early exit and keep the remaining language
@@ -99,7 +136,7 @@ export class NgxI18nRootService {
 			}
 
 			// Iben: If no language exists, we use the default language
-			newLanguage = this.configuration.defaultLanguage;
+			newLanguage = this.defaultLanguage;
 		}
 
 		return newLanguage;
