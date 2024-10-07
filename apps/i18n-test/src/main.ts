@@ -10,7 +10,6 @@ bootstrapApplication(AppComponent, {
 		importProvidersFrom(BrowserModule, AppRoutingModule),
 		importNgxI18nProviders({
 			defaultLanguage: 'nl',
-			availableLanguages: ['nl', 'fr'],
 			defaultAssetPaths: ['./assets/shared/'],
 		}),
 		provideHttpClient(withInterceptorsFromDi()),
