@@ -189,7 +189,7 @@
 	<tr
 		*cdkRowDef="let row; columns: definedColumns(); let rowIndex = dataIndex"
 		cdk-row
-		tabindex="0"
+		[attr.tabindex]="detailRowTemplate !== undefined || selectable ? 0 : -1"
 		aria-level="1"
 		[attr.aria-setsize]="detailRowTemplate ? 1 : 0"
 		[ngClass]="[
@@ -207,7 +207,8 @@
 		[ngxTreeGridRowSelectable]="selectable"
 		[ngxTreeGridRowExpanded]="openRows.has(rowIndex)"
 		[attr.aria-selected]="
-			rowsFormGroup.get(selectableKey ? '' + data[rowIndex][selectableKey] : '' + rowIndex)?.value
+			rowsFormGroup.get(selectableKey ? '' + data[rowIndex][selectableKey] : '' + rowIndex)
+				?.value
 		"
 		(ngxTreeGridRowSelectRow)="selectRow(rowIndex)"
 		(ngxTreeGridRowExpandRow)="handleRowState(rowIndex, $event ? 'open' : 'close')"
@@ -220,7 +221,6 @@
 		cdk-row
 		aria-level="2"
 		aria-posinset="1"
-		tabindex="0"
 		[class.ngx-table-detail-row-open]="
 			showDetailRow === 'always' ||
 			(showDetailRow === 'on-single-item' && data?.length === 1) ||
