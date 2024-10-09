@@ -9,4 +9,4 @@ export * from './pipes';
 export * from './token';
 
 /** All the necessary ngx-table components */
-export const NgxTable = [NgxTableComponent, ...Cells];
+export const NgxTable = [NgxTableComponent, ...Cells] as const;

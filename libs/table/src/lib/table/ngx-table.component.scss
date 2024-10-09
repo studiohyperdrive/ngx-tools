@@ -33,6 +33,18 @@
 	.ngx-table-sortable-cell {
 		cursor: pointer;
 
+		.ngx-table-sorting-cell-button {
+			width: 100%;
+			height: 100%;
+			padding: 0;
+
+			font-weight: inherit;
+
+			background-color: transparent;
+
+			border: none;
+		}
+
 		.ngx-table-sorting-icon {
 			font-style: normal;
 		}

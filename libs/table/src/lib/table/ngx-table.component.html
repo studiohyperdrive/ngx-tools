@@ -100,26 +100,41 @@
 					| ngxAriaSort
 			"
 			[attr.aria-readonly]="!sortableTableCellRecord()[column]"
-			(click)="handleSort(column)"
 		>
-			@if ( tableCellTemplateRecord()[column]?.headerTemplate) {
+			<!-- Wouter: Check if header is sortable -->
+			@if( sortableTableCellRecord()[column]; as sortCell) {
+			<!-- Wouter: If so: wrap button element around content -->
+			<button (click)="handleSort(column)" class="ngx-table-sorting-cell-button">
+				@if ( tableCellTemplateRecord()[column]?.headerTemplate) {
+				<!-- Wouter: Check if a custom template has been provided -->
+				<ng-template [ngTemplateOutlet]="tableCellTemplateRecord()[column].headerTemplate">
+				</ng-template>
+				} @else {
+				<!-- Wouter: If not: display passed column name -->
+				{{ column }}
+				} @if (sortTemplate) {
+				<!-- Wouter: Check if a custom sorting template has been provided -->
+				<ng-template
+					[ngTemplateOutlet]="sortTemplate"
+					[ngTemplateOutletContext]="{
+						$implicit: sortCell.sortDirection ? sortCell.sortDirection.toString() : null
+					}"
+				>
+				</ng-template>
+				} @else {
+				<i
+					class="ngx-table-sorting-icon"
+					[innerHtml]="sortCell.sortDirection | ngxTableSortIcon"
+				></i>
+				}
+			</button>
+			} @else { @if ( tableCellTemplateRecord()[column]?.headerTemplate) {
+			<!-- Wouter: Check if a custom template has been provided -->
 			<ng-template [ngTemplateOutlet]="tableCellTemplateRecord()[column].headerTemplate">
 			</ng-template>
 			} @else {
+			<!-- Wouter: If not: display passed column name -->
 			{{ column }}
-			} @if (sortableTableCellRecord()[column]; as sortCell) { @if (sortTemplate) {
-			<ng-template
-				[ngTemplateOutlet]="sortTemplate"
-				[ngTemplateOutletContext]="{
-					$implicit: sortCell.sortDirection ? sortCell.sortDirection.toString() : null
-				}"
-			>
-			</ng-template>
-			} @else {
-			<i
-				class="ngx-table-sorting-icon"
-				[innerHtml]="sortCell.sortDirection | ngxTableSortIcon"
-			></i>
 			} }
 		</th>
 		<td
@@ -207,7 +222,8 @@
 		[ngxTreeGridRowSelectable]="selectable"
 		[ngxTreeGridRowExpanded]="openRows.has(rowIndex)"
 		[attr.aria-selected]="
-			rowsFormGroup.get(selectableKey ? '' + data[rowIndex][selectableKey] : '' + rowIndex)?.value
+			rowsFormGroup.get(selectableKey ? '' + data[rowIndex][selectableKey] : '' + rowIndex)
+				?.value
 		"
 		(ngxTreeGridRowSelectRow)="selectRow(rowIndex)"
 		(ngxTreeGridRowExpandRow)="handleRowState(rowIndex, $event ? 'open' : 'close')"
