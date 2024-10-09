@@ -52,10 +52,9 @@
 			<ng-template #headerTmpl> Amount </ng-template>
 		</ngx-currency-table-cell>
 
-		<ngx-date-table-cell column="date">
-		</ngx-date-table-cell>
+		<ngx-date-table-cell column="date"> </ngx-date-table-cell>
 
-		<ngx-table-cell column="button">
+		<ngx-table-cell column="button" [sortable]="true" (sort)="sort($event)">
 			<ng-template #cellTmpl>
 				<button>Button 1</button>
 				<button>Button 2</button>

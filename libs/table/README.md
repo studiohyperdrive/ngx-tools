@@ -176,33 +176,35 @@ We can also set the sorting from outside of the table by passing the current sor
 
 As always, this default icon can be overwritten on table level by using the `sortTmpl` template. The implicitly provided prop is the direction of the sorting.
 
+Regardless of the implementation of a sortable column, the custom or default header template will **always be wrapped in a button for accessability purposes**. This button has been stripped of its styling to provide a more coherent look. Unsortable columns will not be wrapped in a button.
+
 ```html
-    <ngx-table
-    [data]="[{name: 'World', firstName: 'Hello', active: true}, {name: 'Tools', firstName: 'NGX', active:false}]"
-    [columns]="['active', 'user']">
-        <ngx-table-cell column="user">
-            <ng-template #headerTmpl>
-                User
-            </ng-template>
-
-            <ng-template #cellTmpl let-row="row">
-                {{row.firstName}} {{row.name}}
-            </ng-template>
-        </ngx-table-cell>
-
-        <ngx-table-cell column="active" [sortable]="true" (sort)="sortByActiveState($event)">
-            <ng-template #headerTmpl>
-            </ng-template>
-
-            <ng-template #cellTmpl let-active>
-                {{active ? 'Active' | 'Not active'}}
-            </ng-template>
-        </ngx-table-cell>
-
-        <ng-template #sortTmpl let-direction>
-            <my-custom-sorting-icon [sortDirection]="direction">
+<ngx-table
+[data]="[{name: 'World', firstName: 'Hello', active: true}, {name: 'Tools', firstName: 'NGX', active:false}]"
+[columns]="['active', 'user']">
+    <ngx-table-cell column="user">
+        <ng-template #headerTmpl>
+            User
         </ng-template>
-    </ngx-table>
+
+        <ng-template #cellTmpl let-row="row">
+            {{row.firstName}} {{row.name}}
+        </ng-template>
+    </ngx-table-cell>
+
+    <ngx-table-cell column="active" [sortable]="true" (sort)="sortByActiveState($event)">
+        <ng-template #headerTmpl>
+        </ng-template>
+
+        <ng-template #cellTmpl let-active>
+            {{active ? 'Active' | 'Not active'}}
+        </ng-template>
+    </ngx-table-cell>
+
+    <ng-template #sortTmpl let-direction>
+        <my-custom-sorting-icon [sortDirection]="direction">
+    </ng-template>
+</ngx-table>
 ```
 
 Another built-in common use case provided by the package is selecting rows. The `ngx-table` component functions as a control value accessor, which means any form control can be attached to the table. By setting the `selectable` property to true, the table will automatically display a checkbox at the start of every row, including a checkbox at the top of the headers to provide a select-all behavior.
@@ -355,31 +357,32 @@ providers: [
 
 By default the `ngx-table` comes with very minimal styling. Several classes have been provided to help with styling specific parts of the table. As the package was built upon the `cdk-table`, all styling rules that apply to that table also apply here. Check out the documentation of the `cdk-table` for more information.
 
-| Class                     |                                                                                                                 |
-| ------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| ngx-table                 | A class set to the `table` element                                                                              |
-| ngx-table-loading         | A class set to the `table` element when the table is displaying a loading template                              |
-| ngx-table-clickable-rows  | A class set to the `table` element if a detail row template was provided or the `rowClicked` output was defined |
-| ngx-table-hide-rows       | A class set to the `table` element if the data array is empty or when the `loading` property is set to true     |
-| ngx-table-cell            | A class added to all cells in the table                                                                         |
-| ngx-table-header-cell     | A class added to all header cells in the table                                                                  |
-| ngx-table-row-cel         | A class added to all row cells in the table                                                                     |
-| ngx-table-footer-cell     | A class added to all footer cells in the table                                                                  |
-| ngx-table-selectable-cell | A class added to all selectable cells in the table                                                              |
-| ngx-table-sortable-cell   | A class added to all sortable header cells in the table                                                         |
-| ngx-table-sorting-icon    | A class added to default sorting icon in the table                                                              |
-| ngx-table-detail-cell     | A class added to the detail row cell in the table                                                               |
-| ngx-table-row             | A class added to rows in the table                                                                              |
-| ngx-table-row-odd         | A class added to all odd rows in the table                                                                      |
-| ngx-table-row-even        | A class added to all even rows in the table                                                                     |
-| ngx-table-row-selected    | A class added to all open rows in the table                                                                     |
-| ngx-table-row-highlight   | A class added to all rows in the table that match the provided `highlightKey` property                          |
-| ngx-table-detail-row      | A class added to all detail rows in the table                                                                   |
-| ngx-table-detail-row-open | A class added to all open detail rows in the table                                                              |
-| ngx-table-footer-row      | A class added to all footer rows in the table                                                                   |
-| ngx-table-open-state-icon | A class added to default open-row state icon in the table                                                       |
-| ngx-table-radio           | A class used by the default radio button when the rows are selectable and the selectableType is radio           |
-| ngx-table-checkbox        | A class used by the default checkbox when the rows are selectable and the selectableType is checkbox            |
+| Class                         |                                                                                                                 |
+| ----------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| ngx-table                     | A class set to the `table` element                                                                              |
+| ngx-table-loading             | A class set to the `table` element when the table is displaying a loading template                              |
+| ngx-table-clickable-rows      | A class set to the `table` element if a detail row template was provided or the `rowClicked` output was defined |
+| ngx-table-hide-rows           | A class set to the `table` element if the data array is empty or when the `loading` property is set to true     |
+| ngx-table-cell                | A class added to all cells in the table                                                                         |
+| ngx-table-header-cell         | A class added to all header cells in the table                                                                  |
+| ngx-table-row-cel             | A class added to all row cells in the table                                                                     |
+| ngx-table-footer-cell         | A class added to all footer cells in the table                                                                  |
+| ngx-table-selectable-cell     | A class added to all selectable cells in the table                                                              |
+| ngx-table-sorting-cell-button | A class added to the button that is generated around the content of each sortable cell                          |
+| ngx-table-sortable-cell       | A class added to all sortable header cells in the table                                                         |
+| ngx-table-sorting-icon        | A class added to default sorting icon in the table                                                              |
+| ngx-table-detail-cell         | A class added to the detail row cell in the table                                                               |
+| ngx-table-row                 | A class added to rows in the table                                                                              |
+| ngx-table-row-odd             | A class added to all odd rows in the table                                                                      |
+| ngx-table-row-even            | A class added to all even rows in the table                                                                     |
+| ngx-table-row-selected        | A class added to all open rows in the table                                                                     |
+| ngx-table-row-highlight       | A class added to all rows in the table that match the provided `highlightKey` property                          |
+| ngx-table-detail-row          | A class added to all detail rows in the table                                                                   |
+| ngx-table-detail-row-open     | A class added to all open detail rows in the table                                                              |
+| ngx-table-footer-row          | A class added to all footer rows in the table                                                                   |
+| ngx-table-open-state-icon     | A class added to default open-row state icon in the table                                                       |
+| ngx-table-radio               | A class used by the default radio button when the rows are selectable and the selectableType is radio           |
+| ngx-table-checkbox            | A class used by the default checkbox when the rows are selectable and the selectableType is checkbox            |
 
 If you wish to provide a custom class to the row of your tables, you can provide the class name to the `rowClass` Input.
 
