@@ -10,7 +10,10 @@
     "error",
     "dynamic dashboard",
     "dynamic layout",
-    "visual"
+    "visual",
+    "accordion",
+    "wcag",
+    "aria"
   ],
   "homepage": "https://github.com/studiohyperdrive/ngx-tools/tree/master/libs/layout",
   "license": "MIT",

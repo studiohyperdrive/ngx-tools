@@ -5,12 +5,13 @@ import { tap } from 'rxjs';
 import { ModalComponent } from '../modal/modal.component';
 import { NgxMediaQueryService } from '@ngx/utils';
 import { NgxModalService } from '@ngx/inform';
+import { NgxAccordion } from '@ngx/layout';
 
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
 	standalone: true,
-	imports: [RouterModule],
+	imports: [RouterModule, NgxAccordion],
 })
 export class AppComponent {
 	constructor(
@@ -24,6 +25,29 @@ export class AppComponent {
 			['large', '(max-width: 700px)']
 		);
 	}
+
+	public testData = [
+		{
+			title: 'Hello',
+			content: 'World',
+		},
+		{
+			title: 'Hello',
+			content: 'World',
+		},
+		{
+			title: 'Hello',
+			content: 'World',
+		},
+		{
+			title: 'Hello',
+			content: 'World',
+		},
+		{
+			title: 'Hello',
+			content: 'World',
+		},
+	];
 
 	public sayHello(): void {
 		this.modalService

@@ -16,4 +16,18 @@
 <button (click)="sayHello()">Say hello!</button>
 <button (click)="confirm()">Confirm!</button>
 
-<router-outlet/>
+<ngx-accordion [open]="[1,4]">
+	@for (item of testData; track $index; let index = $index) {
+	<ngx-accordion-item [disabled]="index === 2">
+		<ng-template #headerTmpl let-isOpen>
+			{{item.title}} {{isOpen}}
+		</ng-template>
+
+		<ng-template #contentTmpl let-isOpen>
+			{{item.content}}
+		</ng-template>
+	</ngx-accordion-item>
+	}
+</ngx-accordion>
+
+<router-outlet />
