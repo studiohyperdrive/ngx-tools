@@ -31,6 +31,60 @@ Currently the package provides a `configurable layout` component which can be us
 
 ### Components
 
+#### Accordion
+
+The `ngx-accordion` provides a easy to use WCAG/ARIA compliant implementation for an accordion. Its implementation exists of a `NgxAccordionComponent` and a `NgxAccordionItemComponent` component. Both can be imported simultaneously by importing `NgxAccordion`.
+
+##### Implementation
+
+Using the `NgxAccordionComponent` as a container for our accordion items (`NgxAccordionItemComponent`), we are able to provide correct keyboard navigation for end users. Therefore it is important to always warp your items in the container component. 
+
+We use content projection to pass the header and the content of each accordion item, by using the `headerTmpl` and `contentTmpl` ng-templates. Both templates allow for fetching the open state of the accordion, by using the $implicit outlet context.
+
+In the example below you can find a simple implementation of the accordion.
+```ts
+import { NgxAccordion } from '@ngx/layout';
+
+@Component({
+	...
+	standalone: true,
+	imports: [NgxAccordion],
+})
+```
+
+```html
+<ngx-accordion>
+	@for (item of testData; track $index) {
+	<ngx-accordion-item>
+		<ng-template #headerTmpl let-isOpen>
+			{{item.title}} {{isOpen}}
+		</ng-template>
+
+		<ng-template #contentTmpl>
+			{{item.content}}
+		</ng-template>
+	</ngx-accordion-item>
+    }
+</ngx-accordion>
+```
+
+##### Extra configuration
+The `NgxAccordionComponent` allows for opening a set of accordion items from the start. This is useful for when you want to open the first item, or specific items in the accordion. By using the `open` property you can either open all items, the first item, a specific item or a set of specific items by passing `all`, `first`, the index of an item or an array of indexes respectively.
+
+An individual `NgxAccordionItemComponent` can also be disabled by providing the `disabled` property. Once disabled, an item's open or closed state cannot be altered by the user. To allow an item to be open from the start and not closeable by the end-user, the `open` property of the `NgxAccordionComponent` will ignore the disabled state of the individual items. 
+
+##### Styling
+
+The accordion implementation provides several classes we can use to target elements in the accordion. Internally the `NgxAccordionItemComponent` uses the `details` HTML element.
+
+| Class                          |                                                                             |
+| ------------------------------ | --------------------------------------------------------------------------- |
+| ngx-accordion                   | A class set to the `NgxAccordionComponent`.        |
+| ngx-accordion-item              | A class set to the `NgxAccordionItemComponent`.    |
+| ngx-accordion-content           | A class set to the content of the accordion item.  |
+| ngx-accordion-header            | A class set to the header of the accordion item.   |
+
+
 #### Configurable layout
 
 The `configurable layout` provides the ability to render components in a grid depending on a provided two dimensional array of keys and corresponding items with a provided template. The combination exists of an `ngx-configurable-layout` and an `ngx-configurable-layout-item`.
