@@ -193,7 +193,7 @@ This service provides a SSR proof way to set and subscribe to the window's media
 
 [Full documentation.](src/lib/services/media-query/query.service.md)
 
-#### BroadcastChannelService
+#### NgxBroadcastChannelService
 
 This service provides a SSR proof way to create channels for the BroadcastChannel API, post messages on those channels and subscribe to the events.
 
