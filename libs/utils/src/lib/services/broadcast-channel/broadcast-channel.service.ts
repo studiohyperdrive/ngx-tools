@@ -1,31 +1,35 @@
-import { isPlatformBrowser } from '@angular/common';
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { EMPTY, fromEvent, Observable } from 'rxjs';
+import { WindowService } from '../window-service/window.service';
 
 @Injectable({
 	providedIn: 'root',
 })
-export class BroadcastChannelService {
+export class NgxBroadcastChannelService {
 	private broadcastChannel: Record<string, BroadcastChannel> = {};
 
-	constructor(@Inject(PLATFORM_ID) private platformId: string) {}
+	constructor(private readonly windowService: WindowService) {}
 
 	/**
 	 * initChannel
 	 *
 	 * The initChannel method initializes a new BroadcastChannel instance.
 	 *
-	 * @param channelName{string} - The name of the Broadcast Channel.
+	 * @param args{ConstructorParameters<typeof BroadcastChannel>} - The arguments to pass to the BroadcastChannel constructor.
 	 */
-	public initChannel(channelName: string): void {
+	public initChannel(...args: ConstructorParameters<typeof BroadcastChannel>): void {
+		const [channelName] = args;
+
 		if (!channelName) {
-			console.warn('channelName is required');
+			console.error(
+				'NgxUtils: There was an attempt to initialize a BroadcastChannel without providing a name.'
+			);
 
 			return;
 		}
 
-		if (isPlatformBrowser(this.platformId) && !this.broadcastChannel[channelName]) {
-			this.broadcastChannel[channelName] = new BroadcastChannel(channelName);
+		if (this.windowService.isBrowser() && !this.broadcastChannel[channelName]) {
+			this.broadcastChannel[channelName] = new BroadcastChannel(...args);
 		}
 	}
 
@@ -37,13 +41,7 @@ export class BroadcastChannelService {
 	 * @param channelName{string} - The name of the Broadcast Channel.
 	 */
 	public closeChannel(channelName: string): void {
-		if (!channelName) {
-			console.warn('channelName is required');
-
-			return;
-		}
-
-		if (!this.broadcastChannel[channelName]) {
+		if (!channelName || !this.broadcastChannel[channelName]) {
 			return;
 		}
 
@@ -60,14 +58,11 @@ export class BroadcastChannelService {
 	 * @param message{any} - The payload to send through the channel.
 	 */
 	public postMessage(channelName: string, message: any): void {
-		if (!channelName) {
-			console.warn('channelName is required');
-
-			return;
-		}
-
-		if (!this.broadcastChannel[channelName]) {
-			console.warn('BroadcastChannel not initialized, message not sent', message);
+		if (!channelName || !this.broadcastChannel[channelName]) {
+			console.error(
+				'NgxUtils: There was an attempt to post a message to a channel without providing a name or the selected channel does not exist. The included message was:',
+				message
+			);
 
 			return;
 		}
@@ -76,20 +71,42 @@ export class BroadcastChannelService {
 	}
 
 	/**
-	 * subscribeToChannel
+	 * selectChannelMessages
 	 *
-	 * The subscribeToChannel method subscribes to the `message` (bc.onmessage) event of a selected BroadcastChannel instance.
+	 * The selectChannelMessages method subscribes to the `message` (bc.onmessage) event of a selected BroadcastChannel instance.
 	 *
 	 * @param channelName{string} - The name of the Broadcast Channel.
 	 * @returns Observable<MessageEvent> - The message event of the channel wrapped in an observable.
 	 */
-	public selectChannel(channelName: string): Observable<MessageEvent> {
-		if (!channelName) {
-			console.warn('channelName is required');
+	public selectChannelMessages(channelName: string): Observable<MessageEvent> {
+		if (!channelName || !this.broadcastChannel[channelName]) {
+			console.error(
+				"NgxUtils: There was an attempt to select a BroadcastChannel's messages without providing a name or the selected channel does not exist."
+			);
 
 			return EMPTY;
 		}
 
 		return fromEvent<MessageEvent>(this.broadcastChannel[channelName], 'message');
+	}
+
+	/**
+	 * selectChannelMessageErrors
+	 *
+	 * The selectChannelMessageErrors method subscribes to the `messageerror` (bc.onmessageerror) event of a selected BroadcastChannel instance.
+	 *
+	 * @param channelName{string} - The name of the Broadcast Channel.
+	 * @returns Observable<MessageEvent> - The messageerror event of the channel wrapped in an observable.
+	 */
+	public selectChannelMessageErrors(channelName: string): Observable<MessageEvent> {
+		if (!channelName || !this.broadcastChannel[channelName]) {
+			console.error(
+				"NgxUtils: There was an attempt to select a BroadcastChannel's message errors without providing a name or the selected channel does not exist."
+			);
+
+			return EMPTY;
+		}
+
+		return fromEvent<MessageEvent>(this.broadcastChannel[channelName], 'messageerror');
 	}
 }

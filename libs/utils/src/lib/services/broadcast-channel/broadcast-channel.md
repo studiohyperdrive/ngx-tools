@@ -1,6 +1,6 @@
-# BroadcastChannelService
+# NgxBroadcastChannelService
 
-This `BroadcastChannelService` service wraps around the [BroadcastChannel API](https://developer.mozilla.org/en-US/docs/Web/API/Broadcast_Channel_API) and provides some handy functionality on top of some safety measures. It take SSR into account and will only create channels while in the browser.
+This `NgxBroadcastChannelService` service wraps around the [BroadcastChannel API](https://developer.mozilla.org/en-US/docs/Web/API/Broadcast_Channel_API) and provides some handy functionality on top of some safety measures. It takes SSR into account and will only create channels while in the browser.
 
 It holds a Record of potential BroadcastChannels with the key being their name. By doing this, multiple channels can exist within the same application simultaneously.
 
@@ -11,10 +11,10 @@ It holds a Record of potential BroadcastChannels with the key being their name. 
 The `initChannel` method will create a new BroadcastChannel with the given name.
 
 ```typescript
-import { BroadcastChannelService } from '@studiohyperdrive/ngx-utils';
+import { NgxBroadcastChannelService } from '@studiohyperdrive/ngx-utils';
 
 export class YourComponent {
-	constructor(private readonly broadcastChannelService: BroadcastChannelService) {}
+	constructor(private readonly broadcastChannelService: NgxBroadcastChannelService) {}
 
 	public ngOnInit(): void {
 		this.broadcastChannelService.initChannel('your-channel-name');
@@ -39,10 +39,10 @@ channelName is required
 The `closeChannel` will close a channel with the given name.
 
 ```typescript
-import { BroadcastChannelService } from '@studiohyperdrive/ngx-utils';
+import { NgxBroadcastChannelService } from '@studiohyperdrive/ngx-utils';
 
 export class YourComponent {
-	constructor(private readonly broadcastChannelService: BroadcastChannelService) {}
+	constructor(private readonly broadcastChannelService: NgxBroadcastChannelService) {}
 
 	public ngOnInit(): void {
 		// Open up a channel for this component OnInit.
@@ -71,10 +71,10 @@ channelName is required
 The `postMessage` method will post a message to a channel with the given name.
 
 ```typescript
-import { BroadcastChannelService } from '@studiohyperdrive/ngx-utils';
+import { NgxBroadcastChannelService } from '@studiohyperdrive/ngx-utils';
 
 export class YourComponent {
-	constructor(private readonly broadcastChannelService: BroadcastChannelService) {}
+	constructor(private readonly broadcastChannelService: NgxBroadcastChannelService) {}
 
 	public ngOnInit(): void {
 		// Open up a channel for this component OnInit.
@@ -114,10 +114,10 @@ channelName is required
 The `selectChannel` method will return a subscription wrapped around the `message` event of the channel with the given name.
 
 ```typescript
-import { BroadcastChannelService } from '@studiohyperdrive/ngx-utils';
+import { NgxBroadcastChannelService } from '@studiohyperdrive/ngx-utils';
 
 export class YourComponent {
-	constructor(private readonly broadcastChannelService: BroadcastChannelService) {}
+	constructor(private readonly broadcastChannelService: NgxBroadcastChannelService) {}
 
 	public ngOnInit(): void {
 		// Open up a channel for this component OnInit.

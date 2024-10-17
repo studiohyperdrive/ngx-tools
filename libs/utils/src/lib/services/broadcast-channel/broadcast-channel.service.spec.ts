@@ -1,25 +1,23 @@
-import { PLATFORM_ID } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
-
 import { Subscription } from 'rxjs';
-import { BroadcastChannelService } from './broadcast-channel.service';
+import { windowServiceMock } from '../window-service/window.service.mock';
+import { NgxBroadcastChannelService } from './broadcast-channel.service';
 
 class MockBroadcastChannel {
 	private listeners: { [key: string]: Function[] } = {};
 
 	constructor(public name: string) {}
 
-	postMessage(message: any) {
+	public postMessage(message: any): void {
 		if (this.listeners['message']) {
 			this.listeners['message'].forEach((listener) => listener({ data: message }));
 		}
 	}
 
-	close() {
+	public close(): void {
 		this.listeners = {};
 	}
 
-	addEventListener(event: string, listener: Function) {
+	public addEventListener(event: string, listener: Function): void {
 		if (!this.listeners[event]) {
 			this.listeners[event] = [];
 		}
@@ -27,7 +25,7 @@ class MockBroadcastChannel {
 		this.listeners[event].push(listener);
 	}
 
-	removeEventListener(event: string, listener: Function) {
+	public removeEventListener(event: string, listener: Function): void {
 		if (!this.listeners[event]) {
 			return;
 		}
@@ -41,17 +39,13 @@ class MockBroadcastChannel {
 // Prevent the window from reloading
 window.onbeforeunload = jasmine.createSpy();
 
-describe('BroadcastChannelService', () => {
+describe('NgxBroadcastChannelService', () => {
 	describe('in browser', () => {
-		let service: BroadcastChannelService;
+		let service: NgxBroadcastChannelService;
 		let subscriptions: Subscription[] = [];
 
 		beforeEach(() => {
-			TestBed.configureTestingModule({
-				providers: [BroadcastChannelService, { provide: PLATFORM_ID, useValue: 'browser' }],
-			});
-
-			service = TestBed.inject(BroadcastChannelService);
+			service = new NgxBroadcastChannelService(windowServiceMock(undefined) as any);
 		});
 
 		afterEach(() => {
@@ -61,11 +55,13 @@ describe('BroadcastChannelService', () => {
 
 		describe('initChannel', () => {
 			it('should return early if channelName is not provided', () => {
-				const consoleWarnSpy = spyOn(console, 'warn');
+				const consoleSpy = spyOn(console, 'error');
 
 				service.initChannel('');
 
-				expect(consoleWarnSpy).toHaveBeenCalledWith('channelName is required');
+				expect(consoleSpy).toHaveBeenCalledWith(
+					'NgxUtils: There was an attempt to initialize a BroadcastChannel without providing a name.'
+				);
 			});
 
 			it('should initialize a new BroadcastChannel instance', () => {
@@ -77,11 +73,9 @@ describe('BroadcastChannelService', () => {
 
 		describe('closeChannel', () => {
 			it('should return early if channelName is not provided', () => {
-				const consoleWarnSpy = spyOn(console, 'warn');
-
 				service.closeChannel('');
 
-				expect(consoleWarnSpy).toHaveBeenCalledWith('channelName is required');
+				expect(service['broadcastChannel']['nonExistentChannel']).toBeUndefined();
 			});
 
 			it('should return early if channel is not initialized', () => {
@@ -100,20 +94,23 @@ describe('BroadcastChannelService', () => {
 
 		describe('postMessage', () => {
 			it('should return early if channelName is not provided', () => {
-				const consoleWarnSpy = spyOn(console, 'warn');
+				const consoleSpy = spyOn(console, 'error');
 
 				service.postMessage('', 'message');
 
-				expect(consoleWarnSpy).toHaveBeenCalledWith('channelName is required');
+				expect(consoleSpy).toHaveBeenCalledWith(
+					'NgxUtils: There was an attempt to post a message to a channel without providing a name or the selected channel does not exist. The included message was:',
+					'message'
+				);
 			});
 
 			it('should return early if channel is not initialized', () => {
-				const consoleWarnSpy = spyOn(console, 'warn');
+				const consoleSpy = spyOn(console, 'error');
 
 				service.postMessage('nonExistentChannel', 'message');
 
-				expect(consoleWarnSpy).toHaveBeenCalledWith(
-					'BroadcastChannel not initialized, message not sent',
+				expect(consoleSpy).toHaveBeenCalledWith(
+					'NgxUtils: There was an attempt to post a message to a channel without providing a name or the selected channel does not exist. The included message was:',
 					'message'
 				);
 			});
@@ -130,13 +127,30 @@ describe('BroadcastChannelService', () => {
 			});
 		});
 
-		describe('selectChannel', () => {
+		describe('selectChannelMessages', () => {
 			it('should return early if channelName is not provided', (done) => {
-				const consoleWarnSpy = spyOn(console, 'warn');
+				const consoleSpy = spyOn(console, 'error');
 				subscriptions.push(
-					service.selectChannel('').subscribe({
+					service.selectChannelMessages('').subscribe({
 						complete: () => {
-							expect(consoleWarnSpy).toHaveBeenCalledWith('channelName is required');
+							expect(consoleSpy).toHaveBeenCalledWith(
+								"NgxUtils: There was an attempt to select a BroadcastChannel's messages without providing a name or the selected channel does not exist."
+							);
+
+							done();
+						},
+					})
+				);
+			});
+
+			it('should return early if the channel does not exist', (done) => {
+				const consoleSpy = spyOn(console, 'error');
+				subscriptions.push(
+					service.selectChannelMessages('testChannel').subscribe({
+						complete: () => {
+							expect(consoleSpy).toHaveBeenCalledWith(
+								"NgxUtils: There was an attempt to select a BroadcastChannel's messages without providing a name or the selected channel does not exist."
+							);
 
 							done();
 						},
@@ -148,7 +162,53 @@ describe('BroadcastChannelService', () => {
 				service.initChannel('testChannel');
 
 				subscriptions.push(
-					service.selectChannel('testChannel').subscribe((event) => {
+					service.selectChannelMessages('testChannel').subscribe((event) => {
+						expect(event.data).toBe('message');
+
+						done();
+					})
+				);
+
+				service.postMessage('testChannel', 'message');
+			});
+		});
+
+		describe('selectChannelMessageErrors', () => {
+			it('should return early if channelName is not provided', (done) => {
+				const consoleSpy = spyOn(console, 'error');
+				subscriptions.push(
+					service.selectChannelMessageErrors('').subscribe({
+						complete: () => {
+							expect(consoleSpy).toHaveBeenCalledWith(
+								"NgxUtils: There was an attempt to select a BroadcastChannel's message errors without providing a name or the selected channel does not exist."
+							);
+
+							done();
+						},
+					})
+				);
+			});
+
+			it('should return early if the channel does not exist', (done) => {
+				const consoleSpy = spyOn(console, 'error');
+				subscriptions.push(
+					service.selectChannelMessageErrors('testChannel').subscribe({
+						complete: () => {
+							expect(consoleSpy).toHaveBeenCalledWith(
+								"NgxUtils: There was an attempt to select a BroadcastChannel's message errors without providing a name or the selected channel does not exist."
+							);
+
+							done();
+						},
+					})
+				);
+			});
+
+			xit('should select the broadcast channel and return an observable of its message event', (done) => {
+				service.initChannel('testChannel');
+
+				subscriptions.push(
+					service.selectChannelMessageErrors('testChannel').subscribe((event) => {
 						expect(event.data).toBe('message');
 
 						done();
@@ -161,14 +221,13 @@ describe('BroadcastChannelService', () => {
 	});
 
 	describe('not in browser', () => {
-		let service: BroadcastChannelService;
+		let service: NgxBroadcastChannelService;
+
+		const windowService = windowServiceMock(undefined);
+		windowService.isBrowser = () => false;
 
 		beforeEach(() => {
-			TestBed.configureTestingModule({
-				providers: [BroadcastChannelService, { provide: PLATFORM_ID, useValue: 'server' }],
-			});
-
-			service = TestBed.inject(BroadcastChannelService);
+			service = new NgxBroadcastChannelService(windowService as any);
 		});
 
 		describe('initChannel', () => {

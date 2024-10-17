@@ -8,6 +8,8 @@
 		"utils",
 		"storage",
 		"storage service",
+    "broadcast channel",
+    "bradcast channel service",
 		"consent",
 		"join",
 		"iban",
