@@ -1,34 +1,34 @@
 {
 	"name": "@studiohyperdrive/ngx-layout",
-	"version": "18.3.0",
-  "description": "A lightweight customizable approach for common and complex layouts in Angular.",
-  "keywords": [
-    "angular",
-    "angular2",
-    "layout",
-    "loading",
-    "error",
-    "dynamic dashboard",
-    "dynamic layout",
-    "visual",
-    "accordion",
-    "wcag",
-    "aria",
-    "display-content",
-    "loading",
-    "error"
-  ],
-  "homepage": "https://github.com/studiohyperdrive/ngx-tools/tree/master/libs/layout",
-  "license": "MIT",
-  "author": {
-    "name": "Studio Hyperdrive",
-    "url": "https://studiohyperdrive.be/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/studiohyperdrive/ngx-tools",
-    "directory": "libs/layout/src"
-  },
+	"version": "18.3.1",
+	"description": "A lightweight customizable approach for common and complex layouts in Angular.",
+	"keywords": [
+		"angular",
+		"angular2",
+		"layout",
+		"loading",
+		"error",
+		"dynamic dashboard",
+		"dynamic layout",
+		"visual",
+		"accordion",
+		"wcag",
+		"aria",
+		"display-content",
+		"loading",
+		"error"
+	],
+	"homepage": "https://github.com/studiohyperdrive/ngx-tools/tree/master/libs/layout",
+	"license": "MIT",
+	"author": {
+		"name": "Studio Hyperdrive",
+		"url": "https://studiohyperdrive.be/"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/studiohyperdrive/ngx-tools",
+		"directory": "libs/layout/src"
+	},
 	"peerDependencies": {
 		"@angular/common": "^18.0.2",
 		"@angular/core": "^18.0.2",
