@@ -13,7 +13,10 @@
     "visual",
     "accordion",
     "wcag",
-    "aria"
+    "aria",
+    "display-content",
+    "loading",
+    "error"
   ],
   "homepage": "https://github.com/studiohyperdrive/ngx-tools/tree/master/libs/layout",
   "license": "MIT",

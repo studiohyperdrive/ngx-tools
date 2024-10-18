@@ -311,6 +311,20 @@ Sometimes, we do not wish to use the default component at all, and want to provi
 </div>
 ```
 
+#### Accessibility 
+
+In order to provide a WCAG/ARIA compliant implementation, the `*displayContent` directive automatically sets the `aria-live` and `aria-busy` labels when needed.
+
+By default, the `aria-live` label gets set to `polite`. You can overwrite this setting using the `ariaLive` property in the override configuration.
+
+```html
+<div *displayContent="{loading: true}; ariaLive:'assertive' ">
+    Hello world!
+</div>
+```
+
+If multiple items in a parent have this directive or if the parent already has an `aria-live` label set, the label with the highest importance gets used. The ranking is `assertive`, `polite` and `off` respectively.
+
 ### Services
 
 #### NgxOnlineService

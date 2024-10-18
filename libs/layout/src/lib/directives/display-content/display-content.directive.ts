@@ -2,6 +2,7 @@ import {
 	AfterViewInit,
 	ChangeDetectorRef,
 	Directive,
+	ElementRef,
 	Inject,
 	Input,
 	OnDestroy,
@@ -11,6 +12,7 @@ import {
 } from '@angular/core';
 import { Subject, distinctUntilChanged, takeUntil, tap } from 'rxjs';
 import {
+	NgxDisplayContentAriaLive,
 	NgxDisplayContentConditions,
 	NgxDisplayContentConfiguration,
 	NgxDisplayContentOverrideConfiguration,
@@ -72,7 +74,15 @@ export class NgxDisplayContentDirective implements AfterViewInit, OnDestroy {
 		this.updateViewSubject.next();
 	}
 
+	/**
+	 * The aria-live label we wish to provide to the parent element. By default, this is 'polite'.
+	 *
+	 * https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions
+	 */
+	@Input() displayContentAriaLive: NgxDisplayContentAriaLive = 'polite';
+
 	constructor(
+		private readonly elementRef: ElementRef,
 		private readonly templateRef: TemplateRef<any>,
 		private readonly cdRef: ChangeDetectorRef,
 		private readonly viewContainer: ViewContainerRef,
@@ -99,6 +109,9 @@ export class NgxDisplayContentDirective implements AfterViewInit, OnDestroy {
 	}
 
 	public ngAfterViewInit(): void {
+		// Iben: Set the aria-live and aria-busy tag of the parent
+		this.setAriaLiveTag(this.displayContentAriaLive);
+
 		// Iben: Listen to whenever we need to update the view and act accordingly
 		this.updateViewSubject
 			.asObservable()
@@ -106,6 +119,9 @@ export class NgxDisplayContentDirective implements AfterViewInit, OnDestroy {
 				tap(() => {
 					// Iben: Clear the current view container
 					this.viewContainer.clear();
+
+					// Iben: Update the busy tag
+					this.setAriaBusyTag(this.conditions.loading);
 
 					// Iben: If we're offline, we render the offline component or template
 					if (this.conditions.offline) {
@@ -137,6 +153,9 @@ export class NgxDisplayContentDirective implements AfterViewInit, OnDestroy {
 				takeUntil(this.onDestroySubject.asObservable())
 			)
 			.subscribe();
+
+		// Iben: Run the initial content check
+		this.updateViewSubject.next();
 	}
 
 	public ngOnDestroy(): void {
@@ -202,5 +221,53 @@ export class NgxDisplayContentDirective implements AfterViewInit, OnDestroy {
 				...conditions,
 			};
 		}
+	}
+
+	/**
+	 * Sets the aria-live tag of the item
+	 * @param  value - The value we wish to set
+	 */
+	private setAriaLiveTag(value: 'polite' | 'assertive' | 'off'): void {
+		// Iben: Get the parent element and early exit if it isn't found
+		const parentElement: HTMLElement = this.elementRef.nativeElement.parentElement;
+
+		if (!parentElement) {
+			// Iben:
+			console.error(
+				'NgxLayout: No parent element was found for NgxDisplayContentDirective. Because of that, the correct aria-live label could not be set.'
+			);
+
+			return;
+		}
+
+		// Iben: If the value is assertive then we always set it, as it has the highest priority
+		if (value === 'assertive') {
+			parentElement.setAttribute('aria-live', value);
+
+			return;
+		}
+
+		// Iben: Fetch the current aria-live label. If none were found, set it automatically
+		const currentValue = parentElement.getAttribute('aria-live');
+
+		if (!currentValue) {
+			parentElement.setAttribute('aria-live', value);
+		}
+
+		// Iben: If the current value is assertive or if the values are the same, we early exit
+		if (currentValue === 'assertive' || currentValue === value) {
+			return;
+		}
+
+		// Iben: Set the value
+		parentElement.setAttribute('aria-live', value);
+	}
+
+	/**
+	 * Sets the aria-busy tag of the item
+	 * @param  isLoading - The loading state of the item
+	 */
+	private setAriaBusyTag(isLoading: boolean): void {
+		this.elementRef.nativeElement.parentElement?.setAttribute('aria-busy', `${isLoading}`);
 	}
 }
