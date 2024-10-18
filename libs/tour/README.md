@@ -164,6 +164,8 @@ The `NgxTourStepComponent` presents us with 7 Inputs and one Output we need to h
 
 By default, the two most important Inputs are `title` and `content`, which correspond with the two data properties we passed in the step. Additionally, the amount of steps in the tour and the current index of the step can be visualized using `amountOfSteps` and `currentIndex`. To maximize customisability, we can also pass a `data` property to the component. This data can be anything, and can be used to enrich a step.
 
+For accessibility reasons it is important that there is an element in the tour-step that has the tag `#stepTitle`. By doing so, the package will automatically set the correct `aria-labbeledby` properties.
+
 The `position` and `stepClass` inputs are used to automatically set classes to the tour step, but can still be used freely. By default, the tour step component always gets the `ngx-tour-step` class, depending on its position it will also have a corresponding `ngx-tour-step-position-left|right|below|above` class. The step class will be set automatically as well.
 
 In order to navigate through the tour and close it when needed, the component has an Output called `handleInteraction` that takes three possible states, being `next`, `back` and `close`. Each of these interactions will continue the tour, go back in the tour or close the tour respectively.
