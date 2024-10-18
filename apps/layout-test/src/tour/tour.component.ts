@@ -7,7 +7,9 @@ import { NgxTourStepComponent } from '@ngx/tour';
 	standalone: true,
 	styleUrl: './tour.component.scss',
 	template: `
-		{{ title }}
+		<p #stepTitle>
+			{{ title }}
+		</p>
 		{{ content }}
 		@if(currentStep < amountOfSteps -1) {
 		<button (click)="handleInteraction.emit('next')">Next</button>

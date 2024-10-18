@@ -535,6 +535,7 @@ export class NgxTourService implements OnDestroy {
 		component.amountOfSteps = this.amountOfSteps;
 		component.position = item ? currentStep.position || 'below' : undefined;
 		component.stepClass = currentStep.stepClass;
+		component.elementId = item?.elementId;
 
 		// Iben: Highlight the current html item as active if one is provided
 		if (item) {

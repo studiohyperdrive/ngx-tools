@@ -12,7 +12,10 @@
 		"help tour",
 		"joyride",
 		"guided tour",
-		"walkthrough"
+		"walkthrough",
+    "wcag",
+    "wai aria",
+    "accessibility"
 	],
 	"homepage": "https://github.com/studiohyperdrive/ngx-tools/tree/master/libs/tour",
 	"license": "MIT",
@@ -28,7 +31,8 @@
 	"peerDependencies": {
 		"@angular/common": "^18.0.2",
 		"@angular/core": "^18.0.2",
-		"@angular/cdk": "^18.0.2"
+		"@angular/cdk": "^18.0.2",
+    "angular2-uuid": "^1.1.1"
 	},
 	"sideEffects": false
 }
