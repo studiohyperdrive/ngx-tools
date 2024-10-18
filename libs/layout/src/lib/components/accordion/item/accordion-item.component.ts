@@ -173,7 +173,7 @@ export class NgxAccordionItemComponent implements OnInit, AfterViewInit, OnDestr
 
 		// Iben: Listen to the open state of details and update the internal one
 		this.renderer.listen(this.detailsElement.nativeElement, 'toggle', (event: ToggleEvent) => {
-			this.isOpen = event.newState === 'open';
+			this.updateAccordionItemState(event.newState === 'open');
 		});
 	}
 
