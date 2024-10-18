@@ -2,6 +2,9 @@ import { TemplateRef, Type } from '@angular/core';
 import { NgxDisplayContentComponent } from '../abstracts';
 
 export type NgxDisplayContentStatus = 'loading' | 'error' | 'offline';
+
+export type NgxDisplayContentAriaLive = 'polite' | 'assertive' | 'off';
+
 type NgxDisplayContentRecord<DataType> = Partial<Record<NgxDisplayContentStatus, DataType>>;
 
 export type NgxDisplayContentConditions = NgxDisplayContentRecord<boolean>;
