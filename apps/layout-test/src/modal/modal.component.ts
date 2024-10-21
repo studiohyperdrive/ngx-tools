@@ -4,7 +4,7 @@ import { NgxModalAbstractComponent } from '@ngx/inform';
 @Component({
 	selector: 'test-modal',
 	template: `
-		Hello world!
+		<span id="test"> Hello world! </span>
 		<button (click)="action.emit('Test')">Hello there!</button>
 		<button (click)="close.emit()">Close</button>
 	`,

@@ -53,9 +53,9 @@ export class AppComponent {
 		this.modalService
 			.open({
 				component: ModalComponent,
-				label: 'Modal',
 				role: 'dialog',
 				panelClass: 'modal-panel',
+				labelledById: 'test',
 			})
 			.pipe(
 				tap((action) => {
