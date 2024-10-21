@@ -204,6 +204,8 @@ export class NgxModalService {
 
 		// Iben: Set the data of the modal
 		modal.data = this.getValue(configuration?.data, options.data, undefined);
+		modal.ariaDescribedBy = options.describedById;
+		modal.ariaLabelledBy = options.labelledById;
 
 		return modal;
 	}

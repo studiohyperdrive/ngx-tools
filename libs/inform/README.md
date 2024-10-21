@@ -133,7 +133,7 @@ On top of that, by passing a `modals` record, we can define a set preset modals 
 
 The `NgxModalService` allows for two ways of opening a modal. Either by opening a predefined modal we set in the configuration, or a custom modal by passing a new modal component.
 
-To make the modals ARIA compliant either a `label` or a `labelledById` must be provided. If the role of a modal was set to `alertdialog`, the `describedById` property is also required.
+To make the modals ARIA compliant either a `label` or a `labelledById` must be provided. If the role of a modal was set to `alertdialog`, the `describedById` property is also required. If no element with the provided id was found in the modal, the `ngx-inform` package will throw an error.
 
 When opening a modal we can overwrite all the globally and modal-specific configuration using the same properties as mentioned earlier. On top of that, we can set several other properties. These properties are:
 
