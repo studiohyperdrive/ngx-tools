@@ -7,6 +7,8 @@ import {
 	Input,
 	OnDestroy,
 } from '@angular/core';
+import { UUID } from 'angular2-uuid';
+
 import { NgxTourService } from '../../services';
 
 /**
@@ -46,9 +48,21 @@ export class NgxTourItemDirective implements AfterViewInit, OnDestroy {
 		this.cdRef.detectChanges();
 	}
 
+	/**
+	 * Returns the id of the element. Uses for the `aria-details` on the tour-item component
+	 */
+	public get elementId(): string {
+		return this.elementRef.nativeElement.getAttribute('id');
+	}
+
 	public ngAfterViewInit(): void {
 		// Iben: Register the element when rendered
 		this.tourService.registerElement(this);
+
+		// Iben: Check if the element has an id, if not, give it a new id for accessibility
+		if (!this.elementRef.nativeElement.getAttribute('id')) {
+			this.elementRef.nativeElement.setAttribute('id', UUID.UUID());
+		}
 	}
 
 	public ngOnDestroy(): void {
