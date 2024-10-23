@@ -1,3 +1,4 @@
+import { NgDocRootComponent, NgDocNavbarComponent, NgDocSidebarComponent } from "@ng-doc/app";
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
@@ -14,7 +15,7 @@ import { NgxStorageService } from '@ngx/utils';
 	selector: 'app-root',
 	templateUrl: './app.component.html',
 	styleUrl: './app.component.scss',
-	imports: [CommonModule, NgxHasCookieDirective],
+	imports: [CommonModule, NgxHasCookieDirective, NgDocRootComponent, NgDocNavbarComponent, NgDocSidebarComponent],
 	providers: [
 		{
 			provide: NgxCookiesFallbackComponentToken,

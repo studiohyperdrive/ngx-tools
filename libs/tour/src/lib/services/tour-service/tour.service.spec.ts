@@ -13,7 +13,7 @@ xdescribe('NgxTourService Browser', () => {
 
 	beforeEach(() => {
 		service = new NgxTourService(
-			OverlayMock(new MockTourStepComponent()),
+			OverlayMock(new MockTourStepComponent(service)),
 			'browser',
 			MockTourStepComponent
 		);

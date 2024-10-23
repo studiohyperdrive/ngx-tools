@@ -7,7 +7,7 @@ describe('NgxTourService Server', () => {
 
 	beforeEach(() => {
 		service = new NgxTourService(
-			OverlayMock(new MockTourStepComponent()),
+			OverlayMock(new MockTourStepComponent(service)),
 			'server',
 			MockTourStepComponent
 		);

@@ -55,3 +55,10 @@ Thumbs.db
 .nx/cache
 .nx/workspace-data
 .angular
+
+
+# NgDoc files
+/ng-doc
+
+# NgDoc files
+/ng-doc
