@@ -1,0 +1,150 @@
+{
+	"name": "docs",
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"projectType": "application",
+	"prefix": "app",
+	"sourceRoot": "apps/docs/src",
+	"tags": [],
+	"targets": {
+		"build": {
+			"executor": "@ng-doc/builder:application",
+			"outputs": ["{options.outputPath}"],
+			"options": {
+				"outputPath": "dist/apps/docs/browser",
+				"index": "apps/docs/src/index.html",
+				"main": "apps/docs/src/main.ts",
+				"polyfills": ["zone.js"],
+				"tsConfig": "apps/docs/tsconfig.app.json",
+				"inlineStyleLanguage": "scss",
+				"assets": [
+					{
+						"glob": "**/*",
+						"input": "node_modules/@ng-doc/app/assets",
+						"output": "assets/ng-doc/app"
+					},
+					{
+						"glob": "**/*",
+						"input": "node_modules/@ng-doc/ui-kit/assets",
+						"output": "assets/ng-doc/ui-kit"
+					},
+					{
+						"glob": "**/*",
+						"input": "ng-doc/docs/assets",
+						"output": "assets/ng-doc"
+					},
+					{
+						"glob": "**/*",
+						"input": "apps/docs/public"
+					}
+				],
+				"styles": [
+					"node_modules/@ng-doc/app/styles/global.css",
+					"apps/docs/src/styles.scss"
+				],
+				"scripts": [],
+				"allowedCommonJsDependencies": ["@ng-doc/core"]
+			},
+			"configurations": {
+				"production": {
+					"budgets": [
+						{
+							"type": "initial",
+							"maximumWarning": "500kb",
+							"maximumError": "1mb"
+						},
+						{
+							"type": "anyComponentStyle",
+							"maximumWarning": "2kb",
+							"maximumError": "4kb"
+						}
+					],
+					"outputHashing": "all"
+				},
+				"development": {
+					"buildOptimizer": false,
+					"optimization": false,
+					"vendorChunk": true,
+					"extractLicenses": false,
+					"sourceMap": true,
+					"namedChunks": true
+				}
+			},
+			"defaultConfiguration": "production"
+		},
+		"serve": {
+			"executor": "@ng-doc/builder:dev-server",
+			"configurations": {
+				"production": {
+					"buildTarget": "docs:build:production"
+				},
+				"development": {
+					"buildTarget": "docs:build:development"
+				}
+			},
+			"defaultConfiguration": "development"
+		},
+		"extract-i18n": {
+			"executor": "@angular-devkit/build-angular:extract-i18n",
+			"options": {
+				"buildTarget": "docs:build"
+			}
+		},
+		"lint": {
+			"executor": "@nx/eslint:lint"
+		},
+		"server": {
+			"dependsOn": ["build"],
+			"executor": "@angular-devkit/build-angular:server",
+			"options": {
+				"outputPath": "dist/apps/docs/server",
+				"main": "apps/docs/server.ts",
+				"tsConfig": "apps/docs/tsconfig.server.json",
+				"inlineStyleLanguage": "scss"
+			},
+			"configurations": {
+				"production": {
+					"outputHashing": "media"
+				},
+				"development": {
+					"buildOptimizer": false,
+					"optimization": false,
+					"sourceMap": true,
+					"extractLicenses": false,
+					"vendorChunk": true
+				}
+			},
+			"defaultConfiguration": "production"
+		},
+		"serve-ssr": {
+			"executor": "@angular-devkit/build-angular:ssr-dev-server",
+			"configurations": {
+				"development": {
+					"browserTarget": "docs:build:development",
+					"serverTarget": "docs:server:development"
+				},
+				"production": {
+					"browserTarget": "docs:build:production",
+					"serverTarget": "docs:server:production"
+				}
+			},
+			"defaultConfiguration": "development"
+		},
+		"prerender": {
+			"executor": "@angular-devkit/build-angular:prerender",
+			"options": {
+				"routes": ["/"]
+			},
+			"configurations": {
+				"development": {
+					"browserTarget": "docs:build:development",
+					"serverTarget": "docs:server:development"
+				},
+				"production": {
+					"browserTarget": "docs:build:production",
+					"serverTarget": "docs:server:production"
+				}
+			},
+			"defaultConfiguration": "production"
+		}
+	}
+}

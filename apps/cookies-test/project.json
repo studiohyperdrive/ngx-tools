@@ -7,7 +7,7 @@
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
+      "executor": "@ng-doc/builder:application",
       "outputs": [
         "{options.outputPath}"
       ],
@@ -21,14 +21,33 @@
         "tsConfig": "apps/cookies-test/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
+          {
+            "glob": "**/*",
+            "input": "node_modules/@ng-doc/app/assets",
+            "output": "assets/ng-doc/app"
+          },
+          {
+            "glob": "**/*",
+            "input": "node_modules/@ng-doc/ui-kit/assets",
+            "output": "assets/ng-doc/ui-kit"
+          },
+          {
+            "glob": "**/*",
+            "input": "ng-doc/cookies-test/assets",
+            "output": "assets/ng-doc"
+          },
           "apps/cookies-test/src/favicon.ico",
           "apps/cookies-test/src/assets"
         ],
         "styles": [
+          "node_modules/@ng-doc/app/styles/global.css",
           "apps/cookies-test/src/styles.scss",
           "node_modules/vanilla-cookieconsent/dist/cookieconsent.css"
         ],
-        "scripts": []
+        "scripts": [],
+        "allowedCommonJsDependencies": [
+          "@ng-doc/core"
+        ]
       },
       "configurations": {
         "production": {
@@ -58,7 +77,7 @@
       "defaultConfiguration": "production"
     },
     "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
+      "executor": "@ng-doc/builder:dev-server",
       "configurations": {
         "production": {
           "buildTarget": "cookies-test:build:production"
