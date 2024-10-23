@@ -9,7 +9,8 @@ import { TourItemComponent } from '../tour/tour.component';
 import { routes } from '../routes';
 import { TooltipComponent } from '../tooltip/tooltip.component';
 import { ConfirmModalComponent } from '../modal/confirm.component';
-import { provideNgxDisplayContentConfiguration } from '@ngx/layout';
+import { DragAndDropService } from '../services/drag-and-drop.service';
+import { provideNgxDisplayContentConfiguration, provideNgxDragAndDropService } from '@ngx/layout';
 import { provideNgxTourConfiguration } from '@ngx/tour';
 import { provideNgxModalConfiguration, provideNgxTooltipConfiguration } from '@ngx/inform';
 
@@ -37,5 +38,6 @@ export const appConfig: ApplicationConfig = {
 			panelClass: 'modal-panelelelelele',
 		}),
 		provideRouter(routes),
+		provideNgxDragAndDropService(DragAndDropService),
 	],
 };

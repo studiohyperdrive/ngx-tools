@@ -19,6 +19,11 @@ export class NgxConfigurableLayoutItemComponent {
 	@Input({ required: true }) public key: string;
 
 	/**
+	 * An optional label for the layout item used for WCAG purposes.
+	 */
+	@Input() public label: string;
+
+	/**
 	 * The template reference of the;
 	 */
 	@ViewChild('contentTmpl', { static: false }) public template: TemplateRef<any>;

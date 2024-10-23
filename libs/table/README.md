@@ -265,7 +265,7 @@ Optionally, you can provide an array of `actions` in the same vain you can add `
 </ngx-table>
 ```
 
-As mentioned earlier, the `columns` input defines the order of the columns by using the order of the provided strings. These columns can be changed on the fly, allowing users to reorder the columns by hand or showing/hiding columns in certain specific situations. A built-in solution to allow drag-and-drop column sorting is not yet provided, but will be in the future.
+As mentioned earlier, the `columns` input defines the order of the columns by using the order of the provided strings. These columns can be changed on the fly, allowing users to reorder the columns by hand or showing/hiding columns in certain specific situations. A built-in solution to allow drag and drop column sorting is not yet provided, but will be in the future.
 
 ### Header
 

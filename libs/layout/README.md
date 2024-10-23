@@ -23,11 +23,42 @@ For more information about the build process, authors, contributions and issues,
 
 `ngx-layout` is a package to help facilitate common layout use-cases.
 
-Currently the package provides a `configurable layout` component which can be used to render components in a grid based on provided templates. This approach is ideal for use-cases such as a custom configurable dashboard.
-
+Currently the package provides a `configurable layout` component which can be used to render components in a grid based on provided templates. This approach is ideal for use-cases such as a custom configurable dashboard. We also provide a fully accessible `accordion` component and an accessible `displayContent` approach to handle loading, error and offline flows.
 
 
 ## Implementation
+
+### Accessibility
+
+With all the packages of Studio Hyperdrive we aim to provide components and implementations that are WCAG/WAI-ARIA compliant. This means that rather than making this optional to the implementation, we enforce it throughout the packages. 
+
+Where custom input is needed to make the implementation accessible, a `Accessibility` chapter can be found for each implementation.
+
+#### Drag and drop
+Drag and drop is a common and well known pattern for end users, but often ends up being inaccessible for users that prefer or need to use a keyboard for interacting with the interface. On top of that, for visually impaired users, it becomes difficult to understand how to use this pattern.
+
+Within this package we use `Angular CDK Drag and Drop`, but further enhance to make it accessible for keyboard users and users using screen readers. We already provide several measures for this functionality, but further input from the developer is required.
+
+##### Concept
+
+To make the drag and drop pattern accessible for keyboard users, we allow the items in the drag and drop container to be moved using keyboard interactions. By tabbing to the item and pressing `Enter` or `Space`, we can select an element and then move it using the `Arrow` keys. Once the item is in the correct place, we can deselect the element by pressing the `Enter` or `Space` key again.
+
+For users with assistive technologies, such as screenreaders, we provide a a live region that will announce each change in the drag and drop container. This will announce select events, deselect events and move events. `ngx-layout` provides a set of default messages for a select amount of languages, but offers the ability to overwrite these with your own messages when needed.
+
+##### Implementation
+
+In order to make the drag and drop accessible for every user, you need to provide an implementation of the `NgxAccessibleDragAndDropAbstractService`. This service requires you to provide the current language of your application by implementing the `currentLanguage` method. This can be either a string or an Observable string.
+
+If you wish to overwrite the default message record with your own, you can do that by providing the `customMessages` property. This is however optional, if not provided, the default language options will be provided.
+
+You can provide your service in the following manner:
+
+```ts
+providers: [
+    provideNgxDragAndDropService(DragAndDropService),
+]
+```
+##### Setup
 
 ### Components
 
@@ -94,6 +125,18 @@ The `configurable layout` provides the ability to render components in a grid de
 By using content projection, we render our components inside of a `ngx-configurable-layout-item`. Each item requires a `key` as an input, which will be used to match the provided component with the two dimensional array we provide to the `ngx-configurable-layout` component.
 
 This means that the order of rendering is now no longer depended on how you provide the components in the template, but by the two dimensional array provided to the `ngx-configurable-layout` component. This significantly streamlines the process and allows you to easily refactor existing flows. In the chapters below we'll explain how to provide the two dimensional array to the component.
+
+In order to provide an accessible experience for end-users, the earlier mentioned `NgxDragAndDropService` needs to be provided.
+
+##### Accessibility
+
+Currently, default texts have been provided for the following languages: Dutch (`nl`), English (`en`), French (`fr`), German (`de`), Spanish (`es`),Portuguese (`pt`), Turkish (`tr`), and Kurdish (`ku`).
+
+In order to further customize the messages for end users with assistive technologies, we can pass several configuration items to the `ngx-configurable-layout` and `ngx-configurable-layout-item`.
+
+By passing an `itemLabel` and a `rowLabel` we can define specific names for the rows and the items within the rows of the `ngx-configurable-layout`. By default, these are `item` and `list`; but you can change these to your own preference.
+
+The `ngx-configurable-layout-item` also has an optional `label` property which can be used to overwrite both the default and the layout defined label for the item.
 
 ##### Static
 
