@@ -15,13 +15,9 @@
 		"target": "ES2022",
 		"module": "es2020",
 		"lib": ["es2022", "dom"],
-    "paths": {
-      "@ng-doc/generated": [
-        "./ng-doc/docs/index.ts"
-      ],
-      "@ng-doc/generated/*": [
-        "./ng-doc/docs/*"
-      ],
+		"paths": {
+			"@ng-doc/generated": ["./ng-doc/docs/index.ts"],
+			"@ng-doc/generated/*": ["./ng-doc/docs/*"],
 			"@ngx/cookies": ["libs/cookies/src/index.ts"],
 			"@ngx/forms": ["libs/forms/src/public-api.ts"],
 			"@ngx/i18n": ["libs/i18n/src/public-api.ts"],
