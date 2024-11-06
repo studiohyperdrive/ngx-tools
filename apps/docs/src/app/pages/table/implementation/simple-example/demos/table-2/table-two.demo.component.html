@@ -1,0 +1,23 @@
+<ngx-table
+	[data]="[
+		{ name: 'World', firstName: 'Hello', active: true },
+		{ name: 'Tools', firstName: 'NGX', active: false }
+	]"
+	[columns]="['name', 'firstName', 'active']"
+>
+	<ngx-table-cell column="name">
+		<ng-template #headerTmpl> Last name </ng-template>
+	</ngx-table-cell>
+
+	<ngx-table-cell column="firstName">
+		<ng-template #headerTmpl> First name </ng-template>
+	</ngx-table-cell>
+
+	<ngx-table-cell column="active">
+		<ng-template #headerTmpl> </ng-template>
+
+		<ng-template #cellTmpl let-active>
+			{{ active ? 'Active' : 'Not active' }}
+		</ng-template>
+	</ngx-table-cell>
+</ngx-table>

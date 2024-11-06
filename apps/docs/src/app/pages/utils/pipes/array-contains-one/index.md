@@ -19,4 +19,4 @@ const array = [
 
 ## How to use
 
-{{ NgDocActions.demoPane("ArrayContainsOnePipeDemoComponent", {expanded: true}) }}
+{{ NgDocActions.demo("ArrayContainsOnePipeDemoComponent", {expanded: true}) }}
