@@ -1,0 +1,18 @@
+<ngx-table
+	[data]="[
+		{ name: 'World', firstName: 'Hello', active: true, id: '1' },
+		{ name: 'Tools', firstName: 'NGX', active: false, id: '2' }
+	]"
+	[actions]="['delete']"
+	[columns]="['name', 'firstName']"
+>
+	<ngx-table-cell column="delete">
+		<ng-template #headerTmpl>
+			<button (click)="deleteAll()">Delete all</button>
+		</ng-template>
+
+		<ng-template #cellTmpl let-row="row">
+			<button (click)="delete(row.id)">Delete user</button>
+		</ng-template>
+	</ngx-table-cell>
+</ngx-table>

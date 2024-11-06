@@ -2,4 +2,8 @@
 keyword: IsNotEmptyPipePage
 ---
 
-It's time to write some awesome docs!
+The IsNotEmptyPipe checks if a given argument is an object or array and if it is empty.
+
+## How to use
+
+    {{ NgDocActions.demo("IsNotEmptyPipeDemoComponent") }}
