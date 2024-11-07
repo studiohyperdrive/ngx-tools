@@ -1,7 +1,7 @@
-import {NgDocCategory} from '@ng-doc/core';
+import { NgDocCategory } from '@ng-doc/core';
 
 const FormsCategory: NgDocCategory = {
-	title: 'forms',
+	title: 'Forms',
 };
 
 export default FormsCategory;
