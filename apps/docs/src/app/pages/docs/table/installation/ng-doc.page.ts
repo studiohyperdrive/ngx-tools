@@ -1,5 +1,5 @@
 import { NgDocPage } from '@ng-doc/core';
-import TableCategory from '../../../categories/table/ng-doc.category';
+import TableCategory from '../../../../categories/table/ng-doc.category';
 
 const InstallationPage: NgDocPage = {
 	title: `Installation`,
