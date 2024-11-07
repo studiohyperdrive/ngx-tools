@@ -1,7 +1,7 @@
-import {NgDocCategory} from '@ng-doc/core';
+import { NgDocCategory } from '@ng-doc/core';
 
 const LayoutCategory: NgDocCategory = {
-	title: 'layout',
+	title: 'Layout',
 };
 
 export default LayoutCategory;
