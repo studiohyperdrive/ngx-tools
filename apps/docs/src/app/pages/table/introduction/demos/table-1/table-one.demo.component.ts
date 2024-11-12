@@ -17,7 +17,7 @@ export class TableOneDemoComponent {
 	public columns = ['name', 'firstName', 'active'];
 	public formControl: FormControl<number[]> = new FormControl();
 	public currentSorting: any = undefined;
-	public defaultData = [
+	public readonly defaultData = [
 		{ name: 'World', firstName: 'Hello', active: true, id: '1' },
 		{ name: 'Tools', firstName: 'NGX', active: false, id: '2' },
 	];
@@ -50,7 +50,7 @@ export class TableOneDemoComponent {
 		}
 	}
 
-	sort(sortEvent: NgxTableSortEvent) {
+	public sort(sortEvent: NgxTableSortEvent): void {
 		this.currentSorting = sortEvent;
 
 		if (sortEvent.column === 'user') {

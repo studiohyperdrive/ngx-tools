@@ -10,6 +10,6 @@ import { CustomRadioButtonComponent } from 'apps/docs/src/app/shared/components'
 	templateUrl: './table-three.demo.component.html',
 })
 export class TableThreeDemoComponent {
-	control: FormControl<number[]> = new FormControl();
-	customControl: FormControl<number[]> = new FormControl();
+	public control: FormControl<number[]> = new FormControl();
+	public customControl: FormControl<number[]> = new FormControl();
 }

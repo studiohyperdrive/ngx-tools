@@ -1,5 +1,5 @@
 import { NgDocPage } from '@ng-doc/core';
-import DirectivesCategory from '../../../../categories/utils/sub-categories/directives/ng-doc.category';
+import { DirectivesCategory } from '../../../../categories';
 import { ClickFocusDemoComponent } from './demos';
 
 const FocusClickDirectivePage: NgDocPage = {

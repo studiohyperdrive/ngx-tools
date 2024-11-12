@@ -8,5 +8,5 @@ import { StripHtmlPipe } from '@ngx/utils';
 	templateUrl: 'strip-html.demo.component.html',
 })
 export class StripHtmlPipeDemoComponent {
-	value = '<h1>Hello, World!</h1>';
+	public value = '<h1>Hello, World!</h1>';
 }

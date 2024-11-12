@@ -8,5 +8,5 @@ import { HasOwnProperty } from '@ngx/utils';
 	templateUrl: 'has-own-property.demo.component.html',
 })
 export class HasOwnPropertyPipeDemoComponent {
-	sourceObject = { property: 'test' };
+	public sourceObject = { property: 'test' };
 }

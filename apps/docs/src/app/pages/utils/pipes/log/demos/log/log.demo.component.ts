@@ -8,5 +8,5 @@ import { LogPipe } from '@ngx/utils';
 	templateUrl: 'log.demo.component.html',
 })
 export class LogPipeDemoComponent {
-	value = 'Hello, World!';
+	public value = 'Hello, World!';
 }

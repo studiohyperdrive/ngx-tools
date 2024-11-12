@@ -9,15 +9,15 @@ import { NgxTable, NgxTableSortDirection, NgxTableSortEvent } from '@ngx/table';
 	templateUrl: './table-one.demo.component.html',
 })
 export class TableOneDemoComponent {
-	currentSorting: any = undefined;
-	sortableData = [
+	public currentSorting: any = undefined;
+	public sortableData = [
 		{ name: 'World', firstName: 'Hello', active: true },
 		{ name: 'Tools', firstName: 'NGX', active: false },
 	];
 
-	sort(sortEvent: NgxTableSortEvent) {
+	public sort(sortEvent: NgxTableSortEvent): void {
 		this.currentSorting = sortEvent;
-		console.log(sortEvent);
+
 		if (sortEvent.column === 'user') {
 			this.sortableData = [
 				...this.sortableData.sort((a, b) => {

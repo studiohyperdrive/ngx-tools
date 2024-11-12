@@ -10,6 +10,6 @@ import { CustomCheckboxComponent } from 'apps/docs/src/app/shared/components';
 	templateUrl: './table-two.demo.component.html',
 })
 export class TableTwoDemoComponent {
-	control: FormControl<number[]> = new FormControl();
-	customControl: FormControl<string[]> = new FormControl();
+	public control: FormControl<number[]> = new FormControl();
+	public customControl: FormControl<string[]> = new FormControl();
 }
