@@ -1,0 +1,23 @@
+<form [formGroup]="form">
+	<div>
+		<label for="name">
+			Name
+			<input type="text" formControlName="name" name="name" />
+		</label>
+	</div>
+
+	<div>
+		<label for="email">
+			Email
+			<input type="email" formControlName="email" name="email" />
+		</label>
+	</div>
+
+	<div *ngIf="form.get('email').errors">
+		<div *ngIf="form.get('email').errors.extendedEmail">Email is invalid</div>
+	</div>
+
+	<p>Form errors: {{ form.errors | json }}</p>
+
+	<button type="submit">Submit</button>
+</form>
