@@ -9,7 +9,7 @@ import { NgxValidators } from '@ngx/forms';
 	selector: 'at-least-one-required-validator-demo',
 	templateUrl: 'at-least-one-required.demo.component.html',
 })
-export class AtLeastOneRequiredValidatorDemoComponent implements OnInit {
+export class AtLeastOneRequiredValidatorDemoComponent {
 	public form = new FormGroup(
 		{
 			email: new FormControl(''),
@@ -17,7 +17,4 @@ export class AtLeastOneRequiredValidatorDemoComponent implements OnInit {
 		},
 		[NgxValidators.atLeastOneRequired()]
 	);
-	constructor() {}
-
-	ngOnInit() {}
 }

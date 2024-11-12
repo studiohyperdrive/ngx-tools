@@ -9,7 +9,7 @@ import { NgxValidators } from '@ngx/forms';
 	selector: 'compare-demo',
 	templateUrl: 'compare.demo.component.html',
 })
-export class CompareValidatorDemoComponent implements OnInit {
+export class CompareValidatorDemoComponent {
 	form = new FormGroup(
 		{
 			controlA: new FormControl<number | null>(null),
@@ -22,8 +22,4 @@ export class CompareValidatorDemoComponent implements OnInit {
 			) as ValidatorFn,
 		]
 	);
-
-	constructor() {}
-
-	ngOnInit() {}
 }

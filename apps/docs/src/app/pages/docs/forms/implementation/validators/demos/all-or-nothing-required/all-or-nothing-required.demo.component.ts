@@ -9,7 +9,7 @@ import { NgxValidators } from '@ngx/forms';
 	selector: 'all-or-nothing-required-validator-demo',
 	templateUrl: 'all-or-nothing-required.demo.component.html',
 })
-export class AllOrNothingRequiredValidatorDemoComponent implements OnInit {
+export class AllOrNothingRequiredValidatorDemoComponent {
 	public form = new FormGroup(
 		{
 			firstName: new FormControl<string>(''),
@@ -18,7 +18,4 @@ export class AllOrNothingRequiredValidatorDemoComponent implements OnInit {
 		},
 		[NgxValidators.allOrNothingRequired as ValidatorFn]
 	);
-	constructor() {}
-
-	ngOnInit() {}
 }
