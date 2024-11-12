@@ -8,9 +8,6 @@ import { ERoutes } from '../../shared/types';
 	selector: 'landing-page',
 	templateUrl: 'landing-page.component.html',
 })
-export class LandingPageComponent implements OnInit {
+export class LandingPageComponent {
 	public routes: typeof ERoutes = ERoutes;
-	constructor() {}
-
-	ngOnInit() {}
 }
