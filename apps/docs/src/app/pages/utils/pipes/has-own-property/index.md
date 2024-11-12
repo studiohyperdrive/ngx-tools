@@ -2,4 +2,9 @@
 keyword: HasOwnPropertyPage
 ---
 
-It's time to write some awesome docs!
+The HasOwnProperty checks whether the specified property exists within the given object.  
+It is a wrapper around Object.hasOwnProperty.
+
+## How to use
+
+{{ NgDocActions.demo("HasOwnPropertyPipeDemoComponent") }}

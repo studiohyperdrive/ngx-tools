@@ -1,0 +1,14 @@
+<ngx-table
+	[selectable]="true"
+	[selectableKey]="'id'"
+	[data]="[
+		{ name: 'World', firstName: 'Hello', active: true, id: '1' },
+		{ name: 'Tools', firstName: 'NGX', active: false, id: '2' }
+	]"
+	[columns]="['name', 'firstName']"
+	[formControl]="customControl"
+>
+	<ng-template #checkBoxTmpl let-control>
+		<custom-checkbox [formControl]="control" />
+	</ng-template>
+</ngx-table>

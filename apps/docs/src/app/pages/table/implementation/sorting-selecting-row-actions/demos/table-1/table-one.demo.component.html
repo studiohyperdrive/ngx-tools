@@ -1,0 +1,22 @@
+<ngx-table [data]="sortableData" [columns]="['active', 'user']" [currentSorting]="currentSorting">
+	<ngx-table-cell column="user" [sortable]="true" (sort)="sort($event)">
+		<ng-template #headerTmpl> User </ng-template>
+
+		<ng-template #cellTmpl let-row="row"> {{ row.firstName }} {{ row.name }} </ng-template>
+	</ngx-table-cell>
+
+	<ngx-table-cell column="active" [sortable]="true" (sort)="sort($event)">
+		<ng-template #headerTmpl> </ng-template>
+
+		<ng-template #cellTmpl let-active>
+			{{ active ? 'Active' : 'Not active' }}
+		</ng-template>
+	</ngx-table-cell>
+
+	<ng-template #sortTmpl let-direction>
+		<small>
+			<ng-container *ngIf="!direction">Sort</ng-container>
+			{{ direction | lowercase }}
+		</small>
+	</ng-template>
+</ngx-table>

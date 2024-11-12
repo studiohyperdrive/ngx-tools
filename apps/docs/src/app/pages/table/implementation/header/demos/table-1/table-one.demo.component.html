@@ -1,0 +1,11 @@
+<ngx-table
+	[data]="[
+		{ name: 'World', firstName: 'Hello', active: true },
+		{ name: 'Tools', firstName: 'NGX', active: false }
+	]"
+	[loading]="true"
+	[columns]="['name', 'firstName']"
+	[hideHeaderWhen]="['when-loading']"
+>
+	<ng-template #loadingTmpl> Loading users ... </ng-template>
+</ngx-table>

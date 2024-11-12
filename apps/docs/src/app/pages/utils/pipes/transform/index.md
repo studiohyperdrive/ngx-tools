@@ -2,4 +2,8 @@
 keyword: TransformPipePage
 ---
 
-It's time to write some awesome docs!
+The TransformPipe will transform a given value with the provided transform-function.
+
+## How to use
+
+    {{ NgDocActions.demo("TransformPipeDemoComponent") }}

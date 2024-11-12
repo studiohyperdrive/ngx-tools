@@ -13,4 +13,4 @@ For example
 
 ## How to use
 
-{{ NgDocActions.demoPane("BtwPipeDemoComponent") }}
+{{ NgDocActions.demo("BtwPipeDemoComponent") }}

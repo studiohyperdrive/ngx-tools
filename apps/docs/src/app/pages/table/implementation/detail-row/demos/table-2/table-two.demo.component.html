@@ -1,0 +1,15 @@
+<ngx-table
+	[data]="[
+		{ name: 'World', firstName: 'Hello', active: true },
+		{ name: 'Tools', firstName: 'NGX', active: false }
+	]"
+	[columns]="['name', 'firstName']"
+	[showOpenRowState]="true"
+>
+	<ng-template #detailRowTmpl let-user>
+		This user, {{ user.firstName }} {{ user.name }}, is
+		{{ user.active ? 'active' : 'not active' }}.
+	</ng-template>
+
+	<ng-template #openRowStateTmpl let-open> {{ open ? 'Close' : 'Open' }} </ng-template>
+</ngx-table>

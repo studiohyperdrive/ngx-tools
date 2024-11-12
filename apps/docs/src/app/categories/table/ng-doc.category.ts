@@ -1,7 +1,7 @@
-import {NgDocCategory} from '@ng-doc/core';
+import { NgDocCategory } from '@ng-doc/core';
 
 const TableCategory: NgDocCategory = {
-	title: 'table',
+	title: 'Table',
 };
 
 export default TableCategory;
