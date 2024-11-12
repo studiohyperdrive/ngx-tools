@@ -10,6 +10,7 @@ import { NgxValidators } from '@ngx/forms';
 	templateUrl: 'compare.demo.component.html',
 })
 export class CompareValidatorDemoComponent {
+	//TODO: Fix typescript error when not using 'as ValidatorFn'
 	form = new FormGroup(
 		{
 			controlA: new FormControl<number | null>(null),

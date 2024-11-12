@@ -10,6 +10,7 @@ import { NgxValidators } from '@ngx/forms';
 	templateUrl: 'all-or-nothing-required.demo.component.html',
 })
 export class AllOrNothingRequiredValidatorDemoComponent {
+	//TODO: Fix typescript error when not using 'as ValidatorFn'
 	public form = new FormGroup(
 		{
 			firstName: new FormControl<string>(''),
