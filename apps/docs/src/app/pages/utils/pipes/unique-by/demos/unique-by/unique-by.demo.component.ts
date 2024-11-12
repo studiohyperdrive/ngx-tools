@@ -8,7 +8,7 @@ import { UniqByPipe } from '@ngx/utils';
 	templateUrl: 'unique-by.demo.component.html',
 })
 export class UniqueByPipeDemoComponent {
-	array = [
+	public array = [
 		{ prop1: 'a', prop2: true },
 		{ prop1: 'a', prop2: false },
 		{ prop1: 'b', prop2: true },

@@ -8,7 +8,7 @@ import { MergeArraysPipe } from '@ngx/utils';
 	templateUrl: 'merge-arrays.demo.component.html',
 })
 export class MergeArraysPipeDemoComponent {
-	sourceArray = ['a', 'b', 'c'];
-	firstArray = ['d', 'e', 'f'];
-	secondArray = ['g', 'h', 'i'];
+	public sourceArray = ['a', 'b', 'c'];
+	public firstArray = ['d', 'e', 'f'];
+	public secondArray = ['g', 'h', 'i'];
 }

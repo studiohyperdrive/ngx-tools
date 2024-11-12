@@ -8,6 +8,6 @@ import { HasValuesPipe } from '@ngx/utils';
 	templateUrl: 'has-values.demo.component.html',
 })
 export class HasValuesPipeDemoComponent {
-	emptyObject = {};
-	object = { foo: 'bar' };
+	public emptyObject = {};
+	public object = { foo: 'bar' };
 }

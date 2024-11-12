@@ -8,5 +8,5 @@ import { JoinPipe } from '@ngx/utils';
 	templateUrl: 'join.demo.component.html',
 })
 export class JoinPipeDemoComponent {
-	array = ['a', 'b', 'c'];
+	public array = ['a', 'b', 'c'];
 }

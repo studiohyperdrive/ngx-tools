@@ -8,5 +8,5 @@ import { HighlightPipe } from '@ngx/utils';
 	templateUrl: 'highlight-custom.demo.component.html',
 })
 export class HighlightPipeCustomDemoComponent {
-	value = 'In this p there is a text to highlight.';
+	public value = 'In this p there is a text to highlight.';
 }
