@@ -1,5 +1,4 @@
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { enableProdMode } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, withInMemoryScrolling } from '@angular/router';
@@ -15,11 +14,6 @@ import {
 import { NG_DOC_ROUTING, provideNgDocContext } from '@ng-doc/generated';
 
 import { AppComponent } from './app/app.component';
-// import { environment } from './environments/environment';
-
-// if (environment.production) {
-//   enableProdMode();
-// }
 
 bootstrapApplication(AppComponent, {
 	providers: [
