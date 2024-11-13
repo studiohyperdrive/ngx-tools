@@ -8,7 +8,8 @@
 		[formControl]="formControl"
 		[loading]="loading"
 	>
-		<ng-container *ngIf="!isSimple">
+		@if(!isSimple) {
+		<ng-container>
 			<ngx-table-cell column="user" [sortable]="true" (sort)="sort($event)">
 				<ng-template #headerTmpl> User </ng-template>
 
@@ -27,11 +28,13 @@
 
 			<ng-template #sortTmpl let-direction>
 				<small>
-					<ng-container *ngIf="!direction">Sort</ng-container>
+					@if (!direction) { Sort }
+
 					{{ direction | lowercase }}
 				</small>
 			</ng-template>
 		</ng-container>
+		}
 
 		<ng-template #detailRowTmpl let-user>
 			This user, {{ user.firstName }} {{ user.name }}, is

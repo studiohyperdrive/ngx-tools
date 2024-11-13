@@ -13,10 +13,6 @@
 		</label>
 	</div>
 
-	<div *ngIf="form.get('email').errors">
-		<div *ngIf="form.get('email').errors.extendedEmail">Email is invalid</div>
-	</div>
-
 	<p>Form errors: {{ form.errors | json }}</p>
 
 	<button type="submit">Submit</button>
