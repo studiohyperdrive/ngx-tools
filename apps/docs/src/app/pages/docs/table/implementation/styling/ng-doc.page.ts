@@ -1,5 +1,5 @@
 import { NgDocPage } from '@ng-doc/core';
-import TableImplementationCategory from 'apps/docs/src/app/categories/table/sub-categories/implementation/ng-doc.category';
+import { TableImplementationCategory } from '../../../../../categories';
 
 const StylingPage: NgDocPage = {
 	title: `Styling`,

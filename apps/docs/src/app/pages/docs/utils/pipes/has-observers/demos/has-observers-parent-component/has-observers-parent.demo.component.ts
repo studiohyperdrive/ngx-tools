@@ -11,7 +11,7 @@ import { NgDocNotifyService } from '@ng-doc/ui-kit';
 export class HasObserversPipeDemoParentComponent {
 	constructor(private readonly notifyService: NgDocNotifyService) {}
 
-	doSomething(event: any) {
+	public doSomething(event: any): void {
 		this.notifyService.notify(event);
 	}
 }

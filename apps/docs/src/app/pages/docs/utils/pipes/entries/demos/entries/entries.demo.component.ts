@@ -8,7 +8,7 @@ import { EntriesPipe } from '@ngx/utils';
 	templateUrl: 'entries.demo.component.html',
 })
 export class EntriesPipeDemoComponent {
-	object = {
+	public object = {
 		message: 'Like and subscribe!',
 		url: 'youtube.com/@Iben',
 	};

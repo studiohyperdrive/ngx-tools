@@ -8,9 +8,9 @@ import { TransformPipe } from '@ngx/utils';
 	templateUrl: 'transform.demo.component.html',
 })
 export class TransformPipeDemoComponent {
-	value = 'Foo Bar';
+	public value = 'Foo Bar';
 
-	toUpperCase(text: string) {
+	public toUpperCase(text: string): string {
 		return text.toUpperCase();
 	}
 }

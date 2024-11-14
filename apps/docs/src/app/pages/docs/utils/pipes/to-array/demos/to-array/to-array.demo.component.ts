@@ -8,5 +8,5 @@ import { ToArrayPipe } from '@ngx/utils';
 	templateUrl: 'to-array.demo.component.html',
 })
 export class ToArrayPipeDemoComponent {
-	sourceValue = 'Foo Bar';
+	public sourceValue = 'Foo Bar';
 }

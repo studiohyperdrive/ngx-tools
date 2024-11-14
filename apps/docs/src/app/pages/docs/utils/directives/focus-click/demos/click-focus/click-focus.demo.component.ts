@@ -11,7 +11,7 @@ import { FocusClickDirective } from '@ngx/utils';
 export class ClickFocusDemoComponent {
 	constructor(private readonly notifyService: NgDocNotifyService) {}
 
-	doSomething() {
+	public doSomething(): void {
 		this.notifyService.notify('Done something');
 	}
 }
