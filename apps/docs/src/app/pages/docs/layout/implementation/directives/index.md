@@ -1,10 +1,10 @@
 ---
-keyword: NgxDisplayContentDirectivePage
+keyword: LayoutDirectivesPage
 ---
 
-NgxDisplayContentDirective
+# NgxDisplayContentDirective
 
-The `*displayContent` directive provides the ability to hide parts of the template based on a loading, error and/or offline status and optionally replace those by default components provided in the application.
+The `displayContent` directive provides the ability to hide parts of the template based on a loading, error and/or offline status and optionally replace those by default components provided in the application.
 
 ## Setup
 
@@ -44,7 +44,7 @@ providers: [
 
 ## Implementation
 
-Once the initial configuration is provided, we can use the `*displayContent` directive. This directive is a structural directive and requires an object with the status as an input. The directive has 3 potential statuses to listen to, being `offline`, `loading` and `error`. These statuses are checked in the earlier mentioned order.
+Once the initial configuration is provided, we can use the `displayContent` directive. This directive is a structural directive and requires an object with the status as an input. The directive has 3 potential statuses to listen to, being `offline`, `loading` and `error`. These statuses are checked in the earlier mentioned order.
 
 As an example, if the application is offline and we automatically listen to the online status, the offline fallback will be shown first; even if the loading status is currently set to true. Once the application is back online, then the loading fallback will be shown. Only then, if the loading status is false, will a potential error fallback be shown based on the error condition.
 
@@ -58,7 +58,7 @@ As an example, if the application is offline and we automatically listen to the 
 
 ## Override configuration
 
-In certain cases we wish to override the default components we've provided or we wish to provide extra information to the default components. We can use this by providing additional configuration to the `*displayContent` directive.
+In certain cases we wish to override the default components we've provided or we wish to provide extra information to the default components. We can use this by providing additional configuration to the `displayContent` directive.
 
 Each implementation of the `NgxDisplayContentComponent` comes with a any-typed data Input. We can pass this data to the component by providing this in the configuration object.
 
@@ -82,7 +82,7 @@ Sometimes, we do not wish to use the default component at all, and want to provi
 
 ## Accessibility
 
-In order to provide a WCAG/ARIA compliant implementation, the `*displayContent` directive automatically sets the `aria-live` and `aria-busy` labels when needed.
+In order to provide a WCAG/ARIA compliant implementation, the `displayContent` directive automatically sets the `aria-live` and `aria-busy` labels when needed.
 
 By default, the `aria-live` label gets set to `polite`. You can overwrite this setting using the `ariaLive` property in the override configuration.
 

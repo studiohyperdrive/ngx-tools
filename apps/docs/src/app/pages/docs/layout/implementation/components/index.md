@@ -14,27 +14,7 @@ We use content projection to pass the header and the content of each accordion i
 
 In the example below you can find a simple implementation of the accordion.
 
-```ts
-import { NgxAccordion } from '@ngx/layout';
-
-@Component({
-	...
-	standalone: true,
-	imports: [NgxAccordion],
-})
-```
-
-```html
-<ngx-accordion>
-	@for (item of testData; track $index) {
-	<ngx-accordion-item>
-		<ng-template #headerTmpl let-isOpen> {{item.title}} {{isOpen}} </ng-template>
-
-		<ng-template #contentTmpl> {{item.content}} </ng-template>
-	</ngx-accordion-item>
-	}
-</ngx-accordion>
-```
+{{ NgDocActions.demo("LayoutAccordionDemoComponent") }}
 
 ### Extra configuration
 
@@ -103,6 +83,8 @@ import { NgxConfigurableLayoutComponent, NgxConfigurableLayoutItemComponent } fr
 </ngx-configurable-layout>
 ```
 
+{{ NgDocActions.demo("LayoutConfigurableDemoComponent") }}
+
 ### Editable
 
 Unlike with the `static` layout, the `editable` layout allows the user to readjust on the spot by the end user. This means that the end user can toggle items and ,when enabled, reorder these items through drag and drop. A use-case that fits this approach is a fully configurable dashboard, where an end user can pick and choose which items they wish to see.
@@ -152,6 +134,8 @@ public readonly control: FormControl<NgxConfigurableLayoutGrid> = new FormContro
 	</ng-template>
 </ngx-configurable-layout>
 ```
+
+{{ NgDocActions.demo("LayoutEditableDemoComponent") }}
 
 ### Drag and drop
 
