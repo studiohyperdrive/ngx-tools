@@ -8,5 +8,6 @@ import { HasObserversPipe } from '@ngx/utils';
 	selector: 'has-observers-demo-component',
 })
 export class HasObserversPipeDemoComponent {
-	@Output() public somethingHasCompleted: EventEmitter<boolean> = new EventEmitter<boolean>();
+	@Output() public readonly somethingHasCompleted: EventEmitter<boolean> =
+		new EventEmitter<boolean>();
 }

@@ -10,5 +10,5 @@ import { BtwPipe } from '@ngx/utils';
 })
 export class BtwPipeDemoComponent {
 	@Input()
-	vatNumber: string = '474603875';
+	public vatNumber: string = '474603875';
 }

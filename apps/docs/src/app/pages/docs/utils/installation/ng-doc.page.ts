@@ -1,5 +1,5 @@
 import { NgDocPage } from '@ng-doc/core';
-import UtilsCategory from '../../../../categories/utils/ng-doc.category';
+import { UtilsCategory } from '../../../../categories';
 
 /**
  * This page describes how to install the library.

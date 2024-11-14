@@ -8,5 +8,5 @@ import { SafeHtmlPipe } from '@ngx/utils';
 	templateUrl: 'safe-html.demo.component.html',
 })
 export class SafeHtmlPipeDemoComponent {
-	value = "<h1>Foo Bar</h1><script>window.prompt('This is a prompt')</script>";
+	public value = "<h1>Foo Bar</h1><script>window.prompt('This is a prompt')</script>";
 }

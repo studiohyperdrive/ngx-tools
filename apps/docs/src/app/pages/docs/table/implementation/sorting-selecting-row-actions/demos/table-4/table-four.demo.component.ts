@@ -13,15 +13,15 @@ import { CustomRadioButtonComponent } from 'apps/docs/src/app/shared/components'
 export class TableFourDemoComponent {
 	constructor(private readonly notifyService: NgDocNotifyService) {}
 
-	control: FormControl<number[]> = new FormControl();
-	customControl: FormControl<number[]> = new FormControl();
+	public control: FormControl<number[]> = new FormControl();
+	public customControl: FormControl<number[]> = new FormControl();
 
-	delete(rowId: string): void {
+	public delete(rowId: string): void {
 		console.log(rowId);
 		this.notifyService.notify(`Deleted row with id: ${rowId}`);
 	}
 
-	deleteAll(): void {
+	public deleteAll(): void {
 		this.notifyService.notify(`Deleted all rows`);
 	}
 }
