@@ -1,5 +1,5 @@
 import { NgDocPage } from '@ng-doc/core';
-import FormsImplementationCategory from 'apps/docs/src/app/categories/forms/sub-categories/implementation/ng-doc.category';
+import { FormsImplementationCategory } from '../../../../../categories';
 
 const FormAccessorContainerPage: NgDocPage = {
 	title: `FormAccessorContainer`,
