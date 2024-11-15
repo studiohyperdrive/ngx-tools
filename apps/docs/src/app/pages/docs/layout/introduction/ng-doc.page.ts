@@ -1,5 +1,5 @@
 import { NgDocPage } from '@ng-doc/core';
-import LayoutCategory from 'apps/docs/src/app/categories/layout/ng-doc.category';
+import { LayoutCategory } from '../../../../categories';
 
 const IntroductionPage: NgDocPage = {
 	title: `Introduction`,
