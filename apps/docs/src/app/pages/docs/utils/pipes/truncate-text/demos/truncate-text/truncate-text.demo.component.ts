@@ -8,5 +8,5 @@ import { TruncateTextPipe } from '@ngx/utils';
 	templateUrl: 'truncate-text.demo.component.html',
 })
 export class TruncateTextPipeDemoComponent {
-	value = 'Long text that will need to be cut at 10 characters.';
+	public value = 'Long text that will need to be cut at 10 characters.';
 }

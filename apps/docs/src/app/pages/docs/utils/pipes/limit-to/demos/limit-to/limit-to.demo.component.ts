@@ -8,5 +8,5 @@ import { LimitToPipe } from '@ngx/utils';
 	templateUrl: 'limit-to.demo.component.html',
 })
 export class LimitToPipeDemoComponent {
-	array = ['a', 'b', 'c'];
+	public array = ['a', 'b', 'c'];
 }

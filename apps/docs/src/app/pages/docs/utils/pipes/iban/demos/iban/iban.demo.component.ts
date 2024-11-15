@@ -8,5 +8,5 @@ import { IbanPipe } from '@ngx/utils';
 	templateUrl: 'iban.demo.component.html',
 })
 export class IbanPipeDemoComponent {
-	ibanNumber = 'BE62510007547061';
+	public ibanNumber = 'BE62510007547061';
 }

@@ -9,4 +9,4 @@ the `click` event by clicking the mouse **and** by using the `enter` key on focu
 
 ## How to use
 
-{{ NgDocActions.demo    ("ClickFocusDemoComponent") }}
+{{ NgDocActions.demo("ClickFocusDemoComponent") }}
