@@ -16,7 +16,11 @@
 		"aria",
 		"display-content",
 		"loading",
-		"error"
+		"error",
+    "drag and drop",
+    "accessible drag and drop",
+    "drag-and-drop",
+    "accessible drag-and-drop"
 	],
 	"homepage": "https://github.com/studiohyperdrive/ngx-tools/tree/master/libs/layout",
 	"license": "MIT",

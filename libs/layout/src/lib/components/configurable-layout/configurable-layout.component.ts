@@ -45,6 +45,7 @@ import {
 } from 'rxjs';
 import { NgxConfigurableLayoutItemComponent } from '../configurable-layout-item/configurable-layout-item.component';
 import {
+	NgxAccessibleDragAndDropMoveEvent,
 	NgxConfigurableLayoutGrid,
 	NgxConfigurableLayoutItemDropEvent,
 	NgxConfigurableLayoutItemEntity,
@@ -52,6 +53,7 @@ import {
 	NgxConfigurableLayoutType,
 } from '../../types';
 import { NgxConfigurableLayoutItemSizePipe } from '../../pipes';
+import { NgxAccessibleDragAndDrop } from '../../directives';
 
 /**
  * This component acts essentially as a layout wrapper. In combination with the
@@ -78,6 +80,7 @@ import { NgxConfigurableLayoutItemSizePipe } from '../../pipes';
 		NgxConfigurableLayoutItemSizePipe,
 		ReactiveFormsModule,
 		CommonModule,
+		NgxAccessibleDragAndDrop,
 	],
 	providers: [
 		{
@@ -122,6 +125,11 @@ export class NgxConfigurableLayoutComponent
 	 * A record of the templates with the unique item `key` and its `templateRef`.
 	 */
 	public itemTemplateRecord: WritableSignal<Record<string, TemplateRef<any>>> = signal({});
+
+	/**
+	 * A record of the label with the unique item `key` and its `label`.
+	 */
+	public itemLabelRecord: WritableSignal<Record<string, string>> = signal({});
 
 	/**
 	 * Whether the layout is static or editable.
@@ -187,6 +195,21 @@ export class NgxConfigurableLayoutComponent
 	 * @memberof NgxConfigurableLayoutComponent
 	 */
 	@Input() public dropPredicate: (event: NgxConfigurableLayoutItemDropEvent) => boolean;
+
+	/**
+	 * An optional label for the layout item used for WCAG purposes.
+	 */
+	@Input() public itemLabel: string;
+
+	/**
+	 * An optional label for the layout item used for WCAG purposes.
+	 */
+	@Input() public rowLabel: string;
+
+	/**
+	 * An optional description explaining how the drag and drop works used for WCAG purposes.
+	 */
+	@Input() public description: string;
 
 	/**
 	 * An optional column gap we can provide to create a gap between the columns of the layout.
@@ -342,6 +365,37 @@ export class NgxConfigurableLayoutComponent
 	}
 
 	/**
+	 * Moves an element based on its provided event
+	 *
+	 * @param event - The provided move event
+	 */
+	public move(event: NgxAccessibleDragAndDropMoveEvent): void {
+		// Iben: Get the required data
+		const formData = [...this.form.value];
+		const startArray = formData[event.previousContainer];
+		const endArray = formData[event.newContainer];
+
+		// Iben: Early exit if the provided containers don't exist
+		if (isNaN(event.previousContainer) || isNaN(event.newContainer)) {
+			return;
+		}
+
+		// Iben: If the drag and drop is within the same row, we move
+		if (event.previousContainer === event.newContainer) {
+			moveItemInArray(endArray, event.previousIndex, event.newIndex);
+		} else {
+			// Iben: If the drag and drop is over multiple rows, we transfer
+			transferArrayItem(startArray, endArray, event.previousIndex, event.newIndex);
+			formData[event.previousContainer] = startArray;
+		}
+
+		formData[event.newContainer] = endArray;
+
+		// Iben: Update the form value
+		this.form.setValue(formData);
+	}
+
+	/**
 	 * The predicate we run before sorting
 	 *
 	 * @param  draggedElement - The dragged element
@@ -401,12 +455,17 @@ export class NgxConfigurableLayoutComponent
 	private handleItemTemplates(): void {
 		// Wouter: Clear the current item template record
 		this.itemTemplateRecord.set({});
+		this.itemLabelRecord.set({});
 
 		Array.from(this.configurableItemTemplates).forEach((itemTemplate) => {
-			const { key, template } = itemTemplate;
+			const { key, template, label } = itemTemplate;
 
 			// Wouter: Update the item template record with the unique column key and its template ref
 			this.itemTemplateRecord.update((value) => ({ ...value, [key]: template }));
+			this.itemLabelRecord.update((value) => ({
+				...value,
+				[key]: label || key,
+			}));
 		});
 	}
 }
