@@ -11,9 +11,11 @@ import {
 } from '@angular/core';
 import { CdkDropList } from '@angular/cdk/drag-drop';
 
-import { NgxAccessibleDragAndDropAbstractService } from '../../abstracts';
+import {
+	NgxAccessibleAbstractDragAndDropItemDirective,
+	NgxAccessibleDragAndDropAbstractService,
+} from '../../abstracts';
 import { NgxAccessibleDragAndDropMoveEvent, NgxAccessibleDragAndDropMoveType } from '../../types';
-import { NgxHasFocusDragAndDropAbstractDirective } from './has-focus.directive';
 import { NgxAccessibleDragAndDropContainerDirective } from './drag-and-drop-container.directive';
 import { NgxAccessibleDragAndDropHostDirective } from './drag-and-drop-host.directive';
 
@@ -28,7 +30,7 @@ import { NgxAccessibleDragAndDropHostDirective } from './drag-and-drop-host.dire
 		'[attr.tabIndex]': 'tabIndex()',
 	},
 })
-export class NgxAccessibleDragAndDropItemDirective extends NgxHasFocusDragAndDropAbstractDirective {
+export class NgxAccessibleDragAndDropItemDirective extends NgxAccessibleAbstractDragAndDropItemDirective {
 	/**
 	 * The tab index of the item
 	 */
@@ -150,6 +152,13 @@ export class NgxAccessibleDragAndDropItemDirective extends NgxHasFocusDragAndDro
 				data: { item: `${this.itemIndex}`, itemLabel: this.label || undefined },
 			})
 			.subscribe();
+	}
+
+	/**
+	 * Registers the item with the drop host
+	 */
+	public ngOnInit(): void {
+		this.dropHost.registerDragAndDropItem(this);
 	}
 
 	/**

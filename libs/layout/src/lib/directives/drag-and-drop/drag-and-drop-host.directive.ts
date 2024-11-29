@@ -1,7 +1,9 @@
 import { ContentChildren, Directive, ElementRef, Input, QueryList } from '@angular/core';
 
-import { NgxAccessibleDragAndDropAbstractService } from '../../abstracts';
-import { NgxAccessibleDragAndDropItemDirective } from './drag-and-drop-item.directive';
+import {
+	NgxAccessibleAbstractDragAndDropItemDirective,
+	NgxAccessibleDragAndDropAbstractService,
+} from '../../abstracts';
 import { NgxAccessibleDragAndDropContainerDirective } from './drag-and-drop-container.directive';
 
 /**
@@ -16,8 +18,7 @@ export class NgxAccessibleDragAndDropHostDirective {
 	/**
 	 * A list of all the drag and drop items
 	 */
-	@ContentChildren(NgxAccessibleDragAndDropItemDirective, { descendants: true })
-	public items: QueryList<NgxAccessibleDragAndDropItemDirective>;
+	public items: Record<string, NgxAccessibleAbstractDragAndDropItemDirective> = {};
 
 	/**
 	 * A list of all the drag and drop containers
@@ -41,7 +42,7 @@ export class NgxAccessibleDragAndDropHostDirective {
 	 * @param  id - The id of the drag and drop item
 	 */
 	public markAsActive(id: string): void {
-		this.items?.find((item) => item.itemId === id)?.markAsActive();
+		this.items[id].markAsActive();
 	}
 
 	/**
@@ -58,5 +59,9 @@ export class NgxAccessibleDragAndDropHostDirective {
 		this.dragAndDropService
 			.setDragAndDropDescription(this.elementRef.nativeElement, this.description)
 			.subscribe();
+	}
+
+	public registerDragAndDropItem(item: NgxAccessibleAbstractDragAndDropItemDirective): void {
+		this.items[item.itemId] = item;
 	}
 }
