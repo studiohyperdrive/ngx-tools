@@ -3,6 +3,7 @@ import FormsCategory from './forms/ng-doc.category';
 import FormsImplementationCategory from './forms/sub-categories/implementation/ng-doc.category';
 import I18nCategory from './i18n/ng-doc.category';
 import InformCategory from './inform/ng-doc.category';
+import InformImplementationCategory from './inform/sub-categories/implementation/ng-doc.category';
 import LayoutCategory from './layout/ng-doc.category';
 import LayoutImplementationCategory from './layout/sub-categories/implementation/ng-doc.category';
 import StoreCategory from './store/ng-doc.category';
@@ -23,6 +24,7 @@ export {
 	FormsImplementationCategory,
 	I18nCategory,
 	InformCategory,
+	InformImplementationCategory,
 	LayoutCategory,
 	LayoutImplementationCategory,
 	StoreCategory,

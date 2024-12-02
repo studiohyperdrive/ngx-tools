@@ -1,7 +1,7 @@
-import {NgDocCategory} from '@ng-doc/core';
+import { NgDocCategory } from '@ng-doc/core';
 
 const TourCategory: NgDocCategory = {
-	title: 'tour',
+	title: 'Tour',
 };
 
 export default TourCategory;

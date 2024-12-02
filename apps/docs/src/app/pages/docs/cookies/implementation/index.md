@@ -32,7 +32,7 @@ As this package provides a reactive approach to the cookie handling, `ngx-cookie
 
 ## hasCookieDirective
 
-The `hasCookie` directive is a structural directive which will render the content based on wether the provided (set of) cookie(s) are accepted by the user. If accepted, the content will be shown.
+The `*\hasCookie` directive is a structural directive which will render the content based on wether the provided (set of) cookie(s) are accepted by the user. If accepted, the content will be shown.
 
 If the content is not accepted, there are three possible outcomes. By default, if no fallback component or else template is provided, the directive simply does not render the item if the provided cookies are not accepted.
 
@@ -65,4 +65,4 @@ export class CookieAlertComponent extends NgxCookiesFallBackComponent {}
 
 ```
 
-Just like any structural directives, we can pass an `else` template to the `hasCookie` directive. This template always has priority over the default component we provided. This way, you are always able to get a custom template even when a default is implemented.
+Just like any structural directives, we can pass an `else` template to the ` *\hasCookie` directive. This template always has priority over the default component we provided. This way, you are always able to get a custom template even when a default is implemented.
