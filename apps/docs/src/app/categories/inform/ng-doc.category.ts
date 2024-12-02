@@ -1,7 +1,7 @@
-import {NgDocCategory} from '@ng-doc/core';
+import { NgDocCategory } from '@ng-doc/core';
 
 const InformCategory: NgDocCategory = {
-	title: 'inform',
+	title: 'Inform',
 };
 
 export default InformCategory;
