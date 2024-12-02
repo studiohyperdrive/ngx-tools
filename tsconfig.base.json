@@ -25,7 +25,7 @@
 			"@ngx/layout": ["libs/angular/layout/src/public-api.ts"],
 			"@ngx/store": ["libs/angular/store/src/public-api.ts"],
 			"@ngx/table": ["libs/angular/table/src/public-api.ts"],
-			"@ngx/tour": ["libs/tour/src/index.ts"],
+			"@ngx/tour": ["libs/angular/tour/src/index.ts"],
 			"@ngx/utils": ["libs/angular/utils/src/public-api.ts"]
 		},
 		"useDefineForClassFields": false,
