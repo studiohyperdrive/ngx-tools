@@ -1,7 +1,7 @@
 import { NgDocCategory } from '@ng-doc/core';
 
 const CookiesCategory: NgDocCategory = {
-	title: 'cookies',
+	title: 'Cookies',
 };
 
 export default CookiesCategory;
