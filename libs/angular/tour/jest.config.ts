@@ -1,9 +1,9 @@
 /* eslint-disable */
 export default {
 	displayName: 'tour',
-	preset: '../../jest.preset.js',
+	preset: '../../../jest.preset.js',
 	setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-	coverageDirectory: '../../coverage/libs/tour',
+	coverageDirectory: '../../../coverage/libs/angular/tour',
 	transform: {
 		'^.+\\.(ts|mjs|js|html)$': [
 			'jest-preset-angular',
