@@ -12,8 +12,8 @@ import {
 	NgxConfigurableLayoutItemDropEvent,
 	NgxDisplayContentDirective,
 } from '@ngx/layout';
-import { NgxTourItemDirective, NgxTourService, useMockDataDuringTour } from '@ngx/tour';
 import { NgxTooltipDirective } from '@ngx/inform';
+import { NgxTourItemDirective, NgxTourService, useMockDataDuringTour } from '@ngx/tour';
 
 @Component({
 	selector: 'main',
