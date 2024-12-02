@@ -1,5 +1,5 @@
 {
-	"name": "store",
+	"name": "ngx-store",
 	"$schema": "../../../node_modules/nx/schemas/project-schema.json",
 	"projectType": "library",
 	"sourceRoot": "libs/angular/store/src",

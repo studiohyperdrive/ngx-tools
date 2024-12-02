@@ -98,7 +98,7 @@ The libraries in this project can be published to the npm registry. To do so fol
 2. Commit the changes using the following convention: `build(images): v1.0.0`.
 3. Add a tag using the following convention: `@studiohyperdrive/ngx-images@v1.0.0`.
 4. Make a new production build of your library using `npm run build <library>` (Ivy is disable in tsconfig by default for this project).
-5. Move to the dist folder of your library using `cd dist/<library>`
+5. Move to the dist folder of your library using `cd dist/angular/<library>`
 6. Publish the package using `npm publish`  
    a. If this is the first time publishing the library make sure to add the `--access public` flag.  
    b. Make sure you are logged into npm and that you have been added to the @studiohyperdrive organisation.

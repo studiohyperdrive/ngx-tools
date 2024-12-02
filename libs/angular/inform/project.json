@@ -1,5 +1,5 @@
 {
-	"name": "inform",
+	"name": "ngx-inform",
 	"$schema": "../../../node_modules/nx/schemas/project-schema.json",
 	"sourceRoot": "libs/angular/inform/src",
 	"prefix": "lib",
