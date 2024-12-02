@@ -1,7 +1,7 @@
 import { NgDocPage } from '@ng-doc/core';
 
-import { TableOneDemoComponent } from './demos';
 import { TableCategory } from '../../../../categories';
+import { TableOneDemoComponent } from './demos';
 
 const IntroductionPage: NgDocPage = {
 	title: `Introduction`,

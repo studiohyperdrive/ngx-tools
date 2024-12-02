@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgxValidators } from '@ngx/forms';
 
@@ -9,7 +9,7 @@ import { NgxValidators } from '@ngx/forms';
 	selector: 'depended-required-validator-demo',
 	templateUrl: 'depended-required.demo.component.html',
 })
-export class DependedRequiredValidatorDemoComponent implements OnInit {
+export class DependedRequiredValidatorDemoComponent {
 	shouldBeTest(value: any) {
 		return value === 'TEST';
 	}
@@ -31,6 +31,4 @@ export class DependedRequiredValidatorDemoComponent implements OnInit {
 		},
 		NgxValidators.dependedRequired(['controlB', 'controlC'], 'controlA', this.shouldBeTest)
 	);
-
-	ngOnInit() {}
 }

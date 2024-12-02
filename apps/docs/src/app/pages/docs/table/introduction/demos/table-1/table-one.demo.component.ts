@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { NgxTable, NgxTableSortDirection, NgxTableSortEvent } from '@ngx/table';
-import { HideHeaderRowOption } from '@ngx/table';
 
 @Component({
 	standalone: true,

@@ -1,10 +1,10 @@
 import { NgDocPage } from '@ng-doc/core';
+import { LayoutImplementationCategory } from '../../../../../categories';
 import {
 	LayoutAccordionDemoComponent,
 	LayoutConfigurableDemoComponent,
 	LayoutEditableDemoComponent,
 } from './demos';
-import { LayoutImplementationCategory } from '../../../../../categories';
 
 const ComponentsPage: NgDocPage = {
 	title: `Components`,

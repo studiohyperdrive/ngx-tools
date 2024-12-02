@@ -11,10 +11,10 @@ import {
 	providePageSkeleton,
 	provideSearchEngine,
 } from '@ng-doc/app';
-import { provideNgDocContext } from '@ng-doc/generated';
 
 import { AppComponent } from './app/app.component';
 import { appRoutes } from './app/app.routes';
+import { provideNgDocContext } from '@ng-doc/generated';
 // import { environment } from './environments/environment';
 
 // if (environment.production) {

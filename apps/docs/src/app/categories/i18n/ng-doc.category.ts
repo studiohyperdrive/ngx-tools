@@ -1,4 +1,4 @@
-import {NgDocCategory} from '@ng-doc/core';
+import { NgDocCategory } from '@ng-doc/core';
 
 const I18nCategory: NgDocCategory = {
 	title: 'i18n',

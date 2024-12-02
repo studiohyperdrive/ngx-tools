@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { NgxTable } from '@ngx/table';
-import { CustomRadioButtonComponent } from 'apps/docs/src/app/shared/components';
 
 @Component({
 	standalone: true,
-	imports: [NgxTable, ReactiveFormsModule, CustomRadioButtonComponent],
+	imports: [NgxTable, ReactiveFormsModule],
 	selector: 'table-three-demo',
 	templateUrl: './table-three.demo.component.html',
 })

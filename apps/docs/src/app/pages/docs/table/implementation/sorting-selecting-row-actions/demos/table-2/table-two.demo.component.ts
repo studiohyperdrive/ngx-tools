@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { CustomCheckboxComponent } from '../../../../../../../shared/components';
 import { NgxTable } from '@ngx/table';
-import { CustomCheckboxComponent } from 'apps/docs/src/app/shared/components';
 
 @Component({
 	standalone: true,

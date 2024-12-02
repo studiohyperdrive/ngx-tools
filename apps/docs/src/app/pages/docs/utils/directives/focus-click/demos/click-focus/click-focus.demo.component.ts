@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgDocNotifyService } from '@ng-doc/ui-kit';
 import { FocusClickDirective } from '@ngx/utils';
 

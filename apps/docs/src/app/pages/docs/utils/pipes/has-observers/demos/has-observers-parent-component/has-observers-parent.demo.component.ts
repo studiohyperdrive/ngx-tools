@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { HasObserversPipeDemoComponent } from '../has-observers-component/has-observers.demo.component';
+import { Component } from '@angular/core';
 import { NgDocNotifyService } from '@ng-doc/ui-kit';
+import { HasObserversPipeDemoComponent } from '../has-observers-component/has-observers.demo.component';
 
 @Component({
 	standalone: true,

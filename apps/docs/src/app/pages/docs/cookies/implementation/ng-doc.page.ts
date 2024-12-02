@@ -1,6 +1,5 @@
 import { NgDocPage } from '@ng-doc/core';
 import { CookiesCategory } from '../../../../categories';
-import { JsonPipe } from '@angular/common';
 
 const ImplementationPage: NgDocPage = {
 	title: `Implementation`,

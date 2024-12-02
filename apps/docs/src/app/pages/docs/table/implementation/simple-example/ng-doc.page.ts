@@ -1,7 +1,7 @@
 import { NgDocPage } from '@ng-doc/core';
 
-import { TableOneDemoComponent, TableTwoDemoComponent, TableThreeDemoComponent } from './demos';
 import { TableImplementationCategory } from '../../../../../categories';
+import { TableOneDemoComponent, TableTwoDemoComponent, TableThreeDemoComponent } from './demos';
 
 const SimpleExamplePage: NgDocPage = {
 	title: `Simple example`,

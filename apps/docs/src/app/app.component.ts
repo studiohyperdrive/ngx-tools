@@ -1,4 +1,4 @@
-import { NgDocRootComponent, NgDocNavbarComponent, NgDocSidebarComponent } from "@ng-doc/app";
+import { NgDocRootComponent, NgDocNavbarComponent, NgDocSidebarComponent } from '@ng-doc/app';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
