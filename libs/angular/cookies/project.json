@@ -1,7 +1,7 @@
 {
 	"name": "cookies",
 	"$schema": "../../node_modules/nx/schemas/project-schema.json",
-	"sourceRoot": "libs/cookies/src",
+	"sourceRoot": "libs/angular/cookies/src",
 	"prefix": "lib",
 	"projectType": "library",
 	"tags": ["ngx-cookies"],
@@ -10,14 +10,14 @@
 			"executor": "@nx/angular:package",
 			"outputs": ["{workspaceRoot}/dist/{projectRoot}"],
 			"options": {
-				"project": "libs/cookies/ng-package.json"
+				"project": "libs/angular/cookies/ng-package.json"
 			},
 			"configurations": {
 				"production": {
-					"tsConfig": "libs/cookies/tsconfig.lib.prod.json"
+					"tsConfig": "libs/angular/cookies/tsconfig.lib.prod.json"
 				},
 				"development": {
-					"tsConfig": "libs/cookies/tsconfig.lib.json"
+					"tsConfig": "libs/angular/cookies/tsconfig.lib.json"
 				}
 			},
 			"defaultConfiguration": "production"
@@ -26,7 +26,7 @@
 			"executor": "@nx/jest:jest",
 			"outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
 			"options": {
-				"jestConfig": "libs/cookies/jest.config.ts"
+				"jestConfig": "libs/angular/cookies/jest.config.ts"
 			}
 		},
 		"lint": {

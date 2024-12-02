@@ -10,7 +10,7 @@
     "cookieconsent",
     "consent"
   ],
-  "homepage": "https://github.com/studiohyperdrive/ngx-tools/tree/master/libs/cookies",
+  "homepage": "https://github.com/studiohyperdrive/ngx-tools/tree/master/libs/angular/cookies",
   "license":"MIT",
   "author": {
     "name": "Studio Hyperdrive",
@@ -19,7 +19,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/studiohyperdrive/ngx-tools",
-    "directory": "libs/cookies/src"
+    "directory": "libs/angular/cookies/src"
   },
   "peerDependencies": {
     "@angular/common": "^18.0.2",
