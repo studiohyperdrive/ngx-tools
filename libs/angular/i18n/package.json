@@ -12,7 +12,7 @@
     "i18n",
     "modular"
   ],
-  "homepage": "https://github.com/studiohyperdrive/ngx-tools/tree/master/libs/i18n",
+  "homepage": "https://github.com/studiohyperdrive/ngx-tools/tree/master/libs/angular/i18n",
   "license": "MIT",
   "author": {
     "name": "Studio Hyperdrive",
@@ -21,7 +21,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/studiohyperdrive/ngx-tools",
-    "directory": "libs/i18n/src"
+    "directory": "libs/angular/i18n/src"
   },
 	"peerDependencies": {
 		"@angular/common": "^18.0.2",

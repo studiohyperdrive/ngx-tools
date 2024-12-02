@@ -1,11 +1,11 @@
 {
-	"extends": "../../.eslintrc.json",
+	"extends": "../../../.eslintrc.json",
 	"ignorePatterns": ["!**/*"],
 	"overrides": [
 		{
 			"files": ["*.ts"],
 			"parserOptions": {
-				"project": ["libs/i18n/tsconfig.*?.json"],
+				"project": ["libs/angular/i18n/tsconfig.*?.json"],
 				"createDefaultProgram": true
 			},
 			"rules": {
