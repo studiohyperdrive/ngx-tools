@@ -1,0 +1,36 @@
+{
+	"name": "ngx-tour",
+	"$schema": "../../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "libs/angular/tour/src",
+	"prefix": "lib",
+	"projectType": "library",
+	"tags": ["ngx-tour"],
+	"targets": {
+		"build": {
+			"executor": "@nx/angular:package",
+			"outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+			"options": {
+				"project": "libs/angular/tour/ng-package.json"
+			},
+			"configurations": {
+				"production": {
+					"tsConfig": "libs/angular/tour/tsconfig.lib.prod.json"
+				},
+				"development": {
+					"tsConfig": "libs/angular/tour/tsconfig.lib.json"
+				}
+			},
+			"defaultConfiguration": "production"
+		},
+		"test": {
+			"executor": "@nx/jest:jest",
+			"outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+			"options": {
+				"jestConfig": "libs/angular/tour/jest.config.ts"
+			}
+		},
+		"lint": {
+			"executor": "@nx/eslint:lint"
+		}
+	}
+}

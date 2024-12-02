@@ -1,0 +1,36 @@
+{
+	"name": "ngx-forms",
+	"$schema": "../../../node_modules/nx/schemas/project-schema.json",
+	"projectType": "library",
+	"sourceRoot": "libs/angular/forms/src",
+	"prefix": "lib",
+	"targets": {
+		"build": {
+			"executor": "@nx/angular:package",
+			"options": {
+				"tsConfig": "libs/angular/forms/tsconfig.lib.json",
+				"project": "libs/angular/forms/ng-package.json"
+			},
+			"configurations": {
+				"production": {
+					"tsConfig": "libs/angular/forms/tsconfig.lib.prod.json"
+				}
+			}
+		},
+		"test": {
+			"executor": "@angular-devkit/build-angular:karma",
+			"options": {
+				"main": "libs/angular/forms/src/test.ts",
+				"tsConfig": "libs/angular/forms/tsconfig.spec.json",
+				"karmaConfig": "libs/angular/forms/karma.conf.js",
+				"watch": false
+			}
+		},
+		"lint": {
+			"executor": "@nx/eslint:lint",
+			"options": {
+				"lintFilePatterns": ["libs/angular/forms/**/*.ts", "libs/angular/forms/**/*.html"]
+			}
+		}
+	}
+}
