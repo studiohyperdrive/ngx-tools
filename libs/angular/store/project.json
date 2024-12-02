@@ -1,0 +1,39 @@
+{
+	"name": "store",
+	"$schema": "../../../node_modules/nx/schemas/project-schema.json",
+	"projectType": "library",
+	"sourceRoot": "libs/angular/store/src",
+	"prefix": "lib",
+	"targets": {
+		"build": {
+			"executor": "@nx/angular:package",
+			"options": {
+				"project": "libs/angular/store/ng-package.json"
+			},
+			"configurations": {
+				"production": {
+					"tsConfig": "libs/angular/store/tsconfig.lib.prod.json"
+				},
+				"development": {
+					"tsConfig": "libs/angular/store/tsconfig.lib.json"
+				}
+			},
+			"defaultConfiguration": "production"
+		},
+		"test": {
+			"executor": "@angular-devkit/build-angular:karma",
+			"options": {
+				"main": "libs/angular/store/src/test.ts",
+				"tsConfig": "libs/angular/store/tsconfig.spec.json",
+				"karmaConfig": "libs/angular/store/karma.conf.js",
+				"watch": false
+			}
+		},
+		"lint": {
+			"executor": "@nx/eslint:lint",
+			"options": {
+				"lintFilePatterns": ["libs/angular/store/**/*.ts", "libs/angular/store/**/*.html"]
+			}
+		}
+	}
+}
