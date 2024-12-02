@@ -23,7 +23,7 @@
 			"@ngx/i18n": ["libs/angular/i18n/src/public-api.ts"],
 			"@ngx/inform": ["libs/angular/inform/src/index.ts"],
 			"@ngx/layout": ["libs/angular/layout/src/public-api.ts"],
-			"@ngx/store": ["libs/store/src/public-api.ts"],
+			"@ngx/store": ["libs/angular/store/src/public-api.ts"],
 			"@ngx/table": ["libs/table/src/public-api.ts"],
 			"@ngx/tour": ["libs/tour/src/index.ts"],
 			"@ngx/utils": ["libs/angular/utils/src/public-api.ts"]
