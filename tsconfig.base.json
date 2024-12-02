@@ -21,7 +21,7 @@
 			"@ngx/cookies": ["libs/angular/cookies/src/index.ts"],
 			"@ngx/forms": ["libs/angular/forms/src/public-api.ts"],
 			"@ngx/i18n": ["libs/angular/i18n/src/public-api.ts"],
-			"@ngx/inform": ["libs/inform/src/index.ts"],
+			"@ngx/inform": ["libs/angular/inform/src/index.ts"],
 			"@ngx/layout": ["libs/layout/src/public-api.ts"],
 			"@ngx/store": ["libs/store/src/public-api.ts"],
 			"@ngx/table": ["libs/table/src/public-api.ts"],

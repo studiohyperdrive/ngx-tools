@@ -15,7 +15,7 @@
 		"dialog",
 		"alertdialog"
 	],
-	"homepage": "https://github.com/studiohyperdrive/ngx-tools/tree/master/libs/inform",
+	"homepage": "https://github.com/studiohyperdrive/ngx-tools/tree/master/libs/angular/inform",
 	"license": "MIT",
 	"author": {
 		"name": "Studio Hyperdrive",
@@ -24,7 +24,7 @@
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/studiohyperdrive/ngx-tools",
-		"directory": "libs/inform/src"
+		"directory": "libs/angular/inform/src"
 	},
 	"peerDependencies": {
 		"@angular/common": "^18.0.0",

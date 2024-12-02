@@ -1,9 +1,9 @@
 /* eslint-disable */
 export default {
 	displayName: 'inform',
-	preset: '../../jest.preset.js',
+	preset: '../../../jest.preset.js',
 	setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-	coverageDirectory: '../../coverage/libs/inform',
+	coverageDirectory: '../../../coverage/libs/angular/inform',
 	transform: {
 		'^.+\\.(ts|mjs|js|html)$': [
 			'jest-preset-angular',
