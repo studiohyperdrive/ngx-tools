@@ -38,7 +38,7 @@
 		"replace elements",
 		"web components"
 	],
-	"homepage": "https://github.com/studiohyperdrive/ngx-tools/tree/master/libs/utils",
+	"homepage": "https://github.com/studiohyperdrive/ngx-tools/tree/master/libs/angular/utils",
 	"license": "MIT",
 	"author": {
 		"name": "Studio Hyperdrive",
@@ -47,7 +47,7 @@
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/studiohyperdrive/ngx-tools",
-		"directory": "libs/utils/src"
+		"directory": "libs/angular/utils/src"
 	},
 	"peerDependencies": {
 		"@angular/common": "^18.0.2",

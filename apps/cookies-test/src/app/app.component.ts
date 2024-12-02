@@ -3,12 +3,12 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { CookieAlertComponent } from './cookies.component';
+import { NgxStorageService } from '@ngx/utils';
 import {
 	NgxCookieService,
 	NgxCookiesFallbackComponentToken,
 	NgxHasCookieDirective,
 } from '@ngx/cookies';
-import { NgxStorageService } from '@ngx/utils';
 
 @Component({
 	standalone: true,
