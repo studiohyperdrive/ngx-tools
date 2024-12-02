@@ -1,40 +1,12 @@
-# Angular Tools: NgxLayout (`@studiohyperdrive/ngx-layout`)
+---
+keyword: ComponentsPage
+---
 
-`ngx-layout` is a collection of Angular components related to layout.
-
-## Installation
-
-Install the package first:
-
-```shell
-npm install @studiohyperdrive/ngx-layout
-```
-
-## Versioning and build information
-
-This package will follow a semver-like format, `major.minor.patch`, in which:
-
--   `major`: Follows the Angular major version
--   `minor`: Introduces new features and (potential) breaking changes
--   `patch`: Introduces bugfixes and minor non-breaking changes
-
-For more information about the build process, authors, contributions and issues, we refer to the [ngx-tools](https://github.com/studiohyperdrive/ngx-tools) repository.
-
-## Concept
-
-`ngx-layout` is a package to help facilitate common layout use-cases.
-
-Currently the package provides a `configurable layout` component which can be used to render components in a grid based on provided templates. This approach is ideal for use-cases such as a custom configurable dashboard.
-
-## Implementation
-
-### Components
-
-#### Accordion
+## Accordion
 
 The `ngx-accordion` provides a easy to use WCAG/ARIA compliant implementation for an accordion. Its implementation exists of a `NgxAccordionComponent` and a `NgxAccordionItemComponent` component. Both can be imported simultaneously by importing `NgxAccordion`.
 
-##### Implementation
+### Implementation
 
 Using the `NgxAccordionComponent` as a container for our accordion items (`NgxAccordionItemComponent`), we are able to provide correct keyboard navigation for end users. Therefore it is important to always warp your items in the container component.
 
@@ -42,35 +14,15 @@ We use content projection to pass the header and the content of each accordion i
 
 In the example below you can find a simple implementation of the accordion.
 
-```ts
-import { NgxAccordion } from '@ngx/layout';
+{{ NgDocActions.demo("LayoutAccordionDemoComponent") }}
 
-@Component({
-	...
-	standalone: true,
-	imports: [NgxAccordion],
-})
-```
-
-```html
-<ngx-accordion>
-	@for (item of testData; track $index) {
-	<ngx-accordion-item>
-		<ng-template #headerTmpl let-isOpen> {{item.title}} {{isOpen}} </ng-template>
-
-		<ng-template #contentTmpl> {{item.content}} </ng-template>
-	</ngx-accordion-item>
-	}
-</ngx-accordion>
-```
-
-##### Extra configuration
+### Extra configuration
 
 The `NgxAccordionComponent` allows for opening a set of accordion items from the start. This is useful for when you want to open the first item, or specific items in the accordion. By using the `open` property you can either open all items, the first item, a specific item or a set of specific items by passing `all`, `first`, the index of an item or an array of indexes respectively.
 
 An individual `NgxAccordionItemComponent` can also be disabled by providing the `disabled` property. Once disabled, an item's open or closed state cannot be altered by the user. To allow an item to be open from the start and not closeable by the end-user, the `open` property of the `NgxAccordionComponent` will ignore the disabled state of the individual items.
 
-##### Styling
+### Styling
 
 The accordion implementation provides several classes we can use to target elements in the accordion. Internally the `NgxAccordionItemComponent` uses the `details` HTML element.
 
@@ -81,17 +33,17 @@ The accordion implementation provides several classes we can use to target eleme
 | ngx-accordion-content | A class set to the content of the accordion item. |
 | ngx-accordion-header  | A class set to the header of the accordion item.  |
 
-#### Configurable layout
+## Configurable layout
 
 The `configurable layout` provides the ability to render components in a grid depending on a provided two dimensional array of keys and corresponding items with a provided template. The combination exists of an `ngx-configurable-layout` and an `ngx-configurable-layout-item`.
 
-##### Setup
+### Setup
 
 By using content projection, we render our components inside of a `ngx-configurable-layout-item`. Each item requires a `key` as an input, which will be used to match the provided component with the two dimensional array we provide to the `ngx-configurable-layout` component.
 
 This means that the order of rendering is now no longer depended on how you provide the components in the template, but by the two dimensional array provided to the `ngx-configurable-layout` component. This significantly streamlines the process and allows you to easily refactor existing flows. In the chapters below we'll explain how to provide the two dimensional array to the component.
 
-##### Static
+### Static
 
 Earlier we mentioned that the layout is build up using a provided two dimensional array. Depending on whether you want this layout to be `static` or `editable`, we provide the array in a different fashion.
 
@@ -131,7 +83,9 @@ import { NgxConfigurableLayoutComponent, NgxConfigurableLayoutItemComponent } fr
 </ngx-configurable-layout>
 ```
 
-##### Editable
+{{ NgDocActions.demo("LayoutConfigurableDemoComponent") }}
+
+### Editable
 
 Unlike with the `static` layout, the `editable` layout allows the user to readjust on the spot by the end user. This means that the end user can toggle items and ,when enabled, reorder these items through drag and drop. A use-case that fits this approach is a fully configurable dashboard, where an end user can pick and choose which items they wish to see.
 
@@ -181,7 +135,9 @@ public readonly control: FormControl<NgxConfigurableLayoutGrid> = new FormContro
 </ngx-configurable-layout>
 ```
 
-##### Drag and drop
+{{ NgDocActions.demo("LayoutEditableDemoComponent") }}
+
+### Drag and drop
 
 `ngx-configurable-layout` provides drag and drop through the Angular CDK implementation. By default, the drag and drop functionality is disabled, and can be enabled through `allowDragAndDrop`.
 
@@ -189,7 +145,7 @@ By default, the package uses the demo styling provided by the Angular CDK team. 
 
 When `allowDragAndDrop` is enabled, we can pass a `dropPredicate`. This function is bound to the layout component and will allow you to determine whether dropping an element in a specific spot is allowed by returning true or false. For more information on the predicate, we refer to the CDK Drag and Drop documentation.
 
-##### Item size
+### Item size
 
 To determine how much space an item takes up in the grid, we use the `itemSize` input.
 
@@ -199,13 +155,13 @@ By using the option `fit-content`, the size of the components themselves will de
 
 By using the option `equal`, all items in the entire grid will take up an equal amount of space. This also applies to the height of the elements, but this will require you to set the height of your items to `height:100%` for this to take effect.
 
-##### Gaps
+### Gaps
 
 In order to create spacing between items in the layout, `ngx-configurable-layout` provides two inputs, `columnGap` and `rowGap`.
 
 Both properties expect a CSS based amount (in px, rem, %, etc.) and are both optional. This is the preferred way of adding spacing between your items, as using margins can sometimes create unexpected results due to the CSS Grid based implementation.
 
-##### Styling
+### Styling
 
 By default, `ngx-configurable-layout` always provides minimal styling. Several classes are provided to further style the grid as needed.
 
@@ -219,101 +175,3 @@ By default, `ngx-configurable-layout` always provides minimal styling. Several c
 | ngx-layout-item-inactive       | A class to style the inactive items used in `editable` layouts.             |
 | ngx-layout-item-disabled       | A class to style the disabled items used in `editable` layouts.             |
 | ngx-layout-grid-inactive-shown | A class given to the container when the inactive items are being shown.     |
-
-### Directives
-
-#### NgxDisplayContentDirective
-
-The `*displayContent` directive provides the ability to hide parts of the template based on a loading, error and/or offline status and optionally replace those by default components provided in the application.
-
-#### Setup
-
-In order for the directive to function correctly, some base configuration has to be provided. For each status, we can provide a fallback component we wish to render when each of these statuses are true. These components should implement the `NgxDisplayContentComponent` abstract.
-
-Each component is optional and can be overwritten by a custom template where the directive is used.
-
-```ts
-providers: [
-	provideNgxDisplayContentConfiguration({
-		components: {
-			loading: DisplayContentLoadingComponent,
-			error: DisplayContentErrorComponent,
-			offline: DisplayContentOfflineComponent,
-		},
-	}),
-];
-```
-
-Due to the fact that these components are optional, we might provide a loading state to the directive and not have a loading component to show. By default, the directive will then render the initial template. To override this behavior the configuration allows a property `hideWhenNoTemplateProvided` to be set to true, which will hide the initial template instead.
-
-By default, we need to provide the offline condition to the directive ourself in order to display the offline fallback. Because this status, unlike the error and the loading status, is based on a single input; we've provided the ability to automatically listen to the the online status of the application, using the `NgxOnlineService` provided in this package. Setting `listenToOnlineStatus` to true will automatically handle the offline status.
-
-```ts
-providers: [
-	provideNgxDisplayContentConfiguration({
-		hideWhenNoTemplateProvided: true,
-		listenToOnlineStatus: true,
-		components: {
-			loading: DisplayContentLoadingComponent,
-			error: DisplayContentErrorComponent,
-			offline: DisplayContentOfflineComponent,
-		},
-	}),
-];
-```
-
-#### Implementation
-
-Once the initial configuration is provided, we can use the `*displayContent` directive. This directive is a structural directive and requires an object with the status as an input. The directive has 3 potential statuses to listen to, being `offline`, `loading` and `error`. These statuses are checked in the earlier mentioned order.
-
-As an example, if the application is offline and we automatically listen to the online status, the offline fallback will be shown first; even if the loading status is currently set to true. Once the application is back online, then the loading fallback will be shown. Only then, if the loading status is false, will a potential error fallback be shown based on the error condition.
-
-```html
-<!-- This will not render the provided div, but the provided loading fallback instead -->
-<div *displayContent="{loading: true}">Hello! This content will be rendered when</div>
-
-<!-- This will render the provided div -->
-<div *displayContent="{loading: false}">Hello! This content will be rendered when</div>
-```
-
-#### Override configuration
-
-In certain cases we wish to override the default components we've provided or we wish to provide extra information to the default components. We can use this by providing additional configuration to the `*displayContent` directive.
-
-Each implementation of the `NgxDisplayContentComponent` comes with a any-typed data Input. We can pass this data to the component by providing this in the configuration object.
-
-```html
-<!-- This will not render the provided div, but the provided error fallback including the provided data-->
-<div *displayContent="{error: true}; condition: {error: {data: 'This is the error'}}">
-	Hello! This content will be rendered when
-</div>
-```
-
-Sometimes, we do not wish to use the default component at all, and want to provide a custom template instead. We can also do this by providing a template in the override configuration.
-
-```html
-<ng-template #errorTmpl> This is our custom error template! </ng-template>
-
-<!-- This will not render the provided div nor the provided fallback component, but will render the errorTmpl above.-->
-<div *displayContent="{error: true}; condition: {error: {template: errorTmpl}}">
-	Hello! This content will be rendered when
-</div>
-```
-
-#### Accessibility
-
-In order to provide a WCAG/ARIA compliant implementation, the `*displayContent` directive automatically sets the `aria-live` and `aria-busy` labels when needed.
-
-By default, the `aria-live` label gets set to `polite`. You can overwrite this setting using the `ariaLive` property in the override configuration.
-
-```html
-<div *displayContent="{loading: true}; ariaLive:'assertive' ">Hello world!</div>
-```
-
-If multiple items in a parent have this directive or if the parent already has an `aria-live` label set, the label with the highest importance gets used. The ranking is `assertive`, `polite` and `off` respectively.
-
-### Services
-
-#### NgxOnlineService
-
-`ngx-layout` provides a root service `NgxOnlineService` that offers a SSR friendly approach to the online status of the application. Listening to the `online$` Observable will provide you with a simple true or false based on the current status.

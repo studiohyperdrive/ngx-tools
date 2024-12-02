@@ -1,7 +1,7 @@
-import {NgDocCategory} from '@ng-doc/core';
+import { NgDocCategory } from '@ng-doc/core';
 
 const StoreCategory: NgDocCategory = {
-	title: 'store',
+	title: 'Store',
 };
 
 export default StoreCategory;
