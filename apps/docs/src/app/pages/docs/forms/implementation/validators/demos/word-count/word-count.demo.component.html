@@ -1,0 +1,14 @@
+<form [formGroup]="form">
+	<div>
+		<label for="Text">
+			Text
+			<input type="text" formControlName="text" name="text" />
+		</label>
+	</div>
+
+	<p>Form control errors: {{ form.get('text').errors | json }}</p>
+
+	<p>Form errors: {{ form.errors | json }}</p>
+
+	<button type="submit">Submit</button>
+</form>

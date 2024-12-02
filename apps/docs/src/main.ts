@@ -1,5 +1,4 @@
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { enableProdMode } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, withInMemoryScrolling } from '@angular/router';
@@ -12,9 +11,10 @@ import {
 	providePageSkeleton,
 	provideSearchEngine,
 } from '@ng-doc/app';
-import { NG_DOC_ROUTING, provideNgDocContext } from '@ng-doc/generated';
+import { provideNgDocContext } from '@ng-doc/generated';
 
 import { AppComponent } from './app/app.component';
+import { appRoutes } from './app/app.routes';
 // import { environment } from './environments/environment';
 
 // if (environment.production) {
@@ -36,7 +36,7 @@ bootstrapApplication(AppComponent, {
 		provideHttpClient(withInterceptorsFromDi()),
 		// Add generated routes to the application
 		provideRouter(
-			NG_DOC_ROUTING,
+			appRoutes,
 			// Enable anchor scrolling
 			withInMemoryScrolling({
 				scrollPositionRestoration: 'enabled',

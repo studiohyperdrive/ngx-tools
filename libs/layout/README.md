@@ -3,6 +3,7 @@
 `ngx-layout` is a collection of Angular components related to layout.
 
 ## Installation
+
 Install the package first:
 
 ```shell
@@ -13,9 +14,9 @@ npm install @studiohyperdrive/ngx-layout
 
 This package will follow a semver-like format, `major.minor.patch`, in which:
 
-- `major`: Follows the Angular major version
-- `minor`: Introduces new features and (potential) breaking changes
-- `patch`: Introduces bugfixes and minor non-breaking changes
+-   `major`: Follows the Angular major version
+-   `minor`: Introduces new features and (potential) breaking changes
+-   `patch`: Introduces bugfixes and minor non-breaking changes
 
 For more information about the build process, authors, contributions and issues, we refer to the [ngx-tools](https://github.com/studiohyperdrive/ngx-tools) repository.
 
@@ -68,11 +69,12 @@ The `ngx-accordion` provides a easy to use WCAG/ARIA compliant implementation fo
 
 ##### Implementation
 
-Using the `NgxAccordionComponent` as a container for our accordion items (`NgxAccordionItemComponent`), we are able to provide correct keyboard navigation for end users. Therefore it is important to always warp your items in the container component. 
+Using the `NgxAccordionComponent` as a container for our accordion items (`NgxAccordionItemComponent`), we are able to provide correct keyboard navigation for end users. Therefore it is important to always warp your items in the container component.
 
 We use content projection to pass the header and the content of each accordion item, by using the `headerTmpl` and `contentTmpl` ng-templates. Both templates allow for fetching the open state of the accordion, by using the $implicit outlet context.
 
 In the example below you can find a simple implementation of the accordion.
+
 ```ts
 import { NgxAccordion } from '@ngx/layout';
 
@@ -87,34 +89,30 @@ import { NgxAccordion } from '@ngx/layout';
 <ngx-accordion>
 	@for (item of testData; track $index) {
 	<ngx-accordion-item>
-		<ng-template #headerTmpl let-isOpen>
-			{{item.title}} {{isOpen}}
-		</ng-template>
+		<ng-template #headerTmpl let-isOpen> {{item.title}} {{isOpen}} </ng-template>
 
-		<ng-template #contentTmpl>
-			{{item.content}}
-		</ng-template>
+		<ng-template #contentTmpl> {{item.content}} </ng-template>
 	</ngx-accordion-item>
-    }
+	}
 </ngx-accordion>
 ```
 
 ##### Extra configuration
+
 The `NgxAccordionComponent` allows for opening a set of accordion items from the start. This is useful for when you want to open the first item, or specific items in the accordion. By using the `open` property you can either open all items, the first item, a specific item or a set of specific items by passing `all`, `first`, the index of an item or an array of indexes respectively.
 
-An individual `NgxAccordionItemComponent` can also be disabled by providing the `disabled` property. Once disabled, an item's open or closed state cannot be altered by the user. To allow an item to be open from the start and not closeable by the end-user, the `open` property of the `NgxAccordionComponent` will ignore the disabled state of the individual items. 
+An individual `NgxAccordionItemComponent` can also be disabled by providing the `disabled` property. Once disabled, an item's open or closed state cannot be altered by the user. To allow an item to be open from the start and not closeable by the end-user, the `open` property of the `NgxAccordionComponent` will ignore the disabled state of the individual items.
 
 ##### Styling
 
 The accordion implementation provides several classes we can use to target elements in the accordion. Internally the `NgxAccordionItemComponent` uses the `details` HTML element.
 
-| Class                          |                                                                             |
-| ------------------------------ | --------------------------------------------------------------------------- |
-| ngx-accordion                   | A class set to the `NgxAccordionComponent`.        |
-| ngx-accordion-item              | A class set to the `NgxAccordionItemComponent`.    |
-| ngx-accordion-content           | A class set to the content of the accordion item.  |
-| ngx-accordion-header            | A class set to the header of the accordion item.   |
-
+| Class                 |                                                   |
+| --------------------- | ------------------------------------------------- |
+| ngx-accordion         | A class set to the `NgxAccordionComponent`.       |
+| ngx-accordion-item    | A class set to the `NgxAccordionItemComponent`.   |
+| ngx-accordion-content | A class set to the content of the accordion item. |
+| ngx-accordion-header  | A class set to the header of the accordion item.  |
 
 #### Configurable layout
 
@@ -269,7 +267,7 @@ By default, `ngx-configurable-layout` always provides minimal styling. Several c
 
 ### Directives
 
-### NgxDisplayContentDirective
+#### NgxDisplayContentDirective
 
 The `*displayContent` directive provides the ability to hide parts of the template based on a loading, error and/or offline status and optionally replace those by default components provided in the application.
 
@@ -281,14 +279,14 @@ Each component is optional and can be overwritten by a custom template where the
 
 ```ts
 providers: [
-		provideNgxDisplayContentConfiguration({
-			components: {
-				loading: DisplayContentLoadingComponent,
-				error: DisplayContentErrorComponent,
-				offline: DisplayContentOfflineComponent,
-			},
-		}),
-	]
+	provideNgxDisplayContentConfiguration({
+		components: {
+			loading: DisplayContentLoadingComponent,
+			error: DisplayContentErrorComponent,
+			offline: DisplayContentOfflineComponent,
+		},
+	}),
+];
 ```
 
 Due to the fact that these components are optional, we might provide a loading state to the directive and not have a loading component to show. By default, the directive will then render the initial template. To override this behavior the configuration allows a property `hideWhenNoTemplateProvided` to be set to true, which will hide the initial template instead.
@@ -297,35 +295,30 @@ By default, we need to provide the offline condition to the directive ourself in
 
 ```ts
 providers: [
-		provideNgxDisplayContentConfiguration({
-            hideWhenNoTemplateProvided: true,
-			listenToOnlineStatus: true,
-			components: {
-				loading: DisplayContentLoadingComponent,
-				error: DisplayContentErrorComponent,
-				offline: DisplayContentOfflineComponent,
-			},
-		}),
-	]
+	provideNgxDisplayContentConfiguration({
+		hideWhenNoTemplateProvided: true,
+		listenToOnlineStatus: true,
+		components: {
+			loading: DisplayContentLoadingComponent,
+			error: DisplayContentErrorComponent,
+			offline: DisplayContentOfflineComponent,
+		},
+	}),
+];
 ```
 
 #### Implementation
 
-Once the initial configuration is provided, we can use the `*displayContent` directive. This directive is a structural directive and requires an object with the status as an input. The directive has 3 potential statuses to listen to, being `offline`, `loading` and `error`. These statuses are checked in the earlier mentioned order. 
+Once the initial configuration is provided, we can use the `*displayContent` directive. This directive is a structural directive and requires an object with the status as an input. The directive has 3 potential statuses to listen to, being `offline`, `loading` and `error`. These statuses are checked in the earlier mentioned order.
 
 As an example, if the application is offline and we automatically listen to the online status, the offline fallback will be shown first; even if the loading status is currently set to true. Once the application is back online, then the loading fallback will be shown. Only then, if the loading status is false, will a potential error fallback be shown based on the error condition.
 
 ```html
-    <!-- This will not render the provided div, but the provided loading fallback instead -->
-<div *displayContent="{loading: true}">
-    Hello! This content will be rendered when 
-</div>
+<!-- This will not render the provided div, but the provided loading fallback instead -->
+<div *displayContent="{loading: true}">Hello! This content will be rendered when</div>
 
-    <!-- This will render the provided div -->
-<div *displayContent="{loading: false}">
-    Hello! This content will be rendered when 
-</div>
-
+<!-- This will render the provided div -->
+<div *displayContent="{loading: false}">Hello! This content will be rendered when</div>
 ```
 
 #### Override configuration
@@ -335,35 +328,31 @@ In certain cases we wish to override the default components we've provided or we
 Each implementation of the `NgxDisplayContentComponent` comes with a any-typed data Input. We can pass this data to the component by providing this in the configuration object.
 
 ```html
-    <!-- This will not render the provided div, but the provided error fallback including the provided data-->
+<!-- This will not render the provided div, but the provided error fallback including the provided data-->
 <div *displayContent="{error: true}; condition: {error: {data: 'This is the error'}}">
-    Hello! This content will be rendered when 
+	Hello! This content will be rendered when
 </div>
 ```
 
 Sometimes, we do not wish to use the default component at all, and want to provide a custom template instead. We can also do this by providing a template in the override configuration.
 
 ```html
-<ng-template #errorTmpl>
-    This is our custom error template!
-</ng-template>
+<ng-template #errorTmpl> This is our custom error template! </ng-template>
 
-    <!-- This will not render the provided div nor the provided fallback component, but will render the errorTmpl above.-->
+<!-- This will not render the provided div nor the provided fallback component, but will render the errorTmpl above.-->
 <div *displayContent="{error: true}; condition: {error: {template: errorTmpl}}">
-    Hello! This content will be rendered when 
+	Hello! This content will be rendered when
 </div>
 ```
 
-#### Accessibility 
+#### Accessibility
 
 In order to provide a WCAG/ARIA compliant implementation, the `*displayContent` directive automatically sets the `aria-live` and `aria-busy` labels when needed.
 
 By default, the `aria-live` label gets set to `polite`. You can overwrite this setting using the `ariaLive` property in the override configuration.
 
 ```html
-<div *displayContent="{loading: true}; ariaLive:'assertive' ">
-    Hello world!
-</div>
+<div *displayContent="{loading: true}; ariaLive:'assertive' ">Hello world!</div>
 ```
 
 If multiple items in a parent have this directive or if the parent already has an `aria-live` label set, the label with the highest importance gets used. The ranking is `assertive`, `polite` and `off` respectively.
@@ -373,5 +362,3 @@ If multiple items in a parent have this directive or if the parent already has a
 #### NgxOnlineService
 
 `ngx-layout` provides a root service `NgxOnlineService` that offers a SSR friendly approach to the online status of the application. Listening to the `online$` Observable will provide you with a simple true or false based on the current status.
-
-

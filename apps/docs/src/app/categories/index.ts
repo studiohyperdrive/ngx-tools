@@ -1,8 +1,11 @@
 import CookiesCategory from './cookies/ng-doc.category';
 import FormsCategory from './forms/ng-doc.category';
+import FormsImplementationCategory from './forms/sub-categories/implementation/ng-doc.category';
 import I18nCategory from './i18n/ng-doc.category';
 import InformCategory from './inform/ng-doc.category';
+import InformImplementationCategory from './inform/sub-categories/implementation/ng-doc.category';
 import LayoutCategory from './layout/ng-doc.category';
+import LayoutImplementationCategory from './layout/sub-categories/implementation/ng-doc.category';
 import StoreCategory from './store/ng-doc.category';
 import TableCategory from './table/ng-doc.category';
 import TableImplementationCategory from './table/sub-categories/implementation/ng-doc.category';
@@ -18,9 +21,12 @@ import ServicesCategory from './utils/sub-categories/services/ng-doc.category';
 export {
 	CookiesCategory,
 	FormsCategory,
+	FormsImplementationCategory,
 	I18nCategory,
 	InformCategory,
+	InformImplementationCategory,
 	LayoutCategory,
+	LayoutImplementationCategory,
 	StoreCategory,
 	TableCategory,
 	TableImplementationCategory,

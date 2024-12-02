@@ -1,0 +1,18 @@
+<ngx-configurable-layout layoutType="editable" [formControl]="control">
+	<ngx-configurable-layout-item key="first-item">
+		<p>
+			This is the second item in the DOM. It will only be visible when the showInactive
+			property is set to true.
+		</p>
+	</ngx-configurable-layout-item>
+
+	<ngx-configurable-layout-item key="second-item">
+		<p>This is the first item in the DOM.</p>
+	</ngx-configurable-layout-item>
+
+	<ng-template #checkboxTmpl let-control>
+		This is an optional custom checkboxTmpl!
+
+		<input type="checkbox" [formControl]="control" class="my-custom-checkbox" />
+	</ng-template>
+</ngx-configurable-layout>
