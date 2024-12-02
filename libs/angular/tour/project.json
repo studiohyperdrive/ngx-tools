@@ -1,5 +1,5 @@
 {
-	"name": "tour",
+	"name": "ngx-tour",
 	"$schema": "../../../node_modules/nx/schemas/project-schema.json",
 	"sourceRoot": "libs/angular/tour/src",
 	"prefix": "lib",

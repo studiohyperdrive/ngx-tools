@@ -3,7 +3,7 @@ export default {
 	displayName: 'cookies',
 	preset: '../../../jest.preset.js',
 	setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-	coverageDirectory: '../../coverage/../libs/angular/cookies',
+	coverageDirectory: '../../../coverage/libs/angular/cookies',
 	transform: {
 		'^.+\\.(ts|mjs|js|html)$': [
 			'jest-preset-angular',

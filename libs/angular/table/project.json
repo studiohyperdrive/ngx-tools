@@ -1,5 +1,5 @@
 {
-	"name": "table",
+	"name": "ngx-table",
 	"$schema": "../../../node_modules/nx/schemas/project-schema.json",
 	"projectType": "library",
 	"sourceRoot": "libs/angular/table/src",
