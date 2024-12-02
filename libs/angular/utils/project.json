@@ -2,34 +2,34 @@
 	"name": "utils",
 	"$schema": "../../node_modules/nx/schemas/project-schema.json",
 	"projectType": "library",
-	"sourceRoot": "libs/utils/src",
+	"sourceRoot": "libs/angular/utils/src",
 	"prefix": "utils",
 	"targets": {
 		"build": {
 			"executor": "@nx/angular:package",
 			"options": {
-				"tsConfig": "libs/utils/tsconfig.lib.json",
-				"project": "libs/utils/ng-package.json"
+				"tsConfig": "libs/angular/utils/tsconfig.lib.json",
+				"project": "libs/angular/utils/ng-package.json"
 			},
 			"configurations": {
 				"production": {
-					"tsConfig": "libs/utils/tsconfig.lib.prod.json"
+					"tsConfig": "libs/angular/utils/tsconfig.lib.prod.json"
 				}
 			}
 		},
 		"test": {
 			"executor": "@angular-devkit/build-angular:karma",
 			"options": {
-				"main": "libs/utils/src/test.ts",
-				"tsConfig": "libs/utils/tsconfig.spec.json",
-				"karmaConfig": "libs/utils/karma.conf.js",
+				"main": "libs/angular/utils/src/test.ts",
+				"tsConfig": "libs/angular/utils/tsconfig.spec.json",
+				"karmaConfig": "libs/angular/utils/karma.conf.js",
 				"watch": false
 			}
 		},
 		"lint": {
 			"executor": "@nx/eslint:lint",
 			"options": {
-				"lintFilePatterns": ["libs/utils/**/*.ts", "libs/utils/**/*.html"]
+				"lintFilePatterns": ["libs/angular/utils/**/*.ts", "libs/angular/utils/**/*.html"]
 			}
 		}
 	}
