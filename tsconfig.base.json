@@ -19,7 +19,7 @@
 			"@ng-doc/generated": ["./ng-doc/docs/index.ts"],
 			"@ng-doc/generated/*": ["./ng-doc/docs/*"],
 			"@ngx/cookies": ["libs/angular/cookies/src/index.ts"],
-			"@ngx/forms": ["libs/forms/src/public-api.ts"],
+			"@ngx/forms": ["libs/angular/forms/src/public-api.ts"],
 			"@ngx/i18n": ["libs/i18n/src/public-api.ts"],
 			"@ngx/inform": ["libs/inform/src/index.ts"],
 			"@ngx/layout": ["libs/layout/src/public-api.ts"],
