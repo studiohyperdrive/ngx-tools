@@ -15,7 +15,7 @@
 
 	<ng-template #sortTmpl let-direction>
 		<small>
-			<ng-container *ngIf="!direction">Sort</ng-container>
+			@if (!direction) { Sort }
 			{{ direction | lowercase }}
 		</small>
 	</ng-template>

@@ -1,0 +1,14 @@
+<form [formGroup]="form">
+	<div>
+		<label for="date">
+			Date
+			<input type="date" formControlName="date" name="date" />
+		</label>
+	</div>
+
+	<p>Form control errors: {{ form.get('date').errors | json }}</p>
+
+	<p>Form errors: {{ form.errors | json }}</p>
+
+	<button type="submit">Submit</button>
+</form>
