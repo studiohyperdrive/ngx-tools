@@ -3,8 +3,8 @@ import {
 	calculatePagination,
 	calculateTotalPages,
 	createHalLinks,
-	HALFormat
-} from "./hal-format.helper";
+	HALFormat,
+} from './hal-format.helper';
 
 describe('HAL Format Tools', () => {
 	const linkToMyAPI = 'http://link-to-my-site.something/api/v1/some-entity';
@@ -68,7 +68,10 @@ describe('HAL Format Tools', () => {
 					href: `${linkToMyAPI}?page=${paginationInfo.totalPages}&pagesize=${paginationInfo.size}`,
 				},
 				next: {
-					href: `${linkToMyAPI}?page=${calculateNextPage(paginationInfo.totalPages, paginationInfo.number)}&pagesize=${paginationInfo.size}`,
+					href: `${linkToMyAPI}?page=${calculateNextPage(
+						paginationInfo.totalPages,
+						paginationInfo.number
+					)}&pagesize=${paginationInfo.size}`,
 				},
 			});
 		});
@@ -78,37 +81,41 @@ describe('HAL Format Tools', () => {
 		it('should create a response conform to the IHALFormat', () => {
 			const _page = calculatePagination(1, 10, 1);
 
-			expect(HALFormat({
-				path: linkToMyAPI,
-				key: keyOfMyEntity,
-				entities: myEntities,
-				page: 1,
-				size: 10,
-				totalElements: 1
-			})).toEqual({
+			expect(
+				HALFormat({
+					path: linkToMyAPI,
+					key: keyOfMyEntity,
+					entities: myEntities,
+					page: 1,
+					size: 10,
+					totalElements: 1,
+				})
+			).toEqual({
 				_links: createHalLinks(linkToMyAPI, _page),
 				_embedded: {
 					[keyOfMyEntity]: myEntities,
 				},
 				_page,
-			})
+			});
 		});
 
 		it('should create a response conform to the IHALFormat without links', () => {
 			const _page = calculatePagination(1, 10, 1);
 
-			expect(HALFormat({
-				key: keyOfMyEntity,
-				entities: myEntities,
-				page: 1,
-				size: 10,
-				totalElements: 1
-			})).toEqual({
+			expect(
+				HALFormat({
+					key: keyOfMyEntity,
+					entities: myEntities,
+					page: 1,
+					size: 10,
+					totalElements: 1,
+				})
+			).toEqual({
 				_embedded: {
 					[keyOfMyEntity]: myEntities,
 				},
 				_page,
-			})
+			});
 		});
 	});
 });

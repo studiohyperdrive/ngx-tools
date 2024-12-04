@@ -1,12 +1,18 @@
-import {IHALFormat, IHALFormatParams, IHALLinks, IHALPagination} from './hal-format.types';
+import { IHALFormat, IHALFormatParams, IHALLinks, IHALPagination } from './hal-format.types';
 
 /**
  * Calculate the total amount of pages based on the size and total-count.
  * @param size
  * @param totalElements
  */
-export function calculateTotalPages(size: number, totalElements: number, maxPages?: number): number {
-	return maxPages ? Math.min(maxPages, Math.ceil(totalElements / size)) : Math.ceil(totalElements / size);
+export function calculateTotalPages(
+	size: number,
+	totalElements: number,
+	maxPages?: number
+): number {
+	return maxPages
+		? Math.min(maxPages, Math.ceil(totalElements / size))
+		: Math.ceil(totalElements / size);
 }
 
 /**
@@ -20,7 +26,7 @@ export function calculatePagination(
 	page: number,
 	size: number,
 	totalElements: number,
-	maxPages?: number,
+	maxPages?: number
 ): IHALPagination {
 	return {
 		size,
@@ -48,7 +54,7 @@ export function calculateNextPage(totalPages: number, currentPage: number): numb
  */
 export function createHalLinks(
 	path: string,
-	{ size, totalPages, number }: IHALPagination,
+	{ size, totalPages, number }: IHALPagination
 ): IHALLinks {
 	return {
 		self: {
@@ -89,9 +95,9 @@ export function HALFormat<T = unknown>({
 	const _page = calculatePagination(page, size, totalElements, maxPages);
 
 	return {
-		...path && {
+		...(path && {
 			_links: createHalLinks(path, _page),
-		},
+		}),
 		_embedded: {
 			[key]: entities,
 		},
