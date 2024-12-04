@@ -27,7 +27,8 @@
 			"@ngx/table": ["libs/angular/table/src/public-api.ts"],
 			"@ngx/tour": ["libs/angular/tour/src/index.ts"],
 			"@ngx/utils": ["libs/angular/utils/src/public-api.ts"],
-			"@rxjs/utils": ["libs/rxjs/utils/src/index.ts"]
+			"@rxjs/utils": ["libs/rxjs/utils/src/index.ts"],
+			"@studiohyperdrive/express-status": ["libs/nodejs/express-status/src/index.ts"]
 		},
 		"useDefineForClassFields": false,
 		"skipLibCheck": true,
