@@ -1,5 +1,6 @@
 import { subscribeSpyTo } from '@hirez_io/observer-spy';
-import { windowServiceMock } from '../window-service/window.service.mock';
+import { windowServiceMock } from '@ngx/shared';
+
 import { NgxStorageService } from './storage.service';
 
 describe('NgxStorageService', () => {

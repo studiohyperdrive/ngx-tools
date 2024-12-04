@@ -173,7 +173,7 @@ The ngxReplaceElements pipe will provide a way to transform a string that contai
 This service uses the `DOCUMENT` injection-token to provide several methods to access both document and window and related information.
 It is convenient for using the document or window without breaking SSR.
 
-[Full documentation.](src/lib/services/window-service/window.service.md)
+[Full documentation.](../shared//src/lib/services/window-service/window.service.md)
 
 #### subscription service
 

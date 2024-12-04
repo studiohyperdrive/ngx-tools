@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
+import { WindowService } from '@ngx/shared';
 import { EMPTY, fromEvent, Observable } from 'rxjs';
-import { WindowService } from '../window-service/window.service';
 
 /**
  * A service that wraps the BroadCastChannel API and provides an Observable based implementation to the channel messages.

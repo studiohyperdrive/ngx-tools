@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, NEVER, Observable, Subject } from 'rxjs';
+import { WindowService } from '@ngx/shared';
 import {
 	NgxStorage,
 	NgxStorageClearEvent,
@@ -9,7 +10,6 @@ import {
 	NgxStorageSetEvent,
 	NgxStorageType,
 } from '../../types';
-import { WindowService } from '../window-service/window.service';
 
 /**
  * A service that provides a SSR-proof Observable based approach to the session- and localStorage.

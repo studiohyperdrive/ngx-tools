@@ -1,5 +1,5 @@
 import { Subscription } from 'rxjs';
-import { windowServiceMock } from '../window-service/window.service.mock';
+import { windowServiceMock } from '@ngx/shared';
 import { NgxBroadcastChannelService } from './broadcast-channel.service';
 
 class MockBroadcastChannel {

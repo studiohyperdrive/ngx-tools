@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy } from '@angular/core';
+import { WindowService } from '@ngx/shared';
 import { filter, map, Observable, ReplaySubject } from 'rxjs';
-import { WindowService } from '../window-service/window.service';
 
 /**
  * A service that can be used to track media queries and their changes. It exposes a method
