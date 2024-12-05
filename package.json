@@ -10,7 +10,7 @@
 		"test:all": "nx run-many --target=test --code-coverage",
 		"lint": "nx lint",
 		"lint:all": "nx run-many --target=lint --fix",
-		"docs:add-page": "npx nx g @ng-doc/builder:page '$name' --path apps/docs/src/app/pages",
+		"docs:add-page": "npx nx g @ng-doc/builder:page '$name' --path apps/docs/src/app/pages/docs",
 		"docs:add-category": "npx nx g @ng-doc/builder:category '$name' --path apps/docs/src/app/categories"
 	},
 	"private": true,
