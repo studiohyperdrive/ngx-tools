@@ -12,4 +12,4 @@ Simplifying the process of creating (complex) custom `ControlValueAccessor`s, `n
 
 To handle errors in a uniform way, `ngx-forms` provides the `NgxErrors` directive approach that will unify all error handling with either the default or a custom defined error component.
 
-Last but not least, the `SaveOnExit` flow of `ngx-forms` allows for a quick and simple solution to the often re-occuring "save-before-you-exit" flow that is common amongst complex form implementation
+Last but not least, the `SaveOnExit` flow of `ngx-forms` allows for a quick and simple solution to the often re-occuring "save-before-you-exit" flow that is common amongst complex form implementation.
