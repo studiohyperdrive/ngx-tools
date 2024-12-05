@@ -9,7 +9,7 @@ keyword: DocumentationPage
 - [x] i18n
 - [x] Inform
 - [ ] Layout
-- [ ] Store
+- [x] Store
 - [ ] Table
 - [x] Tour
 - [ ] Utils
