@@ -11,7 +11,7 @@ keyword: DocumentationPage
 - [ ] Layout
 - [ ] Store
 - [ ] Table
-- [ ] Tour
+- [x] Tour
 - [ ] Utils
 
 ### RxJS
