@@ -41,15 +41,16 @@ In many cases we simply want to render a single default component throughout the
 ```ts
 ...
 imports: [CommonModule, NgxHasCookieDirective],
-providers: [
-		{
-			provide: NgxCookiesFallbackComponentToken,
-			useValue: CookieAlertComponent,
-		},
-	],
+    providers: [
+    {
+        provide: NgxCookiesFallbackComponentToken,
+        useValue: CookieAlertComponent,
+    },
+],
+```
 
-    ...
-
+```ts
+...
 import { CommonModule, JsonPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { NgxCookiesFallBackComponent } from '@ngx/cookies';
@@ -61,8 +62,6 @@ import { NgxCookiesFallBackComponent } from '@ngx/cookies';
 	standalone: true,
 })
 export class CookieAlertComponent extends NgxCookiesFallBackComponent {}
-
-
 ```
 
-Just like any structural directives, we can pass an `else` template to the ` *\hasCookie` directive. This template always has priority over the default component we provided. This way, you are always able to get a custom template even when a default is implemented.
+Just like any structural directives, we can pass an `else` template to the `*\hasCookie` directive. This template always has priority over the default component we provided. This way, you are always able to get a custom template even when a default is implemented.

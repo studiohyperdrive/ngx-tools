@@ -4,7 +4,7 @@ keyword: DocumentationPage
 
 ### Angular
 
-- [ ] Cookies
+- [x] Cookies
 - [ ] Forms
 - [ ] i18n
 - [ ] Inform
