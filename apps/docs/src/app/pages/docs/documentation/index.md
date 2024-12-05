@@ -7,7 +7,7 @@ keyword: DocumentationPage
 - [x] Cookies
 - [x] Forms
 - [x] i18n
-- [ ] Inform
+- [x] Inform
 - [ ] Layout
 - [ ] Store
 - [ ] Table
