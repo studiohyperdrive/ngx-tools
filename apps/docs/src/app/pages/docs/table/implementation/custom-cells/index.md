@@ -14,36 +14,36 @@ import { Component, ContentChild, TemplateRef, ViewChild } from '@angular/core';
 import { NgxAbstractTableCellDirective } from '@studiohyperdrive/ngx-table';
 
 @Component({
-	selector: 'ngx-user-table-cell',
-	providers: [
-		{
-			provide: NgxAbstractTableCellDirective,
-			useExisting: UserTableCellComponent,
-		},
-	],
-	template: `
+    selector: 'ngx-user-table-cell',
+    providers: [
+        {
+            provide: NgxAbstractTableCellDirective,
+            useExisting: UserTableCellComponent,
+        },
+    ],
+    template: `
 		<ng-template #cellTmpl let-user> {{ user.firstName }} {{ user.name }} </ng-template>
 	`,
-	changeDetection: ChangeDetection.OnPush,
+    changeDetection: ChangeDetection.OnPush,
 })
 export class UserTableCellComponent extends NgxAbstractTableCellDirective {
-	/**
-	 * A template for the footer of the cell
-	 */
-	@ContentChild('footerTmpl', { static: false })
-	footerTemplate: TemplateRef<any>;
+    /**
+     * A template for the footer of the cell
+     */
+    @ContentChild('footerTmpl', { static: false })
+    footerTemplate: TemplateRef<any>;
 
-	/**
-	 * A template for the header of the cell
-	 */
-	@ContentChild('headerTmpl', { static: false })
-	public headerTemplate: TemplateRef<any>;
+    /**
+     * A template for the header of the cell
+     */
+    @ContentChild('headerTmpl', { static: false })
+    public headerTemplate: TemplateRef<any>;
 
-	/**
-	 * A template for the content of the cell itself
-	 */
-	@ViewChild('cellTmpl', { static: false })
-	public cellTemplate: TemplateRef<any>;
+    /**
+     * A template for the content of the cell itself
+     */
+    @ViewChild('cellTmpl', { static: false })
+    public cellTemplate: TemplateRef<any>;
 }
 ```
 
