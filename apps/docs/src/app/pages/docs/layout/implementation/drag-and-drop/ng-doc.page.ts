@@ -1,11 +1,11 @@
 import { NgDocPage } from '@ng-doc/core';
 import { LayoutImplementationCategory } from '../../../../../categories';
 
-const LayoutServicesPage: NgDocPage = {
-	title: `Services`,
+const LayoutDragAndDropPage: NgDocPage = {
+	title: `Drag and drop`,
 	mdFile: './index.md',
 	category: LayoutImplementationCategory,
-	order: 3,
+	order: 4,
 };
 
-export default LayoutServicesPage;
+export default LayoutDragAndDropPage;
