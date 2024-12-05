@@ -12,13 +12,12 @@ In order to display a tooltip, we need to provide a default configuration which 
 
 ```ts
 providers: [
-	provideNgxTooltipConfiguration({
-		component: MyToolTipComponent,
-		defaultPosition: 'right',
-	}),
+    provideNgxTooltipConfiguration({
+        component: MyToolTipComponent,
+        defaultPosition: 'right',
+    }),
 ];
 ```
-
 The `ngxTooltip` directive allows you to add your own component with your own styling as a tooltip. In order for the tooltip to be ARIA compliant this component must extend the `NgxTooltipAbstractComponent`.
 
 The `defaultPosition` can be used to overwrite the default position for all tooltips. By default, this is `above`.
@@ -34,10 +33,10 @@ import { Component } from '@angular/core';
 import { NgxTooltipAbstractComponent } from '@ngx/layout';
 
 @Component({
-	selector: 'tooltip',
-	template: `<p [innerHtml]="text"></p>`,
-	styleUrl: './tooltip.component.scss',
-	standalone: true,
+    selector: 'tooltip',
+    template: `<p [innerHtml]="text"></p>`,
+    styleUrl: './tooltip.component.scss',
+    standalone: true,
 })
 export class TooltipComponent extends NgxTooltipAbstractComponent {}
 ```
@@ -58,12 +57,12 @@ On top of these two inputs, we have two additional inputs, being `ngxTooltipComp
 
 ```html
 <h1
-	ngxTooltip="This is a tooltip!"
-	ngxTooltipId="title_1"
-	ngxTooltipPosition="right"
-	[ngxTooltipComponent]="MyCustomTooltipComponent"
+    ngxTooltip="This is a tooltip!"
+    ngxTooltipId="title_1"
+    ngxTooltipPosition="right"
+    [ngxTooltipComponent]="MyCustomTooltipComponent"
 >
-	Title 1
+    Title 1
 </h1>
 ```
 
