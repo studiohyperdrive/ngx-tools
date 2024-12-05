@@ -67,18 +67,18 @@ We can do this by providing a custom component to the `component` property in th
 ```ts
 // Root
 providers: [
-	{
-		provide: NgxFormsErrorsConfigurationToken,
-		useValue: {
-			errors: {
-				required: 'This is a required field.',
-				email: 'This field is not a valid email address.',
-			},
-			showWhen: 'touched',
-			component: CustomErrorComponent,
-		},
-	},
-];
+    {
+        provide: NgxFormsErrorsConfigurationToken,
+        useValue: {
+            errors: {
+                required: 'This is a required field.',
+                email: 'This field is not a valid email address.',
+            },
+            showWhen: 'touched',
+        component: CustomErrorComponent,
+        },
+    },
+]
 ```
 
 This `CustomErrorComponent` has to extend the `NgxFormsErrorAbstractComponent`. This will provide the component with several inputs that can be used in our custom component.

@@ -2,10 +2,10 @@
 keyword: DocumentationPage
 ---
 
-### Angular
+## Angular
 
 - [x] Cookies
-- [ ] Forms
+- [x] Forms
 - [ ] i18n
 - [ ] Inform
 - [ ] Layout
@@ -14,5 +14,5 @@ keyword: DocumentationPage
 - [x] Tour
 - [ ] Utils
 
-### RxJS
+## RxJS
 - [] Utils
