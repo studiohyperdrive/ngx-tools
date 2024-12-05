@@ -50,9 +50,9 @@ import { NgxI18nMultiTranslationHttpLoader } from '@studiohyperdrive/ngx-i18n';
 
 export function FeatureTranslationLoader(http: HttpBackend) {
 	return new NgxI18nMultiTranslationHttpLoader(http, [
-		'./assets/i18n/shared/',
-		'./assets/i18n/feature',
-	]);
+        './assets/i18n/shared/',
+        './assets/i18n/feature',
+    ]);
 }
 ```
 
@@ -94,14 +94,14 @@ The `NgxI18nGuard` will both ensure that, once the language is set, the correct 
 In some setups, the base route of the application does not have a component and currently redirects to a fixed language. In order to circumvent this issue, `@studiohyperdrive/ngx-i18n` also provides a dummy component `NgxI18nEmptyComponent` that can be used instead.
 
 ```ts
-    {
-		path: '',
-		canActivate: [NgxI18nSetLanguageGuard],
-		component: NgxI18nEmptyComponent,
-	},
-	{
-		path: ':language',
-		canActivate: [NgxI18nGuard],
-		loadChildren: () => import('../feature/feature.routes').then((m) => m.FeatureRoutes),
-	},
+{
+    path: '',
+    canActivate: [NgxI18nSetLanguageGuard],
+    component: NgxI18nEmptyComponent,
+},
+{
+    path: ':language',
+    canActivate: [NgxI18nGuard],
+    loadChildren: () => import('../feature/feature.routes').then((m) => m.FeatureRoutes),
+},
 ```
