@@ -12,12 +12,12 @@ It should be noted though, that this can sometimes cause issues with the changeD
 this.tourService.startTour(
     [...],
     () => {
-				return from(this.router.navigate([''])).pipe(
-					tap(() => {
-						this.cdRef.detectChanges();
-					})
-				);
-			}
+        return from(this.router.navigate([''])).pipe(
+            tap(() => {
+                this.cdRef.detectChanges();
+            })
+        );
+    }
 )
 ```
 
