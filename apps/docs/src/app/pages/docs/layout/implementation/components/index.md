@@ -43,6 +43,18 @@ By using content projection, we render our components inside of a `ngx-configura
 
 This means that the order of rendering is now no longer depended on how you provide the components in the template, but by the two dimensional array provided to the `ngx-configurable-layout` component. This significantly streamlines the process and allows you to easily refactor existing flows. In the chapters below we'll explain how to provide the two dimensional array to the component.
 
+In order to provide an accessible experience for end-users, the earlier mentioned `NgxDragAndDropService` needs to be provided.
+
+### Accessibility
+
+Currently, default texts have been provided for the following languages: Dutch (`nl`), English (`en`), French (`fr`), German (`de`), Spanish (`es`),Portuguese (`pt`), Turkish (`tr`), and Kurdish (`ku`).
+
+In order to further customize the messages for end users with assistive technologies, we can pass several configuration items to the `ngx-configurable-layout` and `ngx-configurable-layout-item`.
+
+By passing an `itemLabel` and a `rowLabel` we can define specific names for the rows and the items within the rows of the `ngx-configurable-layout`. By default, these are `item` and `list`; but you can change these to your own preference.
+
+The `ngx-configurable-layout-item` also has an optional `label` property which can be used to overwrite both the default and the layout defined label for the item.
+
 ### Static
 
 Earlier we mentioned that the layout is build up using a provided two dimensional array. Depending on whether you want this layout to be `static` or `editable`, we provide the array in a different fashion.

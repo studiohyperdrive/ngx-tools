@@ -2,7 +2,7 @@
 keyword: LayoutDirectivesPage
 ---
 
-# NgxDisplayContentDirective
+## NgxDisplayContentDirective
 
 The `*\displayContent` directive provides the ability to hide parts of the template based on a loading, error and/or offline status and optionally replace those by default components provided in the application.
 

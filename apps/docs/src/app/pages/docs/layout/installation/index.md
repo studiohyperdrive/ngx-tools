@@ -2,8 +2,6 @@
 keyword: InstallationPage
 ---
 
-Install the package first:
-
 ```shell
 npm install @studiohyperdrive/ngx-layout
 ```
