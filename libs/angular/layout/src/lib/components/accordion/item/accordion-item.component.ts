@@ -24,15 +24,14 @@ import { NgxAccordionComponent } from '../accordion.component';
  * https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
  */
 @Component({
-	selector: 'ngx-accordion-item',
-	templateUrl: './accordion-item.component.html',
-	styleUrl: './accordion-item.component.scss',
-	standalone: true,
-	changeDetection: ChangeDetectionStrategy.OnPush,
-	imports: [NgTemplateOutlet],
-	host: {
-		class: 'ngx-accordion-item',
-	},
+    selector: 'ngx-accordion-item',
+    templateUrl: './accordion-item.component.html',
+    styleUrl: './accordion-item.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [NgTemplateOutlet],
+    host: {
+        class: 'ngx-accordion-item',
+    }
 })
 export class NgxAccordionItemComponent implements OnInit, AfterViewInit, OnDestroy {
 	/**

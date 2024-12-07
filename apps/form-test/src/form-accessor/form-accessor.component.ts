@@ -5,8 +5,8 @@ import { DateInputComponent } from '../date-input/date-input.component';
 import { FormAccessor, NgxFormsErrorsDirective, createAccessorProviders } from '@ngx/forms';
 
 @Component({
-	selector: 'app-form-accessor',
-	template: ` <ng-container [formGroup]="form">
+    selector: 'app-form-accessor',
+    template: ` <ng-container [formGroup]="form">
 		<p>Hello</p>
 		<input *ngxFormsErrors="'hello'" formControlName="hello" type="text" />
 
@@ -19,15 +19,14 @@ import { FormAccessor, NgxFormsErrorsDirective, createAccessorProviders } from '
 		<p>Dates</p>
 		<app-depended-dates formControlName="dates" />
 	</ng-container>`,
-	providers: [createAccessorProviders(FormAccessorComponent)],
-	changeDetection: ChangeDetectionStrategy.OnPush,
-	standalone: true,
-	imports: [
-		ReactiveFormsModule,
-		NgxFormsErrorsDirective,
-		DateInputComponent,
-		DependedDatesComponent,
-	],
+    providers: [createAccessorProviders(FormAccessorComponent)],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        ReactiveFormsModule,
+        NgxFormsErrorsDirective,
+        DateInputComponent,
+        DependedDatesComponent,
+    ]
 })
 export class FormAccessorComponent extends FormAccessor<any, any> {
 	initForm() {

@@ -5,11 +5,10 @@ import { DependedDatesValidator } from './depended-dates.validator';
 import { FormAccessor, NgxFormsErrorsDirective, createAccessorProviders } from '@ngx/forms';
 
 @Component({
-	selector: 'app-depended-dates',
-	templateUrl: './depended-dates.component.html',
-	providers: [createAccessorProviders(DependedDatesComponent)],
-	standalone: true,
-	imports: [ReactiveFormsModule, DateInputComponent, NgxFormsErrorsDirective],
+    selector: 'app-depended-dates',
+    templateUrl: './depended-dates.component.html',
+    providers: [createAccessorProviders(DependedDatesComponent)],
+    imports: [ReactiveFormsModule, DateInputComponent, NgxFormsErrorsDirective]
 })
 export class DependedDatesComponent extends FormAccessor<any, FormGroup<any>> {
 	initForm(): FormGroup<any> {

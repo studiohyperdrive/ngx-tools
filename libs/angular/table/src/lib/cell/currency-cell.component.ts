@@ -4,20 +4,19 @@ import { CurrencyPipe } from '@angular/common';
 import { NgxAbstractTableCellDirective } from './cell.directive';
 
 @Component({
-	selector: 'ngx-currency-table-cell',
-	providers: [
-		{
-			provide: NgxAbstractTableCellDirective,
-			useExisting: NgxCurrencyTableCellComponent,
-		},
-	],
-	template: `
+    selector: 'ngx-currency-table-cell',
+    providers: [
+        {
+            provide: NgxAbstractTableCellDirective,
+            useExisting: NgxCurrencyTableCellComponent,
+        },
+    ],
+    template: `
 		<ng-template #cellTmpl let-item>
 			{{ item | currency : currency }}
 		</ng-template>
 	`,
-	standalone: true,
-	imports: [CurrencyPipe],
+    imports: [CurrencyPipe]
 })
 export class NgxCurrencyTableCellComponent extends NgxAbstractTableCellDirective {
 	/**

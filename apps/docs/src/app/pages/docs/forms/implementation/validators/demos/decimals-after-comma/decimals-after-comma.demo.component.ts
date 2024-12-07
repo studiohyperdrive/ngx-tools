@@ -4,10 +4,9 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgxValidators } from '@ngx/forms';
 
 @Component({
-	standalone: true,
-	imports: [CommonModule, ReactiveFormsModule],
-	selector: 'decimals-after-comma-validator-demo',
-	templateUrl: 'decimals-after-comma.demo.component.html',
+    imports: [CommonModule, ReactiveFormsModule],
+    selector: 'decimals-after-comma-validator-demo',
+    templateUrl: 'decimals-after-comma.demo.component.html'
 })
 export class DecimalsAfterCommaValidatorDemoComponent {
 	form = new FormGroup({

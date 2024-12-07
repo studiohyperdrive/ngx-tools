@@ -35,7 +35,8 @@
 						"objects": "always-multiline"
 					}
 				],
-				"import/order": "error"
+				"import/order": "error",
+				"@angular-eslint/prefer-standalone": "off"
 			}
 		},
 		{

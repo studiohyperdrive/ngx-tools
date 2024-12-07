@@ -2,10 +2,9 @@ import { Component } from '@angular/core';
 import { UniqByPipe } from '@ngx/utils';
 
 @Component({
-	standalone: true,
-	imports: [UniqByPipe],
-	selector: 'unique-by-demo',
-	templateUrl: 'unique-by.demo.component.html',
+    imports: [UniqByPipe],
+    selector: 'unique-by-demo',
+    templateUrl: 'unique-by.demo.component.html'
 })
 export class UniqueByPipeDemoComponent {
 	public array = [

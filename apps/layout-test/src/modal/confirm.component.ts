@@ -3,8 +3,8 @@ import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgxModalAbstractComponent } from '@ngx/inform';
 
 @Component({
-	selector: 'confirm-modal',
-	template: `
+    selector: 'confirm-modal',
+    template: `
 		Confirm this please
 		<label for="confirm-modal-input">
 			Set some data to be passed to the component that opened this modal:
@@ -13,9 +13,8 @@ import { NgxModalAbstractComponent } from '@ngx/inform';
 		<button (click)="handleAction('Confirm')">Confirm</button>
 		<button (click)="close.emit()">Close</button>
 	`,
-	styleUrl: './modal.component.scss',
-	standalone: true,
-	imports: [ReactiveFormsModule],
+    styleUrl: './modal.component.scss',
+    imports: [ReactiveFormsModule]
 })
 export class ConfirmModalComponent extends NgxModalAbstractComponent<{
 	type: 'Confirm';

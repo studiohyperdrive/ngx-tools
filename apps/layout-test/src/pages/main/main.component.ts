@@ -16,19 +16,18 @@ import { NgxTooltipDirective } from '@ngx/inform';
 import { NgxTourItemDirective, NgxTourService, useMockDataDuringTour } from '@ngx/tour';
 
 @Component({
-	selector: 'main',
-	templateUrl: './main.component.html',
-	styleUrl: './main.component.scss',
-	standalone: true,
-	imports: [
-		NgxConfigurableLayoutComponent,
-		NgxConfigurableLayoutItemComponent,
-		ReactiveFormsModule,
-		NgxDisplayContentDirective,
-		NgxTourItemDirective,
-		CommonModule,
-		NgxTooltipDirective,
-	],
+    selector: 'main',
+    templateUrl: './main.component.html',
+    styleUrl: './main.component.scss',
+    imports: [
+        NgxConfigurableLayoutComponent,
+        NgxConfigurableLayoutItemComponent,
+        ReactiveFormsModule,
+        NgxDisplayContentDirective,
+        NgxTourItemDirective,
+        CommonModule,
+        NgxTooltipDirective,
+    ]
 })
 export class MainComponent {
 	public control: FormControl<NgxConfigurableLayoutGrid> = new FormControl([]);

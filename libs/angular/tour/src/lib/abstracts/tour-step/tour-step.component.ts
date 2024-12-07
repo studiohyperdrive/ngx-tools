@@ -21,11 +21,12 @@ import { NgxTourService } from '../../services';
  * An abstract class that defines the minimum properties needed for the step component to be rendered
  */
 @Directive({
-	host: {
-		role: 'dialog',
-		'[attr.aria-modal]': 'true',
-		'[attr.aria-labelledby]': 'titleId()',
-	},
+    host: {
+        role: 'dialog',
+        '[attr.aria-modal]': 'true',
+        '[attr.aria-labelledby]': 'titleId()',
+    },
+    standalone: false
 })
 export abstract class NgxTourStepComponent<DataType = any> implements OnInit, AfterViewInit {
 	/**

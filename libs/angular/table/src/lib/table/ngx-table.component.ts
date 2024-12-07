@@ -62,29 +62,28 @@ interface TableCellTemplate {
 }
 
 @Component({
-	selector: 'ngx-table',
-	templateUrl: './ngx-table.component.html',
-	changeDetection: ChangeDetectionStrategy.OnPush,
-	styleUrls: ['./ngx-table.component.scss'],
-	providers: [
-		{
-			provide: NG_VALUE_ACCESSOR,
-			multi: true,
-			useExisting: NgxTableComponent,
-		},
-	],
-	standalone: true,
-	imports: [
-		CdkTableModule,
-		NgTemplateOutlet,
-		NgClass,
-		ReactiveFormsModule,
-		NgxTableHasObserversPipe,
-		NgxTableSortIconPipe,
-		NgxTableShowHeaderPipe,
-		NgxAriaSortPipe,
-		NgxTreeGrid,
-	],
+    selector: 'ngx-table',
+    templateUrl: './ngx-table.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    styleUrls: ['./ngx-table.component.scss'],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            multi: true,
+            useExisting: NgxTableComponent,
+        },
+    ],
+    imports: [
+        CdkTableModule,
+        NgTemplateOutlet,
+        NgClass,
+        ReactiveFormsModule,
+        NgxTableHasObserversPipe,
+        NgxTableSortIconPipe,
+        NgxTableShowHeaderPipe,
+        NgxAriaSortPipe,
+        NgxTreeGrid,
+    ]
 })
 export class NgxTableComponent
 	implements AfterContentChecked, ControlValueAccessor, OnInit, OnChanges, OnDestroy

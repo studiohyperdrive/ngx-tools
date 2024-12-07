@@ -4,11 +4,10 @@ import { NgDocRootComponent, NgDocNavbarComponent, NgDocSidebarComponent } from 
 import { NG_DOC_ROUTING } from '@ng-doc/generated';
 
 @Component({
-	standalone: true,
-	imports: [RouterModule, NgDocRootComponent, NgDocNavbarComponent, NgDocSidebarComponent],
-	selector: 'ng-doc-docs',
-	templateUrl: 'docs-page.component.html',
-	changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [RouterModule, NgDocRootComponent, NgDocNavbarComponent, NgDocSidebarComponent],
+    selector: 'ng-doc-docs',
+    templateUrl: 'docs-page.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DocsPageComponent {}
 

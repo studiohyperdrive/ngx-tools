@@ -11,23 +11,22 @@ import {
 import { NgxStorageService } from '@ngx/utils';
 
 @Component({
-	standalone: true,
-	selector: 'app-root',
-	templateUrl: './app.component.html',
-	styleUrl: './app.component.scss',
-	imports: [
-		CommonModule,
-		NgxHasCookieDirective,
-		NgDocRootComponent,
-		NgDocNavbarComponent,
-		NgDocSidebarComponent,
-	],
-	providers: [
-		{
-			provide: NgxCookiesFallbackComponentToken,
-			useValue: CookieAlertComponent,
-		},
-	],
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss',
+    imports: [
+        CommonModule,
+        NgxHasCookieDirective,
+        NgDocRootComponent,
+        NgDocNavbarComponent,
+        NgDocSidebarComponent,
+    ],
+    providers: [
+        {
+            provide: NgxCookiesFallbackComponentToken,
+            useValue: CookieAlertComponent,
+        },
+    ]
 })
 export class AppComponent {
 	title = 'cookies-test';

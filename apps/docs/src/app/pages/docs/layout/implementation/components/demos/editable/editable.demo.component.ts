@@ -7,14 +7,13 @@ import {
 } from '@ngx/layout';
 
 @Component({
-	standalone: true,
-	imports: [
-		NgxConfigurableLayoutComponent,
-		NgxConfigurableLayoutItemComponent,
-		ReactiveFormsModule,
-	],
-	selector: 'layout-editable-demo-name',
-	templateUrl: 'editable.demo.component.html',
+    imports: [
+        NgxConfigurableLayoutComponent,
+        NgxConfigurableLayoutItemComponent,
+        ReactiveFormsModule,
+    ],
+    selector: 'layout-editable-demo-name',
+    templateUrl: 'editable.demo.component.html'
 })
 export class LayoutEditableDemoComponent {
 	public readonly control: FormControl<NgxConfigurableLayoutGrid | null> = new FormControl([

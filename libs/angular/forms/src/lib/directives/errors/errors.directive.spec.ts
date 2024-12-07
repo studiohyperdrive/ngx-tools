@@ -14,32 +14,31 @@ import { NgxFormsErrorsConfigurationToken } from '../../tokens';
 import { NgxFormsErrorsDirective } from './errors.directive';
 
 @Component({
-	selector: 'kp-form-accessor',
-	template: ` <ng-container [formGroup]="form">
+    selector: 'kp-form-accessor',
+    template: ` <ng-container [formGroup]="form">
 		<p>Hello</p>
 		<input *ngxFormsErrors="'hello'" formControlName="hello" type="text" />
 
 		<p>World</p>
 		<input *ngxFormsErrors="'world'" formControlName="world" type="text" />
 	</ng-container>`,
-	providers: [
-		{
-			provide: NG_VALUE_ACCESSOR,
-			useExisting: forwardRef(() => FormAccessorComponent),
-			multi: true,
-		},
-		{
-			provide: NG_VALIDATORS,
-			useExisting: forwardRef(() => FormAccessorComponent),
-			multi: true,
-		},
-		{
-			provide: BaseFormAccessor,
-			useExisting: forwardRef(() => FormAccessorComponent),
-		},
-	],
-	standalone: true,
-	imports: [ReactiveFormsModule, NgxFormsErrorsDirective],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => FormAccessorComponent),
+            multi: true,
+        },
+        {
+            provide: NG_VALIDATORS,
+            useExisting: forwardRef(() => FormAccessorComponent),
+            multi: true,
+        },
+        {
+            provide: BaseFormAccessor,
+            useExisting: forwardRef(() => FormAccessorComponent),
+        },
+    ],
+    imports: [ReactiveFormsModule, NgxFormsErrorsDirective]
 })
 export class FormAccessorComponent extends FormAccessor<any, any> {
 	initForm() {
@@ -51,10 +50,9 @@ export class FormAccessorComponent extends FormAccessor<any, any> {
 }
 
 @Component({
-	selector: 'kp-error',
-	template: `<p class="kp-error">{{ errors[0] }}</p>`,
-	standalone: true,
-	imports: [ReactiveFormsModule],
+    selector: 'kp-error',
+    template: `<p class="kp-error">{{ errors[0] }}</p>`,
+    imports: [ReactiveFormsModule]
 })
 export class FormErrorComponent extends NgxFormsErrorAbstractComponent {}
 

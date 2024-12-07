@@ -4,10 +4,9 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgxValidators } from '@ngx/forms';
 
 @Component({
-	standalone: true,
-	imports: [CommonModule, ReactiveFormsModule],
-	selector: 'date-range-demo',
-	templateUrl: 'date-range.demo.component.html',
+    imports: [CommonModule, ReactiveFormsModule],
+    selector: 'date-range-demo',
+    templateUrl: 'date-range.demo.component.html'
 })
 export class DateRangeValidatorDemoComponent {
 	form = new FormGroup({

@@ -32,19 +32,17 @@ export class TestOfflineComponent extends NgxDisplayContentComponent {}
 export class TestErrorDataComponent extends NgxDisplayContentComponent {}
 
 @Component({
-	selector: 'test-data',
-	standalone: true,
-	template: '<p *displayContent="conditions" class="content">Content</p>',
-	imports: [NgxDisplayContentDirective],
+    selector: 'test-data',
+    template: '<p *displayContent="conditions" class="content">Content</p>',
+    imports: [NgxDisplayContentDirective]
 })
 export class TestDisplayContentComponent {
 	@Input() conditions: NgxDisplayContentConditions;
 }
 
 @Component({
-	selector: 'test-override-data',
-	standalone: true,
-	template: `
+    selector: 'test-override-data',
+    template: `
 		<p
 			*displayContent="
 				conditions;
@@ -57,7 +55,7 @@ export class TestDisplayContentComponent {
 
 		<ng-template #loadingTmpl><p class="custom-loading">Custom loading</p></ng-template>
 	`,
-	imports: [NgxDisplayContentDirective, CommonModule],
+    imports: [NgxDisplayContentDirective, CommonModule]
 })
 export class TestOverrideDisplayContentComponent {
 	@Input() conditions: NgxDisplayContentConditions;

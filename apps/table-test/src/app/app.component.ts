@@ -6,18 +6,17 @@ import { WrapperComponent } from './wrapper/wrapper.component';
 import { NgxCurrencyTableCellComponent, NgxTable, NgxTableSortEvent } from '@ngx/table';
 
 @Component({
-	selector: 'app-root',
-	templateUrl: './app.component.html',
-	styleUrls: ['./app.component.scss'],
-	standalone: true,
-	imports: [
-		WrapperComponent,
-		ReactiveFormsModule,
-		AsyncPipe,
-		JsonPipe,
-		NgxTable,
-		NgxCurrencyTableCellComponent,
-	],
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    imports: [
+        WrapperComponent,
+        ReactiveFormsModule,
+        AsyncPipe,
+        JsonPipe,
+        NgxTable,
+        NgxCurrencyTableCellComponent,
+    ]
 })
 export class AppComponent {
 	private currentSet = 'dataSet1';

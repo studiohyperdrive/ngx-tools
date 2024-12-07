@@ -3,10 +3,9 @@ import { Component } from '@angular/core';
 import { NgxTable, NgxTableSortDirection, NgxTableSortEvent } from '@ngx/table';
 
 @Component({
-	standalone: true,
-	imports: [NgxTable, CommonModule],
-	selector: 'table-one-demo',
-	templateUrl: './table-one.demo.component.html',
+    imports: [NgxTable, CommonModule],
+    selector: 'table-one-demo',
+    templateUrl: './table-one.demo.component.html'
 })
 export class TableOneDemoComponent {
 	public currentSorting: any = undefined;

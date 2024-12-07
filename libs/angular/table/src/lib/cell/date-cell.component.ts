@@ -5,14 +5,14 @@ import { NgxTableGetPipe } from '../pipes/get-pipe/get.pipe';
 import { NgxAbstractTableCellDirective } from './cell.directive';
 
 @Component({
-	selector: 'ngx-date-table-cell',
-	providers: [
-		{
-			provide: NgxAbstractTableCellDirective,
-			useExisting: NgxDateTableCellComponent,
-		},
-	],
-	template: `
+    selector: 'ngx-date-table-cell',
+    providers: [
+        {
+            provide: NgxAbstractTableCellDirective,
+            useExisting: NgxDateTableCellComponent,
+        },
+    ],
+    template: `
 		<ng-template #cellTmpl let-item let-row="row">
 			@if (rowKey) { @if (row | getProp : rowKey; as rowItem) {
 			<time>
@@ -27,8 +27,7 @@ import { NgxAbstractTableCellDirective } from './cell.directive';
 			} }
 		</ng-template>
 	`,
-	standalone: true,
-	imports: [DatePipe, NgxTableGetPipe],
+    imports: [DatePipe, NgxTableGetPipe]
 })
 export class NgxDateTableCellComponent extends NgxAbstractTableCellDirective {
 	/**

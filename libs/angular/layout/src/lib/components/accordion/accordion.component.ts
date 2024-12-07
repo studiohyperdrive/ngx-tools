@@ -10,15 +10,14 @@ import { NgxAccordionItemComponent } from './item/accordion-item.component';
  * https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
  */
 @Component({
-	selector: 'ngx-accordion',
-	template: '<ng-content/>',
-	standalone: true,
-	changeDetection: ChangeDetectionStrategy.OnPush,
-	host: {
-		class: 'ngx-accordion',
-		role: 'region',
-	},
-	imports: [NgxAccordionItemComponent],
+    selector: 'ngx-accordion',
+    template: '<ng-content/>',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    host: {
+        class: 'ngx-accordion',
+        role: 'region',
+    },
+    imports: [NgxAccordionItemComponent]
 })
 export class NgxAccordionComponent implements OnDestroy {
 	/**

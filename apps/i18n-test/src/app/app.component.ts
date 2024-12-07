@@ -4,11 +4,10 @@ import { RouterOutlet } from '@angular/router';
 import { NgxI18nRootService, NgxI18nService } from '@ngx/i18n';
 
 @Component({
-	selector: 'app-root',
-	templateUrl: './app.component.html',
-	styleUrls: ['./app.component.scss'],
-	standalone: true,
-	imports: [RouterOutlet, TranslateModule],
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    imports: [RouterOutlet, TranslateModule]
 })
 export class AppComponent {
 	constructor(

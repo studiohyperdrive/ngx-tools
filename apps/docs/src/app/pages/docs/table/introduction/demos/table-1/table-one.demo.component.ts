@@ -4,10 +4,9 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { NgxTable, NgxTableSortDirection, NgxTableSortEvent } from '@ngx/table';
 
 @Component({
-	standalone: true,
-	imports: [NgxTable, CommonModule, ReactiveFormsModule],
-	selector: 'table-one-demo',
-	templateUrl: './table-one.demo.component.html',
+    imports: [NgxTable, CommonModule, ReactiveFormsModule],
+    selector: 'table-one-demo',
+    templateUrl: './table-one.demo.component.html'
 })
 export class TableOneDemoComponent {
 	// Variables

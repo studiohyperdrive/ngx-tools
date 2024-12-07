@@ -65,30 +65,29 @@ import { NgxAccessibleDragAndDrop } from '../../directives';
  * change the order in which the elements get rendered. The control will always override the`[keys]` input.
  */
 @Component({
-	selector: 'ngx-configurable-layout',
-	templateUrl: './configurable-layout.component.html',
-	styleUrl: './configurable-layout.component.scss',
-	standalone: true,
-	imports: [
-		NgxConfigurableLayoutItemComponent,
-		NgTemplateOutlet,
-		NgStyle,
-		CdkDropListGroup,
-		CdkDropList,
-		CdkDrag,
-		CdkDragPlaceholder,
-		NgxConfigurableLayoutItemSizePipe,
-		ReactiveFormsModule,
-		CommonModule,
-		NgxAccessibleDragAndDrop,
-	],
-	providers: [
-		{
-			provide: NG_VALUE_ACCESSOR,
-			useExisting: forwardRef(() => NgxConfigurableLayoutComponent),
-			multi: true,
-		},
-	],
+    selector: 'ngx-configurable-layout',
+    templateUrl: './configurable-layout.component.html',
+    styleUrl: './configurable-layout.component.scss',
+    imports: [
+        NgxConfigurableLayoutItemComponent,
+        NgTemplateOutlet,
+        NgStyle,
+        CdkDropListGroup,
+        CdkDropList,
+        CdkDrag,
+        CdkDragPlaceholder,
+        NgxConfigurableLayoutItemSizePipe,
+        ReactiveFormsModule,
+        CommonModule,
+        NgxAccessibleDragAndDrop,
+    ],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => NgxConfigurableLayoutComponent),
+            multi: true,
+        },
+    ]
 })
 export class NgxConfigurableLayoutComponent
 	implements ControlValueAccessor, OnInit, AfterContentChecked, OnDestroy, OnChanges
