@@ -3,7 +3,7 @@ import { inject } from '@angular/core';
 
 import { UUID } from 'angular2-uuid';
 
-import { NgxLiveRegionService } from '../../services';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 import {
 	NgxAccessibleDragAndDropMessage,
 	NgxAccessibleDragAndDropMessageRecord,
@@ -18,7 +18,7 @@ export abstract class NgxAccessibleDragAndDropAbstractService {
 	/**
 	 * The live region service
 	 */
-	private readonly liveRegionService: NgxLiveRegionService = inject(NgxLiveRegionService);
+	private readonly liveRegionService: LiveAnnouncer = inject(LiveAnnouncer);
 
 	/**
 	 * A method that passes the current language, can either be a string or an Observable
@@ -105,7 +105,7 @@ export abstract class NgxAccessibleDragAndDropAbstractService {
 				}
 
 				// Iben: Update the message in the live region
-				this.liveRegionService.setMessage(result);
+				this.liveRegionService.announce(result);
 			}),
 			map(() => null)
 		);
