@@ -44,7 +44,7 @@ Within this package we use `Angular CDK Drag and Drop`, but further enhance to m
 
 To make the drag and drop pattern accessible for keyboard users, we allow the items in the drag and drop container to be moved using keyboard interactions. By tabbing to the item and pressing `Enter` or `Space`, we can select an element and then move it using the `Arrow` keys. Once the item is in the correct place, we can deselect the element by pressing the `Enter` or `Space` key again.
 
-For users with assistive technologies, such as screenreaders, we provide a a live region that will announce each change in the drag and drop container. This will announce select events, deselect events and move events. `ngx-layout` provides a set of default messages for a select amount of languages, but offers the ability to overwrite these with your own messages when needed.
+For users with assistive technologies, such as screenreaders, we provide use the CDK `LiveAnnouncer` that will announce each change in the drag and drop container. This will announce select events, deselect events and move events. `ngx-layout` provides a set of default messages for a select amount of languages, but offers the ability to overwrite these with your own messages when needed.
 
 ##### Implementation
 
