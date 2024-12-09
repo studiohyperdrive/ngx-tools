@@ -3,7 +3,6 @@ import { NgDocNotifyService } from '@ng-doc/ui-kit';
 import { HasObserversPipeDemoComponent } from '../has-observers-component/has-observers.demo.component';
 
 @Component({
-	standalone: true,
 	imports: [HasObserversPipeDemoComponent],
 	selector: 'has-observer-parent-demo-component',
 	templateUrl: 'has-observers-parent.demo.component.html',

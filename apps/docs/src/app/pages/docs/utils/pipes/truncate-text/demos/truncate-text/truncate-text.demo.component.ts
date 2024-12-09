@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { TruncateTextPipe } from '@ngx/utils';
 
 @Component({
-	standalone: true,
 	imports: [TruncateTextPipe],
 	selector: 'truncate-text-demo',
 	templateUrl: 'truncate-text.demo.component.html',

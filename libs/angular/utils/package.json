@@ -50,8 +50,8 @@
 		"directory": "libs/angular/utils/src"
 	},
 	"peerDependencies": {
-		"@angular/common": "^18.0.2",
-		"@angular/core": "^18.0.2"
+		"@angular/common": "^19.0.0",
+		"@angular/core": "^19.0.0"
 	},
 	"allowedNonPeerDependencies": {
 		"rxjs": "^7.5.6",

@@ -26,6 +26,7 @@ import { NgxTourService } from '../../services';
 		'[attr.aria-modal]': 'true',
 		'[attr.aria-labelledby]': 'titleId()',
 	},
+	standalone: false,
 })
 export abstract class NgxTourStepComponent<DataType = any> implements OnInit, AfterViewInit {
 	/**

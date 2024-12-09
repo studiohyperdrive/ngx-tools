@@ -27,7 +27,6 @@ import { NgxAbstractTableCellDirective } from './cell.directive';
 			} }
 		</ng-template>
 	`,
-	standalone: true,
 	imports: [DatePipe, NgxTableGetPipe],
 })
 export class NgxDateTableCellComponent extends NgxAbstractTableCellDirective {

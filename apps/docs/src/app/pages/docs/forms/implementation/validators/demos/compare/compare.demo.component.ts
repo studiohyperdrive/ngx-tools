@@ -4,7 +4,6 @@ import { FormControl, FormGroup, ReactiveFormsModule, ValidatorFn } from '@angul
 import { NgxValidators } from '@ngx/forms';
 
 @Component({
-	standalone: true,
 	imports: [CommonModule, ReactiveFormsModule],
 	selector: 'compare-demo',
 	templateUrl: 'compare.demo.component.html',

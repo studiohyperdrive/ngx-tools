@@ -9,7 +9,6 @@ import { DataFormAccessor } from './data-form.accessor';
 	selector: 'kp-form-accessor',
 	template: ``,
 	providers: [createAccessorProviders(FormAccessorComponent)],
-	standalone: true,
 	imports: [ReactiveFormsModule],
 })
 export class FormAccessorComponent extends DataFormAccessor<string[], any, any> {

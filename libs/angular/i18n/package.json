@@ -24,8 +24,8 @@
     "directory": "libs/angular/i18n/src"
   },
 	"peerDependencies": {
-		"@angular/common": "^18.0.2",
-		"@angular/core": "^18.0.2",
+		"@angular/common": "^19.0.0",
+		"@angular/core": "^19.0.0",
 		"@ngx-translate/core": "^15.0.0",
 		"angular2-uuid": "^1.1.1",
 		"deepmerge-ts": "^7.0.3"

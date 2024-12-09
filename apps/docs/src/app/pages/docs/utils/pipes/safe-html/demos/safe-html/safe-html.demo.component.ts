@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { SafeHtmlPipe } from '@ngx/utils';
 
 @Component({
-	standalone: true,
 	imports: [SafeHtmlPipe],
 	selector: 'safe-html-demo',
 	templateUrl: 'safe-html.demo.component.html',

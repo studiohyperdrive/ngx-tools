@@ -4,7 +4,6 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgxValidators } from '@ngx/forms';
 
 @Component({
-	standalone: true,
 	imports: [CommonModule, ReactiveFormsModule],
 	selector: 'chronological-dates-demo',
 	templateUrl: 'chronological-dates.demo.component.html',

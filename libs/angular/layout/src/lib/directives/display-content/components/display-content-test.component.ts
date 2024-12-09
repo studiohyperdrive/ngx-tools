@@ -33,7 +33,6 @@ export class TestErrorDataComponent extends NgxDisplayContentComponent {}
 
 @Component({
 	selector: 'test-data',
-	standalone: true,
 	template: '<p *displayContent="conditions" class="content">Content</p>',
 	imports: [NgxDisplayContentDirective],
 })
@@ -43,7 +42,6 @@ export class TestDisplayContentComponent {
 
 @Component({
 	selector: 'test-override-data',
-	standalone: true,
 	template: `
 		<p
 			*displayContent="

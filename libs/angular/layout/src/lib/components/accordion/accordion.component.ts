@@ -12,7 +12,6 @@ import { NgxAccordionItemComponent } from './item/accordion-item.component';
 @Component({
 	selector: 'ngx-accordion',
 	template: '<ng-content/>',
-	standalone: true,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'ngx-accordion',

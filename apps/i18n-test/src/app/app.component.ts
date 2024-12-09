@@ -7,7 +7,6 @@ import { NgxI18nRootService, NgxI18nService } from '@ngx/i18n';
 	selector: 'app-root',
 	templateUrl: './app.component.html',
 	styleUrls: ['./app.component.scss'],
-	standalone: true,
 	imports: [RouterOutlet, TranslateModule],
 })
 export class AppComponent {

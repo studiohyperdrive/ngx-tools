@@ -4,7 +4,6 @@ import { FormAccessor } from '@ngx/forms';
 
 @Component({
 	selector: 'custom-checkbox',
-	standalone: true,
 	template: `Custom: <input type="checkbox" [formControl]="form" />`,
 	imports: [ReactiveFormsModule],
 	providers: [

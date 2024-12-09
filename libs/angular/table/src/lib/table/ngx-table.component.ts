@@ -73,7 +73,6 @@ interface TableCellTemplate {
 			useExisting: NgxTableComponent,
 		},
 	],
-	standalone: true,
 	imports: [
 		CdkTableModule,
 		NgTemplateOutlet,

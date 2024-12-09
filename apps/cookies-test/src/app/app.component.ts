@@ -11,7 +11,6 @@ import {
 import { NgxStorageService } from '@ngx/utils';
 
 @Component({
-	standalone: true,
 	selector: 'app-root',
 	templateUrl: './app.component.html',
 	styleUrl: './app.component.scss',

@@ -7,7 +7,6 @@ import {
 } from '@ngx/layout';
 
 @Component({
-	standalone: true,
 	imports: [
 		NgxConfigurableLayoutComponent,
 		NgxConfigurableLayoutItemComponent,

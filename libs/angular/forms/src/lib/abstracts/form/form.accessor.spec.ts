@@ -9,7 +9,6 @@ import { createAccessorProviders } from '../../utils';
 	selector: 'kp-form-accessor',
 	template: ``,
 	providers: [createAccessorProviders(FormAccessorComponent)],
-	standalone: true,
 	imports: [ReactiveFormsModule],
 })
 export class FormAccessorComponent extends FormAccessor<any, any> {
@@ -79,7 +78,6 @@ describe('FormAccessor', () => {
 	selector: 'kp-test-form-accessor',
 	template: ``,
 	providers: [createAccessorProviders(FormAccessorComponent)],
-	standalone: true,
 	imports: [ReactiveFormsModule],
 })
 export class TestComponent extends FormAccessor<string, FormControl<number>, number> {
