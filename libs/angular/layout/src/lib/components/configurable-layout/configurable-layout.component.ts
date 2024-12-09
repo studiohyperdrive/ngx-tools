@@ -68,7 +68,6 @@ import { NgxAccessibleDragAndDrop } from '../../directives';
 	selector: 'ngx-configurable-layout',
 	templateUrl: './configurable-layout.component.html',
 	styleUrl: './configurable-layout.component.scss',
-	standalone: true,
 	imports: [
 		NgxConfigurableLayoutItemComponent,
 		NgTemplateOutlet,

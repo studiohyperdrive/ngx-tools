@@ -38,7 +38,6 @@ import { NgxFormsErrorsDirective } from './errors.directive';
 			useExisting: forwardRef(() => FormAccessorComponent),
 		},
 	],
-	standalone: true,
 	imports: [ReactiveFormsModule, NgxFormsErrorsDirective],
 })
 export class FormAccessorComponent extends FormAccessor<any, any> {
@@ -53,7 +52,6 @@ export class FormAccessorComponent extends FormAccessor<any, any> {
 @Component({
 	selector: 'kp-error',
 	template: `<p class="kp-error">{{ errors[0] }}</p>`,
-	standalone: true,
 	imports: [ReactiveFormsModule],
 })
 export class FormErrorComponent extends NgxFormsErrorAbstractComponent {}

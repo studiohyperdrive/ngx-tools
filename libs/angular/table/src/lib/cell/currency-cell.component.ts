@@ -16,7 +16,6 @@ import { NgxAbstractTableCellDirective } from './cell.directive';
 			{{ item | currency : currency }}
 		</ng-template>
 	`,
-	standalone: true,
 	imports: [CurrencyPipe],
 })
 export class NgxCurrencyTableCellComponent extends NgxAbstractTableCellDirective {

@@ -19,7 +19,6 @@ import { NgxTourItemDirective, NgxTourService, useMockDataDuringTour } from '@ng
 	selector: 'main',
 	templateUrl: './main.component.html',
 	styleUrl: './main.component.scss',
-	standalone: true,
 	imports: [
 		NgxConfigurableLayoutComponent,
 		NgxConfigurableLayoutItemComponent,

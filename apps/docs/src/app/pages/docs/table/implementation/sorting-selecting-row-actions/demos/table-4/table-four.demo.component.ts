@@ -4,7 +4,6 @@ import { NgDocNotifyService } from '@ng-doc/ui-kit';
 import { NgxTable } from '@ngx/table';
 
 @Component({
-	standalone: true,
 	imports: [NgxTable, ReactiveFormsModule],
 	selector: 'table-four-demo',
 	templateUrl: './table-four.demo.component.html',

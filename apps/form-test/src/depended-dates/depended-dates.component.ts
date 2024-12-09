@@ -8,7 +8,6 @@ import { FormAccessor, NgxFormsErrorsDirective, createAccessorProviders } from '
 	selector: 'app-depended-dates',
 	templateUrl: './depended-dates.component.html',
 	providers: [createAccessorProviders(DependedDatesComponent)],
-	standalone: true,
 	imports: [ReactiveFormsModule, DateInputComponent, NgxFormsErrorsDirective],
 })
 export class DependedDatesComponent extends FormAccessor<any, FormGroup<any>> {

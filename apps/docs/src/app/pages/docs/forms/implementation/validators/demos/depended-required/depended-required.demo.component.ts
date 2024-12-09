@@ -4,7 +4,6 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgxValidators } from '@ngx/forms';
 
 @Component({
-	standalone: true,
 	imports: [CommonModule, ReactiveFormsModule],
 	selector: 'depended-required-validator-demo',
 	templateUrl: 'depended-required.demo.component.html',

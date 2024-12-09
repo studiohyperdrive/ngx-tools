@@ -6,7 +6,6 @@ import { NgxTourItemDirective } from '@ngx/tour';
 @Component({
 	selector: 'secondary',
 	templateUrl: './secondary.component.html',
-	standalone: true,
 	imports: [NgxTourItemDirective, CommonModule],
 })
 export class SecondaryComponent {

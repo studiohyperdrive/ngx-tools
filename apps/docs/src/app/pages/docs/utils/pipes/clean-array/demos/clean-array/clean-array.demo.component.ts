@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { CleanArrayPipe } from '@ngx/utils';
 
 @Component({
-	standalone: true,
 	imports: [CleanArrayPipe],
 	selector: 'clean-array-demo',
 	templateUrl: 'clean-array.demo.component.html',

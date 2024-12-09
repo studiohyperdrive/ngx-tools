@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IbanPipe } from '@ngx/utils';
 
 @Component({
-	standalone: true,
 	imports: [IbanPipe],
 	selector: 'iban-demo',
 	templateUrl: 'iban.demo.component.html',

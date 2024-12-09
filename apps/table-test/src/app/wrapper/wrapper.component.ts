@@ -3,7 +3,6 @@ import { Component, Input } from '@angular/core';
 @Component({
 	selector: 'app-wrapper',
 	imports: [],
-	standalone: true,
 	template: `
 		@if (!contentVisible) {
 		<p>Loading...</p>

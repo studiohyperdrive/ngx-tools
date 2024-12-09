@@ -9,7 +9,6 @@ import { FormAccessorContainer } from '@ngx/forms';
 	selector: 'app-root',
 	templateUrl: './app.component.html',
 	styleUrls: ['./app.component.scss'],
-	standalone: true,
 	imports: [FormAccessorComponent, ReactiveFormsModule, DateInputComponent, JsonPipe],
 })
 export class AppComponent extends FormAccessorContainer {
