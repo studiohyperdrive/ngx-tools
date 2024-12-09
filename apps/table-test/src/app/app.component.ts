@@ -9,7 +9,6 @@ import { NgxCurrencyTableCellComponent, NgxTable, NgxTableSortEvent } from '@ngx
 	selector: 'app-root',
 	templateUrl: './app.component.html',
 	styleUrls: ['./app.component.scss'],
-	standalone: true,
 	imports: [
 		WrapperComponent,
 		ReactiveFormsModule,

@@ -10,7 +10,6 @@ import { NgxAccordion } from '@ngx/layout';
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
-	standalone: true,
 	imports: [RouterModule, NgxAccordion],
 })
 export class AppComponent {

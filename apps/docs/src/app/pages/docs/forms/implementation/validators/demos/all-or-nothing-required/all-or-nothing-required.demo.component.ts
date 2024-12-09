@@ -4,7 +4,6 @@ import { FormControl, FormGroup, ReactiveFormsModule, ValidatorFn } from '@angul
 import { NgxValidators } from '@ngx/forms';
 
 @Component({
-	standalone: true,
 	imports: [CommonModule, ReactiveFormsModule],
 	selector: 'all-or-nothing-required-validator-demo',
 	templateUrl: 'all-or-nothing-required.demo.component.html',

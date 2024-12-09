@@ -14,7 +14,6 @@ import { NgxModalAbstractComponent } from '@ngx/inform';
 		<button (click)="close.emit()">Close</button>
 	`,
 	styleUrl: './modal.component.scss',
-	standalone: true,
 	imports: [ReactiveFormsModule],
 })
 export class ConfirmModalComponent extends NgxModalAbstractComponent<{

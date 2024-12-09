@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NgxAccordion } from '@ngx/layout';
 
 @Component({
-	standalone: true,
 	imports: [NgxAccordion],
 	selector: 'layout-accordion-demo-name',
 	templateUrl: 'accordion.demo.component.html',

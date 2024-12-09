@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { HighlightPipe } from '@ngx/utils';
 
 @Component({
-	standalone: true,
 	imports: [HighlightPipe],
 	selector: 'highlight-pipe-demo',
 	templateUrl: 'highlight.demo.component.html',

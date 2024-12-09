@@ -27,7 +27,6 @@ import { NgxAccordionComponent } from '../accordion.component';
 	selector: 'ngx-accordion-item',
 	templateUrl: './accordion-item.component.html',
 	styleUrl: './accordion-item.component.scss',
-	standalone: true,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [NgTemplateOutlet],
 	host: {

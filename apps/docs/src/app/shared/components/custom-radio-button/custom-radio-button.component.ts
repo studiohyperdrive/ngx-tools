@@ -4,7 +4,6 @@ import { FormAccessor } from '@ngx/forms';
 
 @Component({
 	selector: 'custom-radio-button',
-	standalone: true,
 	template: `Custom: <input type="radio" [formControl]="form" />`,
 	imports: [ReactiveFormsModule],
 	providers: [

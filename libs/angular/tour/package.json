@@ -29,9 +29,9 @@
 		"directory": "libs/angular/tour/src"
 	},
 	"peerDependencies": {
-		"@angular/common": "^18.0.2",
-		"@angular/core": "^18.0.2",
-		"@angular/cdk": "^18.0.2",
+		"@angular/common": "^19.0.0",
+		"@angular/core": "^19.0.0",
+		"@angular/cdk": "^19.0.0",
     "angular2-uuid": "^1.1.1"
 	},
 	"sideEffects": false

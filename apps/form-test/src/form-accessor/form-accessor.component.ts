@@ -21,7 +21,6 @@ import { FormAccessor, NgxFormsErrorsDirective, createAccessorProviders } from '
 	</ng-container>`,
 	providers: [createAccessorProviders(FormAccessorComponent)],
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	standalone: true,
 	imports: [
 		ReactiveFormsModule,
 		NgxFormsErrorsDirective,

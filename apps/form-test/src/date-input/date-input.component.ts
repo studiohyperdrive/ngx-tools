@@ -6,7 +6,6 @@ import { FormAccessor, createAccessorProviders } from '@ngx/forms';
 	selector: 'app-date-input',
 	templateUrl: './date-input.component.html',
 	providers: [createAccessorProviders(DateInputComponent)],
-	standalone: true,
 	imports: [ReactiveFormsModule],
 })
 export class DateInputComponent extends FormAccessor<string, FormControl<string>> {

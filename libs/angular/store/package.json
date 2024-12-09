@@ -23,8 +23,8 @@
     "directory": "libs/angular/store/src"
   },
 	"peerDependencies": {
-		"@angular/common": "^18.0.2",
-		"@angular/core": "^18.0.2",
+		"@angular/common": "^19.0.0",
+		"@angular/core": "^19.0.0",
 		"@ngrx/entity": "18.0.0",
 		"@ngrx/store": "18.0.0",
 		"@ngrx/effects": "18.0.0",
