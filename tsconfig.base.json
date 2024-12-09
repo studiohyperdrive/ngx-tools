@@ -26,8 +26,7 @@
 			"@ngx/store": ["libs/angular/store/src/public-api.ts"],
 			"@ngx/table": ["libs/angular/table/src/public-api.ts"],
 			"@ngx/tour": ["libs/angular/tour/src/index.ts"],
-			"@ngx/utils": ["libs/angular/utils/src/public-api.ts"],
-			"@rxjs/utils": ["libs/rxjs/utils/src/index.ts"]
+			"@ngx/utils": ["libs/angular/utils/src/public-api.ts"]
 		},
 		"useDefineForClassFields": false,
 		"skipLibCheck": true,
