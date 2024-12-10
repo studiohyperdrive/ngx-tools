@@ -4,10 +4,17 @@ keyword: LimitToPipePage
 
 The LimitToPipe will limit an array to x-amount of values.
 
-For example
-`['a', 'b', 'c']` with a value of 2 will result in `['a', 'b']`.
-
 A non-Array value will result in an empty array.
+
+## Example
+
+Checkable array :
+
+```typescript
+const array = ['a', 'b', 'c', 'd', 'e', 'f'];
+```
+
+{{ NgDocActions.playground("LimitToPipePlayground") }}
 
 ## How to use
 

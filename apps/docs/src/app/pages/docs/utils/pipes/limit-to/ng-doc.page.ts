@@ -7,6 +7,12 @@ const LimitToPipePage: NgDocPage = {
 	mdFile: './index.md',
 	category: PipesCategory,
 	demos: { LimitToPipeDemoComponent },
+	playgrounds: {
+		LimitToPipePlayground: {
+			target: LimitToPipeDemoComponent,
+			template: `<ng-doc-selector></ng-doc-selector>`,
+		},
+	},
 };
 
 export default LimitToPipePage;
