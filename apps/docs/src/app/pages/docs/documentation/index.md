@@ -50,12 +50,7 @@ Following provides an overview:
     - None provided, but could be added
 - **Utils**
   - [x] Documentation
-  - [ ] Demo components
-    - Pipes
-      - [ ] HasOwnPropertyPipe: add playground
-      - [ ] HighlightPipe: add playground
-      - [ ] LimitToPipe: add playground
-      - [ ] UniqByPipe: add playground
+  - [x] Demo components
 
 ## RxJS
 

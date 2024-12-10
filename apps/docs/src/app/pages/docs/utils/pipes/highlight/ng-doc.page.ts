@@ -7,6 +7,12 @@ const HighlightPipePage: NgDocPage = {
 	mdFile: './index.md',
 	category: PipesCategory,
 	demos: { HighlightPipeDemoComponent, HighlightPipeCustomDemoComponent },
+	playgrounds: {
+		HighlightPipePlayground: {
+			target: HighlightPipeCustomDemoComponent,
+			template: `<ng-doc-selector></ng-doc-selector>`,
+		},
+	},
 };
 
 export default HighlightPipePage;

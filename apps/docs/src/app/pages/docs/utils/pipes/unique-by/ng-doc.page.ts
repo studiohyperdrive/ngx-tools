@@ -7,6 +7,12 @@ const UniqueByPipePage: NgDocPage = {
 	mdFile: './index.md',
 	category: PipesCategory,
 	demos: { UniqueByPipeDemoComponent },
+	playgrounds: {
+		UniqueByPipePlayground: {
+			target: UniqueByPipeDemoComponent,
+			template: `<ng-doc-selector></ng-doc-selector>`,
+		},
+	},
 };
 
 export default UniqueByPipePage;

@@ -7,6 +7,12 @@ const HasOwnPropertyPipePage: NgDocPage = {
 	mdFile: './index.md',
 	category: PipesCategory,
 	demos: { HasOwnPropertyPipeDemoComponent },
+	playgrounds: {
+		HasOwnPropertyPipePlayground: {
+			target: HasOwnPropertyPipeDemoComponent,
+			template: `<ng-doc-selector></ng-doc-selector>`,
+		},
+	},
 };
 
 export default HasOwnPropertyPipePage;
