@@ -8,4 +8,4 @@ It will strip tags, nbsp and escaped characters.
 
 ## How to use
 
-    {{ NgDocActions.demo("StripHtmlPipeDemoComponent") }}
+{{ NgDocActions.demo("StripHtmlPipeDemoComponent", { expanded: true }) }}

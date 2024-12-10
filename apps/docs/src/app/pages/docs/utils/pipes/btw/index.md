@@ -13,4 +13,4 @@ For example
 
 ## How to use
 
-{{ NgDocActions.demo("BtwPipeDemoComponent") }}
+{{ NgDocActions.demo("BtwPipeDemoComponent", { expanded: true }) }}

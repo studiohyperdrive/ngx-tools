@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { ToArrayPipe } from '@ngx/utils';
+import {JsonPipe} from "@angular/common";
 
 @Component({
-	imports: [ToArrayPipe],
+	imports: [ToArrayPipe, JsonPipe],
 	selector: 'to-array-demo',
 	templateUrl: 'to-array.demo.component.html',
 })

@@ -11,4 +11,4 @@ For example
 
 ## How to use
 
-    {{ NgDocActions.demo("JoinPipeDemoComponent") }}
+{{ NgDocActions.demo("JoinPipeDemoComponent", { expanded: true }) }}

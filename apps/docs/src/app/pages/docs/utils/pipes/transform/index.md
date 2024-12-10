@@ -6,4 +6,4 @@ The TransformPipe will transform a given value with the provided transform-funct
 
 ## How to use
 
-    {{ NgDocActions.demo("TransformPipeDemoComponent") }}
+{{ NgDocActions.demo("TransformPipeDemoComponent", { expanded: true }) }}

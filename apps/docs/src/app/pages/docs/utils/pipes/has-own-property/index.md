@@ -7,4 +7,4 @@ It is a wrapper around Object.hasOwnProperty.
 
 ## How to use
 
-{{ NgDocActions.demo("HasOwnPropertyPipeDemoComponent") }}
+{{ NgDocActions.demo("HasOwnPropertyPipeDemoComponent", { expanded: true }) }}

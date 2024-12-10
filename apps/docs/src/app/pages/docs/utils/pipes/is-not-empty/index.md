@@ -6,4 +6,4 @@ The IsNotEmptyPipe checks if a given argument is an object or array and if it is
 
 ## How to use
 
-    {{ NgDocActions.demo("IsNotEmptyPipeDemoComponent") }}
+    {{ NgDocActions.demo("IsNotEmptyPipeDemoComponent", { expanded: true }) }}

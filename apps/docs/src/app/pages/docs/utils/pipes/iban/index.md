@@ -9,4 +9,4 @@ For example
 
 ## How to use
 
-{{ NgDocActions.demo("IbanPipeDemoComponent") }}
+{{ NgDocActions.demo("IbanPipeDemoComponent", { expanded: true }) }}

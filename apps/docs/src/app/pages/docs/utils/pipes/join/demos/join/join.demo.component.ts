@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { JoinPipe } from '@ngx/utils';
+import {JsonPipe} from "@angular/common";
 
 @Component({
-	imports: [JoinPipe],
+	imports: [JoinPipe, JsonPipe],
 	selector: 'join-demo',
 	templateUrl: 'join.demo.component.html',
 })

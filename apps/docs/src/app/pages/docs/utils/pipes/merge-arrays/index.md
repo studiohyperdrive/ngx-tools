@@ -8,4 +8,4 @@ It will start from a source array and concat n-amount of additional arrays into 
 
 ## How to use
 
-    {{ NgDocActions.demo("MergeArraysPipeDemoComponent") }}
+    {{ NgDocActions.demo("MergeArraysPipeDemoComponent", { expanded: true }) }}
