@@ -8,8 +8,8 @@ If you want the header to not be visible when loading or empty or both, you can 
 
 ## When loading
 
-{{ NgDocActions.demo("TableOneDemoComponent") }}
+{{ NgDocActions.demo("HeaderLoadingStateDemoComponent") }}
 
 ## When empty
 
-{{ NgDocActions.demo("TableTwoDemoComponent") }}
+{{ NgDocActions.demo("HeaderEmptyStateDemoComponent") }}

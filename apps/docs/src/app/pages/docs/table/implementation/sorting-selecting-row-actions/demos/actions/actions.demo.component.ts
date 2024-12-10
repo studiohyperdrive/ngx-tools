@@ -5,10 +5,10 @@ import { NgxTable } from '@ngx/table';
 
 @Component({
 	imports: [NgxTable, ReactiveFormsModule],
-	selector: 'table-four-demo',
-	templateUrl: './table-four.demo.component.html',
+	selector: 'actions-demo',
+	templateUrl: './actions.demo.component.html',
 })
-export class TableFourDemoComponent {
+export class ActionsDemoComponent {
 	constructor(private readonly notifyService: NgDocNotifyService) {}
 
 	public control: FormControl<number[]> = new FormControl();

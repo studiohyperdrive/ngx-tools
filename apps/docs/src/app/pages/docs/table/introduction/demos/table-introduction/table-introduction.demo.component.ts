@@ -5,10 +5,10 @@ import { NgxTable, NgxTableSortDirection, NgxTableSortEvent } from '@ngx/table';
 
 @Component({
 	imports: [NgxTable, CommonModule, ReactiveFormsModule],
-	selector: 'table-one-demo',
-	templateUrl: './table-one.demo.component.html',
+	selector: 'table-introduction-demo',
+	templateUrl: './table-introduction.demo.component.html',
 })
-export class TableOneDemoComponent {
+export class TableIntroductionDemoComponent {
 	// Variables
 	public internalMode: 'simple' | 'advanced' = 'simple';
 	public isSimple = true;

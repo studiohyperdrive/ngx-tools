@@ -1,2 +1,2 @@
-export * from './table-1/table-one.demo.component';
-export * from './table-2/table-two.demo.component';
+export * from './loading-state/loading-state.demo.component';
+export * from './empty-state/empty-state.demo.component';

@@ -1,3 +1,3 @@
-export * from './table-1/table-one.demo.component';
-export * from './table-2/table-two.demo.component';
-export * from './table-3/table-three.demo.component';
+export * from './default-templates/default-templates.demo.component';
+export * from './custom-cells/custom-cells.demo.component';
+export * from './custom-columns/custom-columns.demo.component';

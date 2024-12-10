@@ -4,10 +4,10 @@ import { NgxTable, NgxTableSortDirection, NgxTableSortEvent } from '@ngx/table';
 
 @Component({
 	imports: [NgxTable, CommonModule],
-	selector: 'table-one-demo',
-	templateUrl: './table-one.demo.component.html',
+	selector: 'sorting-demo',
+	templateUrl: './sorting.demo.component.html',
 })
-export class TableOneDemoComponent {
+export class SortingDemoComponent {
 	public currentSorting: any = undefined;
 	public sortableData = [
 		{ name: 'World', firstName: 'Hello', active: true },
