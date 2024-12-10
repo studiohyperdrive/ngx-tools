@@ -41,8 +41,6 @@ Following provides an overview:
 - **Table**
   - [x] Documentation
   - [ ] Demo components
-    - [ ] Loading and empty state: Not working
-    - [ ] Header: Not working
     - [ ] Custom cells: Code snippets can be swapped with demo component
 - **Tour**
   - [x] Documentation
