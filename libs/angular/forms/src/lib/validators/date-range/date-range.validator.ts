@@ -12,7 +12,7 @@ type DateRangeErrorCodes =
  *
  * @param minDate - Minimum valid date
  * @param maxDate - Maximum valid date
- * @param format - Optional format used for all 3 dates, by default YYYY-MM-DD
+ * @param format - Optional format used for all 3 dates, by default yyyy-MM-dd
  */
 export const dateRangeValidator = (min: string, max: string, format: string = 'yyyy-MM-dd') => {
 	return (control: AbstractControl): { invalidRange: DateRangeErrorCodes } | null => {
