@@ -12,12 +12,10 @@ Following provides an overview:
 
 - **Cookies**
   - [x] Documentation
-  - [ ] Demo components
-    - None provided, but could be added?
+  - [x] Demo components: None provided, code snippets available
 - **Forms**
   - [x] Documentation
   - [ ] Demo components
-      - Validators: Provided but seems inconsistent
       - FormAccessor: Code snippets can be swapped with demo component
       - FormAccessorContainer: Code snippets can be swapped with demo component?
       - Ngx Errors: Code snippets can be swapped with demo component?

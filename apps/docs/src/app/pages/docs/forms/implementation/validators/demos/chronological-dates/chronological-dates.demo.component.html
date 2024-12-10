@@ -13,7 +13,16 @@
 		</label>
 	</div>
 
-	<p>Form errors: {{ form.errors | json }}</p>
+	<p><strong>Validation - Form controls</strong></p>
+	<div>Start date Errors: {{ form.get('start').errors | json }}</div>
+	<div>End date Errors: {{ form.get('end').errors | json }}</div>
 
-	<button type="submit">Submit</button>
+	<p><strong>Validation - Form</strong></p>
+	<div>Errors: {{ form.errors | json }}</div>
+	<div>Valid: {{ form.valid }}</div>
+
+	<br/>
+	<div>
+		<button type="submit">Submit</button>
+	</div>
 </form>

@@ -1,4 +1,5 @@
 <form [formGroup]="form">
+	<p>Text should be at least 2 words and less than 6</p>
 	<div>
 		<label for="Text">
 			Text
@@ -6,9 +7,15 @@
 		</label>
 	</div>
 
-	<p>Form control errors: {{ form.get('text').errors | json }}</p>
+	<p><strong>Validation - Form controls</strong></p>
+	<div>Errors: {{ form.get('text').errors | json }}</div>
 
-	<p>Form errors: {{ form.errors | json }}</p>
+	<p><strong>Validation - Form</strong></p>
+	<div>Errors: {{ form.errors | json }}</div>
+	<div>Valid: {{ form.valid }}</div>
 
-	<button type="submit">Submit</button>
+	<br/>
+	<div>
+		<button type="submit">Submit</button>
+	</div>
 </form>
