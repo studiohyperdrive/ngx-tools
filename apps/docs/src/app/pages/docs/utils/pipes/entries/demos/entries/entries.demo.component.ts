@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { EntriesPipe } from '@ngx/utils';
+import {JsonPipe} from "@angular/common";
 
 @Component({
-	imports: [EntriesPipe],
+	imports: [EntriesPipe, JsonPipe],
 	selector: 'entries-demo',
 	templateUrl: 'entries.demo.component.html',
 })

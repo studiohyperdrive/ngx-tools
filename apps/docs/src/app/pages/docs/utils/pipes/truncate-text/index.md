@@ -8,4 +8,4 @@ It assumes that the provided value is a string.
 
 ## How to use
 
-{{ NgDocActions.demo("TruncateTextPipeDemoComponent") }}
+{{ NgDocActions.demo("TruncateTextPipeDemoComponent", { expanded: true }) }}

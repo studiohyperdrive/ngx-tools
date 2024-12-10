@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { CleanArrayPipe } from '@ngx/utils';
+import {JsonPipe} from "@angular/common";
 
 @Component({
-	imports: [CleanArrayPipe],
+	imports: [CleanArrayPipe, JsonPipe],
 	selector: 'clean-array-demo',
 	templateUrl: 'clean-array.demo.component.html',
 })

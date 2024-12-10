@@ -8,6 +8,6 @@ The getQueryParams helper will use Angular's `inject` function to get the queryP
 
 ```typescript
 class MyClass {
-	public readonly params$: Observable<MyInterface> = getQueryParams<MyInterface>();
+    public readonly params$: Observable<MyInterface> = getQueryParams<MyInterface>();
 }
 ```

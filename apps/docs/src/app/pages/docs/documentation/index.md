@@ -49,8 +49,13 @@ Following provides an overview:
   - [ ] Demo components
     - None provided, but could be added
 - **Utils**
-  - [ ] Documentation
+  - [x] Documentation
   - [ ] Demo components
+    - Pipes
+      - [ ] HasOwnPropertyPipe: add playground
+      - [ ] HighlightPipe: add playground
+      - [ ] LimitToPipe: add playground
+      - [ ] UniqByPipe: add playground
 
 ## RxJS
 

@@ -8,4 +8,4 @@ Mainly used for debugging.
 
 ## How to use
 
-    {{ NgDocActions.demo("LogPipeDemoComponent") }}
+{{ NgDocActions.demo("LogPipeDemoComponent", { expanded: true }) }}

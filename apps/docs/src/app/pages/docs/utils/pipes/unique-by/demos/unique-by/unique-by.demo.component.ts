@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { UniqByPipe } from '@ngx/utils';
+import {JsonPipe} from "@angular/common";
 
 @Component({
-	imports: [UniqByPipe],
+	imports: [UniqByPipe, JsonPipe],
 	selector: 'unique-by-demo',
 	templateUrl: 'unique-by.demo.component.html',
 })

@@ -7,5 +7,6 @@ import { IsNotEmptyPipe } from '@ngx/utils';
 	templateUrl: 'is-not-empty.demo.component.html',
 })
 export class IsNotEmptyPipeDemoComponent {
-	sourceValue = {};
+	public emptyObject = {};
+	public object = { foo: 'bar' };
 }

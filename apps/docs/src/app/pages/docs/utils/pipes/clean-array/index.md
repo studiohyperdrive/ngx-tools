@@ -22,4 +22,4 @@ Watch out for the often forgotten truthy values `[]` and `{}`.
 
 ## How to use
 
-{{ NgDocActions.demo("CleanArrayPipeDemoComponent") }}
+{{ NgDocActions.demo("CleanArrayPipeDemoComponent", { expanded: true }) }}

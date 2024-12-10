@@ -28,4 +28,4 @@ All invalid Objects will result in an empty array.
 
 ## How to use
 
-{{ NgDocActions.demo("EntriesPipeDemoComponent") }}
+{{ NgDocActions.demo("EntriesPipeDemoComponent", { expanded: true }) }}

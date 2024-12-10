@@ -8,4 +8,4 @@ It uses the `DomSanitizer.sanitize()` with `SecurityContext.HTML`.
 
 ## How to use
 
-    {{ NgDocActions.demo("SafeHtmlPipeDemoComponent") }}
+{{ NgDocActions.demo("SafeHtmlPipeDemoComponent", { expanded: true }) }}

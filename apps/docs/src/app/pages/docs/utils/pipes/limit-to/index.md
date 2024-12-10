@@ -11,4 +11,4 @@ A non-Array value will result in an empty array.
 
 ## How to use
 
-    {{ NgDocActions.demo("LimitToPipeDemoComponent") }}
+    {{ NgDocActions.demo("LimitToPipeDemoComponent", { expanded: true }) }}

@@ -10,4 +10,4 @@ The HasObserversPipe will check if an Output property has observers.
 
 If a parent subscribes to the EventEmitter, hasObservers will return true
 
-{{ NgDocActions.demo("HasObserversPipeDemoParentComponent") }}
+{{ NgDocActions.demo("HasObserversPipeDemoParentComponent", { expanded: true }) }}

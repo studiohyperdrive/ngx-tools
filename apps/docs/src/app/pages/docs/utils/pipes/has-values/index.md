@@ -10,4 +10,4 @@ If the provided value is not an object, the result will be false.
 
 ## How to use
 
-    {{ NgDocActions.demo("HasValuesPipeDemoComponent") }}
+{{ NgDocActions.demo("HasValuesPipeDemoComponent", { expanded: true }) }}
