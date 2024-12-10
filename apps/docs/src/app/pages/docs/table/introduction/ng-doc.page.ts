@@ -1,7 +1,7 @@
 import { NgDocPage } from '@ng-doc/core';
 
 import { TableCategory } from '../../../../categories';
-import { TableOneDemoComponent } from './demos';
+import { TableIntroductionDemoComponent } from './demos';
 
 const IntroductionPage: NgDocPage = {
 	title: `Introduction`,
@@ -10,7 +10,7 @@ const IntroductionPage: NgDocPage = {
 	order: 0,
 	playgrounds: {
 		TablePlayground: {
-			target: TableOneDemoComponent,
+			target: TableIntroductionDemoComponent,
 			template: '<ng-doc-selector></ng-doc-selector>',
 			defaults: {
 				mode: 'simple',

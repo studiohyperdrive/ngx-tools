@@ -5,10 +5,10 @@ import { NgxTable } from '@ngx/table';
 
 @Component({
 	imports: [NgxTable, CustomCheckboxComponent, ReactiveFormsModule],
-	selector: 'table-two-demo',
-	templateUrl: './table-two.demo.component.html',
+	selector: 'selectable-checkbox-demo',
+	templateUrl: './selectable-checkbox.demo.component.html',
 })
-export class TableTwoDemoComponent {
+export class SelectableCheckboxDemoComponent {
 	public control: FormControl<number[]> = new FormControl();
 	public customControl: FormControl<string[]> = new FormControl();
 }

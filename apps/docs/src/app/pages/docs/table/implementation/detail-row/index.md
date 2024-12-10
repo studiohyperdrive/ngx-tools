@@ -4,7 +4,7 @@ keyword: DetailRowPage
 
 `ngx-table` provides a built-in way to add detail rows to your table. This can be done by providing the `#detailRowTmpl` template as a `ContentChild`. When provided, the row automatically becomes clickable and can be toggled open and close. The default props provided to the template are the entire data object and the index. We can listen to a row being clicked by adding a listener to the `rowClicked` Output.
 
-{{ NgDocActions.demo("TableOneDemoComponent") }}
+{{ NgDocActions.demo("DetailRowOneDemoComponent") }}
 
 Once a detail row is provided, we can use several Inputs to handle the behavior of the table. By setting the `showSelectedOpenRow` property to true, a class (`ngx-table-row-selected`) is provided to the open row so we can style the open rows.
 
@@ -16,4 +16,4 @@ By passing an index to the `defaultRowOpen` input, this row will be opened on re
 
 We can also visualize the open state of the row by setting the `showOpenRowState` property to true. This will automatically add a cell at the end of the row displaying the open and closed state of the row with a caret. You can overwrite this template using the `openRowStateTmpl`
 
-{{ NgDocActions.demo("TableTwoDemoComponent") }}
+{{ NgDocActions.demo("DetailRowTwoDemoComponent") }}

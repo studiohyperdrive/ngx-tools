@@ -5,7 +5,7 @@ import { NgxTable } from '@ngx/table';
 
 @Component({
 	imports: [CommonModule, NgxTable, ReactiveFormsModule],
-	selector: 'table-one-demo',
-	templateUrl: './table-one.demo.component.html',
+	selector: 'detail-row-one-demo',
+	templateUrl: './detail-row-one.demo.component.html',
 })
-export class TableOneDemoComponent {}
+export class DetailRowOneDemoComponent {}

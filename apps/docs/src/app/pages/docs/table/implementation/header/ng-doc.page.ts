@@ -1,6 +1,6 @@
 import { NgDocPage } from '@ng-doc/core';
 import { TableImplementationCategory } from '../../../../../categories';
-import { TableOneDemoComponent, TableTwoDemoComponent } from './demos';
+import { HeaderEmptyStateDemoComponent, HeaderLoadingStateDemoComponent } from './demos';
 
 const HeaderPage: NgDocPage = {
 	title: `Header`,
@@ -8,8 +8,8 @@ const HeaderPage: NgDocPage = {
 	category: TableImplementationCategory,
 	order: 4,
 	demos: {
-		TableOneDemoComponent,
-		TableTwoDemoComponent,
+		HeaderLoadingStateDemoComponent,
+		HeaderEmptyStateDemoComponent,
 	},
 };
 

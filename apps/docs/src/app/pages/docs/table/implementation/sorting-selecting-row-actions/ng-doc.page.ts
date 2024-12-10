@@ -1,10 +1,10 @@
 import { NgDocPage } from '@ng-doc/core';
 import { TableImplementationCategory } from '../../../../../categories';
 import {
-	TableOneDemoComponent,
-	TableTwoDemoComponent,
-	TableThreeDemoComponent,
-	TableFourDemoComponent,
+	SortingDemoComponent,
+	SelectableCheckboxDemoComponent,
+	SelectableRadiobuttonDemoComponent,
+	ActionsDemoComponent,
 } from './demos';
 
 const SortingSelectingRowActionsPage: NgDocPage = {
@@ -13,10 +13,10 @@ const SortingSelectingRowActionsPage: NgDocPage = {
 	category: TableImplementationCategory,
 	order: 3,
 	demos: {
-		TableOneDemoComponent,
-		TableTwoDemoComponent,
-		TableThreeDemoComponent,
-		TableFourDemoComponent,
+		SortingDemoComponent,
+		SelectableCheckboxDemoComponent,
+		SelectableRadiobuttonDemoComponent,
+		ActionsDemoComponent,
 	},
 };
 
