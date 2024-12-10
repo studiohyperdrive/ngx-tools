@@ -6,13 +6,15 @@
 		</label>
 	</div>
 
-	@if(form.get('email')?.errors?.['extendedEmail']) {
+	<p><strong>Validation - Form controls</strong></p>
+	<div>Errors: {{ form.get('email').errors | json }}</div>
+
+	<p><strong>Validation - Form</strong></p>
+	<div>Errors: {{ form.errors | json }}</div>
+	<div>Valid: {{ form.valid }}</div>
+
+	<br/>
 	<div>
-		<p>Email is invalid</p>
+		<button type="submit">Submit</button>
 	</div>
-	}
-
-	<p>Form errors: {{ form.errors | json }}</p>
-
-	<button type="submit">Submit</button>
 </form>

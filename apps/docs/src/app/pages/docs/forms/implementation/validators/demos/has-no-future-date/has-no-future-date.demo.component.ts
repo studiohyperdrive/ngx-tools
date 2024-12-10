@@ -10,6 +10,6 @@ import { NgxValidators } from '@ngx/forms';
 })
 export class HasNoFutureDateValidatorDemoComponent {
 	form = new FormGroup({
-		date: new FormControl('', [NgxValidators.hasNoFutureDateValidator]),
+		date: new FormControl('', [NgxValidators.hasNoFutureDateValidator()]),
 	});
 }

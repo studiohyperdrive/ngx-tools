@@ -20,7 +20,17 @@
 		</label>
 	</div>
 
-	<p>Form errors: {{ form.errors | json }}</p>
+	<p><strong>Validation - Form controls</strong></p>
+	<div>First Name Errors: {{ form.get('firstName').errors | json }}</div>
+	<div>Last Name Errors: {{ form.get('lastName').errors | json }}</div>
+	<div>Email Errors: {{ form.get('email').errors | json }}</div>
 
-	<button type="submit">Submit</button>
+	<p><strong>Validation - Form</strong></p>
+	<div>Errors: {{ form.errors | json }}</div>
+	<div>Valid: {{ form.valid }}</div>
+
+	<br/>
+	<div>
+		<button type="submit">Submit</button>
+	</div>
 </form>

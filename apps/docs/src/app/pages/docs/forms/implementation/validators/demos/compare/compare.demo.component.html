@@ -1,4 +1,5 @@
 <form [formGroup]="form">
+	<p>B should be bigger than A</p>
 	<div>
 		<label for="controlA">
 			Control A
@@ -13,7 +14,16 @@
 		</label>
 	</div>
 
-	<p>Form errors: {{ form.errors | json }}</p>
+	<p><strong>Validation - Form controls</strong></p>
+	<div>Control A Errors: {{ form.get('controlA').errors | json }}</div>
+	<div>Control B Errors: {{ form.get('controlB').errors | json }}</div>
 
-	<button type="submit">Submit</button>
+	<p><strong>Validation - Form</strong></p>
+	<div>Errors: {{ form.errors | json }}</div>
+	<div>Valid: {{ form.valid }}</div>
+
+	<br/>
+	<div>
+		<button type="submit">Submit</button>
+	</div>
 </form>

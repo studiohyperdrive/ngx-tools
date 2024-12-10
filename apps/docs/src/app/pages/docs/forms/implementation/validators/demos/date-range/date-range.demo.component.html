@@ -1,4 +1,5 @@
 <form [formGroup]="form">
+	<p>Date should be between 2019-01-01 and 2019-01-05</p>
 	<div>
 		<label for="date">
 			Date
@@ -6,9 +7,15 @@
 		</label>
 	</div>
 
-	<p>Form control errors: {{ form.get('date').errors | json }}</p>
+	<p><strong>Validation - Form controls</strong></p>
+	<div>Errors: {{ form.get('date').errors | json }}</div>
 
-	<p>Form errors: {{ form.errors | json }}</p>
+	<p><strong>Validation - Form</strong></p>
+	<div>Errors: {{ form.errors | json }}</div>
+	<div>Valid: {{ form.valid }}</div>
 
-	<button type="submit">Submit</button>
+	<br/>
+	<div>
+		<button type="submit">Submit</button>
+	</div>
 </form>

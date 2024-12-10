@@ -1,4 +1,5 @@
 <form [formGroup]="form">
+	<p>If A is filled in, B and C are required as well</p>
 	<div>
 		<label for="controlA">
 			Control A
@@ -18,7 +19,17 @@
 		</label>
 	</div>
 
-	<p>Form errors: {{ form.errors | json }}</p>
+	<p><strong>Validation - Form controls</strong></p>
+	<div>Control A Errors: {{ form.get('controlA').errors | json }}</div>
+	<div>Control B Errors: {{ form.get('controlB').errors | json }}</div>
+	<div>Control C Errors: {{ form.get('controlC').errors | json }}</div>
 
-	<button type="submit">Submit</button>
+	<p><strong>Validation - Form</strong></p>
+	<div>Errors: {{ form.errors | json }}</div>
+	<div>Valid: {{ form.valid }}</div>
+
+	<br/>
+	<div>
+		<button type="submit">Submit</button>
+	</div>
 </form>
