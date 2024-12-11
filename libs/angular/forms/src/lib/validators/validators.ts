@@ -121,12 +121,12 @@ export class NgxValidators {
 	 *
 	 * @param startControlKey - The key of the control containing the start date value
 	 * @param endControlKey - The key of the control containing the end date value
-	 * @param format - Optional format of the dates provided by the controls, by default YYYY-MM-DD
+	 * @param format - Optional format of the dates provided by the controls, by default yyyy-MM-dd
 	 */
 	static chronologicalDates(
 		startControlKey: string,
 		endControlKey: string,
-		format = 'YYYY-MM-DD'
+		format = 'yyyy-MM-dd'
 	): ValidatorFn {
 		return chronologicalDatesValidator(startControlKey, endControlKey, format);
 	}
@@ -138,9 +138,9 @@ export class NgxValidators {
 	 *
 	 * @param minDate - Minimum valid date
 	 * @param maxDate - Maximum valid date
-	 * @param format - Optional format used for all 3 dates, by default YYYY-MM-DD
+	 * @param format - Optional format used for all 3 dates, by default yyyy-MM-dd
 	 */
-	static dateRangeValidator(min: string, max: string, format = 'YYYY-MM-DD'): ValidatorFn {
+	static dateRangeValidator(min: string, max: string, format = 'yyyy-MM-dd'): ValidatorFn {
 		return dateRangeValidator(min, max, format);
 	}
 
