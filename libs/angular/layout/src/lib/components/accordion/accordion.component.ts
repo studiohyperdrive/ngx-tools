@@ -17,7 +17,6 @@ import { NgxAccordionItemComponent } from './item/accordion-item.component';
 		class: 'ngx-accordion',
 		role: 'region',
 	},
-	imports: [NgxAccordionItemComponent],
 })
 export class NgxAccordionComponent implements OnDestroy {
 	/**
