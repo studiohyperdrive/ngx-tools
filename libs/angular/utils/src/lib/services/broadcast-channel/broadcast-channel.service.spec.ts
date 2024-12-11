@@ -224,7 +224,9 @@ describe('NgxBroadcastChannelService', () => {
 		let service: NgxBroadcastChannelService;
 
 		const windowService = windowServiceMock(undefined);
-		windowService.isBrowser = () => false;
+		windowService.runInBrowser = () => {
+			return;
+		};
 
 		beforeEach(() => {
 			service = new NgxBroadcastChannelService(windowService as any);
