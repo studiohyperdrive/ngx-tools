@@ -90,6 +90,22 @@ Check the following files:
 
 When adding a playground for your lib, also make sure the project has at least one test or provide a placeholder.
 
+### Contributing features/bug-fixes
+
+In order to contribute to this repository you must:
+
+1. Start a new branch from `master` named either `fix/PACKAGE/FEATURE-NAME` or `feat/PACKAGE/FEATURE-NAME`.
+2. Commit all code regarding the fix or feature to this branch, but **do not include a version bump**. Your commit message should start with either `fix(PACKAGE)` or `feat(PACKAGE)` for a fix or feature respectively.
+3. Open a PR and add the correct package label, an `enhancement` or `bug` tag, the project and milestone.
+
+In order to publish your contribution you must:
+
+1. Start a new branch from `master` named `release/PACKAGE/VERSION-OF-YOUR-PACKAGE`.
+2. Bump the version to the corresponding version of your branch in the `package.json`.
+3. Commit the version change using the following format: `build(PACKAGE):vVERSION-OF-YOUR-PACKAGE`
+4. Open a PR and add the correct package label, the `publish` tag, the project and the milestone.
+
+
 ### Publish
 
 The libraries in this project can be published to the npm registry. To do so follow these steps:
@@ -117,3 +133,6 @@ Contributors:
 -   [Pieterjan Van Saet](https://github.com/HybridFox)
 -   [Wouter Heirstrate](https://github.com/WHeirstrate)
 -   [Abdurrahman Ekinci](https://github.com/ekincia)
+-   [Ian Emsens](https://github.com/ian-emsens-shd)
+-   [Femke Reunes](https://github.com/reunefe)
+-   [Bram Vandenbussche](https://github.com/SHDBramVandenbussche)
