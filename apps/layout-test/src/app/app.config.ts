@@ -25,7 +25,10 @@ export const appConfig: ApplicationConfig = {
 				offline: DisplayContentOfflineComponent,
 			},
 		}),
-		provideNgxTourConfiguration(TourItemComponent),
+		provideNgxTourConfiguration({
+			component: TourItemComponent,
+			offset: { top: 90, bottom: 100 },
+		}),
 		provideNgxTooltipConfiguration({ component: TooltipComponent }),
 		provideNgxModalConfiguration({
 			modals: {

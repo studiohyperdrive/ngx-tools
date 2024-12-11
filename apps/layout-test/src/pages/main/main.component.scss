@@ -55,3 +55,20 @@ nav {
 		}
 	}
 }
+
+.header-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 110%;
+	background-color: rgba(173, 216, 230, 0.85);
+	z-index: 1;
+	height: 90px;
+	align-content: center;
+
+	h1 {
+		background: transparent;
+		color: rebeccapurple;
+		display: inline;
+	}
+}
