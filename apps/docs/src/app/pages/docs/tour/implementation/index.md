@@ -21,6 +21,23 @@ In order to do that, we need to provide a default component that is an implement
 providers: [...provideNgxTourConfiguration(CustomTourStepComponent)];
 ```
 
+Using this provider, it is possible to provide either a custom component, or a configuration object. This object contains the following properties:
+
+| NgxTourTokenConfiguration |                                                                                                                      |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| component                 | The default component of the entire tour. This can be overridden in individual steps as specified later on.          |
+| offset                    | An object that consists of an optional `top` and `bottom` key. These specify the offset of the cutout on the y-axis. |
+
+```ts
+// main
+providers: [
+	...provideNgxTourConfiguration({
+		component: CustomTourStepComponent,
+		offset: { top: 10, bottom: 13 },
+	}),
+];
+```
+
 ### NgxTourService
 
 The core of the tour is the `NgxTourService`, which is a singleton service that handles all tour related methods and observables.
@@ -105,13 +122,15 @@ this.tourService
 	.subscribe();
 ```
 
-Individual steps in the tour can be further customized with several properties, `component`, `disableBackdrop`, `data` and `stepClass`.
+Individual steps in the tour can be further customized with several properties, `component`, `disableBackdrop`, `data`, `stepClass` and `offset`.
 
 First of, we can override the default component with a custom one using the `component` property. This is useful in use-cases where we want to have a step look completely different from the default step, like for instance an introduction step.
 
 Using `disableBackdrop` and `stepClass` we can have even more visual control over the step, by either disabling the backdrop or attaching a custom class to the step using the properties respectively.
 
-Finally, we can pass extra data to a step by using the `data` property. This allows for full customizability beyond the default title and content properties.
+Additionally, we can pass extra data to a step by using the `data` property. This allows for full customizability beyond the default title and content properties.
+
+Finally, we can specify an `offset` on the y-axis for each step. When specified, it will override the global config in the _main.ts_ provider. If the element should be shifted down by 90 pixels (before browser zoom calculations), `top: 90` can be specified. The inverse logic applies to the bottom property.
 
 ```ts
 this.tourService
@@ -123,6 +142,7 @@ this.tourService
 			component: SpecialIntroductionStepComponent,
 			disableBackdrop: true,
 			data: { userName: 'Mark' },
+			offset: { top: 0 },
 		},
 	])
 	.subscribe();

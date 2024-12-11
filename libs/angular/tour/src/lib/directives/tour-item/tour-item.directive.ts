@@ -30,7 +30,7 @@ export class NgxTourItemDirective implements AfterViewInit, OnDestroy {
 	@Input() public tourItem: string;
 
 	constructor(
-		public readonly elementRef: ElementRef<any>,
+		public readonly elementRef: ElementRef<HTMLElement>,
 		private readonly tourService: NgxTourService,
 		private readonly cdRef: ChangeDetectorRef
 	) {}

@@ -92,6 +92,12 @@ export class MainComponent {
 						content: 'This is a test!',
 					},
 					{
+						tourItem: 'overlay-offset',
+						content:
+							'This highlighted element has an offset as to not be displayed under the overlay header',
+						title: 'Offset',
+					},
+					{
 						tourItem: 'start',
 						content: 'This is a test',
 						title: 'Hello world',

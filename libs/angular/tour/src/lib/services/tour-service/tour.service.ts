@@ -1,4 +1,4 @@
-import { ComponentRef, Inject, Injectable, OnDestroy, PLATFORM_ID, Type } from '@angular/core';
+import { ComponentRef, Inject, Injectable, OnDestroy, PLATFORM_ID } from '@angular/core';
 import {
 	BehaviorSubject,
 	Observable,
@@ -32,6 +32,7 @@ import {
 	NgxTourStepPosition,
 	NgxTourRegistrationEvent,
 	NgxTourBackdropClipEvent,
+	NgxTourTokenConfiguration,
 } from '../../types';
 import { elementIsVisibleInViewport } from '../../utils';
 
@@ -185,7 +186,7 @@ export class NgxTourService implements OnDestroy {
 	constructor(
 		private readonly cdkOverlayService: Overlay,
 		@Inject(PLATFORM_ID) private readonly platformId: string,
-		@Inject(NgxTourStepToken) private readonly component: Type<NgxTourStepComponent>
+		@Inject(NgxTourStepToken) private readonly configuration: NgxTourTokenConfiguration
 	) {
 		// Iben: We use a subject with concatMap here because we want each event to be handled correctly and the elements record should finish updating before updating it again.
 		this.registerElementSubject
@@ -199,8 +200,8 @@ export class NgxTourService implements OnDestroy {
 			.subscribe();
 
 		// Iben: Listen to the onresize event of the window
-		this.runInBrowser(() => {
-			window.onresize = () => {
+		this.runInBrowser(({ browserWindow }) => {
+			browserWindow.onresize = () => {
 				this.windowResizeSubject.next();
 			};
 		});
@@ -227,12 +228,12 @@ export class NgxTourService implements OnDestroy {
 			return of(null);
 		}
 
-		this.runInBrowser(() => {
+		this.runInBrowser(({ browserWindow, browserDocument }) => {
 			// Iben: Save the current scroll position so we can return to it when we close the tour
-			this.startingScrollPosition = window.scrollY;
+			this.startingScrollPosition = browserWindow.scrollY;
 
 			// Iben: Save the current
-			this.bodyOverflow = document.body.style.overflow;
+			this.bodyOverflow = browserDocument.body.style.overflow;
 		});
 
 		// Iben: Loop over the tour and set subjects for all elements that haven't been found yet
@@ -277,12 +278,12 @@ export class NgxTourService implements OnDestroy {
 			take(1),
 			switchMap(() => this.runStepFunction(onClose)),
 			tap(() => {
-				this.runInBrowser(() => {
+				this.runInBrowser(({ browserWindow, browserDocument }) => {
 					// Iben: Scroll back to the starting position
-					window.scrollTo({ top: this.startingScrollPosition });
+					browserWindow.scrollTo({ top: this.startingScrollPosition });
 
 					// Iben: Restore the body overflow
-					document.body.style.overflow = this.bodyOverflow;
+					browserDocument.body.style.overflow = this.bodyOverflow;
 				});
 			}),
 			map(() => undefined)
@@ -359,8 +360,8 @@ export class NgxTourService implements OnDestroy {
 		this.handleBodyClass('remove');
 
 		// Iben: Get rid of the onresize event
-		this.runInBrowser(() => {
-			window.onresize = null;
+		this.runInBrowser(({ browserWindow }) => {
+			browserWindow.onresize = null;
 		});
 	}
 
@@ -458,100 +459,115 @@ export class NgxTourService implements OnDestroy {
 		currentStep: NgxTourStep,
 		item?: NgxTourItemDirective
 	): ComponentRef<NgxTourStepComponent> {
-		// Iben: Update the previous and current step subject
-		this.previousStepSubject.next(this.currentStepSubject.getValue());
-		this.currentStepSubject.next(currentStep);
+		return this.runInBrowser(({ browserDocument, browserWindow }) => {
+			// Iben: Update the previous and current step subject
+			this.previousStepSubject.next(this.currentStepSubject.getValue());
+			this.currentStepSubject.next(currentStep);
 
-		this.runInBrowser(() => {
 			// Iben: Restore the body overflow so we can scroll to the right element
-			document.body.style.overflow = this.bodyOverflow;
+			browserDocument.body.style.overflow = this.bodyOverflow;
+
+			// Iben: Calculate the defaultOffsets
+			// Wouter: This needs to happen before we calculate the scroll position
+			const margin = this.getCutoutMargin(currentStep);
 
 			// Iben: Scroll to the top before each step to get consistent behavior when going back and forth
-			window.scrollTo({ top: 0 });
+			browserWindow.scrollTo({ top: 0 });
+
+			const { isVisible, scrollY, relativeTo } = elementIsVisibleInViewport(
+				item?.elementRef?.nativeElement,
+				margin,
+				{ ...this.configuration.offset, ...currentStep?.offset }
+			);
 
 			// Iben: Scroll to the element if it's not in view
-			if (item && !elementIsVisibleInViewport(item.elementRef.nativeElement)) {
-				item.elementRef.nativeElement.scrollIntoView();
+			if (!isVisible) {
+				browserWindow.scrollTo({ top: scrollY });
 			}
 
 			// Iben: Disable scrolling
-			document.body.style.overflow = 'hidden';
-		});
+			browserDocument.body.style.overflow = 'hidden';
 
-		// Iben: Calculate the defaultOffsets so that the steps is rendered relatively to the cutout
-		const margin = this.getCutoutMargin(currentStep);
-		const offsetY = currentStep.position === 'above' ? -margin : margin;
-		const offsetX = currentStep.position === 'right' ? margin : -margin;
+			// Wouter: Calculate the step's position so that it is rendered relatively to the cutout
+			const relativeDisplay: NgxTourStepPosition = relativeTo == 'bottom' ? 'above' : 'below';
+			const positionY = currentStep.position ? currentStep.position : relativeDisplay;
+			const offsetY = positionY === 'above' ? -margin : margin;
+			const offsetX = currentStep.position === 'right' ? margin : -margin;
 
-		// Iben: Determine the position of the item based on whether a tourItem was provided
-		const positionStrategy = item
-			? this.cdkOverlayService
-					.position()
-					.flexibleConnectedTo(item.elementRef)
-					.withDefaultOffsetY(offsetY)
-					.withDefaultOffsetX(offsetX)
-					.withPositions([this.positionMap[currentStep.position || 'below']])
-			: this.cdkOverlayService.position().global().centerHorizontally().centerVertically();
+			// Iben: Determine the position of the item based on whether a tourItem was provided
+			const positionStrategy = item
+				? this.cdkOverlayService
+						.position()
+						.flexibleConnectedTo(item.elementRef)
+						.withDefaultOffsetY(offsetY)
+						.withDefaultOffsetX(offsetX)
+						.withPositions([this.positionMap[currentStep.position || relativeDisplay]])
+				: this.cdkOverlayService
+						.position()
+						.global()
+						.centerHorizontally()
+						.centerVertically();
 
-		// Iben: Create an overlay if it does not exist
-		if (!this.overlayRef) {
-			// Iben: Create an overlay config
-			const config = new OverlayConfig({
-				hasBackdrop: !currentStep.disableBackDrop,
-				// Iben: Due to issues with how the scrollingStrategy.block() works with scrolling to items that are not in view, we set this to noop
-				scrollStrategy: this.cdkOverlayService.scrollStrategies.noop(),
-				positionStrategy,
+			// Iben: Create an overlay if it does not exist
+			if (!this.overlayRef) {
+				// Iben: Create an overlay config
+				const config = new OverlayConfig({
+					hasBackdrop: !currentStep.disableBackDrop,
+					// Iben: Due to issues with how the scrollingStrategy.block() works with scrolling to items that are not in view, we set this to noop
+					scrollStrategy: this.cdkOverlayService.scrollStrategies.noop(),
+					positionStrategy,
+				});
+
+				// Create the overlay
+				this.overlayRef = this.cdkOverlayService.create(config);
+			} else {
+				// Iben: Detach the previous portal
+				this.overlayRef.detach();
+
+				// Iben: If the overlay exists, we update the position strategy
+				this.overlayRef.updatePositionStrategy(positionStrategy);
+
+				// Iben: If the current step has no backdrop, we detach the backdrop
+				if (currentStep.disableBackDrop) {
+					this.overlayRef.detachBackdrop();
+				}
+			}
+
+			// Iben: Create a portal and attach the component
+			const portal = new ComponentPortal<NgxTourStepComponent>(
+				// Iben: If the currentStep has its own component, we overwrite it
+				currentStep.component || this.configuration.component
+			);
+
+			const componentRef = this.overlayRef.attach(portal);
+			const component = componentRef.instance;
+
+			// Iben: Update the data of the component
+			component.content = currentStep.content;
+			component.title = currentStep.title;
+			component.data = currentStep.data;
+			component.currentStep = this.currentIndexSubject.getValue();
+			component.amountOfSteps = this.amountOfSteps;
+			component.position = item ? currentStep.position || 'below' : undefined;
+			component.stepClass = currentStep.stepClass;
+			component.elementId = item?.elementId;
+
+			// Iben: Highlight the current html item as active if one is provided
+			if (item) {
+				// Iben: Set the active class of the item
+				item.setActive(true);
+			}
+
+			// Iben: Set the clip path of the backdrop
+			this.backdropClipEventSubject.next({
+				backdrop: this.overlayRef.backdropElement,
+				item: item?.elementRef?.nativeElement,
+				cutoutMargin: this.getCutoutMargin(currentStep),
 			});
 
-			// Create the overlay
-			this.overlayRef = this.cdkOverlayService.create(config);
-		} else {
-			// Iben: Detach the previous portal
-			this.overlayRef.detach();
-
-			// Iben: If the overlay exists, we update the position strategy
-			this.overlayRef.updatePositionStrategy(positionStrategy);
-
-			// Iben: If the current step has no backdrop, we detach the backdrop
-			if (currentStep.disableBackDrop) {
-				this.overlayRef.detachBackdrop();
-			}
-		}
-
-		// Iben: Create a portal and attach the component
-		const portal = new ComponentPortal<NgxTourStepComponent>(
-			// Iben: If the currentStep has its own component, we overwrite it
-			currentStep.component || this.component
-		);
-
-		const componentRef = this.overlayRef.attach(portal);
-		const component = componentRef.instance;
-
-		// Iben: Update the data of the component
-		component.content = currentStep.content;
-		component.title = currentStep.title;
-		component.data = currentStep.data;
-		component.currentStep = this.currentIndexSubject.getValue();
-		component.amountOfSteps = this.amountOfSteps;
-		component.position = item ? currentStep.position || 'below' : undefined;
-		component.stepClass = currentStep.stepClass;
-		component.elementId = item?.elementId;
-
-		// Iben: Highlight the current html item as active if one is provided
-		if (item) {
-			// Iben: Set the active class of the item
-			item.setActive(true);
-		}
-
-		// Iben: Set the clip path of the backdrop
-		this.backdropClipEventSubject.next({
-			backdrop: this.overlayRef.backdropElement,
-			item: item?.elementRef?.nativeElement,
-			cutoutMargin: this.getCutoutMargin(currentStep),
+			// Iben: Return the new component
+			return componentRef;
 		});
-
-		// Iben: Return the new component
-		return componentRef;
 	}
 
 	/**
@@ -687,19 +703,23 @@ export class NgxTourService implements OnDestroy {
 	 * Sets or removes the body class to indicate the tour is active
 	 */
 	private handleBodyClass(action: 'set' | 'remove'): void {
-		this.runInBrowser(() => {
+		this.runInBrowser(({ browserDocument }) => {
 			if (action === 'set') {
-				document.body.classList.add('ngx-tour-active');
+				browserDocument.body.classList.add('ngx-tour-active');
 			} else {
-				document.body.classList.remove('ngx-tour-active');
+				browserDocument.body.classList.remove('ngx-tour-active');
 			}
 		});
 	}
 
 	//TODO: Iben: Remove this function in service of the WindowService once it is shared
-	private runInBrowser(callBack: () => void): void {
+	private runInBrowser<ReturnType = void>(
+		callback: (data: { browserWindow: Window; browserDocument: Document }) => ReturnType
+	): ReturnType {
 		if (isPlatformBrowser(this.platformId)) {
-			callBack();
+			return callback({ browserWindow: document.defaultView, browserDocument: document });
 		}
+
+		return undefined;
 	}
 }
