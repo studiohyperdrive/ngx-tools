@@ -94,3 +94,7 @@ On top of that, the `data` input provides us with the actual `ValidationErrors` 
 By default, the directive only renders a single error, the first one that gets provided in the validation errors object. If we wish to show more errors, we can provide the `show` property in the configuration.
 
 We can either provide a specific number of errors we wish to see or provide the option `all` to see all errors.
+
+## Example
+
+{{ NgDocActions.demo("NgxerrorsDemoComponent", { expanded: true }) }}
