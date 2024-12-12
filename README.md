@@ -136,3 +136,5 @@ Contributors:
 -   [Ian Emsens](https://github.com/ian-emsens-shd)
 -   [Femke Reunes](https://github.com/reunefe)
 -   [Bram Vandenbussche](https://github.com/SHDBramVandenbussche)
+-   [Annelies Bellon](https://github.com/AnneliesB)
+-   [Bert Verhelst](https://github.com/bertyhell)
