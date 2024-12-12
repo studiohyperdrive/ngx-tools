@@ -89,122 +89,16 @@ In the examples section you will find out how this is implemented.
 
 ### Simple example
 
-```ts
-interface UserName {
-	name: string;
-	firstName: string;
-}
+{{ NgDocActions.demo("SimpleDemoComponent", { expanded: true }) }}
 
-interface UserNameForm {
-	name: FormControl<string>;
-	firstName: FormControl<string>;
-}
-
-@Component({
-	selector: 'user-name-form',
-	templateUrl: './user-name.component.html',
-	providers: [createAccessorProviders(UserNameFormComponent)],
-})
-export class UserNameFormComponent
-	extends FormAccessor<UserName, FormGroup<UserNameForm>>
-	implements OnChanges
-{
-	constructor(readonly cdRef: ChangeDetectorRef, private readonly formBuilder: FormBuilder) {
-		super(cdRef);
-	}
-
-	initForm(): FormGroup<UserNameForm> {
-		return this.formBuilder.group({
-			name: [null, Validators.required],
-			firstName: [null, Validators.required],
-		});
-	}
-}
-```
 
 ### Mapper example
 
-```ts
-interface UserName {
-	name: string;
-	firstName: string;
-}
-
-interface UserNameForm {
-	name: FormControl<string>;
-	firstName: FormControl<string>;
-}
-
-@Component({
-	selector: 'user-name-form',
-	templateUrl: './user-name.component.html',
-	providers: [createAccessorProviders(UserNameFormComponent)],
-})
-export class UserNameFormComponent
-	extends FormAccessor<string, FormGroup<UserNameForm>, UserName>
-	implements OnChanges
-{
-	constructor(readonly cdRef: ChangeDetectorRef, private readonly formBuilder: FormBuilder) {
-		super(cdRef);
-	}
-
-	initForm(): FormGroup<UserNameForm> {
-		return this.formBuilder.group({
-			name: [null, Validators.required],
-			firstName: [null, Validators.required],
-		});
-	}
-
-	onWriteValueMapper(value: string) {
-		const [firstName, name] = value.split('-');
-
-		return { firstName, name };
-	}
-
-	onChangeMapper(value: UserName) {
-		return `${value.firstName}-${value.name}`;
-	}
-}
-```
+{{ NgDocActions.demo("MapperDemoComponent", { expanded: true }) }}
 
 ### Overwrite example
 
-```ts
-interface UserName {
-	name: string;
-	firstName: string;
-}
-
-interface UserNameForm {
-	name: FormControl<string>;
-	firstName: FormControl<string>;
-}
-
-@Component({
-	selector: 'user-name-form',
-	templateUrl: './user-name.component.html',
-	providers: [createAccessorProviders(UserNameFormComponent)],
-})
-export class UserNameFormComponent
-	extends FormAccessor<UserName, FormGroup<UserNameForm>>
-	implements OnChanges
-{
-	constructor(readonly cdRef: ChangeDetectorRef, private readonly formBuilder: FormBuilder) {
-		super(cdRef);
-	}
-
-	initForm(): FormGroup<UserNameForm> {
-		return this.formBuilder.group({
-			name: [null, Validators.required],
-			firstName: [null, Validators.required],
-		});
-	}
-
-	validate() {
-		return form.valid ? null : { invalidUserName: true };
-	}
-}
-```
+{{ NgDocActions.demo("OverwriteDemoComponent", { expanded: true }) }}
 
 ### DataFormAccessor
 
