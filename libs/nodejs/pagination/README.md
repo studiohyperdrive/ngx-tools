@@ -7,8 +7,8 @@ WARNING: This package has been renamed to [@studiohyperdrive/nodejs-hal-tools](h
 This repo contains a set of tools for working with HAL standards.
 
 It is build with:
-- node: `v12.20.0` ( ~ `lts/erbium`)
-- npm: `6.14.8`
+- node: `v18.x.x` ( ~ `lts/hydrogen`)
+- npm: `10.x.x`
 
 For a complete list of packages and version check out the `package.json` file.
 
