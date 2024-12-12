@@ -1,110 +1,102 @@
 {
-  "name": "cookies-test",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "projectType": "application",
-  "prefix": "app",
-  "sourceRoot": "apps/cookies-test/src",
-  "tags": [],
-  "targets": {
-    "build": {
-      "executor": "@ng-doc/builder:application",
-      "outputs": [
-        "{options.outputPath}"
-      ],
-      "options": {
-        "outputPath": "dist/apps/cookies-test",
-        "index": "apps/cookies-test/src/index.html",
-        "main": "apps/cookies-test/src/main.ts",
-        "polyfills": [
-          "zone.js"
-        ],
-        "tsConfig": "apps/cookies-test/tsconfig.app.json",
-        "inlineStyleLanguage": "scss",
-        "assets": [
-          {
-            "glob": "**/*",
-            "input": "node_modules/@ng-doc/app/assets",
-            "output": "assets/ng-doc/app"
-          },
-          {
-            "glob": "**/*",
-            "input": "node_modules/@ng-doc/ui-kit/assets",
-            "output": "assets/ng-doc/ui-kit"
-          },
-          {
-            "glob": "**/*",
-            "input": "ng-doc/cookies-test/assets",
-            "output": "assets/ng-doc"
-          },
-          "apps/cookies-test/src/favicon.ico",
-          "apps/cookies-test/src/assets"
-        ],
-        "styles": [
-          "node_modules/@ng-doc/app/styles/global.css",
-          "apps/cookies-test/src/styles.scss",
-          "node_modules/vanilla-cookieconsent/dist/cookieconsent.css"
-        ],
-        "scripts": [],
-        "allowedCommonJsDependencies": [
-          "@ng-doc/core"
-        ]
-      },
-      "configurations": {
-        "production": {
-          "budgets": [
-            {
-              "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "1mb"
-            },
-            {
-              "type": "anyComponentStyle",
-              "maximumWarning": "2kb",
-              "maximumError": "4kb"
-            }
-          ],
-          "outputHashing": "all"
-        },
-        "development": {
-          "buildOptimizer": false,
-          "optimization": false,
-          "vendorChunk": true,
-          "extractLicenses": false,
-          "sourceMap": true,
-          "namedChunks": true
-        }
-      },
-      "defaultConfiguration": "production"
-    },
-    "serve": {
-      "executor": "@ng-doc/builder:dev-server",
-      "configurations": {
-        "production": {
-          "buildTarget": "cookies-test:build:production"
-        },
-        "development": {
-          "buildTarget": "cookies-test:build:development"
-        }
-      },
-      "defaultConfiguration": "development"
-    },
-    "extract-i18n": {
-      "executor": "@angular-devkit/build-angular:extract-i18n",
-      "options": {
-        "buildTarget": "cookies-test:build"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
-    },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}"
-      ],
-      "options": {
-        "jestConfig": "apps/cookies-test/jest.config.ts"
-      }
-    }
-  }
+	"name": "cookies-test",
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"projectType": "application",
+	"prefix": "app",
+	"sourceRoot": "apps/cookies-test/src",
+	"tags": [],
+	"targets": {
+		"build": {
+			"executor": "@ng-doc/builder:application",
+			"outputs": ["{options.outputPath}"],
+			"options": {
+				"outputPath": "dist/apps/cookies-test",
+				"index": "apps/cookies-test/src/index.html",
+				"browser": "apps/cookies-test/src/main.ts",
+				"polyfills": ["zone.js"],
+				"tsConfig": "apps/cookies-test/tsconfig.app.json",
+				"inlineStyleLanguage": "scss",
+				"assets": [
+					{
+						"glob": "**/*",
+						"input": "node_modules/@ng-doc/app/assets",
+						"output": "assets/ng-doc/app"
+					},
+					{
+						"glob": "**/*",
+						"input": "node_modules/@ng-doc/ui-kit/assets",
+						"output": "assets/ng-doc/ui-kit"
+					},
+					{
+						"glob": "**/*",
+						"input": "ng-doc/cookies-test/assets",
+						"output": "assets/ng-doc"
+					},
+					{
+						"glob": "**/*",
+						"input": "apps/cookies-test/public"
+					}
+				],
+				"styles": [
+					"node_modules/@ng-doc/app/styles/global.css",
+					"apps/cookies-test/src/styles.scss",
+					"node_modules/vanilla-cookieconsent/dist/cookieconsent.css"
+				],
+				"scripts": [],
+				"allowedCommonJsDependencies": ["@ng-doc/core"]
+			},
+			"configurations": {
+				"production": {
+					"budgets": [
+						{
+							"type": "initial",
+							"maximumWarning": "500kb",
+							"maximumError": "2mb"
+						},
+						{
+							"type": "anyComponentStyle",
+							"maximumWarning": "2kb",
+							"maximumError": "4kb"
+						}
+					],
+					"outputHashing": "all"
+				},
+				"development": {
+					"optimization": false,
+					"extractLicenses": false,
+					"sourceMap": true,
+					"namedChunks": true
+				}
+			},
+			"defaultConfiguration": "production"
+		},
+		"serve": {
+			"executor": "@ng-doc/builder:dev-server",
+			"configurations": {
+				"production": {
+					"buildTarget": "cookies-test:build:production"
+				},
+				"development": {
+					"buildTarget": "cookies-test:build:development"
+				}
+			},
+			"defaultConfiguration": "development"
+		},
+		"extract-i18n": {
+			"executor": "@angular-devkit/build-angular:extract-i18n",
+			"options": {
+				"buildTarget": "cookies-test:build"
+			}
+		},
+		"lint": {
+			"executor": "@nx/eslint:lint"
+		},
+		"test": {
+			"executor": "@nx/jest:jest",
+			"outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+			"options": {
+				"jestConfig": "apps/cookies-test/jest.config.ts"
+			}
+		}
+	}
 }
