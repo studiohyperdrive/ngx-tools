@@ -6,11 +6,10 @@ describe('NgxTourService Server', () => {
 	let service: NgxTourService;
 
 	beforeEach(() => {
-		service = new NgxTourService(
-			OverlayMock(new MockTourStepComponent(service)),
-			'server',
-			MockTourStepComponent
-		);
+		service = new NgxTourService(OverlayMock(new MockTourStepComponent(service)), 'server', {
+			component: MockTourStepComponent,
+			offset: {},
+		});
 	});
 
 	it('should not start the tour', (done) => {
