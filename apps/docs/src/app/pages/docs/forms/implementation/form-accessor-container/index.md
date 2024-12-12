@@ -20,3 +20,7 @@ In order to reach all FormAccessors and their children, we need to provide the `
 ## UpdateValueAndValidity
 
 Calling this method on a `FormAccessorContainer` will recursively update the value and validity for each `FormAccessor` and their corresponding `FormAccessor` children in the template.
+
+## Example
+
+{{ NgDocActions.demo("FormAccessorContainerDemoComponent", { expanded: true }) }}
