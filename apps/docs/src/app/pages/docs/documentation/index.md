@@ -16,7 +16,6 @@ Following provides an overview:
 - **Forms**
   - [x] Documentation
   - [ ] Demo components
-      - FormAccessor: Code snippets can be swapped with demo component
       - FormAccessorContainer: Code snippets can be swapped with demo component?
       - Ngx Errors: Code snippets can be swapped with demo component?
 - **i18n**

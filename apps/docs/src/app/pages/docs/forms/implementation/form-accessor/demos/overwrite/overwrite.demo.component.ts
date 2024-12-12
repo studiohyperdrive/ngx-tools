@@ -1,4 +1,4 @@
-import {CommonModule, JsonPipe} from '@angular/common';
+import { CommonModule, JsonPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { UserNameFormComponent } from './user-name-form/user-name.form.component';

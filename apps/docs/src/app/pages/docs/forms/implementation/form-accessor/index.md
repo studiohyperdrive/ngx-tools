@@ -89,53 +89,17 @@ In the examples section you will find out how this is implemented.
 
 ### Simple example
 
-{{ NgDocActions.demo("SimpleDemoComponent", { expanded: true }) }}
+{{ NgDocActions.demo("SimpleDemoComponent") }}
 
 
 ### Mapper example
 
-{{ NgDocActions.demo("MapperDemoComponent", { expanded: true }) }}
+{{ NgDocActions.demo("MapperDemoComponent") }}
 
 ### Overwrite example
 
-{{ NgDocActions.demo("OverwriteDemoComponent", { expanded: true }) }}
+{{ NgDocActions.demo("OverwriteDemoComponent") }}
 
 ### DataFormAccessor
 
-```ts
-interface SurveyQuestion {
-	name: string;
-	id: string;
-}
-
-interface SurveyForm {
-	name: FormControl<string>;
-	[key: id]: FormControl<string>;
-}
-
-@Component({
-	selector: 'survey-form',
-	templateUrl: './survey.component.html',
-	providers: [createAccessorProviders(SurveyFormComponent)],
-})
-export class SurveyFormComponent
-	extends DataFormAccessor<SurveyQuestion[], Record<string, string>, FormGroup<SurveyForm>>
-	implements OnChanges
-{
-	constructor(readonly cdRef: ChangeDetectorRef, private readonly formBuilder: FormBuilder) {
-		super(cdRef);
-	}
-
-	initForm(questions: SurveyQuestion[]): FormGroup<SurveyForm> {
-		const form = this.formBuilder.group({
-			name: [null, Validators.required],
-		});
-
-		questions.forEach((question) => {
-			form.addControl(question.id, this.formBuilder.control('', Validators.required));
-		});
-
-		return form;
-	}
-}
-```
+{{ NgDocActions.demo("DataFormAccessorDemoComponent") }}
