@@ -1,0 +1,17 @@
+<ngx-table
+	[data]="data"
+	[columns]="columns"
+>
+	<ngx-table-cell column="firstName">
+		<ng-template #headerTmpl> First name </ng-template>
+	</ngx-table-cell>
+
+	<ngx-currency-table-cell column="amount" currency="EUR">
+		<ng-template #headerTmpl> EUR </ng-template>
+	</ngx-currency-table-cell>
+
+	<ngx-date-table-cell column="date"> </ngx-date-table-cell>
+	<app-btw-cell column="btw" />
+</ngx-table>
+
+<!--snippet-from-file="./btw-cell.component.ts" "btw-cell.component.ts"-->

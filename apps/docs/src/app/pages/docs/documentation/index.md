@@ -34,8 +34,7 @@ Following provides an overview:
   - [x] Demo components: None possible, code snippets provided
 - **Table**
   - [x] Documentation
-  - [ ] Demo components
-    - [ ] Custom cells: Code snippets can be swapped with demo component
+  - [x] Demo components
 - **Tour**
   - [x] Documentation
   - [ ] Demo components

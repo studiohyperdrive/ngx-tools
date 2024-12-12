@@ -48,3 +48,7 @@ export class UserTableCellComponent extends NgxAbstractTableCellDirective {
 ```
 
 In the example above, we create a simple user name cell. Instead of using a `ContentChild` template for our cell template, we use a `ViewChild` template. This way, we can provide a default approach to the user name cell, without having to provide it again and again throughout the entire application.
+
+## Example
+
+{{ NgDocActions.demo("CustomCellsDemoComponent", { expanded: true }) }}
