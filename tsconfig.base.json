@@ -28,7 +28,8 @@
 			"@ngx/tour": ["libs/angular/tour/src/index.ts"],
 			"@ngx/utils": ["libs/angular/utils/src/public-api.ts"],
 			"@node/pagination": ["libs/nodejs/pagination/src/index.ts"],
-			"@node/rxjs": ["libs/nodejs/rxjs/src/index.ts"]
+			"@node/rxjs": ["libs/nodejs/rxjs/src/index.ts"],
+			"@node/utils": ["libs/nodejs/utils/src/index.ts"]
 		},
 		"useDefineForClassFields": false,
 		"skipLibCheck": true,
