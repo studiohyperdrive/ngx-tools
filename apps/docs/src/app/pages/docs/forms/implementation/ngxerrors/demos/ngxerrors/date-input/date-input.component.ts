@@ -6,7 +6,7 @@ import { FormAccessor, createAccessorProviders } from '@ngx/forms';
 	selector: 'app-date-input',
 	template: `
 		<input type="date" [formControl]="form" (blur)="onTouch()" />
-		Internal control touched: {{form.touched}}
+		Internal control touched: {{ form.touched }}
 	`,
 	providers: [createAccessorProviders(DateInputComponent)],
 	imports: [ReactiveFormsModule],

@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { SurveyQuestion } from './survey-question.interface';
 import { createAccessorProviders, DataFormAccessor } from '@ngx/forms';
-import {JsonPipe} from "@angular/common";
-import {SurveyQuestion} from "./survey-question.interface";
 
 interface SurveyForm {
 	name: FormControl<string>;

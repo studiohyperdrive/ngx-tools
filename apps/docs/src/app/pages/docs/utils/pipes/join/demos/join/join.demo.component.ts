@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
+import { JsonPipe } from '@angular/common';
 import { JoinPipe } from '@ngx/utils';
-import {JsonPipe} from "@angular/common";
 
 @Component({
 	imports: [JoinPipe, JsonPipe],

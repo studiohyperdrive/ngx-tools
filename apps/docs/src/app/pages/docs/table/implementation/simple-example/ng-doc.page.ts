@@ -1,7 +1,11 @@
 import { NgDocPage } from '@ng-doc/core';
 
 import { TableImplementationCategory } from '../../../../../categories';
-import { DefaultTemplatesDemoComponent, CustomCellsDemoComponent, CustomColumnsDemoComponent } from './demos';
+import {
+	DefaultTemplatesDemoComponent,
+	CustomCellsDemoComponent,
+	CustomColumnsDemoComponent,
+} from './demos';
 
 const SimpleExamplePage: NgDocPage = {
 	title: `Simple example`,

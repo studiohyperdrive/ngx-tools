@@ -8,7 +8,7 @@ const CustomCellsPage: NgDocPage = {
 	category: TableImplementationCategory,
 	order: 5,
 	demos: {
-		CustomCellsDemoComponent
+		CustomCellsDemoComponent,
 	},
 };
 

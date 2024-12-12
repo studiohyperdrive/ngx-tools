@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
-import {ChangeDetectionStrategy, Component, importProvidersFrom} from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { FormAccessorComponent } from './form-accessor.component';
-import {FormAccessorContainer, NgxFormsErrorsConfigurationToken} from '@ngx/forms';
 import { FormErrorComponent } from './error/error.component';
+import { FormAccessorContainer, NgxFormsErrorsConfigurationToken } from '@ngx/forms';
 
 // snippet#component "Typescript"
 @Component({

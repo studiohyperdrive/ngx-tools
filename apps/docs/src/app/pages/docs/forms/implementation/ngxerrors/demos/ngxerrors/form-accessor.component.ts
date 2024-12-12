@@ -8,11 +8,7 @@ import { FormAccessor, NgxFormsErrorsDirective, createAccessorProviders } from '
 	templateUrl: 'form-accessor.component.html',
 	providers: [createAccessorProviders(FormAccessorComponent)],
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	imports: [
-		ReactiveFormsModule,
-		NgxFormsErrorsDirective,
-		DateInputComponent,
-	],
+	imports: [ReactiveFormsModule, NgxFormsErrorsDirective, DateInputComponent],
 })
 export class FormAccessorComponent extends FormAccessor<any, any> {
 	initForm() {

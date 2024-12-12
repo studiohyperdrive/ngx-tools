@@ -1,6 +1,6 @@
-import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { JsonPipe } from '@angular/common';
 import { UniqByPipe } from '@ngx/utils';
-import { JsonPipe } from "@angular/common";
 
 @Component({
 	imports: [UniqByPipe, JsonPipe],
