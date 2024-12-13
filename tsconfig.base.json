@@ -30,7 +30,8 @@
 			"@node/pagination": ["libs/nodejs/pagination/src/index.ts"],
 			"@node/rxjs": ["libs/nodejs/rxjs/src/index.ts"],
 			"@node/utils": ["libs/nodejs/utils/src/index.ts"],
-			"@node/regex": ["libs/nodejs/regex/src/index.ts"]
+			"@node/regex": ["libs/nodejs/regex/src/index.ts"],
+			"@node/testing": ["libs/nodejs/testing/src/index.ts"]
 		},
 		"useDefineForClassFields": false,
 		"skipLibCheck": true,
