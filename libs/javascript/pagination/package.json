@@ -18,7 +18,5 @@
     "directory": "libs/javascript/pagination/src"
   },
   "license": "MIT",
-  "dependencies": {
-    "tslib": "^2.8.0"
-  }
+  "dependencies": {}
 }
