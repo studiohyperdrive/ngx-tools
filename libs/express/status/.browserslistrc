@@ -1,4 +1,0 @@
-# Browsers that we support
-# Run "npx browserslist" in project directory to see what browsers was selected by your queries.
-
-node 12

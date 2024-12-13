@@ -1,25 +1,22 @@
 {
+	"extends": "../../../tsconfig.base.json",
 	"compilerOptions": {
-		"declaration": true,
-		"declarationDir": "src/types",
-		"esModuleInterop": true,
-		"experimentalDecorators": true,
-		"importHelpers": true,
-		"module": "ESNext",
-		"moduleResolution": "node",
+		"module": "commonjs",
+		"forceConsistentCasingInFileNames": true,
 		"strict": true,
-		"target": "ES2022",
-		"lib": [
-			"ES2023"
-		],
-		"noEmit": true
+		"noImplicitOverride": true,
+		"noPropertyAccessFromIndexSignature": true,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true
 	},
-	"include": [
-		"src/**/*.ts",
-		"types/**/*.ts"
-	],
-	"exclude": [
-		"node_modules",
-		"src/**.spec.ts"
+	"files": [],
+	"include": [],
+	"references": [
+		{
+			"path": "./tsconfig.lib.json"
+		},
+		{
+			"path": "./tsconfig.spec.json"
+		}
 	]
 }

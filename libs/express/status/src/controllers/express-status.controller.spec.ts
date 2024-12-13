@@ -1,5 +1,5 @@
-import Express from 'express';
-import Supertest from 'supertest';
+import * as Express from 'express';
+import * as Supertest from 'supertest';
 import { ExpressStatusController } from './express-status.controller';
 
 const expressStatusController = new ExpressStatusController();
@@ -7,10 +7,10 @@ const expressStatusController = new ExpressStatusController();
 describe('Express Status', () => {
 	// Set the required process.env
 	process.env.TZ = 'Europe/Brussels';
-	process.env.VERSION = '1.0.0';
-	process.env.NAME = 'express-status';
-	process.env.NODE_ENV = 'test';
-	process.env.CONTEXT = 'docker';
+	process.env['VERSION'] = '1.0.0';
+	process.env['NAME'] = 'express-status';
+	process.env['NODE_ENV'] = 'test';
+	process.env['CONTEXT'] = 'docker';
 
 	const app = Express();
 	const request = Supertest(app);
