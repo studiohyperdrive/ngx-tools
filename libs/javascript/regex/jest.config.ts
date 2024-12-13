@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-	displayName: 'node-testing',
+	displayName: 'js-regex',
 	preset: '../../../jest.preset.js',
 	testEnvironment: 'node',
 	transform: {

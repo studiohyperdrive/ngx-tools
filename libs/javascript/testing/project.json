@@ -1,7 +1,7 @@
 {
-	"name": "node-testing",
+	"name": "js-testing",
 	"$schema": "../../node_modules/nx/schemas/project-schema.json",
-	"sourceRoot": "libs/nodejs/testing/src",
+	"sourceRoot": "libs/javascript/testing/src",
 	"projectType": "library",
 	"targets": {
 		"build": {
@@ -17,14 +17,14 @@
         "{workspaceRoot}/coverage/{projectRoot}"
       ],
       "options": {
-        "jestConfig": "libs/nodejs/testing/jest.config.ts"
+        "jestConfig": "libs/javascript/testing/jest.config.ts"
       }
     },
 		"lint": {
 			"executor": "@nx/linter:eslint",
 			"outputs": ["{options.outputFile}"],
 			"options": {
-				"lintFilePatterns": ["libs/nodejs/testing/**/*.ts", "libs/nodejs/testing/package.json"]
+				"lintFilePatterns": ["libs/javascript/testing/**/*.ts", "libs/javascript/testing/package.json"]
 			}
 		}
 	},
