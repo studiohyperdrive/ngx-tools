@@ -1,7 +1,7 @@
 {
-  "name": "node-utils",
+  "name": "js-regex",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/nodejs/utils/src",
+  "sourceRoot": "packages/regex-common/src",
   "projectType": "library",
   "targets": {
     "build": {
@@ -10,7 +10,7 @@
         "{options.outputPath}"
       ],
       "options": {
-        "outputPath": "dist/libs/nodejs/utils"
+        "outputPath": "dist/packages/regex-common"
       }
     },
     "test": {
@@ -19,20 +19,11 @@
         "{workspaceRoot}/coverage/{projectRoot}"
       ],
       "options": {
-        "jestConfig": "libs/nodejs/utils/jest.config.ts"
+        "jestConfig": "libs/javascript/utils/jest.config.ts"
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
-      "options": {
-        "lintFilePatterns": [
-          "libs/nodejs/utils/**/*.ts",
-          "libs/nodejs/utils/package.json"
-        ]
-      }
+      "executor": "@nx/eslint:lint"
     }
   },
   "tags": []

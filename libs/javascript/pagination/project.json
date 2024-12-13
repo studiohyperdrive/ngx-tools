@@ -1,7 +1,7 @@
 {
-  "name": "node-pagination",
+  "name": "js-pagination",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/nodejs/pagination/src",
+  "sourceRoot": "libs/javascript/pagination/src",
   "projectType": "library",
   "release": {
     "version": {
@@ -19,11 +19,11 @@
         "{options.outputPath}"
       ],
       "options": {
-        "outputPath": "dist/libs/nodejs/pagination",
-        "main": "libs/nodejs/pagination/src/index.ts",
-        "tsConfig": "libs/nodejs/pagination/tsconfig.lib.json",
+        "outputPath": "dist/libs/javascript/pagination",
+        "main": "libs/javascript/pagination/src/index.ts",
+        "tsConfig": "libs/javascript/pagination/tsconfig.lib.json",
         "assets": [
-          "libs/nodejs/*.md"
+          "libs/javascript/*.md"
         ]
       }
     },
@@ -38,7 +38,7 @@
         "{workspaceRoot}/coverage/{projectRoot}"
       ],
       "options": {
-        "jestConfig": "libs/nodejs/pagination/jest.config.ts"
+        "jestConfig": "libs/javascript/pagination/jest.config.ts"
       }
     },
     "lint": {
