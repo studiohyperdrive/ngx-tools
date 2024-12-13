@@ -1,0 +1,29 @@
+# EditorConfig helps developers define and maintain consistent coding styles between different editors and IDEs.
+# More information: http://editorconfig.org/
+# Install the plugin for your IDE: http://editorconfig.org/#download
+
+# Don't look for another .editorconfig file in parent directories
+root = true
+
+# Defaults to tab-indented (use smart-tabs)
+[*]
+charset = utf-8
+end_of_line = LF
+indent_style = tab
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# 2 space indentation for package.json and package-lock.json
+[{package,package-lock}.json]
+indent_style = space
+indent_size = 2
+
+# 2 space indentation for all yml/yml files.
+[*.{yml, yaml}]
+indent_style = space
+indent_size = 2
+
+# Don't trim trailing whitespace for Markdown files.
+# (Remember, trailing spaces in markdown is used to differentiate line breaks and paragraphs)
+[*.md]
+trim_trailing_whitespace = false

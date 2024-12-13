@@ -1,0 +1,25 @@
+{
+	"compilerOptions": {
+		"declaration": true,
+		"declarationDir": "src/types",
+		"esModuleInterop": true,
+		"experimentalDecorators": true,
+		"importHelpers": true,
+		"module": "ESNext",
+		"moduleResolution": "node",
+		"strict": true,
+		"target": "ES2022",
+		"lib": [
+			"ES2023"
+		],
+		"noEmit": true
+	},
+	"include": [
+		"src/**/*.ts",
+		"types/**/*.ts"
+	],
+	"exclude": [
+		"node_modules",
+		"src/**.spec.ts"
+	]
+}

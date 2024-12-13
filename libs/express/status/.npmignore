@@ -1,0 +1,16 @@
+.eslint
+.vscode
+src
+types
+.browserslistrc
+.editorconfig
+.eslintrc.js
+.gitignore
+.huskyrc.json
+.lintstagedrc.json
+.npmrc
+.nvmrc
+babel.config.js
+jest.config.js
+tsconfig.json
+tsconfig.paths.json
