@@ -1,5 +1,5 @@
 {
-	"name": "core",
+	"name": "ngx-core",
 	"$schema": "../../../node_modules/nx/schemas/project-schema.json",
 	"sourceRoot": "libs/angular/core/src",
 	"prefix": "lib",
