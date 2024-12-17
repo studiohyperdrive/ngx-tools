@@ -1,0 +1,22 @@
+{
+  "name": "@studiohyperdrive/ngx-core",
+  "version": "19.0.0",
+  "description": "A library of core functionality used by the Studio Hyperdrive ngx-tools.",
+  "keywords": [
+    "angular",
+    "ngx-tools"
+  ],
+  "homepage": "https://github.com/studiohyperdrive/ngx-tools/tree/master/libs/angular/cookies",
+  "license": "MIT",
+  "author": {
+    "name": "Studio Hyperdrive",
+    "url": "https://studiohyperdrive.be/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/studiohyperdrive/ngx-core",
+    "directory": "libs/angular/core/src"
+  },
+  "peerDependencies": {},
+  "sideEffects": false
+}

@@ -1,0 +1,31 @@
+{
+	"name": "js-rxjs",
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "libs/javascript/rxjs/src",
+	"projectType": "library",
+	"targets": {
+		"build": {
+			"executor": "@nx/vite:build",
+			"outputs": ["{options.outputPath}"],
+			"options": {
+				"outputPath": "dist/libs/javascript/rxjs"
+			}
+		},
+		"test": {
+			"executor": "@nx/vite:test",
+			"outputs": ["{workspaceRoot}/coverage/libs/javascript/rxjs"],
+			"options": {
+				"passWithNoTests": true,
+				"reportsDirectory": "../../coverage/libs.nodejs/rxjs"
+			}
+		},
+		"lint": {
+			"executor": "@nx/linter:eslint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": ["libs/javascript/rxjs/**/*.ts", "libs/javascript/rxjs/package.json"]
+			}
+		}
+	},
+	"tags": []
+}

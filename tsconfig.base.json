@@ -16,6 +16,11 @@
 		"module": "es2020",
 		"lib": ["es2022", "dom"],
 		"paths": {
+			"@js/pagination": ["libs/javascript/pagination/src/index.ts"],
+			"@js/regex": ["libs/javascript/regex/src/index.ts"],
+			"@js/rxjs": ["libs/javascript/rxjs/src/index.ts"],
+			"@js/testing": ["libs/javascript/testing/src/index.ts"],
+			"@js/utils": ["libs/javascript/utils/src/index.ts"],
 			"@ng-doc/generated": ["./ng-doc/docs/index.ts"],
 			"@ng-doc/generated/*": ["./ng-doc/docs/*"],
 			"@ngx/cookies": ["libs/angular/cookies/src/index.ts"],
@@ -27,8 +32,7 @@
 			"@ngx/table": ["libs/angular/table/src/public-api.ts"],
 			"@ngx/tour": ["libs/angular/tour/src/index.ts"],
 			"@ngx/utils": ["libs/angular/utils/src/public-api.ts"],
-			"@node/pagination": ["libs/nodejs/pagination/src/index.ts"],
-			"@node/rxjs": ["libs/nodejs/rxjs/src/index.ts"]
+			"@studiohyperdrive/ngx-core": ["libs/angular/core/src/index.ts"]
 		},
 		"useDefineForClassFields": false,
 		"skipLibCheck": true,
