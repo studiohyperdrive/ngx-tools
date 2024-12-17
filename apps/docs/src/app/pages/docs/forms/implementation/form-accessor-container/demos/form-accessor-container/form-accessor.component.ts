@@ -11,7 +11,6 @@ import { FormAccessor, NgxFormsErrorsDirective, createAccessorProviders } from '
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [
 		ReactiveFormsModule,
-		NgxFormsErrorsDirective,
 		DateInputComponent,
 		DependedDatesComponent,
 	],

@@ -24,8 +24,7 @@ Following provides an overview:
   - [x] Demo components: None provided, code snippets available
 - **Inform**
   - [x] Documentation
-  - [ ] Demo components
-      - None provided, but could be added
+  - [x] Demo components
 - **Layout**
   - [x] Documentation
     - Drag and drop seems to need some more work

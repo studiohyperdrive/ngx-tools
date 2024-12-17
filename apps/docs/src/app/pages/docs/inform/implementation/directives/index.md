@@ -67,3 +67,7 @@ On top of these two inputs, we have two additional inputs, being `ngxTooltipComp
 ```
 
 When you wish to disable a tooltip and thus prevent it from being shown, you can use the `ngxTooltipDisabled` property. By default, this property is `false`.
+
+### Example
+
+{{ NgDocActions.demo("TooltipDemoComponent", { expanded: true}) }}

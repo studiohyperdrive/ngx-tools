@@ -1,10 +1,10 @@
+// snippet#component "Typescript"
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { FormAccessorComponent } from './form-accessor.component';
 import { FormAccessorContainer } from '@ngx/forms';
 
-// snippet#component "Typescript"
 @Component({
 	imports: [CommonModule, ReactiveFormsModule, FormAccessorComponent],
 	selector: 'form-accessor-container-demo',

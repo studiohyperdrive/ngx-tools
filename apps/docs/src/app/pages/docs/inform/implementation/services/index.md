@@ -101,3 +101,7 @@ this.modalService
 	)
 	.subscribe();
 ```
+
+## Example
+
+{{ NgDocActions.demo("ModalDemoComponent", { expanded: true}) }}

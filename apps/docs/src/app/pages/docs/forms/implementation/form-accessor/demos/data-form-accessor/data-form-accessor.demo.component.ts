@@ -1,10 +1,10 @@
+// snippet#component "Typescript"
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { SurveyFormComponent } from './survey-form/survey.component';
 import { SurveyQuestion } from './survey-form/survey-question.interface';
 
-// snippet#component "Typescript"
 @Component({
 	imports: [CommonModule, ReactiveFormsModule, SurveyFormComponent],
 	selector: 'data-form-accessor',

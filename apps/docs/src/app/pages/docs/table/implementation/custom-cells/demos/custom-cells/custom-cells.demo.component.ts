@@ -1,8 +1,8 @@
+// snippet#component "Typescript"
 import { Component } from '@angular/core';
 import { BtwCellComponent } from './btw-cell.component';
 import { NgxTable } from '@ngx/table';
 
-// snippet#component "Typescript"
 @Component({
 	imports: [NgxTable, BtwCellComponent],
 	selector: 'custom-cells-demo',
