@@ -13,6 +13,9 @@ Following provides an overview:
 - **Cookies**
   - [x] Documentation
   - [x] Demo components: None provided, code snippets available
+- **Core**
+    - [ ] Documentation
+    - [ ] Demo components
 - **Forms**
   - [x] Documentation
   - [x] Demo components
@@ -43,8 +46,24 @@ Following provides an overview:
   - [x] Documentation
   - [x] Demo components
 
-## RxJS
+## Javascript
+
+- **Pagination**
+    - [ ] Documentation
+    - [ ] Demo components
+
+- **Regex**
+    - [ ] Documentation
+    - [ ] Demo components
+
+- **RxJS**
+    - [ ] Documentation
+    - [ ] Demo components
+
+- **Testing**
+    - [ ] Documentation
+    - [ ] Demo components
 
 - **Utils**
-  - [ ] Documentation
-  - [ ] Demo components
+    - [ ] Documentation
+    - [ ] Demo components
