@@ -20,6 +20,7 @@ import { tooltipAppConfig } from './app/pages/docs/inform/implementation/directi
 import { layoutComponentsConfig } from './app/pages/docs/layout/implementation/components/demos/app.config';
 import { layoutDirectivesConfig } from './app/pages/docs/layout/implementation/directives/demos/app.config';
 import { provideNgDocContext } from '@ng-doc/generated';
+import {tourAppConfig} from "./app/pages/docs/tour/implementation/demos/app.config";
 // import { environment } from './environments/environment';
 
 // if (environment.production) {
@@ -56,5 +57,7 @@ bootstrapApplication(AppComponent, {
 		...layoutComponentsConfig.providers,
 		// Add layout configuration in order to get layout demos to work
 		...layoutDirectivesConfig.providers,
+		// Add tour configuration in order to get layout demos to work
+		...tourAppConfig.providers,
 	],
 }).catch((err: unknown) => console.error(err));

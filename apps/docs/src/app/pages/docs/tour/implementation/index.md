@@ -195,3 +195,8 @@ public readonly label$: Observable<string> = this.dataService.label$.pipe(
 ```
 
 This operator only works within an injection context, and therefor cannot be used in methods or outside of the constructor.
+
+### Example
+
+{{ NgDocActions.demo("TourDemoComponent", {fullscreenRoute: "demo"}) }}
+

@@ -38,7 +38,7 @@ Following provides an overview:
 - **Tour**
   - [x] Documentation
   - [ ] Demo components
-    - None provided, but could be added
+    - Demo provided but contains a bug to scroll element into view
 - **Utils**
   - [x] Documentation
   - [x] Demo components

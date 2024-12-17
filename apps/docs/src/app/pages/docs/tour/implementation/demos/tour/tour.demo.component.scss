@@ -1,0 +1,82 @@
+:host {
+	height: 100vh;
+}
+
+:root {
+	overflow: hidden;
+}
+
+ngx-configurable-layout {
+	background-color: rgb(242, 242, 242);
+}
+
+.layout-items {
+	height: 100%;
+	border: 1px solid black;
+	padding: 15px;
+	box-sizing: border-box;
+}
+
+label {
+	display: inline-block;
+	margin: 15px;
+	&:first-of-type {
+		margin-left: 0px;
+	}
+}
+
+::ng-deep {
+	.ngx-layout-item-inactive {
+		opacity: 0.5;
+		.layout-items {
+			border-style: dashed;
+		}
+	}
+}
+
+h1 {
+	display: block;
+	min-width: 400px;
+	max-width: max-content;
+	background: black;
+	border-radius: 5px;
+	padding: 5px;
+	color: white;
+}
+
+.space-between {
+	height: 400px;
+	display: grid;
+	place-items: center;
+}
+
+nav {
+	li {
+		display: grid;
+		place-items: center;
+		height: 45px;
+		width: 45px;
+		overflow: hidden;
+
+		&:hover {
+			background-color: grey;
+		}
+	}
+}
+
+.header-overlay {
+	position: sticky;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-color: rgba(173, 216, 230, 0.85);
+	z-index: 1;
+	height: 90px;
+	align-content: center;
+
+	h1 {
+		background: transparent;
+		color: rebeccapurple;
+		display: inline;
+	}
+}
