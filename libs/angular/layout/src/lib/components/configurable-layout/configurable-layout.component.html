@@ -23,7 +23,7 @@
 		[cdkDropListEnterPredicate]="beforeDrop.bind(this)"
 		(cdkDropListDropped)="drop($event)"
 	>
-		@for (item of row; track item; let index = $index) { @if (itemTemplateRecord()[item.key]) {
+		@for (item of row; track item.key; let index = $index) { @if (itemTemplateRecord()[item.key]) {
 		@if (showInactive || item.isActive) {
 		<li
 			cdkDrag

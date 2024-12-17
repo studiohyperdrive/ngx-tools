@@ -72,7 +72,8 @@
 			"unitTestRunner": "jest"
 		},
 		"@nx/angular:component": {
-			"style": "css"
+			"style": "css",
+      "changeDetection": "OnPush"
 		},
 		"@nx/angular:application": {
 			"e2eTestRunner": "none",

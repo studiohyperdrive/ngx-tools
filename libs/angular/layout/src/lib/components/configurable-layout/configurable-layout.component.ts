@@ -13,6 +13,8 @@ import {
 	WritableSignal,
 	forwardRef,
 	signal,
+	AfterViewInit,
+	ChangeDetectionStrategy,
 } from '@angular/core';
 import {
 	ControlValueAccessor,
@@ -87,9 +89,16 @@ import { NgxAccessibleDragAndDrop } from '../../directives';
 			multi: true,
 		},
 	],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NgxConfigurableLayoutComponent
-	implements ControlValueAccessor, OnInit, AfterContentChecked, OnDestroy, OnChanges
+	implements
+		ControlValueAccessor,
+		OnInit,
+		AfterContentChecked,
+		OnDestroy,
+		OnChanges,
+		AfterViewInit
 {
 	/**
 	 * A subject to mark the isActiveFormRecord as initialized
@@ -288,6 +297,11 @@ export class NgxConfigurableLayoutComponent
 
 	public ngAfterContentChecked(): void {
 		// Iben: Run with content check so that we can dynamically add templates/columns
+		this.handleItemTemplates();
+	}
+
+	public ngAfterViewInit(): void {
+		// Femke: Run after view init so we have the initial templates
 		this.handleItemTemplates();
 	}
 
