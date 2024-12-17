@@ -14,7 +14,7 @@ We use content projection to pass the header and the content of each accordion i
 
 In the example below you can find a simple implementation of the accordion.
 
-{{ NgDocActions.demo("LayoutAccordionDemoComponent") }}
+{{ NgDocActions.demo("LayoutAccordionDemoComponent", { expanded: true}) }}
 
 ### Extra configuration
 
@@ -65,37 +65,7 @@ When the `layoutType` of the `ngx-configurable-layout` is set to `static`, the t
 
 Below is a simple example for a static configurable layout.
 
-```ts
-import { NgxConfigurableLayoutComponent, NgxConfigurableLayoutItemComponent } from '@studiohyperdrive/ngx-layout';
-
-@Component({
-	...,
-	standalone: true,
-	imports: [NgxConfigurableLayoutComponent, NgxConfigurableLayoutItemComponent],
-	...
-})
-```
-
-```html
-<ngx-configurable-layout
-	layoutType="static"
-	[keys]="[['second-item', 'first-item'], ['third-item']]"
->
-	<ngx-configurable-layout-item key="first-item">
-		<p>This is the second item in the DOM.</p>
-	</ngx-configurable-layout-item>
-
-	<ngx-configurable-layout-item key="second-item">
-		<p>This is the first item in the DOM.</p>
-	</ngx-configurable-layout-item>
-
-	<ngx-configurable-layout-item key="third-item">
-		<p>This is the third item in the DOM.</p>
-	</ngx-configurable-layout-item>
-</ngx-configurable-layout>
-```
-
-{{ NgDocActions.demo("LayoutConfigurableDemoComponent") }}
+{{ NgDocActions.demo("LayoutConfigurableDemoComponent", { expanded: true}) }}
 
 ### Editable
 
@@ -111,43 +81,7 @@ By default, the toggle is represented by a default html checkbox in the top righ
 
 Below is a simple example for an editable configurable layout.
 
-```ts
-import { NgxConfigurableLayoutComponent, NgxConfigurableLayoutItemComponent,NgxConfigurableLayoutGrid } from '@studiohyperdrive/ngx-layout';
-
-@Component({
-	...,
-	standalone: true,
-	imports: [NgxConfigurableLayoutComponent, NgxConfigurableLayoutItemComponent],
-	...
-})
-
-...
-
-public readonly control: FormControl<NgxConfigurableLayoutGrid> = new FormControl([[{key: 'second-item', isActive: true}, {key: 'first-item', isActive: false}, ]])
-```
-
-```html
-<ngx-configurable-layout layoutType="editable" [formControl]="control">
-	<ngx-configurable-layout-item key="first-item">
-		<p>
-			This is the second item in the DOM. It will only be visible when the showInactive
-			property is set to true.
-		</p>
-	</ngx-configurable-layout-item>
-
-	<ngx-configurable-layout-item key="second-item">
-		<p>This is the first item in the DOM.</p>
-	</ngx-configurable-layout-item>
-
-	<ng-template #checkboxTmpl let-control>
-		This is an optional custom checkboxTmpl!
-
-		<input type="checkbox" [formControl]="control" class="my-custom-checkbox" />
-	</ng-template>
-</ngx-configurable-layout>
-```
-
-{{ NgDocActions.demo("LayoutEditableDemoComponent") }}
+{{ NgDocActions.demo("LayoutEditableDemoComponent", { expanded: true}) }}
 
 ### Drag and drop
 

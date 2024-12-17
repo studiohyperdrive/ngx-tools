@@ -28,9 +28,7 @@ Following provides an overview:
 - **Layout**
   - [x] Documentation
     - Drag and drop seems to need some more work
-  - [ ] Demo components
-    - Components: Added, but some not working
-    - Directives: None provided, but could be added
+  - [x] Demo components
 - **Store**
   - [x] Documentation
   - [x] Demo components: None possible, code snippets provided

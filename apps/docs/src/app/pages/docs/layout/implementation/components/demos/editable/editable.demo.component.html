@@ -1,18 +1,46 @@
-<ngx-configurable-layout layoutType="editable" [formControl]="control">
-	<ngx-configurable-layout-item key="first-item">
-		<p>
-			This is the second item in the DOM. It will only be visible when the showInactive
-			property is set to true.
-		</p>
+<label for="checkbox">
+	<input id="checkbox" type="checkbox" [formControl]="isActive" />
+	Show inactive
+</label>
+
+<label for="dragAndDrop">
+	<input id="dragAndDrop" type="checkbox" [formControl]="dragAndDrop" />
+	Drag and drop
+</label>
+<ngx-configurable-layout
+	layoutType="editable"
+	itemSize="equal"
+	[formControl]="control"
+	[showInactive]="isActive.value"
+	[allowDragAndDrop]="dragAndDrop.value"
+	[dropPredicate]="drop"
+	rowGap="10px"
+	columnGap="10px"
+	itemLabel="Blok"
+	rowLabel="rij"
+>
+	<ngx-configurable-layout-item key="a">
+		<div class="layout-items large">Form key a</div>
 	</ngx-configurable-layout-item>
 
-	<ngx-configurable-layout-item key="second-item">
-		<p>This is the first item in the DOM.</p>
+	<ngx-configurable-layout-item key="b">
+		<div class="layout-items">Form key b</div>
+	</ngx-configurable-layout-item>
+
+	<ngx-configurable-layout-item key="1" label="Custom blok">
+		<div class="layout-items">
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum veritatis laudantium
+			ut officia omnis, impedit eligendi, ea molestiae magnam odit et animi quod illo eius.
+			Fuga nihil adipisci molestiae magni?
+		</div>
+	</ngx-configurable-layout-item>
+
+	<ngx-configurable-layout-item key="2">
+		<div class="layout-items">Input key 2</div>
 	</ngx-configurable-layout-item>
 
 	<ng-template #checkboxTmpl let-control>
 		This is an optional custom checkboxTmpl!
-
 		<input type="checkbox" [formControl]="control" class="my-custom-checkbox" />
 	</ng-template>
 </ngx-configurable-layout>

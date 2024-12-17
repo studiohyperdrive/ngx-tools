@@ -90,4 +90,8 @@ By default, the `aria-live` label gets set to `polite`. You can overwrite this s
 <div *displayContent="{loading: true}; ariaLive:'assertive' ">Hello world!</div>
 ```
 
+## Example
+
 If multiple items in a parent have this directive or if the parent already has an `aria-live` label set, the label with the highest importance gets used. The ranking is `assertive`, `polite` and `off` respectively.
+
+{{ NgDocActions.demo("DisplayContentDemoComponent", { expanded: true}) }}
