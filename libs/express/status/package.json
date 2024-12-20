@@ -24,7 +24,7 @@
   ],
   "license": "ISC",
   "dependencies": {
-    "@studiohyperdrive/env": "1.0.4",
+    "env-var": "7.5.0",
     "express": "4.18.3",
     "http-status-codes": "2.3.0",
     "swagger-express-ts": "1.1.0",

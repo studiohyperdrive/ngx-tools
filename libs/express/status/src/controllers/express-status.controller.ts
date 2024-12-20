@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
+import * as env from 'env-var';
 import HttpCodes from 'http-status-codes';
-
 import { ApiOperationGet, ApiPath, SwaggerDefinitionConstant } from 'swagger-express-ts';
-import Env from '@studiohyperdrive/env';
+
 import { ExpressStatusResponse } from '../express-status.types';
 
 @ApiPath({
@@ -24,14 +24,14 @@ export class ExpressStatusController {
 	public get(req: Request, res: Response): Response {
 		return res.status(HttpCodes.OK).json({
 			project: {
-				name: Env.get('NAME'),
-				version: Env.get('VERSION'),
-				environment: Env.get('NODE_ENV'),
-				context: Env.get('CONTEXT'),
+				name: env.get('NAME').asString(),
+				version: env.get('VERSION').toString(),
+				environment: env.get('NODE_ENV').toString(),
+				context: env.get('CONTEXT').toString(),
 			},
 			node: {
 				version: process.version,
-				timezone: Env.get('TZ'),
+				timezone: env.get('TZ').toString(),
 				time: new Date().toString(),
 			},
 			success: true,
