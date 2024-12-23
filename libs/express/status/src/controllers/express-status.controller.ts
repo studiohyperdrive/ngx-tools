@@ -25,13 +25,13 @@ export class ExpressStatusController {
 		return res.status(HttpCodes.OK).json({
 			project: {
 				name: env.get('NAME').asString(),
-				version: env.get('VERSION').toString(),
-				environment: env.get('NODE_ENV').toString(),
-				context: env.get('CONTEXT').toString(),
+				version: env.get('VERSION').asString(),
+				environment: env.get('NODE_ENV').asString(),
+				context: env.get('CONTEXT').asString(),
 			},
 			node: {
 				version: process.version,
-				timezone: env.get('TZ').toString(),
+				timezone: env.get('TZ').asString(),
 				time: new Date().toString(),
 			},
 			success: true,
