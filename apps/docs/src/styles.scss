@@ -1,5 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
-
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
 
 h1,
@@ -19,9 +17,24 @@ h3 {
 	--ng-doc-guide-tag-color: white;
 }
 
+.ng-doc-header {
+	background-image: linear-gradient(15deg, #bd00ff 40%, #3858ca);
+	color: white;
+	button:hover {
+		background-color: rgba(78, 78, 78, 0.5);
+	}
+	svg {
+		color: white;
+	}
+}
+
+ng-doc-navbar {
+	background: none !important;
+}
+
 .ng-doc-navigation-controls {
 	border-image: linear-gradient(
-			90.97deg,
+			-90.97deg,
 			#00cb9a 0.32%,
 			#3858ca 29.01%,
 			#38cfff 51.04%,
@@ -29,4 +42,12 @@ h3 {
 		)
 		1;
 	border-width: 2px 0 0 0 !important;
+}
+
+@media screen and (min-width: 1024px) {
+	.ng-doc-header {
+		svg {
+			color: #9e9e9e;
+		}
+	}
 }
