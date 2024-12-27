@@ -1,1 +1,63 @@
-<a [routerLink]="routes.DOCS">Go to docs</a>
+<div class="landing">
+	<header>
+		<img src="/logo-full.svg" alt="Studio Hyperdrive" />
+
+		<nav>
+			<a [routerLink]="routes.DOCS">Docs</a>
+			<a href="https://github.com/studiohyperdrive/ngx-tools" target="_blank">Github</a>
+		</nav>
+	</header>
+	<main>
+		<h1><span>Ngx</span><br /><span>Tools</span></h1>
+		<h2 class="subtitle">
+			Ngx-tools is a mono-repo providing several of the Angular based packages created and
+			maintained by the
+			<a href="https://studiohyperdrive.be/" target="_blank">Studio Hyperdrive</a> team.
+		</h2>
+		<section>
+			<div>
+				<h3>Utils</h3>
+				<p>
+					Several independent utilities to facilitate common use-cases for users and
+					developers.
+				</p>
+				<a [routerLink]="[routes.DOCS, 'utils', 'installation']"></a>
+			</div>
+			<div>
+				<h3>Forms</h3>
+				<p>Multiple utilities for complex form use-cases.</p>
+				<a [routerLink]="[routes.DOCS, 'forms', 'introduction']"></a>
+			</div>
+			<div>
+				<h3>Store</h3>
+				<p>Several utils and abstractions to improve the Redux workflow</p>
+				<a [routerLink]="[routes.DOCS, 'store', 'introduction']"></a>
+			</div>
+			<div>
+				<h3>Table</h3>
+				<p>A quick and easy template based table builder using the Angular CDK Table.</p>
+				<a [routerLink]="[routes.DOCS, 'table', 'introduction']"></a>
+			</div>
+			<div>
+				<h3>I18n</h3>
+				<p>A lazy-loaded modular approach to translations.</p>
+				<a [routerLink]="[routes.DOCS, 'i18n', 'introduction']"></a>
+			</div>
+			<div>
+				<h3>Cookies</h3>
+				<p>A quick and easy wrapper for CookieConsent V3.</p>
+				<a [routerLink]="[routes.DOCS, 'cookies', 'introduction']"></a>
+			</div>
+			<div>
+				<h3>Layout</h3>
+				<p>A collection of Angular components related to layout.</p>
+				<a [routerLink]="[routes.DOCS, 'layout', 'introduction']"></a>
+			</div>
+			<div>
+				<h3>Tour</h3>
+				<p>The tools to build a guided walkthrough of one or more pages.</p>
+				<a [routerLink]="[routes.DOCS, 'tour', 'introduction']"></a>
+			</div>
+		</section>
+	</main>
+</div>

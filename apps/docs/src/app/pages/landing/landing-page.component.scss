@@ -1,0 +1,177 @@
+div.landing {
+	background-color: black;
+	background: black url('/D—Heavy.webp') center / cover no-repeat;
+	color: white;
+	padding: 2rem 1rem 3rem 1rem;
+	font-family: 'Space Grotesk', sans-serif !important;
+	min-height: 100vh;
+
+	header,
+	main {
+		max-width: 1280px;
+		margin: auto;
+	}
+	h1,
+	h2,
+	h3,
+	p {
+		margin: 0;
+		line-height: 1.2;
+	}
+
+	a {
+		color: white;
+		text-decoration: underline;
+	}
+
+	header {
+		display: flex;
+		width: 100%;
+		justify-content: space-between;
+		align-items: end;
+		img {
+			width: 10rem;
+		}
+		nav {
+			color: white;
+			width: 100%;
+			display: flex;
+			gap: 1rem;
+			justify-content: flex-end;
+			a {
+				text-decoration: none;
+				font-size: 1.2rem;
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+	main {
+		h1 {
+			margin: 4rem 0 2rem 0;
+			font-size: 6rem;
+			line-height: 6rem;
+			:nth-child(3) {
+				margin-left: 4.7rem;
+			}
+		}
+		h2 {
+			justify-self: end;
+			padding: 0 1rem;
+			align-self: start;
+			font-size: 1.4rem;
+			margin-bottom: 4rem;
+		}
+		section {
+			display: grid;
+			gap: 1rem;
+			div {
+				padding-bottom: 1rem;
+				border-bottom: 1px solid white;
+				display: grid;
+				grid-template-columns: auto 1fr;
+				grid-template-rows: auto 1fr;
+				gap: 0.5rem;
+				align-items: end;
+				padding: 1rem;
+				h3 {
+					text-align: center;
+					grid-column: span 2;
+					font-size: 1.5rem;
+				}
+				p {
+					line-height: 1.2;
+				}
+				a {
+					display: block;
+					border: 1px solid white;
+					background: none;
+					color: white;
+					padding: 0.5rem 1rem;
+					border-radius: 1rem;
+					width: 2.875rem;
+					height: 1.5rem;
+					cursor: pointer;
+					background: url('/arrow.svg') center / 70% no-repeat;
+					justify-self: end;
+					&:hover {
+						background-color: #bd00ff;
+						border: 1px solid #bd00ff;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media screen and (min-width: 640px) {
+	div.landing {
+		padding: 2rem 1.5rem 3rem 1.5rem;
+		main {
+			h1 {
+				margin: 6rem 0 4rem 0;
+				font-size: 7rem;
+				line-height: 7rem;
+				:nth-child(3) {
+					margin-left: 5.4rem;
+				}
+			}
+			h2 {
+				width: 75%;
+				margin-bottom: 6rem;
+				text-align: right;
+			}
+			section {
+				grid-template-columns: repeat(2, 1fr);
+				gap: 1.5rem;
+				div {
+					padding: 0 0 1rem 0;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (min-width: 768px) {
+	div.landing {
+		padding: 2rem 2rem 3rem 2rem;
+		main {
+			h2 {
+				width: 70%;
+				margin-bottom: 10rem;
+			}
+			section {
+				grid-template-columns: repeat(3, 1fr);
+			}
+		}
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	div.landing {
+		padding: 2rem 3rem 4rem 3rem;
+		header {
+			nav {
+				gap: 1.5rem;
+			}
+		}
+		main {
+			h1 {
+				margin: 8rem 0 6rem 0;
+				font-size: 8rem;
+				line-height: 8rem;
+				:nth-child(3) {
+					margin-left: 6.2rem;
+				}
+			}
+			h2 {
+				width: 65%;
+				margin-bottom: 12rem;
+			}
+			section {
+				grid-template-columns: repeat(4, 1fr);
+			}
+		}
+	}
+}
