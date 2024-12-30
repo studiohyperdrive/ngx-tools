@@ -61,9 +61,9 @@ export abstract class NgxFormsControlValueAccessor<
 		this.parentControlSubject$.pipe(filter(Boolean));
 
 	/**
-	 * Inner form to write to
+	 * Inner form to write to.
 	 */
-	public form: FormAccessorFormType;
+	public ngxForm: FormAccessorFormType;
 
 	/**
 	 * Whether the first setDisable has run
@@ -127,7 +127,7 @@ export abstract class NgxFormsControlValueAccessor<
 					// TODO: Iben: Remove this setTimeout once we're in a Signal based component
 					setTimeout(() => {
 						// Iben: Handle the disabling of the fields
-						handleFormAccessorControlDisabling(this.form, controlKeys, emitEvent);
+						handleFormAccessorControlDisabling(this.ngxForm, controlKeys, emitEvent);
 					});
 
 					// Iben: Set the disabling subject so that we can complete this subscription
@@ -268,7 +268,7 @@ export abstract class NgxFormsControlValueAccessor<
 	 */
 	public writeValue(value: DataType | undefined | null): void {
 		// Iben: Early exit in case the form was not found
-		if (!this.form) {
+		if (!this.ngxForm) {
 			console.error(
 				'NgxForms: No form was found when trying to write a value. This error can occur when overwriting the ngOnInit without invoking super.OnInit().'
 			);
@@ -277,13 +277,13 @@ export abstract class NgxFormsControlValueAccessor<
 		}
 
 		// Iben: Reset the current form without emitEvent to not trigger the valueChanges
-		this.form.reset(undefined, { emitEvent: false });
+		this.ngxForm.reset(undefined, { emitEvent: false });
 
 		// Iben: Patch the current form with the new value without emitEvent to not trigger the valueChanges
 		if (value !== undefined && value !== null) {
-			this.form.patchValue(this.onWriteValueMapper ? this.onWriteValueMapper(value) : value, {
-				emitEvent: false,
-			});
+			this.ngxForm.patchValue(
+				this.onWriteValueMapper ? this.onWriteValueMapper(value) : value
+			);
 		}
 
 		// Iben: Validate the current value
@@ -297,7 +297,7 @@ export abstract class NgxFormsControlValueAccessor<
 	 * Mark all controls of the form as touched
 	 */
 	public markAsTouched(options: FormStateOptionsEntity = {}): void {
-		handleFormAccessorMarkAsTouched(this.form, this.accessors?.toArray() || [], options);
+		handleFormAccessorMarkAsTouched(this.ngxForm, this.accessors?.toArray() || [], options);
 
 		// Iben: Detect changes so the changes are visible in the dom
 		this.cdRef.detectChanges();
@@ -307,7 +307,7 @@ export abstract class NgxFormsControlValueAccessor<
 	 * Mark all controls of the form as dirty
 	 */
 	public markAsDirty(options: FormStateOptionsEntity = {}): void {
-		handleFormAccessorMarkAsDirty(this.form, this.accessors?.toArray() || [], options);
+		handleFormAccessorMarkAsDirty(this.ngxForm, this.accessors?.toArray() || [], options);
 
 		// Iben: Detect changes so the changes are visible in the dom
 		this.cdRef.detectChanges();
@@ -317,7 +317,7 @@ export abstract class NgxFormsControlValueAccessor<
 	 * Mark all controls of the form as pristine
 	 */
 	public markAsPristine(options: FormStateOptionsEntity = {}): void {
-		handleFormAccessorMarkAsPristine(this.form, this.accessors?.toArray() || [], options);
+		handleFormAccessorMarkAsPristine(this.ngxForm, this.accessors?.toArray() || [], options);
 
 		// Iben: Detect changes so the changes are visible in the dom
 		this.cdRef.detectChanges();
@@ -328,7 +328,7 @@ export abstract class NgxFormsControlValueAccessor<
 	 */
 	public updateAllValueAndValidity(options: FormStateOptionsEntity): void {
 		handleFormAccessorUpdateValueAndValidity(
-			this.form,
+			this.ngxForm,
 			this.accessors?.toArray() || [],
 			options
 		);
@@ -342,12 +342,12 @@ export abstract class NgxFormsControlValueAccessor<
 	 */
 	public validate(): ValidationErrors | null {
 		// Iben: If the form itself is invalid, we return the invalidForm: true right away
-		if (this.form.invalid) {
+		if (this.ngxForm.invalid) {
 			return { invalidForm: true };
 		}
 
 		// Iben: In case the form is invalid, we check if the child controls are possibly invalid
-		return hasErrors(this.form) ? { invalidForm: true } : null;
+		return hasErrors(this.ngxForm) ? { invalidForm: true } : null;
 	}
 
 	/**
@@ -365,9 +365,9 @@ export abstract class NgxFormsControlValueAccessor<
 		}
 
 		if (isDisabled) {
-			this.form.disable({ emitEvent: false });
+			this.ngxForm.disable({ emitEvent: false });
 		} else {
-			this.form.enable({ emitEvent: false });
+			this.ngxForm.enable({ emitEvent: false });
 		}
 
 		// Iben: Detect changes so the changes are visible in the dom

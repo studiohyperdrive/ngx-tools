@@ -41,22 +41,22 @@ describe('FormAccessor', () => {
 	it('should mark the form as touched', () => {
 		component.markAsTouched();
 
-		expect(component.form.get('hello').touched).toBeTrue();
-		expect(component.form.get('world').touched).toBeTrue();
+		expect(component.ngxForm.get('hello').touched).toBeTrue();
+		expect(component.ngxForm.get('world').touched).toBeTrue();
 	});
 
 	it('should mark the form as dirty', () => {
 		component.markAsDirty();
 
-		expect(component.form.get('hello').dirty).toBeTrue();
-		expect(component.form.get('world').dirty).toBeTrue();
+		expect(component.ngxForm.get('hello').dirty).toBeTrue();
+		expect(component.ngxForm.get('world').dirty).toBeTrue();
 	});
 
 	it('should mark the form as pristine', () => {
 		component.markAsPristine();
 
-		expect(component.form.get('hello').pristine).toBeTrue();
-		expect(component.form.get('world').pristine).toBeTrue();
+		expect(component.ngxForm.get('hello').pristine).toBeTrue();
+		expect(component.ngxForm.get('world').pristine).toBeTrue();
 	});
 
 	it('should disable the form', () => {
@@ -64,9 +64,9 @@ describe('FormAccessor', () => {
 		component.skipInitialSetDisable = false;
 		component.setDisabledState(true);
 
-		expect(component.form.disabled).toBeTrue();
-		expect(component.form.get('hello').disabled).toBeTrue();
-		expect(component.form.get('world').disabled).toBeTrue();
+		expect(component.ngxForm.disabled).toBeTrue();
+		expect(component.ngxForm.get('hello').disabled).toBeTrue();
+		expect(component.ngxForm.get('world').disabled).toBeTrue();
 	});
 
 	it('should validate the form', () => {

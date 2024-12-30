@@ -6,7 +6,7 @@ import { FormAccessor, NgxFormsErrorsDirective, createAccessorProviders } from '
 
 @Component({
 	selector: 'app-form-accessor',
-	template: ` <ng-container [formGroup]="form">
+	template: ` <ng-container [formGroup]="ngxForm">
 		<p>Hello</p>
 		<input *ngxFormsErrors="'hello'" formControlName="hello" type="text" />
 
@@ -41,6 +41,6 @@ export class FormAccessorComponent extends FormAccessor<any, any> {
 	ngOnInit(): void {
 		super.ngOnInit();
 
-		this.form.get('world').statusChanges.subscribe(console.log);
+		this.ngxForm.get('world').statusChanges.subscribe(console.log);
 	}
 }
