@@ -49,9 +49,9 @@ describe('FormAccessor', () => {
 
 	it('should create the form on the provided data', () => {
 		component.data = ['test', 'hello'];
-		expect(component.form.get('test.world')).toBeDefined();
-		expect(component.form.get('test.hello')).toBeDefined();
-		expect(component.form.get('hello.world')).toBeDefined();
-		expect(component.form.get('hello.hello')).toBeDefined();
+		expect(component.ngxForm.get('test.world')).toBeDefined();
+		expect(component.ngxForm.get('test.hello')).toBeDefined();
+		expect(component.ngxForm.get('hello.world')).toBeDefined();
+		expect(component.ngxForm.get('hello.hello')).toBeDefined();
 	});
 });

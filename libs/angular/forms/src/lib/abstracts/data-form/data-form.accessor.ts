@@ -34,10 +34,10 @@ export abstract class DataFormAccessor<
 		this.destroy$.next(undefined);
 
 		// Set the inner form
-		this.form = this.initForm(data);
+		this.ngxForm = this.initForm(data);
 
 		// Iben: Early exit in case the form was not found
-		if (!this.form) {
+		if (!this.ngxForm) {
 			console.error(
 				'NgxForms: No form was found after initializing. Check if the initForm method returns a form.'
 			);
@@ -53,7 +53,7 @@ export abstract class DataFormAccessor<
 		this.cdRef.detectChanges();
 
 		// Iben: Subscribe to the value changes
-		this.form.valueChanges
+		this.ngxForm.valueChanges
 			.pipe(
 				tap<FormValueType>((value) => {
 					// In case there's a mapper we map the value, else we send the form value

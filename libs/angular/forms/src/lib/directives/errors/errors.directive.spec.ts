@@ -15,7 +15,7 @@ import { NgxFormsErrorsDirective } from './errors.directive';
 
 @Component({
 	selector: 'kp-form-accessor',
-	template: ` <ng-container [formGroup]="form">
+	template: ` <ng-container [formGroup]="ngxForm">
 		<p>Hello</p>
 		<input *ngxFormsErrors="'hello'" formControlName="hello" type="text" />
 
@@ -93,9 +93,9 @@ describe('NgxFormsErrorsDirective', () => {
 		});
 
 		it('should show the error when the control is dirty and invalid ', () => {
-			fixture.componentRef.instance.form.get('hello').setValue('test');
-			fixture.componentRef.instance.form.get('hello').markAsDirty();
-			fixture.componentRef.instance.form.get('hello').updateValueAndValidity();
+			fixture.componentRef.instance.ngxForm.get('hello').setValue('test');
+			fixture.componentRef.instance.ngxForm.get('hello').markAsDirty();
+			fixture.componentRef.instance.ngxForm.get('hello').updateValueAndValidity();
 			fixture.detectChanges();
 			const errorElements = fixture.nativeElement.querySelectorAll('.ngx-forms-error');
 
@@ -104,9 +104,9 @@ describe('NgxFormsErrorsDirective', () => {
 		});
 
 		it('should not show the error when the control is dirty and valid', () => {
-			fixture.componentRef.instance.form.get('hello').setValue('test@test.be');
-			fixture.componentRef.instance.form.get('hello').markAsDirty();
-			fixture.componentRef.instance.form.get('hello').updateValueAndValidity();
+			fixture.componentRef.instance.ngxForm.get('hello').setValue('test@test.be');
+			fixture.componentRef.instance.ngxForm.get('hello').markAsDirty();
+			fixture.componentRef.instance.ngxForm.get('hello').updateValueAndValidity();
 			fixture.detectChanges();
 			const errorElements = fixture.nativeElement.querySelectorAll('.ngx-forms-error');
 
@@ -145,7 +145,7 @@ describe('NgxFormsErrorsDirective', () => {
 		});
 
 		it('should show the error when the control is touched and invalid ', () => {
-			fixture.componentRef.instance.form.get('hello').markAsTouched();
+			fixture.componentRef.instance.ngxForm.get('hello').markAsTouched();
 			fixture.detectChanges();
 			const errorElements = fixture.nativeElement.querySelectorAll('.kp-error');
 
@@ -154,9 +154,9 @@ describe('NgxFormsErrorsDirective', () => {
 		});
 
 		it('should not show the error when the control is touched and valid', () => {
-			fixture.componentRef.instance.form.get('hello').setValue('test@test.be');
-			fixture.componentRef.instance.form.get('hello').markAsTouched();
-			fixture.componentRef.instance.form.get('hello').updateValueAndValidity();
+			fixture.componentRef.instance.ngxForm.get('hello').setValue('test@test.be');
+			fixture.componentRef.instance.ngxForm.get('hello').markAsTouched();
+			fixture.componentRef.instance.ngxForm.get('hello').updateValueAndValidity();
 			fixture.detectChanges();
 			const errorElements = fixture.nativeElement.querySelectorAll('.ngx-forms-error');
 
