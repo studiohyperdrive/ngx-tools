@@ -2,18 +2,17 @@ div.landing {
 	background-color: black;
 	background: black url('/D—Heavy.webp') center / cover no-repeat;
 	color: white;
-	padding: 2rem 1rem 3rem 1rem;
+	padding: 2rem 0rem 0rem;
 	font-family: 'Space Grotesk', sans-serif !important;
-	min-height: 100vh;
 
 	header,
 	main {
-		max-width: 1280px;
 		margin: auto;
 	}
 	h1,
 	h2,
 	h3,
+	h4,
 	p {
 		margin: 0;
 		line-height: 1.2;
@@ -25,22 +24,23 @@ div.landing {
 	}
 
 	header {
+		max-width: 1024px;
 		display: flex;
 		width: 100%;
 		justify-content: space-between;
 		align-items: end;
+		padding: 0 1rem;
 		img {
 			width: 10rem;
 		}
 		nav {
-			color: white;
 			width: 100%;
 			display: flex;
 			gap: 1rem;
 			justify-content: flex-end;
+			font-size: 1.2rem;
 			a {
 				text-decoration: none;
-				font-size: 1.2rem;
 				&:hover {
 					text-decoration: underline;
 				}
@@ -48,58 +48,160 @@ div.landing {
 		}
 	}
 	main {
-		h1 {
-			margin: 4rem 0 2rem 0;
-			font-size: 6rem;
-			line-height: 6rem;
-			:nth-child(3) {
-				margin-left: 4.7rem;
+		.intro {
+			max-width: 1024px;
+			padding: 0 1rem;
+			margin: auto;
+			h1 {
+				margin: 4rem 0 2rem 0;
+				font-size: 6rem;
+				line-height: 6rem;
+				:nth-child(3) {
+					margin-left: 4.7rem;
+				}
+			}
+			h2 {
+				justify-self: end;
+				padding: 0 1rem;
+				align-self: start;
+				font-size: 1.4rem;
+				margin-bottom: 4rem;
 			}
 		}
-		h2 {
-			justify-self: end;
-			padding: 0 1rem;
-			align-self: start;
-			font-size: 1.4rem;
-			margin-bottom: 4rem;
-		}
 		section {
-			display: grid;
-			gap: 1rem;
+			max-width: 100%;
+			padding: 2rem;
+			h3 {
+				text-align: center;
+				font-size: 1.8rem;
+				margin-bottom: 1rem;
+			}
 			div {
-				padding-bottom: 1rem;
-				border-bottom: 1px solid white;
-				display: grid;
-				grid-template-columns: auto 1fr;
-				grid-template-rows: auto 1fr;
-				gap: 0.5rem;
-				align-items: end;
-				padding: 1rem;
-				h3 {
-					text-align: center;
-					grid-column: span 2;
-					font-size: 1.5rem;
+				margin: auto;
+				max-width: 1024px;
+				b {
+					font-size: 1.1rem;
 				}
-				p {
-					line-height: 1.2;
-				}
-				a {
-					display: block;
-					border: 1px solid white;
-					background: none;
-					color: white;
-					padding: 0.5rem 1rem;
-					border-radius: 1rem;
-					width: 2.875rem;
-					height: 1.5rem;
-					cursor: pointer;
-					background: url('/arrow.svg') center / 70% no-repeat;
-					justify-self: end;
-					&:hover {
-						background-color: #bd00ff;
-						border: 1px solid #bd00ff;
+				.quote {
+					width: 100%;
+					font-size: 1.1rem;
+					font-style: italic;
+					padding: 1rem;
+					background-color: white;
+					border-bottom: 5px solid #bd00ff;
+					color: black;
+					box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;
+					border-image: linear-gradient(
+							90deg,
+							#00cb9a 0.32%,
+							#3858ca 29.01%,
+							#38cfff 51.04%,
+							#f872c2 98.69%
+						)
+						1;
+					p {
+						margin-bottom: 1rem;
+						text-align: center;
+					}
+					cite {
+						color: grey;
 					}
 				}
+				a.button {
+					margin: 1rem auto;
+					display: flex;
+					gap: 0.5rem;
+					width: fit-content;
+					padding: 0.5rem 1rem;
+					color: black;
+					border-radius: 2rem;
+					font-size: 1.2rem;
+					text-decoration: none;
+					border: 1px solid black;
+					align-items: center;
+					&:hover {
+						cursor: pointer;
+						color: white;
+						background-color: #bd00ff;
+						border: 1px solid #bd00ff;
+						img {
+							filter: invert(1);
+						}
+					}
+				}
+				&.divide {
+					display: grid;
+					gap: 1.5rem;
+				}
+				&.bullets {
+					display: grid;
+					gap: 2rem;
+					div {
+						display: grid;
+						grid-template-columns: 1.5rem 1fr;
+						gap: 0.5rem 0.75rem;
+						img {
+							width: 100%;
+						}
+						h4 {
+							font-size: 1.4rem;
+							line-height: 1;
+						}
+						p {
+							grid-column-start: 2;
+						}
+					}
+				}
+				&.tools {
+					display: grid;
+					gap: 2rem;
+					align-items: end;
+					div.tool {
+						padding-bottom: 1rem;
+						border-bottom: 2px solid black;
+						display: grid;
+						grid-template-columns: auto 1fr;
+						grid-template-rows: auto 1fr;
+						gap: 0.5rem;
+						width: 100%;
+						height: 100%;
+						h3 {
+							text-align: left;
+							font-size: 1.5rem;
+							margin: 0;
+						}
+						p {
+							grid-column: 1 / 3;
+						}
+						a {
+							border: 1px solid black;
+							border-radius: 1rem;
+							cursor: pointer;
+							justify-self: end;
+							width: 3rem;
+							height: 1.5rem;
+							display: block;
+							padding: 0.25rem 0.5rem;
+							img {
+								display: block;
+								width: 100%;
+							}
+							&:hover {
+								background-color: #bd00ff;
+								border: 1px solid #bd00ff;
+								img {
+									filter: invert(1);
+								}
+							}
+						}
+					}
+				}
+			}
+
+			&.white {
+				background-color: white;
+				box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 10px;
+				color: black;
 			}
 		}
 	}
@@ -107,26 +209,33 @@ div.landing {
 
 @media screen and (min-width: 640px) {
 	div.landing {
-		padding: 2rem 1.5rem 3rem 1.5rem;
 		main {
-			h1 {
-				margin: 6rem 0 4rem 0;
-				font-size: 7rem;
-				line-height: 7rem;
-				:nth-child(3) {
-					margin-left: 5.4rem;
+			.intro {
+				h1 {
+					margin: 6rem 0 4rem 0;
+					font-size: 7rem;
+					line-height: 7rem;
+					:nth-child(3) {
+						margin-left: 5.4rem;
+					}
+				}
+				h2 {
+					width: 75%;
+					margin-bottom: 6rem;
+					text-align: right;
 				}
 			}
-			h2 {
-				width: 75%;
-				margin-bottom: 6rem;
-				text-align: right;
-			}
 			section {
-				grid-template-columns: repeat(2, 1fr);
-				gap: 1.5rem;
-				div {
-					padding: 0 0 1rem 0;
+				padding: 3rem 2rem;
+				h3 {
+					margin-bottom: 3rem;
+				}
+				div.tools {
+					grid-template-columns: repeat(2, 1fr);
+					gap: 1.5rem;
+					div.tool {
+						padding: 0 0 1rem 0;
+					}
 				}
 			}
 		}
@@ -135,14 +244,29 @@ div.landing {
 
 @media screen and (min-width: 768px) {
 	div.landing {
-		padding: 2rem 2rem 3rem 2rem;
 		main {
-			h2 {
-				width: 70%;
-				margin-bottom: 10rem;
+			.intro {
+				h2 {
+					width: 70%;
+					margin-bottom: 10rem;
+				}
 			}
 			section {
-				grid-template-columns: repeat(3, 1fr);
+				padding: 4rem 3rem;
+				div.divide {
+					grid-template-columns: repeat(2, 1fr);
+				}
+				div.tools {
+					grid-template-columns: repeat(3, 1fr);
+				}
+				div.bullets {
+					grid-template-columns: repeat(3, 1fr);
+					gap: 1rem;
+					div {
+						height: 100%;
+						grid-template-rows: auto 1fr;
+					}
+				}
 			}
 		}
 	}
@@ -150,27 +274,31 @@ div.landing {
 
 @media screen and (min-width: 1024px) {
 	div.landing {
-		padding: 2rem 3rem 4rem 3rem;
 		header {
 			nav {
 				gap: 1.5rem;
 			}
 		}
 		main {
-			h1 {
-				margin: 8rem 0 6rem 0;
-				font-size: 8rem;
-				line-height: 8rem;
-				:nth-child(3) {
-					margin-left: 6.2rem;
+			.intro {
+				h1 {
+					margin: 8rem 0 6rem 0;
+					font-size: 8rem;
+					line-height: 8rem;
+					:nth-child(3) {
+						margin-left: 6.2rem;
+					}
+				}
+				h2 {
+					width: 65%;
+					margin-bottom: 12rem;
 				}
 			}
-			h2 {
-				width: 65%;
-				margin-bottom: 12rem;
-			}
 			section {
-				grid-template-columns: repeat(4, 1fr);
+				padding: 6rem 4rem;
+				div.tools {
+					grid-template-columns: repeat(4, 1fr);
+				}
 			}
 		}
 	}
