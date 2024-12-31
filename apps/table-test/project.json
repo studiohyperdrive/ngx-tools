@@ -2,13 +2,13 @@
 	"name": "table-test",
 	"$schema": "../../node_modules/nx/schemas/project-schema.json",
 	"projectType": "application",
+	"sourceRoot": "apps/table-test/src",
+	"prefix": "app",
 	"generators": {
 		"@schematics/angular:component": {
 			"style": "scss"
 		}
 	},
-	"sourceRoot": "apps/table-test/src",
-	"prefix": "app",
 	"targets": {
 		"build": {
 			"executor": "@angular-devkit/build-angular:browser",
@@ -72,6 +72,14 @@
 			"executor": "@nx/eslint:lint",
 			"options": {
 				"lintFilePatterns": ["apps/table-test/**/*.ts", "apps/table-test/**/*.html"]
+			}
+		},
+		"stylelint": {
+			"executor": "nx-stylelint:lint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": ["apps/table-test/**/*.css"],
+				"formatter": "json"
 			}
 		}
 	}

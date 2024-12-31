@@ -34,6 +34,14 @@
 			"options": {
 				"lintFilePatterns": ["libs/angular/store/**/*.ts", "libs/angular/store/**/*.html"]
 			}
+		},
+		"stylelint": {
+			"executor": "nx-stylelint:lint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": ["libs/angular/store/**/*.css"],
+				"formatter": "json"
+			}
 		}
 	}
 }
