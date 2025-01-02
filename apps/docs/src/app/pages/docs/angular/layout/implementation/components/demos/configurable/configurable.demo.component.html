@@ -1,0 +1,30 @@
+<ngx-configurable-layout
+	layoutType="static"
+	itemSize="equal"
+	[keys]="[
+		['1', '2'],
+		['a', 'b']
+	]"
+	rowGap="10px"
+	columnGap="10px"
+>
+	<ngx-configurable-layout-item key="a">
+		<div class="layout-items large">Form key a</div>
+	</ngx-configurable-layout-item>
+
+	<ngx-configurable-layout-item key="b">
+		<div class="layout-items">Form key b</div>
+	</ngx-configurable-layout-item>
+
+	<ngx-configurable-layout-item key="1">
+		<div class="layout-items">
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum veritatis laudantium
+			ut officia omnis, impedit eligendi, ea molestiae magnam odit et animi quod illo eius.
+			Fuga nihil adipisci molestiae magni?
+		</div>
+	</ngx-configurable-layout-item>
+
+	<ngx-configurable-layout-item key="2">
+		<div class="layout-items">Input key 2</div>
+	</ngx-configurable-layout-item>
+</ngx-configurable-layout>

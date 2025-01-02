@@ -1,0 +1,19 @@
+ngx-configurable-layout {
+	background-color: rgb(242, 242, 242);
+}
+
+.layout-items {
+	height: 100%;
+	border: 1px solid black;
+	padding: 15px;
+	box-sizing: border-box;
+}
+
+::ng-deep {
+	.ngx-layout-item-inactive {
+		opacity: 0.5;
+		.layout-items {
+			border-style: dashed;
+		}
+	}
+}

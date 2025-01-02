@@ -1,0 +1,13 @@
+<ng-container [formGroup]="form">
+	<p>
+		Survey name
+		<input formControlName="name" />
+	</p>
+
+	@for (question of questions; track question.id) {
+		<p>
+			{{  question.name }}
+			<input [formControlName]="question.id" />
+		</p>
+	}
+</ng-container>

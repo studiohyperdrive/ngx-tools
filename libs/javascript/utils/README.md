@@ -14,7 +14,7 @@ The getKeyByValue helper function will search for a key within an object, based 
 
 [Full documentation.](./docs/object/get-key-by-value/get-key-by-value.util.md)
 
-### combineBoolean
+### merge
 Merges all arguments into a single object, as long as the property has a value.
 
 [Full documentation.](./docs/object/merge/merge.util.md)

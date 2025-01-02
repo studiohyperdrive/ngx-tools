@@ -1,0 +1,15 @@
+<div [formGroup]="form">
+	<survey-form [data]="survey" formControlName="survey"/>
+</div>
+
+
+<p><strong>Validation - Form</strong></p>
+<div>Value: {{ form.value | json }}</div>
+<div>Valid: {{ form.valid }}</div>
+
+<div>
+	<button (click)="form.reset()">Reset form</button>
+</div>
+
+<!--snippet-from-file="./survey-form/survey.component.ts" "survey.component.ts"-->
+<!--snippet-from-file="./survey-form/survey.component.html" "survey.component.html"-->

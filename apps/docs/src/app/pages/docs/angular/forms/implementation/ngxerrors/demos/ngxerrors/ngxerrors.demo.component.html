@@ -1,0 +1,16 @@
+<app-form-accessor [formControl]="control" />
+
+<div>
+	<button (click)="checkValues()">Check value and validity</button>
+
+	<button (click)="disableForm()">Disable/enable</button>
+
+	<button (click)="control.markAsTouched()">Mark as touched</button>
+
+	<button (click)="control.reset()">Reset form</button>
+</div>
+
+<!--snippet-from-file="./form-accessor.component.ts" "form-accessor.component.ts"-->
+<!--snippet-from-file="./form-accessor.component.html" "form-accessor.component.html"-->
+
+<!--snippet-from-file="./date-input/date-input.component.ts" "date-input.component.ts"-->

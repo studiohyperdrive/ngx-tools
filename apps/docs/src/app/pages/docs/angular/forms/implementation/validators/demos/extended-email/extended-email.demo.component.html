@@ -1,0 +1,20 @@
+<form [formGroup]="form">
+	<div>
+		<label for="email">
+			Email
+			<input type="email" formControlName="email" name="email" />
+		</label>
+	</div>
+
+	<p><strong>Validation - Form controls</strong></p>
+	<div>Errors: {{ form.get('email').errors | json }}</div>
+
+	<p><strong>Validation - Form</strong></p>
+	<div>Errors: {{ form.errors | json }}</div>
+	<div>Valid: {{ form.valid }}</div>
+
+	<br/>
+	<div>
+		<button type="submit">Submit</button>
+	</div>
+</form>

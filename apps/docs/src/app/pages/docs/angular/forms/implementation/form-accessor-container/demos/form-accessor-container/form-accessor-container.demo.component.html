@@ -1,0 +1,22 @@
+<app-form-accessor [formControl]="control" />
+
+<button (click)="checkValues()">Check value and validity</button>
+
+<button (click)="disableForm()">Disable/enable</button>
+
+<button (click)="control.markAsTouched()">Mark as touched</button>
+
+<button (click)="control.reset()">Reset form</button>
+
+<p>Control value:</p>
+<p>{{ control.value | json }}</p>
+
+<!--snippet-from-file="./form-accessor.component.ts" "form-accessor.component.ts"-->
+<!--snippet-from-file="./form-accessor.component.html" "form-accessor.component.html"-->
+
+<!--snippet-from-file="./date-input/date-input.component.ts" "date-input.component.ts"-->
+
+
+<!--snippet-from-file="./depended-dates/depended-dates.component.ts" "depended-dates.component.ts"-->
+<!--snippet-from-file="./depended-dates/depended-dates.component.html" "depended-dates.component.html"-->
+<!--snippet-from-file="./depended-dates/depended-dates.validator.ts" "depended-dates.validator.ts"-->

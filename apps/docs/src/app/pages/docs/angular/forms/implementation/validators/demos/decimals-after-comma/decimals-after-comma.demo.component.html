@@ -1,0 +1,21 @@
+<form [formGroup]="form">
+	<p>Max. 2 decimals allowed</p>
+	<div>
+		<label for="number">
+			Number
+			<input type="number" formControlName="number" name="number" />
+		</label>
+	</div>
+
+	<p><strong>Validation - Form controls</strong></p>
+	<div>Errors: {{ form.get('number').errors | json }}</div>
+
+	<p><strong>Validation - Form</strong></p>
+	<div>Errors: {{ form.errors | json }}</div>
+	<div>Valid: {{ form.valid }}</div>
+
+	<br/>
+	<div>
+		<button type="submit">Submit</button>
+	</div>
+</form>

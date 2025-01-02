@@ -1,0 +1,39 @@
+<h1>NgxDisplayContent</h1>
+<div>
+	<p *displayContent="form.value; configuration: { error: { data: 'I am an error' } }">
+		Hello this is the content we wish to show!
+	</p>
+</div>
+
+<div>
+	<p *displayContent="form.value; configuration: { loading: { template: loadingTmpl } }">
+		Hello, this is content with a custom template for loading!
+	</p>
+</div>
+
+<ng-template #loadingTmpl> Hello, this is a custom loading! </ng-template>
+
+<form [formGroup]="form">
+	<fieldset>
+		<label for="loading">
+			<input id="loading" type="checkbox" formControlName="loading" />
+			Loading
+		</label>
+	</fieldset>
+	<fieldset>
+		<label for="error">
+			<input id="error" type="checkbox" formControlName="error" />
+			Error
+		</label>
+	</fieldset>
+	<fieldset>
+		<label for="offline">
+			<input id="offline" type="checkbox" formControlName="offline" />
+			Offline
+		</label>
+	</fieldset>
+</form>
+
+<!--snippet-from-file="./loading.component.ts" "loading.component.ts"-->
+<!--snippet-from-file="./error.component.ts" "error.component.ts"-->
+<!--snippet-from-file="./offline.component.ts" "offline.component.ts"-->
