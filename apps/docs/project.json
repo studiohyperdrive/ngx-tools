@@ -16,6 +16,7 @@
 				"polyfills": ["zone.js"],
 				"tsConfig": "apps/docs/tsconfig.app.json",
 				"inlineStyleLanguage": "scss",
+				"baseHref": "./",
 				"assets": [
 					{
 						"glob": "**/*",
