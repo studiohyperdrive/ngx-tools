@@ -15,12 +15,12 @@ import {
 import { AppComponent } from './app/app.component';
 import { appRoutes } from './app/app.routes';
 
-import { modalAppConfig } from './app/pages/docs/inform/implementation/services/demos/modal/bootstrap.demo';
-import { tooltipAppConfig } from './app/pages/docs/inform/implementation/directives/demos/tooltip/bootstrap.demo';
-import { layoutComponentsConfig } from './app/pages/docs/layout/implementation/components/demos/app.config';
-import { layoutDirectivesConfig } from './app/pages/docs/layout/implementation/directives/demos/app.config';
+import { modalAppConfig } from './app/pages/docs/angular/inform/implementation/services/demos/modal/bootstrap.demo';
+import { tooltipAppConfig } from './app/pages/docs/angular/inform/implementation/directives/demos/tooltip/bootstrap.demo';
+import { layoutComponentsConfig } from './app/pages/docs/angular/layout/implementation/components/demos/app.config';
+import { layoutDirectivesConfig } from './app/pages/docs/angular/layout/implementation/directives/demos/app.config';
+import { tourAppConfig } from './app/pages/docs/angular/tour/implementation/demos/app.config';
 import { provideNgDocContext } from '@ng-doc/generated';
-import {tourAppConfig} from "./app/pages/docs/tour/implementation/demos/app.config";
 // import { environment } from './environments/environment';
 
 // if (environment.production) {
