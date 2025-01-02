@@ -46,12 +46,12 @@ Following provides an overview:
 ## Javascript
 
 - **Pagination**
-    - [ ] Documentation
-    - [ ] Demo components
+    - [x] Documentation
+    - [x] Demo components
 
 - **Regex**
-    - [ ] Documentation
-    - [ ] Demo components
+    - [x] Documentation
+    - [x] Demo components
 
 - **RxJS**
     - [ ] Documentation
