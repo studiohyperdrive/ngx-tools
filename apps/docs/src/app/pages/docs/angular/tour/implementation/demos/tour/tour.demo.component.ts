@@ -2,7 +2,7 @@
 
 // snippet#component "Typescript"
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { from, map, of, tap } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -10,8 +10,10 @@ import { SpecialTourItemComponent } from './special-tour.component';
 
 import { NgxTourItemDirective, NgxTourService, useMockDataDuringTour } from '@ngx/tour';
 import {
-	NgxConfigurableLayoutComponent, NgxConfigurableLayoutGrid,
-	NgxConfigurableLayoutItemComponent, NgxConfigurableLayoutItemDropEvent,
+	NgxConfigurableLayoutComponent,
+	NgxConfigurableLayoutGrid,
+	NgxConfigurableLayoutItemComponent,
+	NgxConfigurableLayoutItemDropEvent,
 	NgxDisplayContentDirective,
 } from '@ngx/layout';
 import { NgxTooltipDirective } from '@ngx/inform';
@@ -162,7 +164,9 @@ export class TourDemoComponent implements OnInit {
 					},
 				],
 				() => {
-					return from(this.router.navigate(['../', 'demo'], { relativeTo: this.route })).pipe(
+					return from(
+						this.router.navigate(['../', 'demo'], { relativeTo: this.route })
+					).pipe(
 						tap(() => {
 							this.cdRef.detectChanges();
 							console.log('This is the onClose callback');

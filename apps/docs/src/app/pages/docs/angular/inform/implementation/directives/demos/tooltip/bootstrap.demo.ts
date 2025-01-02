@@ -10,4 +10,3 @@ export const tooltipAppConfig: ApplicationConfig = {
 		}),
 	],
 };
-

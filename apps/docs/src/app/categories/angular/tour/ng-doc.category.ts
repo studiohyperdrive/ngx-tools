@@ -1,5 +1,5 @@
 import { NgDocCategory } from '@ng-doc/core';
-import AngularCategory from "../ng-doc.category";
+import AngularCategory from '../ng-doc.category';
 
 const TourCategory: NgDocCategory = {
 	title: 'Tour',

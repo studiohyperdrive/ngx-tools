@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { DateInputComponent } from '../date-input/date-input.component';
 import { DependedDatesValidator } from './depended-dates.validator';
-import { FormAccessor, NgxFormsErrorsDirective, createAccessorProviders } from '@ngx/forms';
+import { FormAccessor, createAccessorProviders } from '@ngx/forms';
 
 @Component({
 	selector: 'app-depended-dates',

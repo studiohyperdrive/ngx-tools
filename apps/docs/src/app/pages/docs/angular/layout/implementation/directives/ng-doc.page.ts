@@ -1,6 +1,6 @@
 import { NgDocPage } from '@ng-doc/core';
 import { LayoutImplementationCategory } from '../../../../../../categories';
-import {DisplayContentDemoComponent} from "./demos";
+import { DisplayContentDemoComponent } from './demos';
 
 const LayoutDirectivesPage: NgDocPage = {
 	title: `Directives`,

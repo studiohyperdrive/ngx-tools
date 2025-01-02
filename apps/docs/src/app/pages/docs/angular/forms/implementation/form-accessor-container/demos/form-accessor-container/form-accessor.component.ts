@@ -2,18 +2,14 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { DependedDatesComponent } from './depended-dates/depended-dates.component';
 import { DateInputComponent } from './date-input/date-input.component';
-import { FormAccessor, NgxFormsErrorsDirective, createAccessorProviders } from '@ngx/forms';
+import { FormAccessor, createAccessorProviders } from '@ngx/forms';
 
 @Component({
 	selector: 'app-form-accessor',
 	templateUrl: 'form-accessor.component.html',
 	providers: [createAccessorProviders(FormAccessorComponent)],
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	imports: [
-		ReactiveFormsModule,
-		DateInputComponent,
-		DependedDatesComponent,
-	],
+	imports: [ReactiveFormsModule, DateInputComponent, DependedDatesComponent],
 })
 export class FormAccessorComponent extends FormAccessor<any, any> {
 	initForm() {
