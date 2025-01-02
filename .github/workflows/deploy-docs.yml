@@ -1,4 +1,7 @@
-name: Deploy Docs to GitHub Pages ${{ github.event.release.tag_name }}
+name: Deploy-Docs
+
+run-name: Deploy Docs to GitHub Pages ${{ github.event.release.tag_name }}
+
 
 on:
   release:
@@ -6,6 +9,7 @@ on:
 
     # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+
   
 jobs:
   build:
