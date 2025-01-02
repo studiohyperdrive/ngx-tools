@@ -12,7 +12,7 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     
-     steps:
+    steps:
       # Checkout the repository
       - name: Checkout Repository
         uses: actions/checkout@v4
