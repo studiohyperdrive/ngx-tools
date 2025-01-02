@@ -1,5 +1,5 @@
 import { NgDocPage } from '@ng-doc/core';
-import {ExpressionsCategory} from "../../../../../../categories/javascript";
+import { ExpressionsCategory } from '../../../../../../categories/javascript';
 
 const bePhoneBinFormattedPage: NgDocPage = {
 	title: `bePhoneBinFormatted`,

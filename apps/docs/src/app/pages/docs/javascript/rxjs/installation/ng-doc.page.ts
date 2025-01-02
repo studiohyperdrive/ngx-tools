@@ -1,10 +1,10 @@
 import { NgDocPage } from '@ng-doc/core';
-import { PaginationCategory } from '../../../../../categories/javascript';
+import { RxJSCategory } from '../../../../../categories/javascript';
 
 const InstallationPage: NgDocPage = {
 	title: `Installation`,
 	mdFile: './index.md',
-	category: PaginationCategory,
+	category: RxJSCategory,
 	order: 1,
 };
 

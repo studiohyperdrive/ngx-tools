@@ -1,5 +1,5 @@
 import { NgDocPage } from '@ng-doc/core';
-import {PaginationCategory} from "../../../../../categories/javascript";
+import { PaginationCategory } from '../../../../../categories/javascript';
 
 const ImplementationPage: NgDocPage = {
 	title: `Implementation`,

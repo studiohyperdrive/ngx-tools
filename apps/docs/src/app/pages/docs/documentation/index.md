@@ -54,8 +54,8 @@ Following provides an overview:
     - [x] Demo components
 
 - **RxJS**
-    - [ ] Documentation
-    - [ ] Demo components
+    - [x] Documentation
+    - [x] Demo components
 
 - **Testing**
     - [ ] Documentation

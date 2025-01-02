@@ -1,5 +1,5 @@
 import { NgDocPage } from '@ng-doc/core';
-import {PaginationCategory, RegexCategory} from "../../../../../categories/javascript";
+import { RegexCategory } from '../../../../../categories/javascript';
 
 const InstallationPage: NgDocPage = {
 	title: `Installation`,
