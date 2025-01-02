@@ -1,5 +1,5 @@
 import { NgDocPage } from '@ng-doc/core';
-import { PipesCategory } from '../../../../../../categories';
+import { PipesCategory } from '../../../../../../categories/angular';
 
 const ReplaceElementsPipePage: NgDocPage = {
 	title: `ReplaceElements`,

@@ -1,5 +1,5 @@
 import { NgDocPage } from '@ng-doc/core';
-import { TourCategory } from '../../../../../categories';
+import { TourCategory } from '../../../../../categories/angular';
 
 const KnownIssuesPage: NgDocPage = {
 	title: `Known issues`,

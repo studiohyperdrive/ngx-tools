@@ -1,5 +1,5 @@
 import { NgDocPage } from '@ng-doc/core';
-import { PipesCategory } from '../../../../../../categories';
+import { PipesCategory } from '../../../../../../categories/angular';
 import { LimitToPipeDemoComponent } from './demos';
 
 const LimitToPipePage: NgDocPage = {

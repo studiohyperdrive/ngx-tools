@@ -1,5 +1,5 @@
 import { NgDocPage } from '@ng-doc/core';
-import { LayoutImplementationCategory } from '../../../../../../categories';
+import { LayoutImplementationCategory } from '../../../../../../categories/angular';
 import {
 	LayoutAccordionDemoComponent,
 	LayoutConfigurableDemoComponent,

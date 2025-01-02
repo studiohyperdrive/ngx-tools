@@ -1,6 +1,6 @@
 import { NgDocPage } from '@ng-doc/core';
 
-import { StoreCategory } from '../../../../../categories';
+import { StoreCategory } from '../../../../../categories/angular';
 
 const ImplementationPage: NgDocPage = {
 	title: `Implementation`,

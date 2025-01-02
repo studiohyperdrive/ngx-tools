@@ -1,5 +1,5 @@
 import { NgDocPage } from '@ng-doc/core';
-import { I18nCategory } from '../../../../../categories';
+import { I18nCategory } from '../../../../../categories/angular';
 
 const IntroductionPage: NgDocPage = {
 	title: `Introduction`,

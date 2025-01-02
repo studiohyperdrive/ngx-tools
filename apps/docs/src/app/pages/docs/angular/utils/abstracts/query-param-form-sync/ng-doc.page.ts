@@ -1,5 +1,5 @@
 import { NgDocPage } from '@ng-doc/core';
-import { AbstractsCategory } from '../../../../../../categories';
+import { AbstractsCategory } from '../../../../../../categories/angular';
 
 const QueryParamFormSyncComponentPage: NgDocPage = {
 	title: `NgxQueryParamFormSyncComponent`,

@@ -1,5 +1,5 @@
 import { NgDocPage } from '@ng-doc/core';
-import { TourCategory } from '../../../../../categories';
+import { TourCategory } from '../../../../../categories/angular';
 import { SecondaryComponent, TourDemoComponent } from './demos';
 
 const ImplementationPage: NgDocPage = {

@@ -1,5 +1,5 @@
 import { NgDocPage } from '@ng-doc/core';
-import { LayoutImplementationCategory } from '../../../../../../categories';
+import { LayoutImplementationCategory } from '../../../../../../categories/angular';
 import { DisplayContentDemoComponent } from './demos';
 
 const LayoutDirectivesPage: NgDocPage = {

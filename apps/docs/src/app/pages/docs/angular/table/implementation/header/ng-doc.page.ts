@@ -1,5 +1,5 @@
 import { NgDocPage } from '@ng-doc/core';
-import { TableImplementationCategory } from '../../../../../../categories';
+import { TableImplementationCategory } from '../../../../../../categories/angular';
 import { HeaderEmptyStateDemoComponent, HeaderLoadingStateDemoComponent } from './demos';
 
 const HeaderPage: NgDocPage = {

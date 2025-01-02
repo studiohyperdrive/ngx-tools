@@ -1,5 +1,5 @@
 import { NgDocPage } from '@ng-doc/core';
-import { InformCategory } from '../../../../../categories';
+import { InformCategory } from '../../../../../categories/angular';
 
 const InstallationPage: NgDocPage = {
 	title: `Installation`,

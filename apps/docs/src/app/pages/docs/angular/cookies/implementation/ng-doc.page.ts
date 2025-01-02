@@ -1,5 +1,5 @@
 import { NgDocPage } from '@ng-doc/core';
-import { CookiesCategory } from '../../../../../categories';
+import { CookiesCategory } from '../../../../../categories/angular';
 
 const ImplementationPage: NgDocPage = {
 	title: `Implementation`,

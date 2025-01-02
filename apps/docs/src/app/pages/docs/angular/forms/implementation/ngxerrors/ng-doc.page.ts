@@ -1,5 +1,5 @@
 import { NgDocPage } from '@ng-doc/core';
-import { FormsImplementationCategory } from '../../../../../../categories';
+import { FormsImplementationCategory } from '../../../../../../categories/angular';
 import { NgxerrorsDemoComponent } from './demos';
 
 const NGXErrorsPage: NgDocPage = {

@@ -1,5 +1,5 @@
 import { NgDocPage } from '@ng-doc/core';
-import { InformImplementationCategory } from '../../../../../../categories';
+import { InformImplementationCategory } from '../../../../../../categories/angular';
 import { TooltipDemoComponent } from './demos';
 
 const DirectivesPage: NgDocPage = {
