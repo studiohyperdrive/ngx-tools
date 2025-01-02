@@ -47,20 +47,20 @@ Following provides an overview:
 
 - **Pagination**
     - [x] Documentation
-    - [x] Demo components
+    - [x] Demo components: None possible, code snippets provided
 
 - **Regex**
     - [x] Documentation
-    - [x] Demo components
+    - [x] Demo components: None possible, code snippets provided
 
 - **RxJS**
     - [x] Documentation
-    - [x] Demo components
+    - [x] Demo components: None possible, code snippets provided
 
 - **Testing**
-    - [ ] Documentation
-    - [ ] Demo components
+    - [x] Documentation
+    - [x] Demo components: None possible, code snippets provided
 
 - **Utils**
-    - [ ] Documentation
-    - [ ] Demo components
+    - [x] Documentation
+    - [x] Demo components: None possible, code snippets provided
