@@ -1,10 +1,10 @@
 import { NgDocPage } from '@ng-doc/core';
-import { ServicesCategory } from '../../../../../../categories/angular';
+import { UtilsServicesCategory } from '../../../../../../categories/angular';
 
-const WindowServicePage: NgDocPage = {
+const UtilsWindowServicePage: NgDocPage = {
 	title: `NgxWindowService`,
 	mdFile: './index.md',
-	category: ServicesCategory,
+	category: UtilsServicesCategory,
 };
 
-export default WindowServicePage;
+export default UtilsWindowServicePage;

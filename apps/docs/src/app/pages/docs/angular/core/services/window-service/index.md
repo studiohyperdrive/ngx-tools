@@ -1,9 +1,6 @@
 ---
-keyword: UtilsWindowServicePage
+keyword: NgxWindowServicePage
 ---
-
-> **Warning**
-> This is deprecated in favor of the `*NgxWindowServicePage` in Core
 
 This service uses the `DOCUMENT` injection-token to provide several methods to access both document and window and related information.
 It is convenient for using the document or window without breaking SSR.

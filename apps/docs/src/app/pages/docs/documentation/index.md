@@ -14,8 +14,8 @@ Following provides an overview:
   - [x] Documentation
   - [x] Demo components: None provided, code snippets available
 - **Core**
-    - [ ] Documentation
-    - [ ] Demo components
+    - [x] Documentation
+    - [x] Demo components
 - **Forms**
   - [x] Documentation
   - [x] Demo components

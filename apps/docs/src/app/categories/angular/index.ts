@@ -17,7 +17,9 @@ import DirectivesCategory from './utils/sub-categories/directives/ng-doc.categor
 import InjectsCategory from './utils/sub-categories/injects/ng-doc.category';
 import PipesCategory from './utils/sub-categories/pipes/ng-doc.category';
 import ProvidersCategory from './utils/sub-categories/providers/ng-doc.category';
-import ServicesCategory from './utils/sub-categories/services/ng-doc.category';
+import UtilsServicesCategory from './utils/sub-categories/services/ng-doc.category';
+import CoreServicesCategory from './core/sub-categories/services/ng-doc.category';
+import CoreCategory from './core/ng-doc.category';
 
 export {
 	AngularCategory,
@@ -39,5 +41,7 @@ export {
 	InjectsCategory,
 	PipesCategory,
 	ProvidersCategory,
-	ServicesCategory,
+	UtilsServicesCategory,
+	CoreServicesCategory,
+	CoreCategory,
 };

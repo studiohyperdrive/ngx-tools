@@ -1,10 +1,10 @@
 import { NgDocPage } from '@ng-doc/core';
-import { ServicesCategory } from '../../../../../../categories/angular';
+import { UtilsServicesCategory } from '../../../../../../categories/angular';
 
 const BroadcastChannelServicePage: NgDocPage = {
 	title: `NgxBroadcastChannelService`,
 	mdFile: './index.md',
-	category: ServicesCategory,
+	category: UtilsServicesCategory,
 };
 
 export default BroadcastChannelServicePage;
