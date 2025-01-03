@@ -33,7 +33,7 @@ jobs:
 
       # Build the documentation
       - name: Build Documentation
-        run: npm run build docs
+        run: npx nx run docs:build --prerender=true --server="apps/docs/server.ts"
 
   
       - name: Upload static files as artifact

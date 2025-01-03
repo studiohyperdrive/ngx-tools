@@ -17,8 +17,6 @@
 				"tsConfig": "apps/docs/tsconfig.app.json",
 				"inlineStyleLanguage": "scss",
 				"baseHref": "./",
-				"prerender": true,
-				"server": "apps/docs/server.ts",
 				"assets": [
 					{
 						"glob": "**/*",
