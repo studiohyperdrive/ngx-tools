@@ -1,3 +1,7 @@
+:root {
+	color-scheme: light dark;
+}
+
 div.landing {
 	background-color: black;
 	background: black url('../../../../public/D—Heavy.webp') center / cover no-repeat;
@@ -87,7 +91,7 @@ div.landing {
 					font-size: 1.1rem;
 					font-style: italic;
 					padding: 1rem;
-					background-color: white;
+					background-color: light-dark(white, #e5e5e5);
 					border-bottom: 5px solid #bd00ff;
 					color: black;
 					box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;
@@ -113,20 +117,17 @@ div.landing {
 					gap: 0.5rem;
 					width: fit-content;
 					padding: 0.5rem 1rem;
-					color: black;
+					color: light-dark(black, white);
 					border-radius: 2rem;
 					font-size: 1.2rem;
 					text-decoration: none;
-					border: 1px solid black;
+					border: 1px solid light-dark(black, white);
 					align-items: center;
 					&:hover {
 						cursor: pointer;
 						color: white;
 						background-color: #bd00ff;
 						border: 1px solid #bd00ff;
-						img {
-							filter: invert(1);
-						}
 					}
 				}
 				&.divide {
@@ -158,7 +159,7 @@ div.landing {
 					align-items: end;
 					div.tool {
 						padding-bottom: 1rem;
-						border-bottom: 2px solid black;
+						border-bottom: 2px solid light-dark(black, white);
 						display: grid;
 						grid-template-columns: auto 1fr;
 						grid-template-rows: auto 1fr;
@@ -174,7 +175,7 @@ div.landing {
 							grid-column: 1 / 3;
 						}
 						a {
-							border: 1px solid black;
+							border: 1px solid light-dark(black, white);
 							border-radius: 1rem;
 							cursor: pointer;
 							justify-self: end;
@@ -199,9 +200,9 @@ div.landing {
 			}
 
 			&.white {
-				background-color: white;
+				background-color: light-dark(white, #171717);
 				box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 10px;
-				color: black;
+				color: light-dark(black, white);
 			}
 		}
 	}
@@ -307,6 +308,23 @@ div.landing {
 				div.tools {
 					grid-template-columns: repeat(4, 1fr);
 				}
+			}
+		}
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	.tools {
+		a {
+			img {
+				filter: invert(1);
+			}
+		}
+	}
+	.white {
+		div {
+			img {
+				filter: invert(1);
 			}
 		}
 	}
