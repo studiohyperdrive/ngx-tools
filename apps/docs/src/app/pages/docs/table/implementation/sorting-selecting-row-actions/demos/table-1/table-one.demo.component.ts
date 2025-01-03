@@ -38,8 +38,8 @@ export class TableOneDemoComponent {
 							? 1
 							: -1
 						: a.active
-						? -1
-						: 1;
+							? -1
+							: 1;
 				}),
 			];
 		}

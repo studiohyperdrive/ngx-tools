@@ -1,0 +1,22 @@
+{
+	"ignoreFiles": ["/*"],
+	"overrides": [
+		{
+			"files": ["/.css"],
+			"extends": ["stylelint-config-standard"],
+			"rules": {}
+		},
+		{
+			"files": ["**/.scss"],
+			"extends": ["stylelint-config-standard-scss", "stylelint-config-clean-order/error"],
+			"rules": {
+				"scss/load-no-partial-leading-underscore": null,
+				"selector-class-pattern": null,
+				"selector-pseudo-element-no-unknown": null,
+				"no-descending-specificity": null,
+				"keyframes-name-pattern": null,
+				"no-invalid-position-at-import-rule": null
+			}
+		}
+	]
+}
