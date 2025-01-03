@@ -10,7 +10,7 @@
 			"executor": "@ng-doc/builder:application",
 			"outputs": ["{options.outputPath}"],
 			"options": {
-				"outputPath": "dist/apps/docs/browser/browser",
+				"outputPath": "dist/apps/docs/browser",
 				"index": "apps/docs/src/index.html",
 				"browser": "apps/docs/src/main.ts",
 				"polyfills": ["zone.js"],
@@ -93,10 +93,10 @@
 		},
 		"server": {
 			"dependsOn": ["build"],
-			"executor": "@nx/angular:webpack-server",
+			"executor": "@angular-devkit/build-angular:server",
 			"options": {
-				"outputPath": "dist/apps/docs/browser/server",
-				"main": "apps/docs/src/server.ts",
+				"outputPath": "dist/apps/docs/server",
+				"main": "apps/docs/server.ts",
 				"tsConfig": "apps/docs/tsconfig.server.json",
 				"inlineStyleLanguage": "scss"
 			},

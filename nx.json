@@ -73,7 +73,7 @@
 		},
 		"@nx/angular:component": {
 			"style": "css",
-			"changeDetection": "OnPush"
+      "changeDetection": "OnPush"
 		},
 		"@nx/angular:application": {
 			"e2eTestRunner": "none",
