@@ -123,11 +123,15 @@ div.landing {
 					text-decoration: none;
 					border: 1px solid light-dark(black, white);
 					align-items: center;
+					transition: all 0.2s;
 					&:hover {
 						cursor: pointer;
 						color: white;
 						background-color: #bd00ff;
 						border: 1px solid #bd00ff;
+						img {
+							filter: invert(1);
+						}
 					}
 				}
 				&.divide {
@@ -183,6 +187,7 @@ div.landing {
 							height: 1.5rem;
 							display: block;
 							padding: 0.25rem 0.5rem;
+							transition: all 0.2s;
 							img {
 								display: block;
 								width: 100%;
