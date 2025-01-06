@@ -152,13 +152,19 @@
 					for Angular applications, our packages have something to offer. And if not, stay
 					tuned. We’re working every day on expanding them.
 				</p>
-				<div class="quote">
-					<p>
-						“By switching our mindset from one-off to more robust solutions, we are now
-						working together across projects, which has had a remarkable impact on the
-						quality of our code and developer happiness.”
-					</p>
-					<cite>Denis Valcke, lead developer and project founder.</cite>
+				<div #quote class="quote">
+					<div class="quote-content">
+						<p>
+							“By switching our mindset from one-off to more robust solutions, we are
+							now working together across projects, which has had a remarkable impact
+							on the quality of our code and developer happiness.”
+						</p>
+						<cite>Denis Valcke, lead developer and project founder.</cite>
+					</div>
+					<div class="line-border">
+						<div class="line"></div>
+						<div [@slideIn]="isCovered ? 'open' : 'closed'" class="cover"></div>
+					</div>
 				</div>
 			</div>
 		</section>
