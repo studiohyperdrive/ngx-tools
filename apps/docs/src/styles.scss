@@ -1,3 +1,4 @@
+@import '@ng-doc/app/styles/themes/dark.css';
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
 
 h1,
@@ -7,18 +8,19 @@ h3 {
 }
 
 :root {
-	--ng-doc-text-selection: rgba(187, 14, 253, 0.2);
+	color-scheme: light dark;
+	--ng-doc-text-selection: rgba(187, 14, 253, 0.3) !important;
 
 	--ng-doc-link-color: #3858ca;
 
-	--ng-doc-primary: #bd00ff;
+	--ng-doc-primary: light-dark(#bd00ff, #d35aff) !important;
 
-	--ng-doc-guide-tag-background: #bd00ff;
+	--ng-doc-guide-tag-background: light-dark(#bd00ff, #d35aff) !important;
 	--ng-doc-guide-tag-color: white;
 }
 
 .ng-doc-header {
-	background-image: linear-gradient(15deg, #bd00ff 40%, #3858ca);
+	background-image: linear-gradient(15deg, #6e3e70 40%, #308497);
 	color: white;
 	button:hover {
 		background-color: rgba(78, 78, 78, 0.5);
@@ -42,6 +44,15 @@ ng-doc-navbar {
 		)
 		1;
 	border-width: 2px 0 0 0 !important;
+}
+
+.ng-doc-navbar-left {
+	h3 {
+		a {
+			color: white;
+			text-decoration: none;
+		}
+	}
 }
 
 @media screen and (min-width: 1024px) {
