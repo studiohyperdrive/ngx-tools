@@ -8,6 +8,7 @@ import FactoriesCategory from './testing/sub-categories/factories/ng-doc.categor
 import UtilsCategory from './utils/ng-doc.category';
 import ObjectCategory from './utils/sub-categories/object/ng-doc.category';
 import StringCategory from './utils/sub-categories/string/ng-doc.category';
+import FileCategory from './utils/sub-categories/file/ng-doc.category';
 import JavascriptCategory from './ng-doc.category';
 
 export {
@@ -22,4 +23,5 @@ export {
 	FactoriesCategory,
 	ObjectCategory,
 	StringCategory,
+	FileCategory,
 };
