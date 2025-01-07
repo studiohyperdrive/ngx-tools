@@ -99,7 +99,10 @@ div.landing {
 					text-decoration: none;
 					border: 1px solid light-dark(black, white);
 					align-items: center;
-					transition: all 0.2s;
+					transition: all 0.3s;
+					img {
+						transition: all 0.3s;
+					}
 					&:hover {
 						cursor: pointer;
 						color: white;
@@ -203,10 +206,11 @@ div.landing {
 							height: 1.5rem;
 							display: block;
 							padding: 0.25rem 0.5rem;
-							transition: all 0.2s;
+							transition: background-color 0.3s, border 0.3s;
 							img {
 								display: block;
 								width: 100%;
+								transition: filter 0.3s;
 							}
 							&:hover {
 								background-color: #bd00ff;
