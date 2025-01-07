@@ -5,7 +5,14 @@ import { NgxTourStepComponent } from '@ngx/tour';
 @Component({
 	selector: 'special-tour-item',
 	standalone: true,
-	styleUrl: './special-tour.component.scss',
+	styles: `
+		:host {
+			display: block;
+			padding: 10px;
+			background: blue;
+			color: white;
+		}
+	`,
 	template: `
 		<p #stepTitle>
 			{{ title }}
