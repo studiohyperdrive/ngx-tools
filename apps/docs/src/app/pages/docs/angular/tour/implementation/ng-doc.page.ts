@@ -1,6 +1,6 @@
 import { NgDocPage } from '@ng-doc/core';
 import { TourCategory } from '../../../../../categories/angular';
-import {StartDemoComponent} from "./demos/tour/start-demo.component";
+import { StartDemoComponent } from './demos/tour/start-demo.component';
 
 const ImplementationPage: NgDocPage = {
 	title: `Implementation`,

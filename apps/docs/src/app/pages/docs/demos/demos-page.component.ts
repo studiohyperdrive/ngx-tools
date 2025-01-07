@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {NgxMediaQueryService} from "@ngx/utils";
-import {NgxAccordion} from "@ngx/layout";
+import { NgxAccordion } from '@ngx/layout';
 
 @Component({
 	imports: [RouterModule, NgxAccordion],
@@ -29,12 +28,17 @@ const routes: Routes = [
 				children: [
 					{
 						path: '',
-						loadComponent: () => import('../angular/tour/implementation/demos/tour/pages/main/main.component').then((m) => m.MainComponent),
+						loadComponent: () =>
+							import(
+								'../angular/tour/implementation/demos/tour/pages/main/main.component'
+							).then((m) => m.MainComponent),
 					},
 					{
 						path: 'secondary',
 						loadComponent: () =>
-							import('../angular/tour/implementation/demos/tour/pages/secondary/secondary.component').then((m) => m.SecondaryComponent),
+							import(
+								'../angular/tour/implementation/demos/tour/pages/secondary/secondary.component'
+							).then((m) => m.SecondaryComponent),
 					},
 				],
 			},
