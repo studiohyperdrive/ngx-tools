@@ -1,6 +1,6 @@
 import { ApplicationConfig } from '@angular/core';
 
-import { TourItemComponent } from './tour/tour.component';
+import { TourItemComponent } from './tour/components/tour.component';
 import { provideNgxTourConfiguration } from '@ngx/tour';
 
 export const tourAppConfig: ApplicationConfig = {

@@ -1,0 +1,32 @@
+<div class="disclaimer">
+	<b>Disclaimer:</b>
+	<p>
+		This is a demo application to use during development of the package. For examples of the
+		entire package, we refer to the
+		<a
+			href="https://stackblitz.com/edit/stackblitz-starters-psubyj?file=src%2Fmain.ts"
+			target="_blank"
+		>StackBlitz example</a
+		>
+	</p>
+</div>
+
+<hr />
+
+<h1>Demos</h1>
+<ngx-accordion [open]="[1,4]">
+	@for (item of testData; track $index; let index = $index) {
+		<ngx-accordion-item [disabled]="index === 2">
+			<ng-template #headerTmpl let-isOpen>
+				{{item.title}} {{isOpen}}
+			</ng-template>
+
+			<ng-template #contentTmpl let-isOpen>
+				<a [routerLink]="item.route">{{item.content}}</a>
+			</ng-template>
+		</ngx-accordion-item>
+	}
+</ngx-accordion>
+
+<h1>Active demo</h1>
+<router-outlet />

@@ -1,28 +1,24 @@
-// snippet-from-file="../app.config.ts" "Application Config"
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 
-// snippet#component "Typescript"
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { from, map, of, tap } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { SpecialTourItemComponent } from './special-tour.component';
-
-import { NgxTourItemDirective, NgxTourService, useMockDataDuringTour } from '@ngx/tour';
+import { SpecialTourItemComponent } from '../../components/special-tour.component';
 import {
 	NgxConfigurableLayoutComponent,
-	NgxConfigurableLayoutGrid,
 	NgxConfigurableLayoutItemComponent,
+	NgxConfigurableLayoutGrid,
 	NgxConfigurableLayoutItemDropEvent,
 	NgxDisplayContentDirective,
 } from '@ngx/layout';
 import { NgxTooltipDirective } from '@ngx/inform';
+import { NgxTourItemDirective, NgxTourService, useMockDataDuringTour } from '@ngx/tour';
 
 @Component({
-	selector: 'tour-demo',
-	templateUrl: './tour.demo.component.html',
-	styleUrl: './tour.demo.component.scss',
-	changeDetection: ChangeDetectionStrategy.OnPush,
+	selector: 'main',
+	templateUrl: './main.component.html',
+	styleUrl: './main.component.scss',
 	imports: [
 		NgxConfigurableLayoutComponent,
 		NgxConfigurableLayoutItemComponent,
@@ -32,8 +28,9 @@ import { NgxTooltipDirective } from '@ngx/inform';
 		CommonModule,
 		NgxTooltipDirective,
 	],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TourDemoComponent implements OnInit {
+export class MainComponent {
 	public control: FormControl<NgxConfigurableLayoutGrid> = new FormControl([]);
 	public isActive: FormControl<boolean> = new FormControl(false);
 	public dragAndDrop: FormControl<boolean> = new FormControl(true);
@@ -121,6 +118,9 @@ export class TourDemoComponent implements OnInit {
 						component: SpecialTourItemComponent,
 					},
 					{
+						beforeVisible: () => {
+							this.router.navigate(['./'], { relativeTo: this.route });
+						},
 						tourItem: 'not-existing',
 						content: 'This is a test',
 						title: 'Hello world 1',
@@ -134,7 +134,7 @@ export class TourDemoComponent implements OnInit {
 						content: 'Secondary',
 						title: 'Secondary',
 						beforeVisible: () => {
-							this.router.navigate(['../', 'secondary'], { relativeTo: this.route });
+							this.router.navigate(['secondary'], { relativeTo: this.route });
 						},
 					},
 					{
@@ -150,7 +150,7 @@ export class TourDemoComponent implements OnInit {
 					},
 					{
 						beforeVisible: () => {
-							this.router.navigate(['../', 'demo'], { relativeTo: this.route });
+							this.router.navigate(['./'], { relativeTo: this.route });
 						},
 						tourItem: 'middle',
 						content: 'This is a test',
@@ -165,7 +165,7 @@ export class TourDemoComponent implements OnInit {
 				],
 				() => {
 					return from(
-						this.router.navigate(['../', 'demo'], { relativeTo: this.route })
+						this.router.navigate(['./'], { relativeTo: this.route })
 					).pipe(
 						tap(() => {
 							this.cdRef.detectChanges();
@@ -184,5 +184,3 @@ export class TourDemoComponent implements OnInit {
 			.subscribe();
 	}
 }
-// snippet#component
-// snippet-from-file="./tour.demo.component.html" "HTML"

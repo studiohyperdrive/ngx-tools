@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { NgxTourItemDirective } from '@ngx/tour';
@@ -8,7 +8,7 @@ import { NgxTourItemDirective } from '@ngx/tour';
 	templateUrl: './secondary.component.html',
 	imports: [NgxTourItemDirective, CommonModule],
 })
-export class SecondaryComponent implements OnInit {
+export class SecondaryComponent {
 	public data$ = new BehaviorSubject(undefined);
 
 	ngOnInit() {
