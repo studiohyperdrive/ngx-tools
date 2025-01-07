@@ -11,18 +11,18 @@ import { ERoutes } from '../../shared/types';
 	animations: [
 		trigger('slideIn', [
 			state(
-				'open',
+				'hide',
 				style({
 					clipPath: 'inset(0 100% 0 0)',
 				})
 			),
 			state(
-				'closed',
+				'show',
 				style({
 					clipPath: 'inset(0 0 0 0)',
 				})
 			),
-			transition('open => closed', [animate('1s ease-in-out')]),
+			transition('hide => show', [animate('1s 100ms ease-in-out')]),
 		]),
 	],
 })
