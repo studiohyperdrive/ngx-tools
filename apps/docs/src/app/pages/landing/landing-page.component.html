@@ -94,10 +94,10 @@
 					employees has grown into an active open source ecosystem powered by the
 					ingenuity of our team and the broader developer community.
 				</p>
-				<div class="photo">
-					<div class="line"></div>
+				<div #photo class="photo">
+					<div [@slideIn]="clipPhotoLine ? 'open' : 'closed'" class="line"></div>
 				</div>
-				<p>
+				<p class="extra-margin">
 					Since the launch in <b>2021</b>, we’ve already created <b>16 packages</b> for
 					a.o. Angular, RXJS and Node.js. These tools have already spiked the interest of
 					the international community. Our tools have been widely implemented across a
@@ -156,18 +156,13 @@
 					tuned. We’re working every day on expanding them.
 				</p>
 				<div #quote class="quote">
-					<div class="quote-content">
-						<p>
-							“By switching our mindset from one-off to more robust solutions, we are
-							now working together across projects, which has had a remarkable impact
-							on the quality of our code and developer happiness.”
-						</p>
-						<cite>Denis Valcke, lead developer and project founder.</cite>
-					</div>
-					<div class="line-border">
-						<div class="line"></div>
-						<div [@slideIn]="isCovered ? 'open' : 'closed'" class="cover"></div>
-					</div>
+					<p>
+						“By switching our mindset from one-off to more robust solutions, we are now
+						working together across projects, which has had a remarkable impact on the
+						quality of our code and developer happiness.”
+					</p>
+					<cite>Denis Valcke, lead developer and project founder.</cite>
+					<div [@slideIn]="clipQuoteLine ? 'open' : 'closed'" class="line"></div>
 				</div>
 			</div>
 		</section>

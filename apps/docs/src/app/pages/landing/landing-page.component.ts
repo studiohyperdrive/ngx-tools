@@ -13,13 +13,13 @@ import { ERoutes } from '../../shared/types';
 			state(
 				'open',
 				style({
-					width: '100%',
+					clipPath: 'inset(0 100% 0 0)',
 				})
 			),
 			state(
 				'closed',
 				style({
-					width: '0%',
+					clipPath: 'inset(0 0 0 0)',
 				})
 			),
 			transition('open => closed', [animate('1s ease-in-out')]),
@@ -29,17 +29,25 @@ import { ERoutes } from '../../shared/types';
 export class LandingPageComponent {
 	public routes: typeof ERoutes = ERoutes;
 
-	isCovered = true;
+	clipQuoteLine = true;
+	clipPhotoLine = true;
 
 	@ViewChild('quote', { static: false }) private quote: ElementRef<HTMLDivElement> | undefined;
+	@ViewChild('photo', { static: false }) private photo: ElementRef<HTMLDivElement> | undefined;
 
 	@HostListener('window:scroll', ['$event'])
 	isScrolledIntoView() {
-		if (this.quote && this.isCovered) {
+		if (this.quote && this.clipQuoteLine) {
 			const rect = this.quote.nativeElement.getBoundingClientRect();
 			const topShown = rect.top >= 0;
 			const bottomShown = rect.bottom <= window.innerHeight;
-			this.isCovered = !(topShown && bottomShown);
+			this.clipQuoteLine = !(topShown && bottomShown);
+		}
+		if (this.photo && this.clipPhotoLine) {
+			const rect = this.photo.nativeElement.getBoundingClientRect();
+			const topShown = rect.top >= 0;
+			const bottomShown = rect.bottom <= window.innerHeight;
+			this.clipPhotoLine = !(topShown && bottomShown);
 		}
 	}
 }

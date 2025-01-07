@@ -86,49 +86,7 @@ div.landing {
 				b {
 					font-size: 1.1rem;
 				}
-				.quote {
-					width: 100%;
-					font-size: 1.1rem;
-					font-style: italic;
-					background-color: light-dark(white, #e5e5e5);
-					color: black;
-					box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;
-					.quote-content {
-						padding: 1rem;
-						p {
-							margin-bottom: 1rem;
-							text-align: center;
-						}
-						cite {
-							color: grey;
-						}
-					}
 
-					div.line-border {
-						width: 100%;
-						height: 2px;
-						position: relative;
-						.line {
-							width: 100%;
-							height: 100%;
-							background-image: linear-gradient(
-								-90.97deg,
-								#00cb9a 0.32%,
-								#3858ca 29.01%,
-								#38cfff 51.04%,
-								#f872c2 98.69%
-							);
-							position: absolute;
-						}
-						.cover {
-							width: 100%;
-							height: 100%;
-							background-color: white;
-							right: 0;
-							position: absolute;
-						}
-					}
-				}
 				a.button {
 					margin: 1rem auto;
 					display: flex;
@@ -162,19 +120,37 @@ div.landing {
 						height: 100%;
 						background: black url('../../../../public/team.webp') center / cover
 							no-repeat;
-						.line {
-							position: absolute;
-							width: 100%;
-							bottom: 0;
-							height: 2px;
-							background-image: linear-gradient(
-								-90.97deg,
-								#00cb9a 0.32%,
-								#3858ca 29.01%,
-								#38cfff 51.04%,
-								#f872c2 98.69%
-							);
+					}
+					.quote {
+						width: 100%;
+						font-size: 1.1rem;
+						font-style: italic;
+						background-color: light-dark(white, #e5e5e5);
+						color: black;
+						position: relative;
+						padding: 1rem;
+						p {
+							margin-bottom: 1rem;
+							text-align: center;
 						}
+						cite {
+							color: grey;
+						}
+					}
+					div.line {
+						width: 100%;
+						height: 2px;
+						bottom: 0;
+						left: 0;
+						position: absolute;
+						background-image: linear-gradient(
+							-90.97deg,
+							#00cb9a 0.32%,
+							#3858ca 29.01%,
+							#38cfff 51.04%,
+							#f872c2 98.69%
+						);
+						clip-path: inset(0 0 0 0);
 					}
 				}
 
@@ -310,11 +286,20 @@ div.landing {
 				div.divide {
 					grid-template-columns: repeat(2, 1fr);
 					position: relative;
-
+					p.extra-margin {
+						margin-bottom: 2rem;
+					}
 					.photo {
 						position: static;
-						grid-row: 1 / 4;
+						grid-row: 1 / 3;
 						grid-column-start: 1;
+					}
+					.quote {
+						position: static;
+						padding-bottom: 2rem;
+					}
+					div.line {
+						bottom: 1rem;
 					}
 				}
 				div.tools {
