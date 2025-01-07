@@ -86,31 +86,7 @@ div.landing {
 				b {
 					font-size: 1.1rem;
 				}
-				.quote {
-					width: 100%;
-					font-size: 1.1rem;
-					font-style: italic;
-					padding: 1rem;
-					background-color: light-dark(white, #e5e5e5);
-					border-bottom: 5px solid #bd00ff;
-					color: black;
-					box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;
-					border-image: linear-gradient(
-							90deg,
-							#00cb9a 0.32%,
-							#3858ca 29.01%,
-							#38cfff 51.04%,
-							#f872c2 98.69%
-						)
-						1;
-					p {
-						margin-bottom: 1rem;
-						text-align: center;
-					}
-					cite {
-						color: grey;
-					}
-				}
+
 				a.button {
 					margin: 1rem auto;
 					display: flex;
@@ -123,7 +99,10 @@ div.landing {
 					text-decoration: none;
 					border: 1px solid light-dark(black, white);
 					align-items: center;
-					transition: all 0.2s;
+					transition: all 0.3s;
+					img {
+						transition: all 0.3s;
+					}
 					&:hover {
 						cursor: pointer;
 						color: white;
@@ -136,8 +115,48 @@ div.landing {
 				}
 				&.divide {
 					display: grid;
-					gap: 1.5rem;
+					gap: 1.5rem 2.5rem;
+					.photo {
+						position: relative;
+						width: 100%;
+						min-height: 16rem;
+						height: 100%;
+						background: black url('../../../../public/team.webp') center / cover
+							no-repeat;
+					}
+					.quote {
+						width: 100%;
+						font-size: 1.1rem;
+						font-style: italic;
+						background-color: light-dark(white, #e5e5e5);
+						color: black;
+						position: relative;
+						padding: 1rem;
+						p {
+							margin-bottom: 1rem;
+							text-align: center;
+						}
+						cite {
+							color: grey;
+						}
+					}
+					div.line {
+						width: 100%;
+						height: 2px;
+						bottom: 0;
+						left: 0;
+						position: absolute;
+						background-image: linear-gradient(
+							-90.97deg,
+							#00cb9a 0.32%,
+							#3858ca 29.01%,
+							#38cfff 51.04%,
+							#f872c2 98.69%
+						);
+						clip-path: inset(0 0 0 0);
+					}
 				}
+
 				&.bullets {
 					display: grid;
 					gap: 2rem;
@@ -163,7 +182,7 @@ div.landing {
 					align-items: end;
 					div.tool {
 						padding-bottom: 1rem;
-						border-bottom: 2px solid light-dark(black, white);
+						border-bottom: 1px solid light-dark(black, white);
 						display: grid;
 						grid-template-columns: auto 1fr;
 						grid-template-rows: auto 1fr;
@@ -187,10 +206,11 @@ div.landing {
 							height: 1.5rem;
 							display: block;
 							padding: 0.25rem 0.5rem;
-							transition: all 0.2s;
+							transition: background-color 0.3s, border 0.3s;
 							img {
 								display: block;
 								width: 100%;
+								transition: filter 0.3s;
 							}
 							&:hover {
 								background-color: #bd00ff;
@@ -269,6 +289,22 @@ div.landing {
 				padding: 4rem 3rem;
 				div.divide {
 					grid-template-columns: repeat(2, 1fr);
+					position: relative;
+					p.extra-margin {
+						margin-bottom: 2rem;
+					}
+					.photo {
+						position: static;
+						grid-row: 1 / 3;
+						grid-column-start: 1;
+					}
+					.quote {
+						position: static;
+						padding-bottom: 2rem;
+					}
+					div.line {
+						bottom: 1rem;
+					}
 				}
 				div.tools {
 					grid-template-columns: repeat(3, 1fr);
