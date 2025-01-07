@@ -62,3 +62,31 @@ ng-doc-navbar {
 		}
 	}
 }
+
+.ngx-tour-item-active {
+	background: white;
+}
+
+.ngx-tour-active {
+	app-root {
+		pointer-events: none;
+	}
+}
+
+.ngx-accordion {
+	display: block;
+	margin-top: 15px;
+}
+
+.ngx-accordion-item {
+	display: block;
+	margin-bottom: 10px;
+
+	.ngx-accordion-content {
+		padding: 10px 15px;
+	}
+
+	.ngx-accordion-header {
+		border-bottom: 1px solid black;
+	}
+}

@@ -1,0 +1,15 @@
+<div [formGroup]="form">
+	<app-user-name-form formControlName="username" />
+</div>
+
+<p>Username: "{{ form.get("username").value }}"</p>
+
+<p><strong>Validation - Form</strong></p>
+<div>Username: {{ form.get("username").errors | json }}</div>
+<div>Errors: {{ form.errors | json }}</div>
+<div>Valid: {{ form.valid }}</div>
+
+<button (click)="form.reset()">Reset form</button>
+
+<!--snippet-from-file="./user-name-form/user-name.form.component.ts" "user-name.form.component.ts"-->
+<!--snippet-from-file="./user-name-form/user-name.form.component.html" "user-name.form.component.html"-->

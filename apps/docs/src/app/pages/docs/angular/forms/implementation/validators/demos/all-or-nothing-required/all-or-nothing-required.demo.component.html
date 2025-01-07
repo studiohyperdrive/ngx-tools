@@ -1,0 +1,36 @@
+<form [formGroup]="form">
+	<div>
+		<label for="firstName">
+			First Name
+			<input type="text" formControlName="firstName" name="firstName" />
+		</label>
+	</div>
+
+	<div>
+		<label for="lastName">
+			Last Name
+			<input type="text" formControlName="lastName" name="lastName" />
+		</label>
+	</div>
+
+	<div>
+		<label for="email">
+			Email
+			<input type="email" formControlName="email" name="email" />
+		</label>
+	</div>
+
+	<p><strong>Validation - Form controls</strong></p>
+	<div>First Name Errors: {{ form.get('firstName').errors | json }}</div>
+	<div>Last Name Errors: {{ form.get('lastName').errors | json }}</div>
+	<div>Email Errors: {{ form.get('email').errors | json }}</div>
+
+	<p><strong>Validation - Form</strong></p>
+	<div>Errors: {{ form.errors | json }}</div>
+	<div>Valid: {{ form.valid }}</div>
+
+	<br/>
+	<div>
+		<button type="submit">Submit</button>
+	</div>
+</form>

@@ -1,0 +1,10 @@
+<ng-container [formGroup]="form">
+	<p>Hello</p>
+	<input *ngxFormsErrors="'hello'" formControlName="hello" type="text" />
+
+	<p>World</p>
+	<input *ngxFormsErrors="'world'" formControlName="world" type="text" />
+
+	<p>Date</p>
+	<app-date-input *ngxFormsErrors="'date'" formControlName="date" />
+</ng-container>
