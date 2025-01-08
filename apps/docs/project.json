@@ -141,6 +141,14 @@
 				}
 			},
 			"defaultConfiguration": "production"
+		},
+		"stylelint": {
+			"executor": "nx-stylelint:lint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": ["apps/docs/**/*.css"],
+				"formatter": "json"
+			}
 		}
 	}
 }

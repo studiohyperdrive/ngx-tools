@@ -2,13 +2,13 @@
 	"name": "form-test",
 	"$schema": "../../node_modules/nx/schemas/project-schema.json",
 	"projectType": "application",
+	"sourceRoot": "apps/form-test/src",
+	"prefix": "app",
 	"generators": {
 		"@schematics/angular:component": {
 			"style": "scss"
 		}
 	},
-	"sourceRoot": "apps/form-test/src",
-	"prefix": "app",
 	"targets": {
 		"build": {
 			"executor": "@angular-devkit/build-angular:browser",
@@ -72,6 +72,14 @@
 			"executor": "@nx/eslint:lint",
 			"options": {
 				"lintFilePatterns": ["apps/form-test/**/*.ts", "apps/form-test/**/*.html"]
+			}
+		},
+		"stylelint": {
+			"executor": "nx-stylelint:lint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": ["apps/form-test/**/*.css"],
+				"formatter": "json"
 			}
 		}
 	}

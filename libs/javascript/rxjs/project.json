@@ -3,6 +3,7 @@
 	"$schema": "../../node_modules/nx/schemas/project-schema.json",
 	"sourceRoot": "libs/javascript/rxjs/src",
 	"projectType": "library",
+	"tags": [],
 	"targets": {
 		"build": {
 			"executor": "@nx/vite:build",
@@ -25,7 +26,14 @@
 			"options": {
 				"lintFilePatterns": ["libs/javascript/rxjs/**/*.ts", "libs/javascript/rxjs/package.json"]
 			}
+		},
+		"stylelint": {
+			"executor": "nx-stylelint:lint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": ["libs/javascript/rxjs/**/*.css"],
+				"formatter": "json"
+			}
 		}
-	},
-	"tags": []
+	}
 }

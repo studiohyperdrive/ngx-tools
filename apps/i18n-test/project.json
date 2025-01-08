@@ -2,13 +2,13 @@
 	"name": "i18n-test",
 	"$schema": "../../node_modules/nx/schemas/project-schema.json",
 	"projectType": "application",
+	"sourceRoot": "apps/i18n-test/src",
+	"prefix": "app",
 	"generators": {
 		"@schematics/angular:component": {
 			"style": "scss"
 		}
 	},
-	"sourceRoot": "apps/i18n-test/src",
-	"prefix": "app",
 	"targets": {
 		"build": {
 			"executor": "@angular-devkit/build-angular:browser",
@@ -72,6 +72,14 @@
 			"executor": "@nx/eslint:lint",
 			"options": {
 				"lintFilePatterns": ["apps/i18n-test/**/*.ts", "apps/i18n-test/**/*.html"]
+			}
+		},
+		"stylelint": {
+			"executor": "nx-stylelint:lint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": ["apps/i18n-test/**/*.css"],
+				"formatter": "json"
 			}
 		}
 	}

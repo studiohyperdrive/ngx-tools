@@ -38,8 +38,8 @@ export class SortingDemoComponent {
 							? 1
 							: -1
 						: a.active
-						? -1
-						: 1;
+							? -1
+							: 1;
 				}),
 			];
 		}

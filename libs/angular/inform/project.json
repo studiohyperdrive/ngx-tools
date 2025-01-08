@@ -31,6 +31,14 @@
 		},
 		"lint": {
 			"executor": "@nx/eslint:lint"
+		},
+		"stylelint": {
+			"executor": "nx-stylelint:lint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": ["libs/angular/inform/**/*.css"],
+				"formatter": "json"
+			}
 		}
 	}
 }

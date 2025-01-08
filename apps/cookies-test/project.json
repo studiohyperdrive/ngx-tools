@@ -97,6 +97,14 @@
 			"options": {
 				"jestConfig": "apps/cookies-test/jest.config.ts"
 			}
+		},
+		"stylelint": {
+			"executor": "nx-stylelint:lint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": ["apps/cookies-test/**/*.css"],
+				"formatter": "json"
+			}
 		}
 	}
 }
