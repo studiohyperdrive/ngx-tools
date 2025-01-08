@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { from, map, of, tap } from 'rxjs';
@@ -28,6 +28,7 @@ import { NgxTourItemDirective, NgxTourService, useMockDataDuringTour } from '@ng
 		CommonModule,
 		NgxTooltipDirective,
 	],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainComponent {
 	public control: FormControl<NgxConfigurableLayoutGrid> = new FormControl([]);

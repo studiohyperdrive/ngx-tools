@@ -17,6 +17,10 @@
     "url": "https://github.com/studiohyperdrive/ngx-core",
     "directory": "libs/angular/core/src"
   },
-  "peerDependencies": {},
+  "peerDependencies": {
+    "rxjs": "7.8.1",
+    "@angular/common": "19.0.3",
+    "@angular/core": "19.0.3"
+  },
   "sideEffects": false
 }

@@ -1,1 +1,193 @@
-<a [routerLink]="routes.DOCS">Go to docs</a>
+<div class="landing">
+	<header>
+		<a href="https://studiohyperdrive.be/" target="_blank"
+			><img src="logo-full.svg" alt="Studio Hyperdrive"
+		/></a>
+
+		<nav>
+			<a [routerLink]="[routes.DOCS, 'angular', 'cookies', 'introduction']">Docs</a>
+			<a href="https://github.com/studiohyperdrive/ngx-tools" target="_blank">Github</a>
+		</nav>
+	</header>
+	<main>
+		<div class="intro">
+			<h1><span>Hyperdrive</span><br /><span>Open Source</span></h1>
+			<h2 class="subtitle">
+				Hyperdrive Open Source is a mono-repo providing several of the Angular based
+				packages created and maintained by the
+				<a href="https://studiohyperdrive.be/" target="_blank">Studio Hyperdrive</a> team.
+			</h2>
+		</div>
+		<section class="white tools">
+			<div class="tools">
+				<div class="tool">
+					<h3>Utils</h3>
+					<a [routerLink]="[routes.DOCS, 'angular', 'utils', 'installation']"
+						><img src="arrow.svg" alt="arrow"
+					/></a>
+					<p>
+						Several independent utilities to facilitate common use-cases for users and
+						developers.
+					</p>
+				</div>
+				<div class="tool">
+					<h3>Forms</h3>
+					<a [routerLink]="[routes.DOCS, 'angular', 'forms', 'introduction']"
+						><img src="arrow.svg" alt="arrow"
+					/></a>
+					<p>Multiple utilities for complex form use-cases.</p>
+				</div>
+				<div class="tool">
+					<h3>Store</h3>
+					<a [routerLink]="[routes.DOCS, 'angular', 'store', 'introduction']"
+						><img src="arrow.svg" alt="arrow"
+					/></a>
+					<p>Several utils and abstractions to improve the Redux workflow</p>
+				</div>
+				<div class="tool">
+					<h3>Table</h3>
+					<a [routerLink]="[routes.DOCS, 'angular', 'table', 'introduction']"
+						><img src="arrow.svg" alt="arrow"
+					/></a>
+					<p>
+						A quick and easy template based table builder using the Angular CDK Table.
+					</p>
+				</div>
+				<div class="tool">
+					<h3>I18n</h3>
+					<a [routerLink]="[routes.DOCS, 'angular', 'i18n', 'introduction']"
+						><img src="arrow.svg" alt="arrow"
+					/></a>
+					<p>A lazy-loaded modular approach to translations.</p>
+				</div>
+				<div class="tool">
+					<h3>Cookies</h3>
+					<a [routerLink]="[routes.DOCS, 'angular', 'cookies', 'introduction']"
+						><img src="arrow.svg" alt="arrow"
+					/></a>
+					<p>A quick and easy wrapper for CookieConsent V3.</p>
+				</div>
+				<div class="tool">
+					<h3>Layout</h3>
+					<a [routerLink]="[routes.DOCS, 'angular', 'layout', 'introduction']"
+						><img src="arrow.svg" alt="arrow"
+					/></a>
+					<p>A collection of Angular components related to layout.</p>
+				</div>
+				<div class="tool">
+					<h3>Tour</h3>
+					<a [routerLink]="[routes.DOCS, 'angular', 'tour', 'introduction']"
+						><img src="arrow.svg" alt="arrow"
+					/></a>
+					<p>The tools to build a guided walkthrough of one or more pages.</p>
+				</div>
+			</div>
+		</section>
+
+		<section>
+			<div class="divide shd">
+				<p>
+					At <b>Studio Hyperdrive</b>, we’re all about building robust digital solutions.
+					We’ve been passionately developing our JavaScript and Angular expertise since
+					our foundation in 2018. That passion gave rise to <b>SHD Open Source</b>, our
+					open source initiative. What started as a “love project” of some of our
+					employees has grown into an active open source ecosystem powered by the
+					ingenuity of our team and the broader developer community.
+				</p>
+				<div #photo class="photo">
+					<div [@slideIn]="clipPhotoLine ? 'hide' : 'show'" class="line"></div>
+				</div>
+				<p class="extra-margin">
+					Since the launch in <b>2021</b>, we’ve already created <b>16 packages</b> for
+					a.o. Angular, RXJS and Node.js. These tools have already spiked the interest of
+					the international community. Our tools have been widely implemented across a
+					<b>broad spectrum of applications and projects</b>. Thus helping developers
+					worldwide streamline their workflows and build better applications.
+				</p>
+			</div>
+		</section>
+		<section class="white bullets">
+			<h3>Why SHD Open Source?</h3>
+			<div class="bullets">
+				<div>
+					<img src="github.svg" alt="Github icon" />
+					<h4>Collaboration with the community:</h4>
+					<p>
+						Engaging with the global developer community allows us to share knowledge,
+						learn from others, and create better tools together. SHD Open Source isn’t
+						only about giving back; it’s about working smarter, and innovate through
+						shared effort.
+					</p>
+				</div>
+
+				<div>
+					<img src="zap.svg" alt="lightning bolt icon" />
+					<h4>Efficiency and simplicity:</h4>
+					<p>
+						By leveraging open source packages (both our own and those from others),
+						repetitive tasks can be eliminated and you can focus on solving real
+						problems. These packages provide a tested, reliable foundation that reduces
+						complexity and accelerates development timelines.
+					</p>
+				</div>
+
+				<div>
+					<img src="layout-dashboard.svg" alt="layout dashboard icon" />
+					<h4>Proven building blocks:</h4>
+					<p>
+						Our open source tools offer a modular approach to development. Think of them
+						as a toolbox full of building blocks that have already been validated in
+						countless real-world applications. This means fewer bugs, less stress during
+						production, and more time to focus on innovation. Moreover, all components
+						are compliant with the latest WCAG standards.
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<section>
+			<h3>Built for developers</h3>
+			<div class="divide">
+				<p>
+					SHD Open Source is built by developers, for developers. Our tools are designed
+					to save you time, reduce frustration, and help you ship better code faster.
+					Whether you’re looking for UI components, utilities, or advanced functionality
+					for Angular applications, our packages have something to offer. And if not, stay
+					tuned. We’re working every day on expanding them.
+				</p>
+				<div #quote class="quote">
+					<p>
+						“By switching our mindset from one-off to more robust solutions, we are now
+						working together across projects, which has had a remarkable impact on the
+						quality of our code and developer happiness.”
+					</p>
+					<cite>Denis Valcke, lead developer and project founder.</cite>
+					<div [@slideIn]="clipQuoteLine ? 'hide' : 'show'" class="line"></div>
+				</div>
+			</div>
+		</section>
+
+		<section class="white">
+			<h3>Join the community</h3>
+			<div>
+				<p>
+					Many contributors have already joined our journey, and the amount of features,
+					packages and community members grows each day. We invite you to dive in, explore
+					our packages, and see how they can make your projects smoother and more
+					efficient. Whether you’re here to contribute, collaborate, or simply use our
+					tools, you’re part of a community that values craftsmanship, collaboration, and
+					continuous improvement.
+				</p>
+
+				<a
+					class="button"
+					href="https://github.com/studiohyperdrive/ngx-tools"
+					target="_blank"
+				>
+					<img src="github.svg" alt="Github icon" />
+					Github</a
+				>
+			</div>
+		</section>
+	</main>
+</div>

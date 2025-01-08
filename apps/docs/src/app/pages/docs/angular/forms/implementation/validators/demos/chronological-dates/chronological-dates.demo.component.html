@@ -1,0 +1,28 @@
+<form [formGroup]="form">
+	<div>
+		<label for="start">
+			Start date
+			<input type="date" formControlName="start" name="start" />
+		</label>
+	</div>
+
+	<div>
+		<label for="end">
+			End date
+			<input type="date" formControlName="end" name="end" />
+		</label>
+	</div>
+
+	<p><strong>Validation - Form controls</strong></p>
+	<div>Start date Errors: {{ form.get('start').errors | json }}</div>
+	<div>End date Errors: {{ form.get('end').errors | json }}</div>
+
+	<p><strong>Validation - Form</strong></p>
+	<div>Errors: {{ form.errors | json }}</div>
+	<div>Valid: {{ form.valid }}</div>
+
+	<br/>
+	<div>
+		<button type="submit">Submit</button>
+	</div>
+</form>

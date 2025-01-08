@@ -1,0 +1,11 @@
+<ngx-accordion>
+	@for (item of testData; track $index; let index = $index) {
+	<ngx-accordion-item [disabled]="index === 2">
+		<ng-template #headerTmpl let-isOpen>
+			{{ item.title }}: {{ isOpen }}
+		</ng-template>
+
+		<ng-template #contentTmpl> {{ item.content }} </ng-template>
+	</ngx-accordion-item>
+	}
+</ngx-accordion>

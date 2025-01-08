@@ -1,0 +1,13 @@
+<ng-container [formGroup]="form">
+	<p>Hello</p>
+	<input formControlName="hello" type="text" />
+
+	<p>World</p>
+	<input formControlName="world" type="text" />
+
+	<p>Date</p>
+	<app-date-input formControlName="date" />
+
+	<p>Dates</p>
+	<app-depended-dates formControlName="dates" />
+</ng-container>
