@@ -5,6 +5,14 @@ import { NgxTourStepComponent } from '@ngx/tour';
 @Component({
 	selector: 'special-tour-item',
 	standalone: true,
+	styles: `
+		:host {
+			display: block;
+			padding: 10px;
+			background: blue;
+			color: white;
+		}
+	`,
 	template: `
 		<p #stepTitle>
 			{{ title }}
@@ -18,14 +26,6 @@ import { NgxTourStepComponent } from '@ngx/tour';
 		}
 
 		<button (click)="handleInteraction.emit('close')">Close</button>
-	`,
-	styles: `
-		:host {
-			display: block;
-			padding: 10px;
-			background: blue;
-			color: white;
-		}
 	`,
 })
 export class SpecialTourItemComponent extends NgxTourStepComponent {}

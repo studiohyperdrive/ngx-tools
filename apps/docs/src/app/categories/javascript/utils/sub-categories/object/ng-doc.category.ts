@@ -1,9 +1,9 @@
 import { NgDocCategory } from '@ng-doc/core';
-import RxJSCategory from '../../ng-doc.category';
+import UtilsCategory from '../../ng-doc.category';
 
 const ObjectCategory: NgDocCategory = {
 	title: 'Object',
-	category: RxJSCategory,
+	category: UtilsCategory,
 	order: 2,
 };
 
