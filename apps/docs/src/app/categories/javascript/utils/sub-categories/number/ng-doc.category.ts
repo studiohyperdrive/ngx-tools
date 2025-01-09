@@ -1,10 +1,10 @@
 import { NgDocCategory } from '@ng-doc/core';
 import UtilsCategory from '../../ng-doc.category';
 
-const FileCategory: NgDocCategory = {
-	title: 'File',
+const NumberCategory: NgDocCategory = {
+	title: 'Number',
 	category: UtilsCategory,
-	order: 5,
+	order: 4,
 };
 
-export default FileCategory;
+export default NumberCategory;
