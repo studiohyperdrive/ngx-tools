@@ -11,7 +11,7 @@ import { Observable, of, switchMap, take } from 'rxjs';
 export const fetchIf = <DataType, SourceType>(
 	source: Observable<SourceType>,
 	search: (data: SourceType) => DataType | undefined,
-	fetch: () => Observable<DataType>
+	fetch: (data: SourceType) => Observable<DataType>
 ): Observable<DataType> => {
 	// Iben: Grab the source observable and listen to the first emit. This allows the source observable to be updated with the fetch result if so desired
 	return source.pipe(
@@ -21,7 +21,7 @@ export const fetchIf = <DataType, SourceType>(
 			const result = search(data);
 
 			// Iben: If the value is found, return the value. If not, call the fetch function
-			return result !== undefined ? of(result) : fetch();
+			return result !== undefined ? of(result) : fetch(data);
 		})
 	);
 };
