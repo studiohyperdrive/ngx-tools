@@ -5,7 +5,7 @@ const replaceHtmlWhitespacePage: NgDocPage = {
 	title: `replaceHtmlWhitespace`,
 	mdFile: './index.md',
 	category: StringCategory,
-	order: 1,
+	order: 2,
 };
 
 export default replaceHtmlWhitespacePage;

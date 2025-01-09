@@ -5,7 +5,7 @@ const stringComparatorPage: NgDocPage = {
 	title: `stringComparator`,
 	mdFile: './index.md',
 	category: StringCategory,
-	order: 2,
+	order: 4,
 };
 
 export default stringComparatorPage;

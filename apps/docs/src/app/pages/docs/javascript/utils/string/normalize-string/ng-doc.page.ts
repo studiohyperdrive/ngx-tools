@@ -5,7 +5,7 @@ const normalizeStringPage: NgDocPage = {
 	title: `normalizeString`,
 	mdFile: './index.md',
 	category: StringCategory,
-	order: 2,
+	order: 1,
 };
 
 export default normalizeStringPage;
