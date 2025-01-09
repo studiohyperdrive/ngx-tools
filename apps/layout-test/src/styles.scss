@@ -1,6 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 @import '@angular/cdk/overlay-prebuilt.css';
 
+.ngx-navigation-navbar {
+	width: 45px;
+	&.ngx-navigation-navbar-open {
+		width: 300px;
+	}
+}
+
 .ngx-tour-item-active {
 	background: white;
 }

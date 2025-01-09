@@ -1,50 +1,92 @@
 {
-	"compileOnSave": false,
-	"compilerOptions": {
-		"baseUrl": ".",
-		"outDir": "./dist/out-tsc",
-		"forceConsistentCasingInFileNames": true,
-		"noImplicitReturns": true,
-		"noFallthroughCasesInSwitch": true,
-		"sourceMap": true,
-		"declaration": false,
-		"downlevelIteration": true,
-		"experimentalDecorators": true,
-		"moduleResolution": "node",
-		"importHelpers": true,
-		"target": "ES2022",
-		"module": "es2020",
-		"lib": ["es2022", "dom"],
-		"paths": {
-			"@ng-doc/generated": ["./ng-doc/docs/index.ts"],
-			"@ng-doc/generated/*": ["./ng-doc/docs/*"],
-			"@ngx/cookies": ["libs/angular/cookies/src/index.ts"],
-			"@ngx/forms": ["libs/angular/forms/src/public-api.ts"],
-			"@ngx/i18n": ["libs/angular/i18n/src/public-api.ts"],
-			"@ngx/inform": ["libs/angular/inform/src/index.ts"],
-			"@ngx/layout": ["libs/angular/layout/src/public-api.ts"],
-			"@ngx/store": ["libs/angular/store/src/public-api.ts"],
-			"@ngx/table": ["libs/angular/table/src/public-api.ts"],
-			"@ngx/tour": ["libs/angular/tour/src/index.ts"],
-			"@ngx/utils": ["libs/angular/utils/src/public-api.ts"],
-			"@js/pagination": ["libs/javascript/pagination/src/index.ts"],
-			"@js/rxjs": ["libs/javascript/rxjs/src/index.ts"],
-			"@js/utils": ["libs/javascript/utils/src/index.ts"],
-			"@js/regex": ["libs/javascript/regex/src/index.ts"],
-			"@js/testing": ["libs/javascript/testing/src/index.ts"],
-			"@express/status": ["libs/express/status/src/index.ts"],
-			"@studiohyperdrive/ngx-core": ["libs/angular/core/src/index.ts"]
-		},
-		"useDefineForClassFields": false,
-		"skipLibCheck": true,
-		"rootDir": ".",
-		"allowSyntheticDefaultImports": true
-	},
-	"angularCompilerOptions": {
-		"enableI18nLegacyMessageIdFormat": false,
-		"strictInjectionParameters": true,
-		"strictInputAccessModifiers": true,
-		"strictTemplates": true
-	},
-	"exclude": ["node_modules", "tmp"]
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "ES2022",
+    "module": "es2020",
+    "lib": [
+      "es2022",
+      "dom"
+    ],
+    "paths": {
+      "@express/status": [
+        "libs/express/status/src/index.ts"
+      ],
+      "@js/pagination": [
+        "libs/javascript/pagination/src/index.ts"
+      ],
+      "@js/regex": [
+        "libs/javascript/regex/src/index.ts"
+      ],
+      "@js/rxjs": [
+        "libs/javascript/rxjs/src/index.ts"
+      ],
+      "@js/testing": [
+        "libs/javascript/testing/src/index.ts"
+      ],
+      "@js/utils": [
+        "libs/javascript/utils/src/index.ts"
+      ],
+      "@ng-doc/generated": [
+        "./ng-doc/docs/index.ts"
+      ],
+      "@ng-doc/generated/*": [
+        "./ng-doc/docs/*"
+      ],
+      "@ngx/cookies": [
+        "libs/angular/cookies/src/index.ts"
+      ],
+      "@ngx/forms": [
+        "libs/angular/forms/src/public-api.ts"
+      ],
+      "@ngx/i18n": [
+        "libs/angular/i18n/src/public-api.ts"
+      ],
+      "@ngx/inform": [
+        "libs/angular/inform/src/index.ts"
+      ],
+      "@ngx/layout": [
+        "libs/angular/layout/src/public-api.ts"
+      ],
+      "@ngx/store": [
+        "libs/angular/store/src/public-api.ts"
+      ],
+      "@ngx/table": [
+        "libs/angular/table/src/public-api.ts"
+      ],
+      "@ngx/tour": [
+        "libs/angular/tour/src/index.ts"
+      ],
+      "@ngx/utils": [
+        "libs/angular/utils/src/public-api.ts"
+      ],
+      "@studiohyperdrive/ngx-core": [
+        "libs/angular/core/src/index.ts"
+      ]
+    },
+    "useDefineForClassFields": false,
+    "skipLibCheck": true,
+    "rootDir": ".",
+    "allowSyntheticDefaultImports": true
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  },
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }

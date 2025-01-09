@@ -1,0 +1,19 @@
+	<nav
+		class="ngx-navigation-navbar"
+		[class.ngx-navigation-navbar-open]="open || (!openable())">
+		<ul class="ngx-navigation-list">
+			@for (item of items; track item.id) {
+				<li class="ngx-navigation-list-item">
+					 {{item.id}}
+				</li>
+			}
+		</ul>
+
+		@if (openable()) {
+			<button>
+				Open
+			</button>
+		}
+	</nav>
+
+	<ng-content></ng-content>
