@@ -26,4 +26,18 @@ describe('fetchIf', () => {
 			}
 		);
 	});
+
+	it('should have access to the source data in the fetch', async () => {
+		fetchIf(
+			source,
+			(searchData) => {
+				expect(searchData).toEqual([{ id: 'hello' }]);
+				return undefined;
+			},
+			(fetchData) => {
+				expect(fetchData).toEqual([{ id: 'hello' }]);
+				return undefined;
+			}
+		).subscribe();
+	});
 });
