@@ -1,11 +1,11 @@
 import { NgDocPage } from '@ng-doc/core';
 import { StringCategory } from '../../../../../../categories/javascript';
 
-const replaceHtmlWhitespacePage: NgDocPage = {
-	title: `replaceHtmlWhitespace`,
+const normalizeStringPage: NgDocPage = {
+	title: `normalizeString`,
 	mdFile: './index.md',
 	category: StringCategory,
-	order: 2,
+	order: 1,
 };
 
-export default replaceHtmlWhitespacePage;
+export default normalizeStringPage;
