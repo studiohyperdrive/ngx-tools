@@ -12,6 +12,9 @@ The getKeyByValue helper function will search for a key within an object, based 
 ### `*mergePage`
 Merges all arguments into a single object, as long as the property has a value.
 
+### `*searchRecursivelyPage`
+Searches recursively over a nested list of items.
+
 ## String
 
 A set of String based helpers.
