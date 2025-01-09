@@ -1,5 +1,5 @@
 ---
-keyword: openFile
+keyword: openFilePage
 ---
 
 The openFile helper function will download the provided blob, with the given name.

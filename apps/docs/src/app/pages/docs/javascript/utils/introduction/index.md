@@ -27,3 +27,19 @@ Returns the filtered html as a string that has replaced the non-breakable whites
 
 ### `*stringComparatorPage`
 Compares two strings alphabetically using localeCompare.
+
+
+## Number
+
+A set of Number based helpers.
+
+### `*inRangePage`
+Checks if the provided value is in range of the provided minimum and maximum value.
+
+
+## File
+
+A set of File based helpers.
+
+### `*openFilePage`
+Downloads the provided blob, with the given name.
