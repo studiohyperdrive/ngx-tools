@@ -33,7 +33,7 @@ jobs:
 
       # Build the documentation
       - name: Build Documentation
-        run: npx nx run docs:build --prerender=true --server="apps/docs/server.ts" --baseHref="./"
+        run: npx nx run docs:build --prerender=true --server="apps/docs/server.ts" --baseHref="https://open-source.studiohyperdrive.be/"
 
   
       - name: Upload static files as artifact
