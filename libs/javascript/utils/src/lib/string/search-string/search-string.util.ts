@@ -21,28 +21,28 @@ const searchValueFor = (
 	caseInsensitive = true,
 	searchFor: 'every' | 'some'
 ): boolean => {
-	// No searchTerm to search for, so this will always match
+	// Femke: No searchTerm to search for, so this will always match
 	if (!searchTerm.trim()) {
 		return true;
 	}
 
-	// No value to search, nothing will ever match
+	// Femke: No value to search, nothing will ever match
 	if (!value) {
 		return false;
 	}
 
-	// Split the searchTerm on space and filter empty values (eg multiple spaces next to each other) out
+	// Femke: Split the searchTerm on space and filter empty values (eg multiple spaces next to each other) out
 	const splitSearchTerm = searchTerm.split(' ').filter((item) => !!item);
 
-	// Normalizing the value
+	// Femke: Normalizing the value
 	const normalizedValue = normalizeString(value);
 
 	const searchFunction = (searchText) => {
-		// If we want to search normalized, we first normalize both the value and the searchTerm
+		// Femke: If we want to search normalized, we first normalize both the value and the searchTerm
 		const usableValue = normalized ? normalizedValue : value;
 		const usableSearchText = normalized ? normalizeString(searchText) : searchText;
 
-		// Putting everything lowerCase when searching case insensitive
+		// Femke: Putting everything lowerCase when searching case-insensitive
 		if (caseInsensitive) {
 			return usableValue.toLowerCase().includes(usableSearchText.toLowerCase());
 		}
