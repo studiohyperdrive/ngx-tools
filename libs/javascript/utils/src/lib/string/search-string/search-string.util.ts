@@ -66,8 +66,11 @@ const searchValueFor = (
 		return usableValue.includes(usableSearchText);
 	};
 
+	// Femke: Searching only for partial matches of the searchTerm
 	if (searchFor === 'some') {
 		return splitSearchTerm.some(searchFunction);
 	}
+
+	// Femke: Searching for all matches of the searchTerm
 	return splitSearchTerm.every(searchFunction);
 };
