@@ -1,11 +1,3 @@
-:host {
-	height: 100vh;
-}
-
-:root {
-	overflow: hidden;
-}
-
 ngx-configurable-layout {
 	background-color: rgb(242, 242, 242);
 }
@@ -65,10 +57,10 @@ nav {
 }
 
 .header-overlay {
-	position: sticky;
+	position: fixed;
 	top: 0;
 	left: 0;
-	width: 100%;
+	width: 110%;
 	background-color: rgba(173, 216, 230, 0.85);
 	z-index: 1;
 	height: 90px;

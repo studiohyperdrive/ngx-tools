@@ -7,6 +7,14 @@ h3 {
 	font-family: 'Space Grotesk', sans-serif !important;
 }
 
+html {
+	// NgDoc sets this by default to overflow-y: scroll; overflow-x: hidden;
+	// This interferes with the demo for the tour and seem to server no purpose what so ever
+	// Resetting this to what it is initially keeps the scrolling working for the docs and fixes the tour demo
+	overflow-y: initial;
+	overflow-x: initial;
+}
+
 :root {
 	color-scheme: light dark;
 	--ng-doc-text-selection: rgba(187, 14, 253, 0.3) !important;
