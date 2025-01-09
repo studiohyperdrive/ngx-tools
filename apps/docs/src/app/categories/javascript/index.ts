@@ -9,6 +9,7 @@ import UtilsCategory from './utils/ng-doc.category';
 import ObjectCategory from './utils/sub-categories/object/ng-doc.category';
 import StringCategory from './utils/sub-categories/string/ng-doc.category';
 import FileCategory from './utils/sub-categories/file/ng-doc.category';
+import NumberCategory from './utils/sub-categories/number/ng-doc.category';
 import JavascriptCategory from './ng-doc.category';
 
 export {
@@ -24,4 +25,5 @@ export {
 	ObjectCategory,
 	StringCategory,
 	FileCategory,
+	NumberCategory,
 };
