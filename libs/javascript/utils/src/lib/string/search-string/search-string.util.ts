@@ -1,5 +1,13 @@
 import { normalizeString } from '../normalize-string/normalize-string.util';
 
+/**
+ * Searches a given value for any potential matches
+ *
+ * @param value - The value to search
+ * @param searchTerm - The value we want to use for searching (will be splitted on space)
+ * @param normalized - Should the search be done on normalized values?
+ * @param caseInsensitive - Should the search be done case-sensitive or not?
+ */
 export const searchValueForSome = (
 	value: string | undefined | null,
 	searchTerm: string,
@@ -7,6 +15,14 @@ export const searchValueForSome = (
 	caseInsensitive = true
 ): boolean => searchValueFor(value, searchTerm, normalized, caseInsensitive, 'some');
 
+/**
+ * Searches a given value for all potential matches
+ *
+ * @param value - The value to search
+ * @param searchTerm - The value we want to use for searching (will be splitted on space)
+ * @param normalized - Should the search be done on normalized values?
+ * @param caseInsensitive - Should the search be done case-sensitive or not?
+ */
 export const searchValueForEvery = (
 	value: string | undefined | null,
 	searchTerm: string,
