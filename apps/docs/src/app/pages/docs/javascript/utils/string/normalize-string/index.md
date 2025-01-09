@@ -1,5 +1,5 @@
 ---
-keyword: normalizeString
+keyword: normalizeStringPage
 ---
 
 The normalizeString helper will replace all special characters to their normal counterparts
