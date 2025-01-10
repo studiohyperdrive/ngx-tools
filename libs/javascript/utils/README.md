@@ -1,55 +1,25 @@
-# Utilities (`@studiohyperdrive/utils`)
+# Javascript Tools: Utils (`@studiohyperdrive/utils`)
+
+`@studiohyperdrive/utils` is a set of common Javascript based utils.
+
+## Installation
 
 Install the package first:
+
 ```shell
 npm install @studiohyperdrive/utils
 ```
 
-## 1. Object
+## Versioning and build information
 
-A set of Object based helpers.
+This package will follow a semver-like format, `major.minor.patch`, in which:
 
-### getKeyByValue
-The getKeyByValue helper function will search for a key within an object, based on the provided value.
+-   `major`: Introduces new features or breaking changes
+-   `minor`: Introduces minor non-breaking changes
+-   `patch`: Introduces bugfixes 
 
-[Full documentation.](./docs/object/get-key-by-value/get-key-by-value.util.md)
+For more information about the build process, authors, contributions and issues, we refer to the [hyperdrive-opensource](https://github.com/studiohyperdrive/hyperdrive-opensource) repository.
 
-### merge
-Merges all arguments into a single object, as long as the property has a value.
+## Documentation
 
-[Full documentation.](./docs/object/merge/merge.util.md)
-
-## 2. String
-
-A set of String based helpers.
-
-### camelCaseToSentence
-Converts a camelCase string to a human-readable sentence.
-
-[Full documentation.](./docs/string/camel-case-to-sentence/camel-case-to-sentence.util.md)
-
-### replaceHtmlWhitespace
-Returns the filtered html as a string that has replaced the non-breakable whitespaces with regular spaces.
-
-[Full documentation.](./docs/string/replace-whitespace/replace-whitespace.util.md)
-
-### stringComparator
-Compares two strings alphabetically using localeCompare.
-
-[Full documentation.](./docs/string/string-comparator/string-comparator.util.md)
-
-## build information
-This project has been build with:
-- nodejs: `18.17.0`
-- npm: `9.6.7`
-
-For a complete list of packages and version check out the `package.json` file.
-
-## Team
-
-This bundle of tools has been created and is maintained by [Studio Hyperdrive](https://studiohyperdrive.be).
-
-Contributors:
-- [Denis Valcke](https://github.com/DenisValcke)
-- [Iben Van de Veire](https://github.com/IbenTesara)
-- [Wouter Heirstrate](https://github.com/WHeirstrate)
+To find more information regarding this package, we refer to [our documentation platform](https://open-source.studiohyperdrive.be/docs/javascript/utils/introduction).
