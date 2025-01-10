@@ -1,4 +1,8 @@
-# Utilities (`@studiohyperdrive/utils`)
+# Javascript Tools: Testing (`@studiohyperdrive/testing`)
+
+`@studiohyperdrive/testing` is a set of common testing utils.
+
+## Installation
 
 Install the package first:
 
@@ -6,35 +10,16 @@ Install the package first:
 npm install @studiohyperdrive/testing
 ```
 
-## 1. Factories
+## Versioning and build information
 
-A set of functions that will generate test cases.
+This package will follow a semver-like format, `major.minor.patch`, in which:
 
-### earlyReturnOnFalsyValue
+-   `major`: Introduces new features or breaking changes
+-   `minor`: Introduces minor non-breaking changes
+-   `patch`: Introduces bugfixes 
 
-Test clause factory that will check if a provided falsy argument returns in an early return (undefined).
+For more information about the build process, authors, contributions and issues, we refer to the [hyperdrive-opensource](https://github.com/studiohyperdrive/hyperdrive-opensource) repository.
 
-[Full documentation.](./docs/factories/early-return-on-falsy-value/early-return-on-falsy-value.md)
+## Documentation
 
-### earlyReturnEmptyArrayValue
-
-Test clause factory that will check if a provided non-array or empty array argument returns in an early return with empty array.
-
-[Full documentation.](./docs/factories/early-return-empty-array-value/early-return-empty-array-value.md)
-
-## build information
-
-This project has been build with:
-
--   nodejs: `18.17.0`
--   npm: `9.6.7`
-
-For a complete list of packages and version check out the `package.json` file.
-
-## Team
-
-This bundle of tools has been created and is maintained by [Studio Hyperdrive](https://studiohyperdrive.be).
-
-Contributors:
-
--   [Denis Valcke](https://github.com/DenisValcke)
+To find more information regarding this package, we refer to [our documentation platform](https://open-source.studiohyperdrive.be/docs/javascript/testing/introduction).
