@@ -1,29 +1,25 @@
-# Regex Common patterns (`@studiohyperdrive/regex-common`)
+# Javascript Tools: Regex (`@studiohyperdrive/regex-common`)
+
+`@studiohyperdrive/regex-common` is a set of common regex patterns.
+
+## Installation
 
 Install the package first:
+
 ```shell
-npm install @studiohyperdrive/regex-common
+npm install @studiohyperdrive/nodejs-hal-tools
 ```
 
-## 1. Expressions
+## Versioning and build information
 
-A set of common regex patterns.
+This package will follow a semver-like format, `major.minor.patch`, in which:
 
-### bePhoneBinFormatted
-A set of regex patterns to test a Belgian mobile phone or landline through BIN formatting.
+-   `major`: Introduces new features or breaking changes
+-   `minor`: Introduces minor non-breaking changes
+-   `patch`: Introduces bugfixes 
 
-[Full documentation.](./docs/patterns/regional/be-phone-bin-formatted.md)
+For more information about the build process, authors, contributions and issues, we refer to the [hyperdrive-opensource](https://github.com/studiohyperdrive/hyperdrive-opensource) repository.
 
-## build information
-This project has been build with:
-- nodejs: `18.17.0`
-- npm: `9.6.7`
+## Documentation
 
-For a complete list of packages and version check out the `package.json` file.
-
-## Team
-
-This bundle of tools has been created and is maintained by [Studio Hyperdrive](https://studiohyperdrive.be).
-
-Contributors:
-- [Denis Valcke](https://github.com/DenisValcke)
+To find more information regarding this package, we refer to [our documentation platform](https://open-source.studiohyperdrive.be/docs/javascript/pagination/introduction).
