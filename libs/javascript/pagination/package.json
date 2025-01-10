@@ -1,20 +1,20 @@
 {
   "name": "@studiohyperdrive/nodejs-hal-tools",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "A NodeJs based approach to pagination based on the HAL standards.",
   "keywords": [
     "pagination",
     "hal",
     "nodejs"
   ],
-  "homepage": "https://github.com/studiohyperdrive/ngx-tools/tree/master/libs/javascript/pagination",
+  "homepage": "https://open-source.studiohyperdrive.be/docs/javascript/pagination/introduction",
   "author": {
     "name": "Studio Hyperdrive",
     "url": "https://studiohyperdrive.be/"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/studiohyperdrive/ngx-tools",
+    "url": "https://github.com/studiohyperdrive/hyperdrive-opensource",
     "directory": "libs/javascript/pagination/src"
   },
   "license": "MIT",
