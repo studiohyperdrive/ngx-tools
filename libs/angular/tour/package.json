@@ -1,6 +1,6 @@
 {
 	"name": "@studiohyperdrive/ngx-tour",
-	"version": "18.5.0",
+	"version": "19.0.0",
 	"description": "A lightweight and customizable Angular help tour approach using Angular CDK.",
 	"keywords": [
 		"angular",
@@ -17,7 +17,7 @@
 		"wai aria",
 		"accessibility"
 	],
-	"homepage": "https://github.com/studiohyperdrive/ngx-tools/tree/master/libs/angular/tour",
+	"homepage": "https://open-source.studiohyperdrive.be/docs/angular/tour/introduction",
 	"license": "MIT",
 	"author": {
 		"name": "Studio Hyperdrive",
@@ -25,7 +25,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/studiohyperdrive/ngx-tools",
+		"url": "https://github.com/studiohyperdrive/hyperdrive-opensource",
 		"directory": "libs/angular/tour/src"
 	},
 	"peerDependencies": {
