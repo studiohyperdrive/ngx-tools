@@ -1,6 +1,6 @@
 {
 	"name": "@studiohyperdrive/ngx-utils",
-	"version": "18.4.1",
+	"version": "19.0.0",
 	"description": "A series of abstracts, utils, pipes and services for Angular applications.",
 	"keywords": [
 		"angular",
@@ -38,7 +38,7 @@
 		"replace elements",
 		"web components"
 	],
-	"homepage": "https://github.com/studiohyperdrive/ngx-tools/tree/master/libs/angular/utils",
+	"homepage": "https://open-source.studiohyperdrive.be/docs/angular/utils/installation",
 	"license": "MIT",
 	"author": {
 		"name": "Studio Hyperdrive",
@@ -46,7 +46,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/studiohyperdrive/ngx-tools",
+		"url": "https://github.com/studiohyperdrive/hyperdrive-opensource",
 		"directory": "libs/angular/utils/src"
 	},
 	"peerDependencies": {
