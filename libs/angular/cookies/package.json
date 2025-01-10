@@ -1,6 +1,6 @@
 {
   "name": "@studiohyperdrive/ngx-cookies",
-  "version": "18.0.1",
+  "version": "19.0.0",
   "description": "An integrated Angular approach to the vanilla cookieconsent library.",
   "keywords": [
     "angular",
@@ -10,7 +10,7 @@
     "cookieconsent",
     "consent"
   ],
-  "homepage": "https://github.com/studiohyperdrive/ngx-tools/tree/master/libs/angular/cookies",
+  "homepage": "https://open-source.studiohyperdrive.be/docs/angular/cookies/introduction",
   "license":"MIT",
   "author": {
     "name": "Studio Hyperdrive",
@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/studiohyperdrive/ngx-tools",
+    "url": "https://github.com/studiohyperdrive/hyperdrive-opensource",
     "directory": "libs/angular/cookies/src"
   },
   "peerDependencies": {
