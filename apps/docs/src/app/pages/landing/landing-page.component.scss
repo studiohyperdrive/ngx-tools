@@ -56,6 +56,7 @@ div.landing {
 			max-width: 1024px;
 			padding: 0 1rem;
 			margin: auto;
+			display: grid;
 			h1 {
 				margin: 4rem 0 4rem 0;
 				font-size: 2.8rem;
@@ -65,9 +66,6 @@ div.landing {
 				}
 			}
 			h2 {
-				justify-self: end;
-				padding: 0 1rem;
-				align-self: start;
 				font-size: 1.4rem;
 				margin-bottom: 4rem;
 			}
@@ -153,6 +151,10 @@ div.landing {
 							#38cfff 51.04%,
 							#f872c2 98.69%
 						);
+						clip-path: inset(0 100% 0 0);
+						transition: clip-path 1s ease-in-out 50ms;
+					}
+					div.expanded {
 						clip-path: inset(0 0 0 0);
 					}
 				}
@@ -206,7 +208,9 @@ div.landing {
 							height: 1.5rem;
 							display: block;
 							padding: 0.25rem 0.5rem;
-							transition: background-color 0.3s, border 0.3s;
+							transition:
+								background-color 0.3s,
+								border 0.3s;
 							img {
 								display: block;
 								width: 100%;
@@ -246,6 +250,8 @@ div.landing {
 					}
 				}
 				h2 {
+					padding: 0 1rem;
+					justify-self: end;
 					width: 75%;
 					margin-bottom: 6rem;
 					text-align: right;
