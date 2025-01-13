@@ -94,8 +94,8 @@
 					employees has grown into an active open source ecosystem powered by the
 					ingenuity of our team and the broader developer community.
 				</p>
-				<div #photo class="photo">
-					<div [@slideIn]="clipPhotoLine ? 'hide' : 'show'" class="line"></div>
+				<div class="photo" #photo>
+					<div class="line" [class.expanded]="clipPhotoLine"></div>
 				</div>
 				<p class="extra-margin">
 					Since the launch in <b>2021</b>, we’ve already created <b>16 packages</b> for
@@ -155,14 +155,14 @@
 					for Angular applications, our packages have something to offer. And if not, stay
 					tuned. We’re working every day on expanding them.
 				</p>
-				<div #quote class="quote">
+				<div class="quote" #quote>
 					<p>
 						“By switching our mindset from one-off to more robust solutions, we are now
 						working together across projects, which has had a remarkable impact on the
 						quality of our code and developer happiness.”
 					</p>
 					<cite>Denis Valcke, lead developer and project founder.</cite>
-					<div [@slideIn]="clipQuoteLine ? 'hide' : 'show'" class="line"></div>
+					<div class="line" [class.expanded]="clipQuoteLine"></div>
 				</div>
 			</div>
 		</section>
