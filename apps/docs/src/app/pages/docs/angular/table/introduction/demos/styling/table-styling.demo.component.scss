@@ -1,0 +1,87 @@
+:host {
+
+	.content {
+		display: inline-block;
+		width: 100%;
+		word-break: break-all;
+	}
+
+	.Simple {
+		::ng-deep {
+			.ngx-table-cell {
+				border-right: none;
+			}
+
+			table {
+				border-left: none;
+				border-top: none;
+			}
+		}
+	}
+
+	.Modern {
+		::ng-deep {
+			.ngx-table-cell {
+				border-right: none;
+				border-bottom: none;
+			}
+
+			table {
+				border: none;
+			}
+
+			.ngx-table-row-even {
+				background-color: #f0f4f5;
+			}
+		}
+	}
+
+	.Classic {
+		::ng-deep {
+			.cdk-header-cell {
+				background-color: #5b767a;
+				color: white;
+				font-weight: bold;
+			}
+
+			.ngx-table-row-even {
+				background-color: #f0f4f5;
+			}
+		}
+	}
+
+	.Hyperdrive {
+		::ng-deep {
+			.cdk-header-row {
+				background-image: linear-gradient(15deg, #6e3e70 40%, #308497);
+				color: white;
+				font-weight: bold;
+				border-radius: 5px;
+				text-transform: uppercase;
+			}
+
+			.ngx-table-cell {
+				border-right: none;
+				border-bottom: none;
+			}
+
+			table {
+				border-top: none;
+				border: 1px solid white;
+				border-radius: 5px;
+			}
+
+			.ngx-table-row-even {
+				background-color: #f0f4f5;
+			}
+
+			.ngx-table-row {
+				.ngx-table-cell {
+					&:first-child {
+						font-weight: bold;
+					}
+				}
+			}
+		}
+	}
+}

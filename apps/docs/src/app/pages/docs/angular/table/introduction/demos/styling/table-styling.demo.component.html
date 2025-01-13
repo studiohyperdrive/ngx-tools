@@ -1,0 +1,42 @@
+<ngx-table [class]="Styling" [columns]="['name', 'email', 'phone', 'country']" [data]="data()">
+	<ngx-table-cell column="name">
+		<ng-template #headerTmpl>
+			User
+		</ng-template>
+		<ng-template #cellTmpl let-item>
+			<span class="content">
+				{{item}}
+			</span>
+		</ng-template>
+	</ngx-table-cell>
+	<ngx-table-cell column="email">
+		<ng-template #headerTmpl>
+			E-mail
+		</ng-template>
+		<ng-template #cellTmpl let-item>
+			<span class="content">
+				{{item}}
+			</span>
+		</ng-template>
+	</ngx-table-cell>
+	<ngx-table-cell column="phone">
+		<ng-template #headerTmpl>
+			Phone
+		</ng-template>
+		<ng-template #cellTmpl let-item>
+			<span class="content">
+				{{item}}
+			</span>
+		</ng-template>
+	</ngx-table-cell>
+	<ngx-table-cell column="country">
+		<ng-template #headerTmpl>
+			Location
+		</ng-template>
+		<ng-template #cellTmpl let-item>
+			<span class="content">
+				{{item}}
+			</span>
+		</ng-template>
+	</ngx-table-cell>
+</ngx-table>

@@ -1,7 +1,7 @@
 import { NgDocPage } from '@ng-doc/core';
 
 import { TableCategory } from '../../../../../categories/angular';
-import { TableIntroductionDemoComponent } from './demos';
+import { NgxTableStylingDemoComponent, NgxTableConfigurationDemoComponent } from './demos';
 
 const IntroductionPage: NgDocPage = {
 	title: `Introduction`,
@@ -9,13 +9,16 @@ const IntroductionPage: NgDocPage = {
 	category: TableCategory,
 	order: 0,
 	playgrounds: {
-		TablePlayground: {
-			target: TableIntroductionDemoComponent,
+		TableStylingPlayground: {
+			target: NgxTableStylingDemoComponent,
 			template: '<ng-doc-selector></ng-doc-selector>',
 			defaults: {
-				mode: 'simple',
-				selectable: false,
+				Styling: 'Hyperdrive',
 			},
+		},
+		TableConfigurationPlayground: {
+			target: NgxTableConfigurationDemoComponent,
+			template: '<ng-doc-selector></ng-doc-selector>',
 		},
 	},
 };
