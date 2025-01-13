@@ -1,1 +1,2 @@
-export * from './table-introduction/table-introduction.demo.component';
+export * from './styling/table-styling.demo.component';
+export * from './configuration/table-configuration.demo.component';
