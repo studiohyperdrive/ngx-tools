@@ -11,24 +11,15 @@ By default it will:
 * put `class="mark-highlight"` on to the element
 
 This configuration can be overwritten with a config object:
-* normalized
-    * false: search as is
-    * **true**: see `*normalizeStringPage` (default)
-* caseInsensitive
-  * false: search case specific
-  * **true**: ignore lower and uppercase (default)
-* splitTextToHighlight
-  * **false**: use the entire string as is (default)
-  * true: split this value on space and search for the parts
-* someOrEveryMatch
-  * "some": Only highlight the first found match
-  * **"every"**: Highlight every match (default)
-* tag
-  * The element you want to use to wrap the highlight
-  * If no element is provided, it will fallback to `<mark>`
-* highlightClass
-  * the class put on the element for more specific styling if needed
-  * If no class is provided, it will fallback to `"mark-highlight"`
+
+| Property   | Type                | Default | Options                                                                                                                                     |
+| ---------- |---------------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------|
+| normalized | `boolean`           | `true`  | <p>When `true`, see *normalizeStringPage* for the behaviour.</p>When `false`, the values will be searched within the provided string as is. |
+| caseInsensitive | `boolean`           | `true`  | <p>When `true`, ignore lower and uppercase.</p>When `false`, search case specific.                                                          |
+| splitTextToHighlight | `boolean`           | `false` | <p>When `true`, split this value on space and search for the parts</p>When `false`, use the entire string as is.                            |
+| someOrEveryMatch | `"some" \| "every"` | `true`  | <p>When `"some"`, Only highlight the first found match.</p>When `"every"`, highlight every match.                                           |
+| tag | `string`            | `"mark"`  | The element you want to use to wrap the highlight. If no element is provided, it will fallback to `<mark>`                                  |
+| highlightClass | `string`           | `"mark-highlight"`  | the class put on the element for more specific styling if needed. If no class is provided, it will fallback to `"mark-highlight"`                                                                          |
 
 ## How to use
 
