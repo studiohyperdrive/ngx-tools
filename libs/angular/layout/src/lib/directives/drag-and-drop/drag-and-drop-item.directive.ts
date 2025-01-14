@@ -8,6 +8,7 @@ import {
 	Output,
 	signal,
 	WritableSignal,
+	OnInit,
 } from '@angular/core';
 import { CdkDropList } from '@angular/cdk/drag-drop';
 
@@ -30,7 +31,10 @@ import { NgxAccessibleDragAndDropHostDirective } from './drag-and-drop-host.dire
 		'[attr.tabIndex]': 'tabIndex()',
 	},
 })
-export class NgxAccessibleDragAndDropItemDirective extends NgxAccessibleAbstractDragAndDropItemDirective {
+export class NgxAccessibleDragAndDropItemDirective
+	extends NgxAccessibleAbstractDragAndDropItemDirective
+	implements OnInit
+{
 	/**
 	 * The tab index of the item
 	 */
