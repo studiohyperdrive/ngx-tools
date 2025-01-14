@@ -92,21 +92,25 @@ export class NgxAccessibleDragAndDropItemDirective
 	/**
 	 * The index of the draggable item
 	 */
+	// eslint-disable-next-line @angular-eslint/no-input-rename
 	@Input({ required: true, alias: 'ngxAccessibleDragAndDropItemIndex' }) public itemIndex: number;
 
 	/**
 	 * An unique id of the draggable item
 	 */
+	// eslint-disable-next-line @angular-eslint/no-input-rename
 	@Input({ required: true, alias: 'ngxAccessibleDragAndDropItemId' }) public itemId: string;
 
 	/**
 	 * An optional label for the draggable item
 	 */
+	// eslint-disable-next-line @angular-eslint/no-input-rename
 	@Input({ alias: 'ngxAccessibleDragAndDropLabel' }) public label: string;
 
 	/**
 	 * Whether the draggable item  is disabled
 	 */
+	// eslint-disable-next-line @angular-eslint/no-input-rename
 	@Input({ alias: 'ngxAccessibleDragAndDropDisabled' }) public set disabled(isDisabled: boolean) {
 		this.tabIndex.set(isDisabled ? -1 : 0);
 	}
