@@ -1,5 +1,5 @@
+import { HighlightConfig } from '../../types';
 import { HighlightPipe } from './highlight.pipe';
-import { HighlightConfig } from '@ngx/utils';
 
 describe('HighlightPipe', () => {
 	let pipe: HighlightPipe;

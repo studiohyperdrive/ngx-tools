@@ -20,7 +20,8 @@ export class HighlightPipeCustomDemoComponent implements OnChanges {
 
 	public config: HighlightConfig = {};
 
-	public readonly value = 'In this p there is a text to highlight. To showcase we can also search on accents here we have some words with those: piñata, résumé, déjà vu, maître d\', haček' ;
+	public readonly value =
+		"In this p there is a text to highlight. To showcase we can also search on accents here we have some words with those: piñata, résumé, déjà vu, maître d', haček";
 
 	ngOnChanges(changes: SimpleChanges) {
 		if (
