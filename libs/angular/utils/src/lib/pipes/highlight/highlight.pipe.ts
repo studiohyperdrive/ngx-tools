@@ -5,7 +5,6 @@ import { HighlightConfig } from '../../types';
 
 @Pipe({
 	name: 'highlight',
-	standalone: true,
 })
 export class HighlightPipe implements PipeTransform {
 	/**
