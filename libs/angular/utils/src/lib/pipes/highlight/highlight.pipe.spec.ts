@@ -56,6 +56,12 @@ describe('HighlightPipe', () => {
 			highlightClass,
 		});
 		expect(result).toEqual('t<div class="custom-class">es</div>t');
+
+		result = pipe.transform('test', 'es', {
+			tag,
+			highlightClass: '',
+		});
+		expect(result).toEqual('t<div>es</div>t');
 	});
 
 	it('should search normalized based on the given config', () => {

@@ -76,27 +76,27 @@ export class HighlightPipe implements PipeTransform {
 		}
 
 		const regEx = new RegExp(usableHighlight, regexFlags);
+		const usableClass = highlightClass ? ` class="${highlightClass}"` : '';
 
 		// Femke: Use a custom replacer so we can update our marked indices in case we found a match with our regex
-		let replacedResult = usableValue.replace(regEx, (match, index) => {
+		let replacedResult = usableValue.replace(regEx, (match, index: number) => {
 			if (!match) {
 				return '';
 			}
 
-			const indexAsNumber = index as number;
-			const endIndex = indexAsNumber + match.length;
+			const endIndex = index + match.length;
 			// Femke: we are using the original text here to make sure we have the original accent characters within the highlight
-			const result = `<${tag} class="${highlightClass}">${value.substring(indexAsNumber, indexAsNumber + match.length)}</${tag}>`;
+			const result = `<${tag}${usableClass}>${value.substring(index, index + match.length)}</${tag}>`;
 
 			// Femke: filter out all changed indices that lay withing the range of our current match
 			changedIndices = changedIndices.filter(
-				(item) => !(indexAsNumber <= item.original && item.original < endIndex)
+				(item) => !(index <= item.original && item.original < endIndex)
 			);
 
 			// Femke: update all found indices if they lay after the current replacement string
 			// Femke: we are however keeping the original position to know with what we need to replace the character later on
 			changedIndices = changedIndices.map((changedIndex) => {
-				if (indexAsNumber >= changedIndex.original) {
+				if (index >= changedIndex.original) {
 					return changedIndex;
 				} else {
 					// Femke: take the current updated position (in case of multiple hits before this index
