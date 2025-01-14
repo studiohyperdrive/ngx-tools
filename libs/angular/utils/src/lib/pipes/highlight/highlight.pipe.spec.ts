@@ -34,7 +34,7 @@ describe('HighlightPipe', () => {
 		expect(result).toEqual('');
 	});
 
-	it('tag and class config', () => {
+	it('should use the tag and class based on the given config', () => {
 		const tag = 'div';
 		const highlightClass = 'custom-class';
 
@@ -58,7 +58,7 @@ describe('HighlightPipe', () => {
 		expect(result).toEqual('t<div class="custom-class">es</div>t');
 	});
 
-	it('normalization', () => {
+	it('should search normalized based on the given config', () => {
 		let result = pipe.transform('sôme vâlue hérè', 'value');
 		expect(result).toEqual('sôme <mark class="mark-highlight">vâlue</mark> hérè');
 
@@ -76,7 +76,7 @@ describe('HighlightPipe', () => {
 		expect(result).toEqual('sôme <mark class="mark-highlight">vâlue</mark> hérè');
 	});
 
-	it('case sensitivity', () => {
+	it('should search case-sensitive based on the given config', () => {
 		let result = pipe.transform('test', 'es');
 		expect(result).toEqual('t<mark class="mark-highlight">es</mark>t');
 
@@ -90,7 +90,7 @@ describe('HighlightPipe', () => {
 		expect(result).toEqual('T<mark class="mark-highlight">E</mark>ST');
 	});
 
-	it('split text to highlight', () => {
+	it('should split text to highlight based on the given config', () => {
 		let result = pipe.transform('some value here', 'some here');
 		expect(result).toEqual('some value here');
 
@@ -123,7 +123,7 @@ describe('HighlightPipe', () => {
 		expect(result).toEqual('some value here');
 	});
 
-	it('highlight only first or all matches', () => {
+	it('should highlight only first or all matches based on the given config', () => {
 		let result = pipe.transform('some value here', ' ');
 		expect(result).toEqual(
 			'some<mark class="mark-highlight"> </mark>value<mark class="mark-highlight"> </mark>here'
