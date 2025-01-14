@@ -38,13 +38,9 @@ export class HighlightPipe implements PipeTransform {
 			return value;
 		}
 
-		// Femke: Normalize all characters => é â ö etc will be replaced with e a o
-		const normalizedValue = normalizeString(value);
-		const normalizedHighlight = normalizeString(highlight);
-
-		// Femke: determine which value to use (normalized or not)
-		const usableValue = normalized ? normalizedValue : value;
-		let usableHighlight = (normalized ? normalizedHighlight : highlight)
+		// Femke: determine which value to use (normalized or not => é â ö etc will be replaced with e a o)
+		const usableValue = normalized ? normalizeString(value) : value;
+		let usableHighlight = (normalized ? normalizeString(highlight) : highlight)
 			// Femke: escape all regex characters
 			.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
