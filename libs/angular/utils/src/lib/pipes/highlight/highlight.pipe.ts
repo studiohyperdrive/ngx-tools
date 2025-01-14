@@ -13,12 +13,12 @@ export class HighlightPipe implements PipeTransform {
 	 * @param value - The full text with the part we wish to highlight
 	 * @param highlight - The part of the text we wish to highlight
 	 * @param config - The configuration to determine if we want to normalize the values, to be case-sensitive, which tag and/or class to use for the highlight
-	 * @param config.normalized - search for matches should be normalized. Default = true
-	 * @param config.caseInsensitive - search for matches should be caseInsensitive. Default = true
-	 * @param config.splitTextToHighlight - text to highlight should be split on space. Default = false
-	 * @param config.someOrEveryMatch - highlight only the first match or all matches. Default = 'every'
-	 * @param config.tag - tag used to highlight. Default = 'mark'
-	 * @param config.highlightClass - class used to highlight. Default = 'mark-highlight'
+	 * @param config.normalized - Default = true
+	 * @param config.caseInsensitive - Default = true
+	 * @param config.splitTextToHighlight - Default = false
+	 * @param config.someOrEveryMatch - Default = 'every'
+	 * @param config.tag - Default = 'mark'
+	 * @param config.highlightClass - Default = 'mark-highlight'
 	 */
 	public transform(
 		value: string | null,
