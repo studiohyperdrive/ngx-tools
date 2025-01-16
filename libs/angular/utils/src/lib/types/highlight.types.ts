@@ -8,7 +8,7 @@
  * @property tag - tag used to highlight
  * @property highlightClass - class used to highlight
  */
-export interface HighlightConfig {
+export interface NgxHighlightConfiguration {
 	normalized?: boolean;
 	caseInsensitive?: boolean;
 	someOrEveryMatch?: 'some' | 'every';

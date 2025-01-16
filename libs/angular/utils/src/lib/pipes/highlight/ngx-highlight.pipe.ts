@@ -1,12 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { normalizeString } from '@studiohyperdrive/utils';
 
-import { HighlightConfig } from '../../types';
+import { NgxHighlightConfiguration } from '../../types';
 
 @Pipe({
 	name: 'highlight',
 })
-export class HighlightPipe implements PipeTransform {
+export class NgxHighlightPipe implements PipeTransform {
 	/**
 	 * Highlights the provided substring of a text with a chosen dom element
 	 *
@@ -18,12 +18,12 @@ export class HighlightPipe implements PipeTransform {
 	 * @param config.splitTextToHighlight - Default = false
 	 * @param config.someOrEveryMatch - Default = 'every'
 	 * @param config.tag - Default = 'mark'
-	 * @param config.highlightClass - Default = 'mark-highlight'
+	 * @param config.highlightClass - Default = 'ngx-mark-highlight'
 	 */
 	public transform(
 		value: string | null,
 		highlight: string | null,
-		config?: HighlightConfig | null
+		config?: NgxHighlightConfiguration | null
 	): string {
 		// Femke: Setup configuration or defaults
 		const normalized = config?.normalized ?? true;
@@ -31,7 +31,7 @@ export class HighlightPipe implements PipeTransform {
 		const splitTextToHighlight = config?.splitTextToHighlight ?? false;
 		const someOrEveryMatch = config?.someOrEveryMatch || 'every';
 		const tag = config?.tag || 'mark';
-		const highlightClass = config?.highlightClass ?? 'mark-highlight';
+		const highlightClass = config?.highlightClass ?? 'ngx-mark-highlight';
 
 		// Femke: Early exit if there's no value/highlight or the value/highlight is not a string
 		if (!value || !highlight || typeof value !== 'string' || typeof highlight !== 'string') {

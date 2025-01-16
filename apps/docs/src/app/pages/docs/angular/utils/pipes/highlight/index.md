@@ -1,8 +1,8 @@
 ---
-keyword: HighlightPipePage
+keyword: NgxHighlightPipePage
 ---
 
-The HighlightPipe will select a piece of text and wrap it in a new element.
+The NgxHighlightPipe will select a piece of text and wrap it in a new element.
 
 By default it will:
 * search for matches regardless of accents
@@ -10,7 +10,7 @@ By default it will:
 * try to replace the entire piece of text
 * highlight every match if multiple matches can be found
 * use the `<mark>` element
-* put `class="mark-highlight"` on to the element
+* put `class="ngx-mark-highlight"` on to the element
 
 This configuration can be overwritten with a config object:
 
@@ -21,7 +21,7 @@ This configuration can be overwritten with a config object:
 | splitTextToHighlight | `boolean`           | `false` | <p>When `true`, split this value on space and search for the parts</p>When `false`, use the entire string as is.                            |
 | someOrEveryMatch | `"some" \| "every"` | `true`  | <p>When `"some"`, Only highlight the first found match.</p>When `"every"`, highlight every match.                                           |
 | tag | `string`            | `"mark"`  | The element you want to use to wrap the highlight. If no element is provided, it will fallback to `<mark>`                                  |
-| highlightClass | `string`           | `"mark-highlight"`  | the class put on the element for more specific styling if needed. If no class is provided, it will fallback to `"mark-highlight"`                                                                          |
+| highlightClass | `string`           | `"ngx-mark-highlight"`  | the class put on the element for more specific styling if needed. If no class is provided, it will fallback to `"ngx-mark-highlight"`                                                                          |
 
 
 ## Example

@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { HighlightConfig, HighlightPipe } from '@ngx/utils';
+import { NgxHighlightConfiguration, NgxHighlightPipe } from '@ngx/utils';
 
 @Component({
-	imports: [HighlightPipe],
+	imports: [NgxHighlightPipe],
 	selector: 'highlight-custom-pipe-demo',
 	templateUrl: 'highlight-custom.demo.component.html',
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -18,7 +18,7 @@ export class HighlightPipeCustomDemoComponent implements OnChanges {
 	@Input() public highlightClass?: string;
 	@Input() public emptyHighlightClass = false;
 
-	public config: HighlightConfig = {};
+	public config: NgxHighlightConfiguration = {};
 
 	public readonly value =
 		"In this p there is a text to highlight. To showcase we can also search on accents here we have some words with those: piñata, résumé, déjà vu, maître d', haček";
