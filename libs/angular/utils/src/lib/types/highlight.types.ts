@@ -3,7 +3,7 @@
  * @property caseInsensitive - search for matches should be caseInsensitive
  * @property splitTextToHighlight - text to highlight should be split on space.
  * If false the entire string will be used for searching e.g. "some value"
- * If true the value will be splot e.g. "some value"
+ * If true the value will be split e.g. "some" or "value"
  * @property someOrEveryMatch - highlight only the first match or all matches
  * @property tag - tag used to highlight
  * @property highlightClass - class used to highlight
