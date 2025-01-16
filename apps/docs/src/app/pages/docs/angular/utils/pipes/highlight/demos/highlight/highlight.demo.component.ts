@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { HighlightPipe } from '@ngx/utils';
+import { NgxHighlightPipe } from '@ngx/utils';
 
 @Component({
-	imports: [HighlightPipe],
+	imports: [NgxHighlightPipe],
 	selector: 'highlight-pipe-demo',
 	templateUrl: 'highlight.demo.component.html',
 })

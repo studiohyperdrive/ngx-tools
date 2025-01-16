@@ -66,9 +66,9 @@ The hasOwnProperty will check whether the specified property exists within the g
 
 The HasValuesPipe will check if a provided object has values.
 
-#### `*HighlightPipePage`
+#### `*NgxHighlightPipePage`
 
-The HighlightPipe will select a piece of text and wrap it in a new element.
+The NgxHighlightPipe will select a piece of text and wrap it in a new element.
 
 #### `*IbanPipePage`
 

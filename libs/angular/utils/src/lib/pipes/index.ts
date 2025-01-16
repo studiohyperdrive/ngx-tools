@@ -5,7 +5,7 @@ import { EntriesPipe } from './entries/entries.pipe';
 import { HasObserversPipe } from './has-observers/has-observers.pipe';
 import { HasOwnProperty } from './has-own-property/has-own-property.pipe';
 import { HasValuesPipe } from './has-values/has-values.pipe';
-import { HighlightPipe } from './highlight/highlight.pipe';
+import { NgxHighlightPipe } from './highlight/ngx-highlight.pipe';
 import { IbanPipe } from './iban/iban.pipe';
 import { IsNotEmptyPipe } from './is-not-empty/is-not-empty.pipe';
 import { JoinPipe } from './join/join.pipe';
@@ -30,7 +30,7 @@ export const Pipes = [
 	HasObserversPipe,
 	HasOwnProperty,
 	HasValuesPipe,
-	HighlightPipe,
+	NgxHighlightPipe,
 	IbanPipe,
 	IsNotEmptyPipe,
 	JoinPipe,
@@ -54,7 +54,7 @@ export { EntriesPipe } from './entries/entries.pipe';
 export { HasObserversPipe } from './has-observers/has-observers.pipe';
 export { HasOwnProperty } from './has-own-property/has-own-property.pipe';
 export { HasValuesPipe } from './has-values/has-values.pipe';
-export { HighlightPipe } from './highlight/highlight.pipe';
+export { NgxHighlightPipe } from './highlight/ngx-highlight.pipe';
 export { IbanPipe } from './iban/iban.pipe';
 export { IsNotEmptyPipe } from './is-not-empty/is-not-empty.pipe';
 export { JoinPipe } from './join/join.pipe';

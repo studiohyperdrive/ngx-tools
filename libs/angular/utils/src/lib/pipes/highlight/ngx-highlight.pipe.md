@@ -1,6 +1,4 @@
----
-keyword: NgxHighlightPipePage
----
+# NgxHighlightPipe
 
 The NgxHighlightPipe will select a piece of text and wrap it in a new element.
 
@@ -23,21 +21,30 @@ This configuration can be overwritten with a config object:
 | tag | `string`            | `"mark"`  | The element you want to use to wrap the highlight. If no element is provided, it will fallback to `<mark>`                                  |
 | highlightClass | `string`           | `"ngx-mark-highlight"`  | the class put on the element for more specific styling if needed. If no class is provided, it will fallback to `"ngx-mark-highlight"`                                                                          |
 
-
-## Example
-
-Checkable text :
-
-```typescript
-const text = 'In this p there is a text to highlight. To showcase we can also search on accents here we have some words with those: piñata, résumé, déjà vu, maître d\', haček';
-```
-
-{{ NgDocActions.playground("HighlightPipePlayground") }}
-
 ## How to use
 
-{{ NgDocActions.demo("HighlightPipeDemoComponent", { expanded: true }) }}
+```angular2html
+<p>
+    {{ value | highlight: 'text to highlight' }}
+</p>
+```
+
+If the provided value is `In this p there is a text to highlight.` it will result in the following structure:
+
+```html
+<p>In this p there is a <mark class="ngx-mark-highlight">text to highlight</mark>.</p>
+```
 
 To use a different wrapping element, do the following:
 
-{{ NgDocActions.demo("HighlightPipeCustomDemoComponent", { expanded: true }) }}
+```angular2html
+<p>
+    {{ value | highlight: 'text to highlight' : {tag: "strong", highlightClass: ""} }}
+</p>
+```
+
+Will result in:
+
+```html
+<p>In this p there is a <strong>text to highlight</strong>.</p>
+```
