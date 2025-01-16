@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { EMPTY, fromEvent, Observable } from 'rxjs';
-import { WindowService } from '../window-service/window.service';
+import { NgxWindowService } from '@studiohyperdrive/ngx-core';
 
 /**
  * A service that wraps the BroadCastChannel API and provides an Observable based implementation to the channel messages.
@@ -17,7 +17,7 @@ export class NgxBroadcastChannelService {
 	 */
 	private broadcastChannel: Record<string, BroadcastChannel> = {};
 
-	constructor(private readonly windowService: WindowService) {}
+	constructor(private readonly windowService: NgxWindowService) {}
 
 	/**
 	 * initChannel

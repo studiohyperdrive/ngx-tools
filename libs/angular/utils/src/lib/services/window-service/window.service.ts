@@ -3,6 +3,9 @@ import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 // @dynamic
+/**
+ * @deprecated: This service has been deprecated in favor of the one in @studiohyperdrive/ngx-core
+ */
 @Injectable({
 	providedIn: 'root',
 })

@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { filter, map, Observable, ReplaySubject } from 'rxjs';
-import { WindowService } from '../window-service/window.service';
+import { NgxWindowService } from '@studiohyperdrive/ngx-core';
 
 /**
  * A service that can be used to track media queries and their changes. It exposes a method
@@ -34,7 +34,7 @@ export class NgxMediaQueryService implements OnDestroy {
 	 */
 	private readonly queryChangedSubject: ReplaySubject<string> = new ReplaySubject();
 
-	constructor(private readonly windowService: WindowService) {}
+	constructor(private readonly windowService: NgxWindowService) {}
 
 	/**
 	 * Register a list of media queries that need to be tracked by the service.
@@ -43,7 +43,7 @@ export class NgxMediaQueryService implements OnDestroy {
 	 */
 	public registerMediaQueries(...queries: [id: string, query: string][]): void {
 		this.windowService.runInBrowser(({ browserWindow }) => {
-			for (let [id, query] of queries) {
+			for (const [id, query] of queries) {
 				// Wouter: Warn if the id has already been registered.
 				if (this.queryIdMap.get(id)) {
 					return console.warn(
@@ -121,7 +121,7 @@ export class NgxMediaQueryService implements OnDestroy {
 	public ngOnDestroy(): void {
 		this.windowService.runInBrowser(() => {
 			// Wouter: Remove all eventListeners
-			for (let [id, query] of this.queryListMap) {
+			for (const [id, query] of this.queryListMap) {
 				query.removeEventListener('change', this.mediaQueryListenerMap.get(id));
 			}
 

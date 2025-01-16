@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { subscribeSpyTo } from '@hirez_io/observer-spy';
 
-import { PLATFORM_ID } from '@angular/core';
 import { provideNgxTourConfiguration } from '../../providers';
 import { MockTourHolderComponent, MockTourStepComponent } from '../../mocks';
 
@@ -17,7 +16,6 @@ xdescribe('useMockDataDuringTour', () => {
 			imports: [MockTourHolderComponent],
 			providers: [
 				provideNgxTourConfiguration(MockTourStepComponent),
-				{ provide: PLATFORM_ID, useValue: 'browser' },
 			],
 		});
 

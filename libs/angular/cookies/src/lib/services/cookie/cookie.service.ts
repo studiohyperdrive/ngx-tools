@@ -1,6 +1,6 @@
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Injectable } from '@angular/core';
 import * as CookieConsent from 'vanilla-cookieconsent';
+import { NgxWindowService } from '@studiohyperdrive/ngx-core';
 
 import {
 	BehaviorSubject,
@@ -81,7 +81,7 @@ export class NgxCookieService {
 	public readonly cookiesChanged$: Observable<Record<string, any>> =
 		this.cookiesChangedSubject.asObservable();
 
-	constructor(@Inject(PLATFORM_ID) private platformId: string) {}
+	constructor(private readonly windowsService: NgxWindowService) {}
 
 	/**
 	 * Sets up the CookieConsent.
@@ -99,7 +99,7 @@ export class NgxCookieService {
 		configuration?: NgxCookieConfiguration
 	): void {
 		// Iben: If we're not in the browser, we early exit, so server-side rendering can be enabled
-		if (!isPlatformBrowser(this.platformId)) {
+		if (!this.windowsService.isBrowser()) {
 			return;
 		}
 

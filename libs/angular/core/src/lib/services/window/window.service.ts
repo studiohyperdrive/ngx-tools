@@ -105,14 +105,14 @@ export class NgxWindowService {
 	 *
 	 * @param action - Function we want to run in the browser
 	 */
-	public runInBrowser(
-		action: (data: { browserWindow: Window; browserDocument: Document }) => void
-	) {
+	public runInBrowser<ReturnType = void>(
+		action: (data: { browserWindow: Window; browserDocument: Document }) => ReturnType
+	): ReturnType {
 		if (this.isBrowser) {
-			action({ browserWindow: this.window, browserDocument: this.document });
-		} else {
-			console.warn('Browser depended function has not run.');
+			return action({ browserWindow: this.window, browserDocument: this.document });
 		}
+		console.warn('Browser depended function has not run.');
+		return undefined;
 	}
 
 	/**

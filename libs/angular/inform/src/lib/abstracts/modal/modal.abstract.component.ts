@@ -4,13 +4,11 @@ import {
 	ElementRef,
 	EventEmitter,
 	HostListener,
-	Inject,
 	Input,
 	Output,
-	PLATFORM_ID,
 } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
 
+import { NgxWindowService } from '@studiohyperdrive/ngx-core';
 import { NgxModalActionType } from '../../types';
 
 /**
@@ -53,13 +51,13 @@ export class NgxModalAbstractComponent<ActionType extends NgxModalActionType, Da
 	@Output() public close: EventEmitter<void> = new EventEmitter<void>();
 
 	constructor(
-		@Inject(PLATFORM_ID) private platformId: string,
+		private readonly windowService: NgxWindowService,
 		private readonly elementRef: ElementRef<HTMLElement>
 	) {}
 
 	public ngAfterViewInit(): void {
 		// Iben: If we are in the browser, check if either of the two accessibility labels are set
-		if (isPlatformBrowser(this.platformId) && (this.ariaLabelledBy || this.ariaDescribedBy)) {
+		if (this.windowService.isBrowser() && (this.ariaLabelledBy || this.ariaDescribedBy)) {
 			// Iben: Find the element with the id and the parent
 			const element = document.getElementById(this.ariaLabelledBy || this.ariaDescribedBy);
 			const parent = this.elementRef.nativeElement;

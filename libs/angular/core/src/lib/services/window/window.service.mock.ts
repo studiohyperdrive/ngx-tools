@@ -26,11 +26,15 @@ export const NgxWindowMock = (spy: unknown) => ({
  * example:
  * NgxWindowServiceMock(jasmine.createSpy(), 1440);
  * */
-export const NgxWindowServiceMock = (spy: unknown, width: number = 1200) => ({
-	width: new BehaviorSubject(width),
-	window: NgxWindowMock(spy),
-	scrollTo: () => null,
-	hasDocument: () => true,
-	isBrowser: () => true,
-	runInBrowser: (callback: () => void) => callback(),
-});
+export const NgxWindowServiceMock = (spy: unknown, width: number = 1200) => {
+	const window = NgxWindowMock(spy) as unknown as Window;
+	return {
+		width: new BehaviorSubject(width),
+		window: NgxWindowMock(spy),
+		scrollTo: () => null,
+		hasDocument: () => true,
+		isBrowser: () => true,
+		runInBrowser: (callback: (data: { browserWindow: Window }) => void) =>
+			callback({ browserWindow: window }),
+	};
+};

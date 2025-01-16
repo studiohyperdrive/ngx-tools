@@ -24,7 +24,7 @@ export class YourComponent {
 
 #### Safety
 
-The `initChannel` uses the `isPlatformBrowser` check to ensure it only runs in the browser, taking SSR into account as the BroadcastChannel API is not available in node by default.
+The `initChannel` uses the `NgxWindowService` check to ensure it only runs in the browser, taking SSR into account as the BroadcastChannel API is not available in node by default.
 
 If the channel already exists, it will return the existing channel to avoid overriding existing channels and listeners.
 

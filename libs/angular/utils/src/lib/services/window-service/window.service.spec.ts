@@ -1,5 +1,5 @@
+import { NgxWindowMock } from '@studiohyperdrive/ngx-core';
 import { WindowService } from './window.service';
-import { windowMock } from './window.service.mock';
 
 describe('WindowService', () => {
 	describe('with no document', () => {
@@ -32,7 +32,7 @@ describe('WindowService', () => {
 
 	describe('with a document', () => {
 		let service: WindowService;
-		const document: any = windowMock(jasmine.createSpy());
+		const document: any = NgxWindowMock(jasmine.createSpy());
 		const platform = 'browser';
 
 		beforeEach(() => {
@@ -42,7 +42,7 @@ describe('WindowService', () => {
 		describe('construct', () => {
 			it('should set the width$ BehaviorSubject to the value of the window-width', () => {
 				expect((service as any).widthSubject$.getValue()).toBe(
-					windowMock(jasmine.createSpy()).defaultView.innerWidth
+					NgxWindowMock(jasmine.createSpy()).defaultView.innerWidth
 				);
 			});
 		});

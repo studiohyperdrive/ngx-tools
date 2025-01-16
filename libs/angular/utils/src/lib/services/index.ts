@@ -1,5 +1,4 @@
 export { WindowService } from './window-service/window.service';
-export { windowMock, windowServiceMock } from './window-service/window.service.mock';
 
 export { NgxBroadcastChannelService } from './broadcast-channel/broadcast-channel.service';
 export { SubscriptionService } from './subscription-service/subscription.service';
