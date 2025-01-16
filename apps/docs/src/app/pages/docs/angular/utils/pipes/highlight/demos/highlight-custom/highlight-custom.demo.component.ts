@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { NgxHighlightConfiguration, NgxHighlightPipe } from '@ngx/utils';
+import { NgxHighlightConfiguration, NgxHighlightPipe, simpleChangeHasChanged } from '@ngx/utils';
 
 @Component({
 	imports: [NgxHighlightPipe],
@@ -25,13 +25,13 @@ export class HighlightPipeCustomDemoComponent implements OnChanges {
 
 	ngOnChanges(changes: SimpleChanges) {
 		if (
-			changes.normalized ||
-			changes.caseInsensitive ||
-			changes.splitTextToHighlight ||
-			changes.someOrEveryMatch ||
-			changes.selector ||
-			changes.highlightClass ||
-			changes.emptyHighlightClass
+			simpleChangeHasChanged(changes.normalized) ||
+			simpleChangeHasChanged(changes.caseInsensitive) ||
+			simpleChangeHasChanged(changes.splitTextToHighlight) ||
+			simpleChangeHasChanged(changes.someOrEveryMatch) ||
+			simpleChangeHasChanged(changes.selector) ||
+			simpleChangeHasChanged(changes.highlightClass) ||
+			simpleChangeHasChanged(changes.emptyHighlightClass)
 		) {
 			this.config = {
 				normalized: this.normalized,
