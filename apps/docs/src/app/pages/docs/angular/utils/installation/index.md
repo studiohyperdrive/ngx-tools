@@ -154,3 +154,9 @@ This service provides a SSR proof way to create channels for the BroadcastChanne
 #### `*NgxQueryParamFormSyncComponentPage`
 
 This abstract component provides a way to sync the queryParams with a reactive form. This is ideal to handle filtered views, as it automatically syncs selected filters with the url.
+
+### Utils
+
+#### `*simpleChangeHasChangedPage`
+
+The simpleChangeHasChanged utility Checks whether or not a SimpleChanges property has changed.
