@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { from, map, of, tap } from 'rxjs';
@@ -30,7 +30,7 @@ import { NgxTourItemDirective, NgxTourService, useMockDataDuringTour } from '@ng
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MainComponent {
+export class MainComponent implements OnInit {
 	public control: FormControl<NgxConfigurableLayoutGrid> = new FormControl([]);
 	public isActive: FormControl<boolean> = new FormControl(false);
 	public dragAndDrop: FormControl<boolean> = new FormControl(true);
