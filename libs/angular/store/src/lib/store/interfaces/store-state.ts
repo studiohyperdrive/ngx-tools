@@ -6,11 +6,12 @@ import { StoreFlowAssets } from './store-generator';
 /**
  * A type to extract the original generic DataType from a BaseStoreAssets or EntityStoreAssets
  */
-type extractStoreAssetType<Type> = Type extends BaseStoreAssets<infer DataType>
-	? DataType
-	: Type extends EntityStoreAssets<infer DataType>
-	? DataType[]
-	: never;
+type extractStoreAssetType<Type> =
+	Type extends BaseStoreAssets<infer DataType>
+		? DataType
+		: Type extends EntityStoreAssets<infer DataType>
+			? DataType[]
+			: never;
 
 /**
  * A type to map a StoreFlowAsset key to it's corresponding Observable

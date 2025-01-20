@@ -10,47 +10,41 @@ A `customValidatorFn` can be passed which will overwrite the internal checks wit
 ## How to use
 
 ### Strict
+
 ```typescript
-import { validateContent } from "@studiohyperdrive/rxjs-utils";
-import { of } from "rxjs";
+import { validateContent } from '@studiohyperdrive/rxjs-utils';
+import { of } from 'rxjs';
 
 of(undefined)
-  .pipe(
-    validateContent()
-  )
-  .subscribe((result) => {
-    // => will not be triggered
-  });
+	.pipe(validateContent())
+	.subscribe((result) => {
+		// => will not be triggered
+	});
 
 of(0)
-  .pipe(
-    validateContent()
-  )
-  .subscribe((result) => {
-    // => will be triggered
-  });
+	.pipe(validateContent())
+	.subscribe((result) => {
+		// => will be triggered
+	});
 ```
 
 ### Non-strict
+
 ```typescript
-import { validateContent } from "@studiohyperdrive/rxjs-utils";
-import { of } from "rxjs";
+import { validateContent } from '@studiohyperdrive/rxjs-utils';
+import { of } from 'rxjs';
 
 of(undefined)
-  .pipe(
-    validateContent({ strict: false })
-  )
-  .subscribe((result) => {
-    // => will not be triggered
-  });
+	.pipe(validateContent({ strict: false }))
+	.subscribe((result) => {
+		// => will not be triggered
+	});
 
 of(0)
-  .pipe(
-    validateContent({ strict: false })
-  )
-  .subscribe((result) => {
-    // => will not be triggered
-  });
+	.pipe(validateContent({ strict: false }))
+	.subscribe((result) => {
+		// => will not be triggered
+	});
 ```
 
 ### With custom comparator
@@ -58,26 +52,26 @@ of(0)
 The `strict` flag will be ignored when adding a `customValidatorFn`.
 
 ```typescript
-import { validateContent } from "@studiohyperdrive/rxjs-utils";
-import { of } from "rxjs";
+import { validateContent } from '@studiohyperdrive/rxjs-utils';
+import { of } from 'rxjs';
 
 of(0)
-  .pipe(
-    validateContent({}, (value: number): boolean => {
-        return value === 2;
-    })
-  )
-  .subscribe((result) => {
-    // => will not be triggered
-  });
+	.pipe(
+		validateContent({}, (value: number): boolean => {
+			return value === 2;
+		})
+	)
+	.subscribe((result) => {
+		// => will not be triggered
+	});
 
 of(2)
-  .pipe(
-    validateContent({}, (value: number): boolean => {
-      return value === 2;
-    })
-  )
-  .subscribe((result) => {
-    // => will be triggered
-  });
+	.pipe(
+		validateContent({}, (value: number): boolean => {
+			return value === 2;
+		})
+	)
+	.subscribe((result) => {
+		// => will be triggered
+	});
 ```

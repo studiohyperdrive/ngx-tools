@@ -3,19 +3,19 @@
 	<div>
 		<label for="controlA">
 			Control A
-			<input type="text" formControlName="controlA" name="controlA" />
+			<input name="controlA" type="text" formControlName="controlA" />
 		</label>
 	</div>
 
 	<div>
 		<label for="controlB">
 			Control B
-			<input type="text" formControlName="controlB" name="controlB" />
+			<input name="controlB" type="text" formControlName="controlB" />
 		</label>
 
 		<label for="controlC">
 			Control C
-			<input type="text" formControlName="controlC" name="controlC" />
+			<input name="controlC" type="text" formControlName="controlC" />
 		</label>
 	</div>
 
@@ -28,7 +28,7 @@
 	<div>Errors: {{ form.errors | json }}</div>
 	<div>Valid: {{ form.valid }}</div>
 
-	<br/>
+	<br />
 	<div>
 		<button type="submit">Submit</button>
 	</div>

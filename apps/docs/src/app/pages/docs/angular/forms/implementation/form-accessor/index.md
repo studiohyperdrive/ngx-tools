@@ -91,7 +91,6 @@ In the examples section you will find out how this is implemented.
 
 {{ NgDocActions.demo("SimpleDemoComponent") }}
 
-
 ### Mapper example
 
 {{ NgDocActions.demo("MapperDemoComponent") }}

@@ -1,7 +1,6 @@
 <div [formGroup]="form">
-	<survey-form [data]="survey" formControlName="survey"/>
+	<survey-form formControlName="survey" [data]="survey" />
 </div>
-
 
 <p><strong>Validation - Form</strong></p>
 <div>Value: {{ form.value | json }}</div>

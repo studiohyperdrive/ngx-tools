@@ -24,54 +24,54 @@ Sometimes, certain data cannot be put in the queryParams without being scrambled
 import { scrambler, unscrambler } from 'ngx-random-package';
 
 interface Filters {
-    searchQuery: string;
-    sorting: string;
+	searchQuery: string;
+	sorting: string;
 }
 
 interface FiltersForm {
-    searchQuery: FormControl<string>;
-    sorting: FormControl<string>;
+	searchQuery: FormControl<string>;
+	sorting: FormControl<string>;
 }
 
 @Component({
-    selector: 'table-view',
-    templateUrl: './survey.component.html',
+	selector: 'table-view',
+	templateUrl: './survey.component.html',
 })
 export class TableViewComponent extends NgxQueryParamFormSyncComponent<
-    Filters,
-    FormGroup<FiltersForm>
+	Filters,
+	FormGroup<FiltersForm>
 > {
-    constructor(
-        readonly route: ActivatedRoute,
-        readonly router: Router,
-        readonly storeService: StoreService
-    ) {
-        super(route, router);
-    }
+	constructor(
+		readonly route: ActivatedRoute,
+		readonly router: Router,
+		readonly storeService: StoreService
+	) {
+		super(route, router);
+	}
 
-    initForm(): FormGroup<FiltersForm> {
-        return new FormGroup({
-            searchQuery: new FormControl<string>(),
-            sorting: new FormControl<string>(),
-        });
-    }
+	initForm(): FormGroup<FiltersForm> {
+		return new FormGroup({
+			searchQuery: new FormControl<string>(),
+			sorting: new FormControl<string>(),
+		});
+	}
 
-    handleDataChanges(value: Filters) {
-        this.storeService.setFilters(value);
-    }
+	handleDataChanges(value: Filters) {
+		this.storeService.setFilters(value);
+	}
 
-    scrambleParams(value: Filters) {
-        return {
-            ...value,
-            sorting: scrambler(value.sorting),
-        };
-    }
+	scrambleParams(value: Filters) {
+		return {
+			...value,
+			sorting: scrambler(value.sorting),
+		};
+	}
 
-    unscrambleParams(value: Filters) {
-        return {
-            ...value,
-            sorting: unscrambler(value.sorting),
-        };
-    }
+	unscrambleParams(value: Filters) {
+		return {
+			...value,
+			sorting: unscrambler(value.sorting),
+		};
+	}
 }
 ```

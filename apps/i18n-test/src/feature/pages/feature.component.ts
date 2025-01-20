@@ -4,7 +4,7 @@ import { NgxI18nService } from '@ngx/i18n';
 
 @Component({
 	selector: 'app-feature-page',
-	template: ` {{ 'hello-feature' | translate : { currentLanguage } }} `,
+	template: ` {{ 'hello-feature' | translate: { currentLanguage } }} `,
 	imports: [TranslateModule],
 })
 export class FeaturePageComponent {

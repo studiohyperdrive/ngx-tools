@@ -8,7 +8,7 @@ Using this on a server will therefor not work.
 ## How to use
 
 ```typescript
-import { openFile } from "@studiohyperdrive/utils";
+import { openFile } from '@studiohyperdrive/utils';
 
-openFile(blob, `download_me.pdf`)
+openFile(blob, `download_me.pdf`);
 ```

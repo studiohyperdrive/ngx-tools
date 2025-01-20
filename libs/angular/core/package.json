@@ -1,26 +1,26 @@
 {
-  "name": "@studiohyperdrive/ngx-core",
-  "version": "19.1.0",
-  "description": "A library of core functionality used by the Studio Hyperdrive ngx-tools.",
-  "keywords": [
-    "angular",
-    "ngx-tools"
-  ],
-  "homepage": "https://open-source.studiohyperdrive.be/docs/angular/core/installation",
-  "license": "MIT",
-  "author": {
-    "name": "Studio Hyperdrive",
-    "url": "https://studiohyperdrive.be/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/studiohyperdrive/hyperdrive-opensource",
-    "directory": "libs/angular/core/src"
-  },
-  "peerDependencies": {
-    "rxjs": "7.8.1",
-    "@angular/common": "19.0.3",
-    "@angular/core": "19.0.3"
-  },
-  "sideEffects": false
+	"name": "@studiohyperdrive/ngx-core",
+	"version": "19.1.0",
+	"description": "A library of core functionality used by the Studio Hyperdrive ngx-tools.",
+	"keywords": [
+		"angular",
+		"ngx-tools"
+	],
+	"homepage": "https://open-source.studiohyperdrive.be/docs/angular/core/installation",
+	"license": "MIT",
+	"author": {
+		"name": "Studio Hyperdrive",
+		"url": "https://studiohyperdrive.be/"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/studiohyperdrive/hyperdrive-opensource",
+		"directory": "libs/angular/core/src"
+	},
+	"peerDependencies": {
+		"rxjs": "7.8.1",
+		"@angular/common": "19.0.3",
+		"@angular/core": "19.0.3"
+	},
+	"sideEffects": false
 }

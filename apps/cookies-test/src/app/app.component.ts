@@ -1,5 +1,5 @@
 import { NgDocRootComponent, NgDocNavbarComponent, NgDocSidebarComponent } from '@ng-doc/app';
-import { Component } from '@angular/core';
+import { Component, AfterViewInit, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -25,7 +25,7 @@ import { NgxStorageService } from '@ngx/utils';
 		},
 	],
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit, OnInit {
 	title = 'cookies-test';
 
 	generalAccepted$: Observable<boolean> = this.ngxCookieService.hasAcceptedCategory('general');

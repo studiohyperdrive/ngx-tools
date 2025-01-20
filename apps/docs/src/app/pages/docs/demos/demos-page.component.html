@@ -6,7 +6,7 @@
 		<a
 			href="https://stackblitz.com/edit/stackblitz-starters-psubyj?file=src%2Fmain.ts"
 			target="_blank"
-		>StackBlitz example</a
+			>StackBlitz example</a
 		>
 	</p>
 </div>
@@ -14,15 +14,13 @@
 <hr />
 
 <h1>Demos</h1>
-<ngx-accordion [open]="[1,4]">
+<ngx-accordion [open]="[1, 4]">
 	@for (item of testData; track $index; let index = $index) {
 		<ngx-accordion-item [disabled]="index === 2">
-			<ng-template #headerTmpl let-isOpen>
-				{{item.title}} {{isOpen}}
-			</ng-template>
+			<ng-template #headerTmpl let-isOpen> {{ item.title }} {{ isOpen }} </ng-template>
 
 			<ng-template #contentTmpl let-isOpen>
-				<a [routerLink]="item.route">{{item.content}}</a>
+				<a [routerLink]="item.route">{{ item.content }}</a>
 			</ng-template>
 		</ngx-accordion-item>
 	}

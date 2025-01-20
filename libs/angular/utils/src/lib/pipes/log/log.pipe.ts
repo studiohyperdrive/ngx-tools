@@ -12,6 +12,6 @@ export class LogPipe implements PipeTransform {
 	 * @param text An optional textual value to print before the piped value.
 	 */
 	public transform(value: any, text?: string): void {
-		Boolean(text) ? console.log(text, value) : console.log(value);
+		text ? console.log(text, value) : console.log(value);
 	}
 }

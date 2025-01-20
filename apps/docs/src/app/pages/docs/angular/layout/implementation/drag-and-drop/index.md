@@ -21,9 +21,7 @@ If you wish to overwrite the default message record with your own, you can do th
 You can provide your service in the following manner:
 
 ```ts
-providers: [
-    provideNgxDragAndDropService(DragAndDropService),
-]
+providers: [provideNgxDragAndDropService(DragAndDropService)];
 ```
 
 ## Setup

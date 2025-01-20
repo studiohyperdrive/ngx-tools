@@ -199,4 +199,3 @@ This operator only works within an injection context, and therefor cannot be use
 ### Example
 
 {{ NgDocActions.demo("StartDemoComponent", {fullscreenRoute: "demo", expanded: true}) }}
-

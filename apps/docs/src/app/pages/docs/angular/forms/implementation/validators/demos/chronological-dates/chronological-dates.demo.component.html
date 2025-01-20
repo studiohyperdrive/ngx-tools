@@ -2,14 +2,14 @@
 	<div>
 		<label for="start">
 			Start date
-			<input type="date" formControlName="start" name="start" />
+			<input name="start" type="date" formControlName="start" />
 		</label>
 	</div>
 
 	<div>
 		<label for="end">
 			End date
-			<input type="date" formControlName="end" name="end" />
+			<input name="end" type="date" formControlName="end" />
 		</label>
 	</div>
 
@@ -21,7 +21,7 @@
 	<div>Errors: {{ form.errors | json }}</div>
 	<div>Valid: {{ form.valid }}</div>
 
-	<br/>
+	<br />
 	<div>
 		<button type="submit">Submit</button>
 	</div>

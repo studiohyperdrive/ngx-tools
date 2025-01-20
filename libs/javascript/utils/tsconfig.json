@@ -6,7 +6,7 @@
 		"noImplicitOverride": true,
 		"noPropertyAccessFromIndexSignature": true,
 		"noFallthroughCasesInSwitch": true,
-    "esModuleInterop": true,
+		"esModuleInterop": true,
 		"types": ["vitest"]
 	},
 	"files": [],

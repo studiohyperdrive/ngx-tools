@@ -9,16 +9,16 @@ It expects a callback function.
 ## How to use
 
 ```typescript
-import { catchAndCallThrough } from "@studiohyperdrive/rxjs-utils";
-import { throwError } from "rxjs";
+import { catchAndCallThrough } from '@studiohyperdrive/rxjs-utils';
+import { throwError } from 'rxjs';
 
 of(throwError('Something went wrong'))
-  .pipe(
-    catchAndCallThrough((error) => {
-        console.log({ error });
-    })
-  )
-  .subscribe(() => {
-    // The subscription will still be triggered.
-  });
+	.pipe(
+		catchAndCallThrough((error) => {
+			console.log({ error });
+		})
+	)
+	.subscribe(() => {
+		// The subscription will still be triggered.
+	});
 ```

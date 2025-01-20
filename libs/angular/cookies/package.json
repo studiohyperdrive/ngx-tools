@@ -1,31 +1,31 @@
 {
-  "name": "@studiohyperdrive/ngx-cookies",
-  "version": "19.0.0",
-  "description": "An integrated Angular approach to the vanilla cookieconsent library.",
-  "keywords": [
-    "angular",
-    "angular2",
-    "cookies",
-    "cookie",
-    "cookieconsent",
-    "consent"
-  ],
-  "homepage": "https://open-source.studiohyperdrive.be/docs/angular/cookies/introduction",
-  "license":"MIT",
-  "author": {
-    "name": "Studio Hyperdrive",
-    "url": "https://studiohyperdrive.be/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/studiohyperdrive/hyperdrive-opensource",
-    "directory": "libs/angular/cookies/src"
-  },
-  "peerDependencies": {
-    "@angular/common": "^19.0.0",
-    "@angular/core": "^19.0.0",
-    "lodash": "^4.17.21",
-    "vanilla-cookieconsent": "^3.0.1"
-  },
-  "sideEffects": false
+	"name": "@studiohyperdrive/ngx-cookies",
+	"version": "19.0.0",
+	"description": "An integrated Angular approach to the vanilla cookieconsent library.",
+	"keywords": [
+		"angular",
+		"angular2",
+		"cookies",
+		"cookie",
+		"cookieconsent",
+		"consent"
+	],
+	"homepage": "https://open-source.studiohyperdrive.be/docs/angular/cookies/introduction",
+	"license": "MIT",
+	"author": {
+		"name": "Studio Hyperdrive",
+		"url": "https://studiohyperdrive.be/"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/studiohyperdrive/hyperdrive-opensource",
+		"directory": "libs/angular/cookies/src"
+	},
+	"peerDependencies": {
+		"@angular/common": "^19.0.0",
+		"@angular/core": "^19.0.0",
+		"lodash": "^4.17.21",
+		"vanilla-cookieconsent": "^3.0.1"
+	},
+	"sideEffects": false
 }

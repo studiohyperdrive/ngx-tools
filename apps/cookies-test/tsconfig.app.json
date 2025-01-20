@@ -1,13 +1,13 @@
 {
-  "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
+	"compilerOptions": {
+		"allowSyntheticDefaultImports": true,
 		"paths": {
 			"@ng-doc/generated": ["././ng-doc/cookies-test/index.ts"],
 			"@ng-doc/generated/*": ["./ng-doc/cookies-test/*"],
 			"@ngx/cookies": ["libs/angular/cookies/src/index.ts"],
-			"@ngx/utils": ["libs/angular/utils/src/public-api.ts"],
-    }
-  },
+			"@ngx/utils": ["libs/angular/utils/src/public-api.ts"]
+		}
+	},
 	"extends": "../../tsconfig.json",
 	"files": ["src/main.ts"],
 	"include": ["src/**/*.d.ts"]

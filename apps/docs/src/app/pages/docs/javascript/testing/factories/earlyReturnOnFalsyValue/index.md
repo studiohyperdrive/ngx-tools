@@ -11,31 +11,31 @@ This function should work with Karma, Jest & Vitest.
 ```typescript
 // Default case
 const testFunction = (value: unknown[]) => {
-    if (!value) {
-        return;
-    }
+	if (!value) {
+		return;
+	}
 
-    return value;
+	return value;
 };
 
 describe('testfunction', () => {
-    // Other test cases
+	// Other test cases
 
-    it('should result in undefined on a falsy value', earlyReturnOnFalsyValue(testFunction));
+	it('should result in undefined on a falsy value', earlyReturnOnFalsyValue(testFunction));
 });
 
 // With a specific return value
 const testFunctionWithReturnValue = (value: unknown[]) => {
-    if (!value) {
-        return false;
-    }
+	if (!value) {
+		return false;
+	}
 
-    return value;
+	return value;
 };
 
 describe('testfunction', () => {
-    // Other test cases
+	// Other test cases
 
-    it('should result in false on a falsy value', earlyReturnOnFalsyValue(testFunction, false));
+	it('should result in false on a falsy value', earlyReturnOnFalsyValue(testFunction, false));
 });
 ```

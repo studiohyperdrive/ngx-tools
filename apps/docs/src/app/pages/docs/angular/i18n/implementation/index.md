@@ -50,9 +50,9 @@ import { NgxI18nMultiTranslationHttpLoader } from '@studiohyperdrive/ngx-i18n';
 
 export function FeatureTranslationLoader(http: HttpBackend) {
 	return new NgxI18nMultiTranslationHttpLoader(http, [
-        './assets/i18n/shared/',
-        './assets/i18n/feature',
-    ]);
+		'./assets/i18n/shared/',
+		'./assets/i18n/feature',
+	]);
 }
 ```
 
