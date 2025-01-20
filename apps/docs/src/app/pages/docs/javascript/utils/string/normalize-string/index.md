@@ -7,7 +7,7 @@ The normalizeString helper will replace all special characters to their normal c
 ## How to use
 
 ```typescript
-import { normalizeString } from "@studiohyperdrive/utils";
+import { normalizeString } from '@studiohyperdrive/utils';
 
 const result = normalizeString('áéíóúý ÁÉÍÓÚÝ aeiuc');
 

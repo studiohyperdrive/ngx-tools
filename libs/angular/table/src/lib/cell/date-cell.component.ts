@@ -14,17 +14,21 @@ import { NgxAbstractTableCellDirective } from './cell.directive';
 	],
 	template: `
 		<ng-template #cellTmpl let-item let-row="row">
-			@if (rowKey) { @if (row | getProp : rowKey; as rowItem) {
-			<time>
-				{{ rowItem | date : format }}
-			</time>
+			@if (rowKey) {
+				@if (row | getProp: rowKey; as rowItem) {
+					<time>
+						{{ rowItem | date: format }}
+					</time>
+				} @else {
+					<i>{{ emptyLabel }}</i>
+				}
 			} @else {
-			<i>{{ emptyLabel }}</i>
-			} } @else { @if (item) {
-			<time>{{ (itemKey ? item[itemKey] : item) | date : format }}</time>
-			} @else {
-			<i>{{ emptyLabel }}</i>
-			} }
+				@if (item) {
+					<time>{{ (itemKey ? item[itemKey] : item) | date: format }}</time>
+				} @else {
+					<i>{{ emptyLabel }}</i>
+				}
+			}
 		</ng-template>
 	`,
 	imports: [DatePipe, NgxTableGetPipe],

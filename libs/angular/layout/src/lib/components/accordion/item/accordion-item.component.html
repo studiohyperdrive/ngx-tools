@@ -1,7 +1,7 @@
 <details #details [open]="isOpen">
 	<summary
-		#summary
 		class="ngx-accordion-header"
+		#summary
 		[class.is-disabled]="disabled"
 		[attr.disabled]="disabled"
 		[id]="id"
@@ -10,7 +10,10 @@
 		(focus)="setFocus(true)"
 		(blur)="setFocus(false)"
 	>
-		<ng-template [ngTemplateOutlet]="headerTemplate" [ngTemplateOutletContext]="{$implicit: isOpen}"/>
+		<ng-template
+			[ngTemplateOutlet]="headerTemplate"
+			[ngTemplateOutletContext]="{ $implicit: isOpen }"
+		/>
 	</summary>
 
 	<div
@@ -19,6 +22,9 @@
 		[id]="'accordion-content-' + id"
 		[attr.aria-labelledby]="id"
 	>
-		<ng-template [ngTemplateOutlet]="contentTemplate" [ngTemplateOutletContext]="{$implicit: isOpen}"/>
+		<ng-template
+			[ngTemplateOutlet]="contentTemplate"
+			[ngTemplateOutletContext]="{ $implicit: isOpen }"
+		/>
 	</div>
 </details>

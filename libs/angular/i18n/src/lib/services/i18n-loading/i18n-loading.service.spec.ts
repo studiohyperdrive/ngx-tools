@@ -3,7 +3,7 @@ import { NgxI18nLoadingService } from './i18n-loading.service';
 import { TranslationLoaderActionEntity } from './i18n-loading.types';
 
 describe('NgxI18nLoadingService', () => {
-	let subscriptions: Subscription[] = [];
+	const subscriptions: Subscription[] = [];
 
 	afterEach(() => {
 		subscriptions.forEach((sub: Subscription) => sub.unsubscribe());

@@ -3,14 +3,14 @@
 	<div>
 		<label for="controlA">
 			Control A
-			<input type="number" formControlName="controlA" name="controlA" />
+			<input name="controlA" type="number" formControlName="controlA" />
 		</label>
 	</div>
 
 	<div>
 		<label for="controlB">
 			Control B
-			<input type="number" formControlName="controlB" name="controlB" />
+			<input name="controlB" type="number" formControlName="controlB" />
 		</label>
 	</div>
 
@@ -22,7 +22,7 @@
 	<div>Errors: {{ form.errors | json }}</div>
 	<div>Valid: {{ form.valid }}</div>
 
-	<br/>
+	<br />
 	<div>
 		<button type="submit">Submit</button>
 	</div>

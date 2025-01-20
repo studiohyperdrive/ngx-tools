@@ -43,7 +43,7 @@ export class NgxMediaQueryService implements OnDestroy {
 	 */
 	public registerMediaQueries(...queries: [id: string, query: string][]): void {
 		this.windowService.runInBrowser(({ browserWindow }) => {
-			for (let [id, query] of queries) {
+			for (const [id, query] of queries) {
 				// Wouter: Warn if the id has already been registered.
 				if (this.queryIdMap.get(id)) {
 					return console.warn(
@@ -121,7 +121,7 @@ export class NgxMediaQueryService implements OnDestroy {
 	public ngOnDestroy(): void {
 		this.windowService.runInBrowser(() => {
 			// Wouter: Remove all eventListeners
-			for (let [id, query] of this.queryListMap) {
+			for (const [id, query] of this.queryListMap) {
 				query.removeEventListener('change', this.mediaQueryListenerMap.get(id));
 			}
 

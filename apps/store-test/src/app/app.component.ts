@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { tap } from 'rxjs';
 import { actions, selectors } from '../store/user.store';
@@ -10,10 +10,13 @@ import { CoursesService } from '../services/courses.service';
 	styleUrls: ['./app.component.scss'],
 	standalone: true,
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 	title = 'store-test';
 
-	constructor(private readonly store: Store, private readonly courseService: CoursesService) {}
+	constructor(
+		private readonly store: Store,
+		private readonly courseService: CoursesService
+	) {}
 
 	ngOnInit() {
 		this.store.dispatch(actions.users.effects.set());

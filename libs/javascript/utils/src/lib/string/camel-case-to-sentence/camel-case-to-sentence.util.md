@@ -5,7 +5,7 @@ The camelCaseToSentence helper converts a camelCase string to a human-readable s
 ## How to use
 
 ```typescript
-import { camelCaseToSentence } from "@studiohyperdrive/utils";
+import { camelCaseToSentence } from '@studiohyperdrive/utils';
 
 const result = camelCaseToSentence('SubscribeForMore');
 

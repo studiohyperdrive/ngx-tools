@@ -13,7 +13,7 @@ import { NgxAbstractTableCellDirective } from './cell.directive';
 	],
 	template: `
 		<ng-template #cellTmpl let-item>
-			{{ item | currency : currency }}
+			{{ item | currency: currency }}
 		</ng-template>
 	`,
 	imports: [CurrencyPipe],

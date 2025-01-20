@@ -3,7 +3,7 @@
 	<div>
 		<label for="date">
 			Date
-			<input type="date" formControlName="date" name="date" />
+			<input name="date" type="date" formControlName="date" />
 		</label>
 	</div>
 
@@ -14,7 +14,7 @@
 	<div>Errors: {{ form.errors | json }}</div>
 	<div>Valid: {{ form.valid }}</div>
 
-	<br/>
+	<br />
 	<div>
 		<button type="submit">Submit</button>
 	</div>

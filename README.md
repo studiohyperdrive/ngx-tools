@@ -16,7 +16,6 @@ The available command are:
 | test    | runs `nx test`       |
 | lint    | runs `nx lint --fix` |
 
-
 ## Versioning and build information
 
 This package will follow a semver-like format, `major.minor.patch`, in which:
@@ -27,49 +26,48 @@ This package will follow a semver-like format, `major.minor.patch`, in which:
 
 It is build with:
 
--   Angular CLI : `17.0.4`
--   Nx: `18.3.1`
--   Angular: `17.0.4`
--   nodejs: `18.14.0`
--   npm: `9.3.1`
+- Angular CLI : `17.0.4`
+- Nx: `18.3.1`
+- Angular: `17.0.4`
+- nodejs: `18.14.0`
+- npm: `9.3.1`
 
 For a complete list of packages and version check out the `package.json` file.
-
 
 ## Concept
 
 This repo contains general usage libraries for shd Angular projects. Those libraries are:
 
--   utils (`@studiohyperdrive/ngx-utils`) :
+- utils (`@studiohyperdrive/ngx-utils`) :
 
-    -   This library provides several independent utilities to facilitate common use-cases for users and developers.
+    - This library provides several independent utilities to facilitate common use-cases for users and developers.
 
--   forms (`@studiohyperdrive/ngx-forms`):
+- forms (`@studiohyperdrive/ngx-forms`):
 
-    -   This library provides multiple utilities for complex form use-cases.
+    - This library provides multiple utilities for complex form use-cases.
 
--   store (`@studiohyperdrive/ngx-store`):
+- store (`@studiohyperdrive/ngx-store`):
 
-    -   This library provides several utils and abstractions to improve the Redux workflow
+    - This library provides several utils and abstractions to improve the Redux workflow
 
--   table (`@studiohyperdrive/ngx-table`):
+- table (`@studiohyperdrive/ngx-table`):
 
-    -   This library provides a quick and easy template based table builder using the Angular CDK Table.
+    - This library provides a quick and easy template based table builder using the Angular CDK Table.
 
--   i18n (`@studiohyperdrive/ngx-i18n`):
+- i18n (`@studiohyperdrive/ngx-i18n`):
 
-    -   This library provides a lazy-loaded modular approach to translations.
+    - This library provides a lazy-loaded modular approach to translations.
 
--   cookies (`@studiohyperdrive/ngx-cookies`):
+- cookies (`@studiohyperdrive/ngx-cookies`):
 
-    -   This library provides a quick and easy wrapper for [CookieConsent V3](https://cookieconsent.orestbida.com).
+    - This library provides a quick and easy wrapper for [CookieConsent V3](https://cookieconsent.orestbida.com).
 
--   layout (`@studiohyperdrive/ngx-layout`):
+- layout (`@studiohyperdrive/ngx-layout`):
 
-    -   This library is a collection of Angular components related to layout.
+    - This library is a collection of Angular components related to layout.
 
--   tour (`@studiohyperdrive/ngx-tour`):
-    -   This library provides the tools to build a guided walkthrough of one or more pages.
+- tour (`@studiohyperdrive/ngx-tour`):
+    - This library provides the tools to build a guided walkthrough of one or more pages.
 
 You can find detailed explanations in their respective README’s.
 
@@ -83,10 +81,10 @@ https://angular.dev/tools/libraries/creating-libraries
 After adding your library, make sure to check the karma set-up is consistent with other projects.  
 Check the following files:
 
--   `/angular.json`: `<your project>.architect.test`
--   `/projects/<your-lib>/tsconfig.spec.json`
--   `/projects/<your-lib>/karma.conf.js`
--   `/projects/<your-lib>/src/test.ts`
+- `/angular.json`: `<your project>.architect.test`
+- `/projects/<your-lib>/tsconfig.spec.json`
+- `/projects/<your-lib>/karma.conf.js`
+- `/projects/<your-lib>/src/test.ts`
 
 When adding a playground for your lib, also make sure the project has at least one test or provide a placeholder.
 
@@ -104,7 +102,6 @@ In order to publish your contribution you must:
 2. Bump the version to the corresponding version of your branch in the `package.json`.
 3. Commit the version change using the following format: `build(PACKAGE):vVERSION-OF-YOUR-PACKAGE`
 4. Open a PR and add the correct package label, the `publish` tag, the project and the milestone.
-
 
 ### Publish
 
@@ -125,16 +122,16 @@ This bundle of tools has been created and is maintained by [Studio Hyperdrive](h
 
 Contributors:
 
--   Axelle Vanden Eynde
--   Benoît Dossoine
--   [Denis Valcke](https://github.com/DenisValcke)
--   [Iben Van de Veire](https://github.com/IbenTesara)
--   [Jasper De Smet](https://github.com/jsprds)
--   [Pieterjan Van Saet](https://github.com/HybridFox)
--   [Wouter Heirstrate](https://github.com/WHeirstrate)
--   [Abdurrahman Ekinci](https://github.com/ekincia)
--   [Ian Emsens](https://github.com/ian-emsens-shd)
--   [Femke Reunes](https://github.com/reunefe)
--   [Bram Vandenbussche](https://github.com/SHDBramVandenbussche)
--   [Annelies Bellon](https://github.com/AnneliesB)
--   [Bert Verhelst](https://github.com/bertyhell)
+- Axelle Vanden Eynde
+- Benoît Dossoine
+- [Denis Valcke](https://github.com/DenisValcke)
+- [Iben Van de Veire](https://github.com/IbenTesara)
+- [Jasper De Smet](https://github.com/jsprds)
+- [Pieterjan Van Saet](https://github.com/HybridFox)
+- [Wouter Heirstrate](https://github.com/WHeirstrate)
+- [Abdurrahman Ekinci](https://github.com/ekincia)
+- [Ian Emsens](https://github.com/ian-emsens-shd)
+- [Femke Reunes](https://github.com/reunefe)
+- [Bram Vandenbussche](https://github.com/SHDBramVandenbussche)
+- [Annelies Bellon](https://github.com/AnneliesB)
+- [Bert Verhelst](https://github.com/bertyhell)

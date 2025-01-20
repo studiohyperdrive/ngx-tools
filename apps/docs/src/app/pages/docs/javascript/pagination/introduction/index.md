@@ -7,6 +7,7 @@ WARNING: This package has been renamed to [@studiohyperdrive/nodejs-hal-tools](h
 This repo contains a set of tools for working with HAL standards.
 
 This package exposes the following functions:
+
 - `calculateTotalPages`: This function will calculate the total amount of pages based on the pagesize & total amount of items.
 - `calculatePagination`: This function will calculate and return all pagination properties.
 - `calculateNextPage`: This function will calculate your next page or, when there is none, return your current page.
@@ -14,6 +15,7 @@ This package exposes the following functions:
 - `HALFormat`: This function is the main one which will use the above and your input to transform your input to a HAL-formatted object.
 
 And the following interfaces:
+
 - `IHALLink`: An interface for a single HAL link.
 - `IHALLinks`: An interface for the `_links` property.
 - `IHALEntities`: An interface for the `_embedded` property, takes in an optional `T`.

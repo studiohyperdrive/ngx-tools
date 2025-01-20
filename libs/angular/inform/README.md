@@ -3,6 +3,7 @@
 `ngx-inform` is a collection of Angular flows related to informing end-users.
 
 ## Installation
+
 Install the package first:
 
 ```shell
@@ -21,7 +22,7 @@ For more information about the build process, authors, contributions and issues,
 
 ## Concept
 
-`ngx-inform` is a package to help facilitate common user information use-cases such as tooltips, toasts and snackbars. 
+`ngx-inform` is a package to help facilitate common user information use-cases such as tooltips, toasts and snackbars.
 
 At its core, `ngx-inform` is build to be WCAG and ARIA compliant, and will throw errors whenever the necessary setup has not been provided to ensure said compliancy.
 

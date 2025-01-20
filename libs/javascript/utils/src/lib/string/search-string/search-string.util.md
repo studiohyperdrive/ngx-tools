@@ -5,12 +5,12 @@ By default the search will be done normalized and case-insensitive, although it 
 
 The searchTerm will be split into multiple pieces based on space in order to match **any** given part of the searchTerm itself
 
-
 ## How to use
 
 ### Search for multiple parts
+
 ```typescript
-import { searchValueForSome } from "@studiohyperdrive/utils";
+import { searchValueForSome } from '@studiohyperdrive/utils';
 
 let result = searchValueForSome('some random válue', 'some');
 // result = true
@@ -26,8 +26,9 @@ result = searchValueForSome('some random válue', 'random match');
 ```
 
 ### Normalized and case-insensitive
+
 ```typescript
-import { searchValueForSome } from "@studiohyperdrive/utils";
+import { searchValueForSome } from '@studiohyperdrive/utils';
 
 let result = searchValueForSome('áéíóúýàèìòùâêîôûäëïöüÿãñõç', 'a');
 // result = true
@@ -43,8 +44,9 @@ result = searchValueForSome('áéíóúýàèìòùâêîôûäëïöüÿãñõ�
 ```
 
 ### Normalized and case-sensitive
+
 ```typescript
-import { searchValueForSome } from "@studiohyperdrive/utils";
+import { searchValueForSome } from '@studiohyperdrive/utils';
 
 let result = searchValueForSome('áéíóúýàèìòùâêîôûäëïöüÿãñõç', 'a', true, false);
 // result = true
@@ -60,8 +62,9 @@ result = searchValueForSome('áéíóúýàèìòùâêîôûäëïöüÿãñõ�
 ```
 
 ### Not normalized and case-insensitive
+
 ```typescript
-import { searchValueForSome } from "@studiohyperdrive/utils";
+import { searchValueForSome } from '@studiohyperdrive/utils';
 
 let result = searchValueForSome('áéíóúýàèìòùâêîôûäëïöüÿãñõç', 'a', false, true);
 // result = false
@@ -77,8 +80,9 @@ result = searchValueForSome('áéíóúýàèìòùâêîôûäëïöüÿãñõ�
 ```
 
 ### Not normalized and case-sensitive
+
 ```typescript
-import { searchValueForSome } from "@studiohyperdrive/utils";
+import { searchValueForSome } from '@studiohyperdrive/utils';
 
 let result = searchValueForSome('áéíóúýàèìòùâêîôûäëïöüÿãñõç', 'a', false, false);
 // result = false
@@ -93,7 +97,6 @@ result = searchValueForSome('áéíóúýàèìòùâêîôûäëïöüÿãñõ�
 // result = false
 ```
 
-
 # searchValueForEvery
 
 The searchValueForEvery helper searches a given value for potential matches.
@@ -104,8 +107,9 @@ The searchTerm will be split into multiple pieces based on space in order to mat
 ## How to use
 
 ### Search for multiple parts
+
 ```typescript
-import { searchValueForEvery } from "@studiohyperdrive/utils";
+import { searchValueForEvery } from '@studiohyperdrive/utils';
 
 let result = searchValueForEvery('some random válue', 'some');
 // result = true
@@ -121,8 +125,9 @@ result = searchValueForEvery('some random válue', 'random match');
 ```
 
 ### Normalized and case-insensitive
+
 ```typescript
-import { searchValueForEvery } from "@studiohyperdrive/utils";
+import { searchValueForEvery } from '@studiohyperdrive/utils';
 
 let result = searchValueForEvery('áéíóúýàèìòùâêîôûäëïöüÿãñõç', 'a');
 // result = true
@@ -138,8 +143,9 @@ result = searchValueForEvery('áéíóúýàèìòùâêîôûäëïöüÿãñõ
 ```
 
 ### Normalized and case-sensitive
+
 ```typescript
-import { searchValueForEvery } from "@studiohyperdrive/utils";
+import { searchValueForEvery } from '@studiohyperdrive/utils';
 
 let result = searchValueForEvery('áéíóúýàèìòùâêîôûäëïöüÿãñõç', 'a', true, false);
 // result = true
@@ -155,8 +161,9 @@ result = searchValueForEvery('áéíóúýàèìòùâêîôûäëïöüÿãñõ
 ```
 
 ### Not normalized and case-insensitive
+
 ```typescript
-import { searchValueForEvery } from "@studiohyperdrive/utils";
+import { searchValueForEvery } from '@studiohyperdrive/utils';
 
 let result = searchValueForEvery('áéíóúýàèìòùâêîôûäëïöüÿãñõç', 'a', false, true);
 // result = false
@@ -172,8 +179,9 @@ result = searchValueForEvery('áéíóúýàèìòùâêîôûäëïöüÿãñõ
 ```
 
 ### Not normalized and case-sensitive
+
 ```typescript
-import { searchValueForEvery } from "@studiohyperdrive/utils";
+import { searchValueForEvery } from '@studiohyperdrive/utils';
 
 let result = searchValueForEvery('áéíóúýàèìòùâêîôûäëïöüÿãñõç', 'a', false, false);
 // result = false

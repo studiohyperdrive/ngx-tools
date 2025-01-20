@@ -37,7 +37,10 @@ export class SpecStoreService extends StoreService {
 	);
 	public readonly darkMode$: Observable<boolean> = this.selectFromStore(selectors.darkMode);
 
-	constructor(public readonly store: Store, private readonly httpClient: HttpClient) {
+	constructor(
+		public readonly store: Store,
+		private readonly httpClient: HttpClient
+	) {
 		super(store);
 	}
 

@@ -11,7 +11,7 @@ import { EntityStoreEffectsInterface } from './effects';
 
 export interface EntityStoreAssets<
 	StateInterface,
-	EffectsInterface extends EntityStoreEffectsInterface = any
+	EffectsInterface extends EntityStoreEffectsInterface = any,
 > {
 	reducers: ActionReducer<BasicEntityState<StateInterface>, Action>;
 	selectors: EntityStoreSelectors<StateInterface>;
@@ -27,7 +27,7 @@ export interface EntityStoreSelectors<StateInterface = any> {
 
 export interface EntityStoreActions<
 	StateInterface = any,
-	EffectsInterface extends EntityStoreEffectsInterface = any
+	EffectsInterface extends EntityStoreEffectsInterface = any,
 > {
 	add: ActionCreator<
 		string,

@@ -398,7 +398,7 @@ export class NgxTableComponent
 		// Wouter: Some rows are not selected, so uncheck the header checkbox
 		if (
 			Object.values(this.rowsFormGroup.controls).some(
-				(control: FormControl) => !Boolean(control?.value)
+				(control: FormControl) => !control?.value
 			)
 		) {
 			this.headerControl.patchValue(false, { emitEvent: false });

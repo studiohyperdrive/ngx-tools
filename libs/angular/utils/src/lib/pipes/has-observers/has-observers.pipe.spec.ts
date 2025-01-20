@@ -4,7 +4,7 @@ import { HasObserversPipe } from './has-observers.pipe';
 
 describe('HasObserversPipe', () => {
 	const pipe = new HasObserversPipe();
-	let subs: Subscription[] = [];
+	const subs: Subscription[] = [];
 
 	afterEach(() => {
 		subs.forEach((sub) => sub.unsubscribe());

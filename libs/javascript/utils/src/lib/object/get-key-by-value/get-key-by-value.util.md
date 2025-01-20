@@ -10,12 +10,15 @@ it will only return the key of the first corresponding value.
 ## How to use
 
 ```typescript
-import { getKeyByValue } from "@studiohyperdrive/utils";
+import { getKeyByValue } from '@studiohyperdrive/utils';
 
-const result = getKeyByValue({
-  thisKey: 'value',
-  notThisKey: 'other value'
-}, 'value');
+const result = getKeyByValue(
+	{
+		thisKey: 'value',
+		notThisKey: 'other value',
+	},
+	'value'
+);
 
 // result = 'thisKey;
 ```

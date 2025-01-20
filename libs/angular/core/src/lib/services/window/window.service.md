@@ -143,7 +143,6 @@ export class YourComponent {
 }
 ```
 
-
 ### runInBrowser
 
 The `runInBrowser`-method is provided to run a specific callback only when in the browser.
@@ -157,9 +156,9 @@ export class YourComponent {
 	constructor(private windowService: NgxWindowService) {}
 
 	public aCoolMethod(): void {
-		this.windowService.runInBrowser(({browserWindow, browserDocument}) => {
-            // Do something with the browser window or document
-        })
+		this.windowService.runInBrowser(({ browserWindow, browserDocument }) => {
+			// Do something with the browser window or document
+		});
 	}
 }
 ```

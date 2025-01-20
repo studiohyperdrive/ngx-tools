@@ -12,9 +12,9 @@ Checkable array :
 
 ```typescript
 const array = [
-    { prop1: 'a', prop2: true },
-    { prop1: 'a', prop2: false },
-    { prop1: 'b', prop2: true },
+	{ prop1: 'a', prop2: true },
+	{ prop1: 'a', prop2: false },
+	{ prop1: 'b', prop2: true },
 ];
 ```
 

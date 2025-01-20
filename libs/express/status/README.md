@@ -4,8 +4,8 @@ Express status-page solution used at Studio Hyperdrive
 
 ## Table of contents
 
-* [Getting Started](#getting-started)
-* [Usage](#usage)
+- [Getting Started](#getting-started)
+- [Usage](#usage)
 
 ## Getting Started
 

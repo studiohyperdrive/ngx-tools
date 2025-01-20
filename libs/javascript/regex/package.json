@@ -1,33 +1,33 @@
 {
-  "name": "@studiohyperdrive/regex-common",
-  "version": "2.0.0",
-  "description": "A package containing common regex use-cases.",
-  "keywords": [
-    "regex"
-  ],
-  "homepage": "https://open-source.studiohyperdrive.be/docs/javascript/regex/introduction",
-  "author": {
-    "name": "Studio Hyperdrive",
-    "url": "https://studiohyperdrive.be/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/studiohyperdrive/hyperdrive-opensource",
-    "directory": "libs/javascript/regex/src"
-  },
-  "license": "MIT",
-  "devDependencies": {
-    "vite": "~4.3.9",
-    "@nx/vite": "16.6.0",
-    "vite-plugin-dts": "~2.3.0",
-    "vite-plugin-static-copy": "0.17.0"
-  },
-  "main": "./index.js",
-  "module": "./index.mjs",
-  "typings": "./index.d.ts",
-  "dependencies": {
-    "@nx/vite": "20.2.1",
-    "vite": "5.4.11",
-    "vite-plugin-dts": "4.3.0"
-  }
+	"name": "@studiohyperdrive/regex-common",
+	"version": "2.0.0",
+	"description": "A package containing common regex use-cases.",
+	"keywords": [
+		"regex"
+	],
+	"homepage": "https://open-source.studiohyperdrive.be/docs/javascript/regex/introduction",
+	"author": {
+		"name": "Studio Hyperdrive",
+		"url": "https://studiohyperdrive.be/"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/studiohyperdrive/hyperdrive-opensource",
+		"directory": "libs/javascript/regex/src"
+	},
+	"license": "MIT",
+	"devDependencies": {
+		"vite": "~4.3.9",
+		"@nx/vite": "16.6.0",
+		"vite-plugin-dts": "~2.3.0",
+		"vite-plugin-static-copy": "0.17.0"
+	},
+	"main": "./index.js",
+	"module": "./index.mjs",
+	"typings": "./index.d.ts",
+	"dependencies": {
+		"@nx/vite": "20.2.1",
+		"vite": "5.4.11",
+		"vite-plugin-dts": "4.3.0"
+	}
 }

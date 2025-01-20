@@ -18,7 +18,7 @@ import { EntityStoreEffectsInterface } from '../../interfaces/effects';
  */
 export const createEntityAdapterStoreAssets = <
 	StateInterface,
-	EffectsInterface extends EntityStoreEffectsInterface = any
+	EffectsInterface extends EntityStoreEffectsInterface = any,
 >({
 	slice,
 	selectId,

@@ -20,6 +20,9 @@ const testFunction = (value: unknown[]) => {
 describe('testfunction', () => {
 	// Other test cases
 
-	it('should result in an empty array on a falsy value', earlyReturnEmptyArrayValue(testFunction));
+	it(
+		'should result in an empty array on a falsy value',
+		earlyReturnEmptyArrayValue(testFunction)
+	);
 });
 ```

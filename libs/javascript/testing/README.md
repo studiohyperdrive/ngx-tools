@@ -14,9 +14,9 @@ npm install @studiohyperdrive/testing
 
 This package will follow a semver-like format, `major.minor.patch`, in which:
 
--   `major`: Introduces new features or breaking changes
--   `minor`: Introduces minor non-breaking changes
--   `patch`: Introduces bugfixes 
+- `major`: Introduces new features or breaking changes
+- `minor`: Introduces minor non-breaking changes
+- `patch`: Introduces bugfixes
 
 For more information about the build process, authors, contributions and issues, we refer to the [hyperdrive-opensource](https://github.com/studiohyperdrive/hyperdrive-opensource) repository.
 

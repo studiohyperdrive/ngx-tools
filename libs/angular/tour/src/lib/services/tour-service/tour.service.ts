@@ -410,7 +410,7 @@ export class NgxTourService implements OnDestroy {
 							: this.elements[currentStep.tourItem].pipe(
 									// Iben: If no delay was provided, we use the default of 100ms
 									auditTime(currentStep.delay || 100)
-							  );
+								);
 					}),
 					take(1),
 					switchMap((item) => {

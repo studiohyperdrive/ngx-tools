@@ -5,9 +5,10 @@ import { Component, Input } from '@angular/core';
 	imports: [],
 	template: `
 		@if (!contentVisible) {
-		<p>Loading...</p>
-		} @if (contentVisible) {
-		<ng-content></ng-content>
+			<p>Loading...</p>
+		}
+		@if (contentVisible) {
+			<ng-content></ng-content>
 		}
 	`,
 })

@@ -15,6 +15,7 @@
 		"lint": "nx lint",
 		"lint:affected": "npx nx affected --target=lint --fix --base=origin/master --parallel",
 		"lint:all": "nx run-many --target=lint --fix --parallel",
+		"format": "npx nx format",
 		"docs:add-page": "npx nx g @ng-doc/builder:page '$name' --path apps/docs/src/app/pages",
 		"docs:add-category": "npx nx g @ng-doc/builder:category '$name' --path apps/docs/src/app/categories",
 		"clean": "npm run clean:docs && npm run clean:libs && npm run clean:build",

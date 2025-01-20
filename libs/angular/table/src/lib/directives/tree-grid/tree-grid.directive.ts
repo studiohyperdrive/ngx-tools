@@ -1,4 +1,4 @@
-import { Directive, HostBinding, Input } from '@angular/core';
+import { Directive, HostBinding, Input, OnChanges } from '@angular/core';
 
 import { NgxTreeGridRowDirective } from './tree-grid-row.directive';
 import { NgxTreeGridCellDirective } from './tree-grid.cell.directive';
@@ -12,7 +12,7 @@ import { NgxTreeGridCellDirective } from './tree-grid.cell.directive';
 	selector: '[ngxTreeGrid]',
 	standalone: true,
 })
-export class NgxTreeGridDirective {
+export class NgxTreeGridDirective implements OnChanges {
 	/**
 	 * An array of all rows in the treegrid
 	 */

@@ -1,27 +1,27 @@
 {
 	"name": "@studiohyperdrive/ngx-store",
 	"version": "19.0.0",
-  "description": "A set of utils and services to plug into a Redux/NGRX Angular workflow.",
-  "keywords": [
-    "angular",
-    "angular2",
-    "store",
-    "redux",
-    "ngrx",
-    "state",
-    "utils"
-  ],
-  "homepage": "https://open-source.studiohyperdrive.be/docs/angular/store/introduction",
-  "license": "MIT",
-  "author": {
-    "name": "Studio Hyperdrive",
-    "url": "https://studiohyperdrive.be/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/studiohyperdrive/hyperdrive-opensource",
-    "directory": "libs/angular/store/src"
-  },
+	"description": "A set of utils and services to plug into a Redux/NGRX Angular workflow.",
+	"keywords": [
+		"angular",
+		"angular2",
+		"store",
+		"redux",
+		"ngrx",
+		"state",
+		"utils"
+	],
+	"homepage": "https://open-source.studiohyperdrive.be/docs/angular/store/introduction",
+	"license": "MIT",
+	"author": {
+		"name": "Studio Hyperdrive",
+		"url": "https://studiohyperdrive.be/"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/studiohyperdrive/hyperdrive-opensource",
+		"directory": "libs/angular/store/src"
+	},
 	"peerDependencies": {
 		"@angular/common": "^19.0.0",
 		"@angular/core": "^19.0.0",
