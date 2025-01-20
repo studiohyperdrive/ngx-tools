@@ -33,7 +33,7 @@
 			"@js/regex": ["libs/javascript/regex/src/index.ts"],
 			"@js/testing": ["libs/javascript/testing/src/index.ts"],
 			"@express/status": ["libs/express/status/src/index.ts"],
-			"@studiohyperdrive/ngx-core": ["libs/angular/core/src/index.ts"]
+			"@ngx/core": ["libs/angular/core/src/index.ts"]
 		},
 		"useDefineForClassFields": false,
 		"skipLibCheck": true,
