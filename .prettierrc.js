@@ -13,14 +13,14 @@ module.exports = {
 		'^aria-',
 		'$ANGULAR_INPUT',
 		'$ANGULAR_TWO_WAY_BINDING',
-		'$ANGULAR_OUTPUT'
+		'$ANGULAR_OUTPUT',
 	],
 	overrides: [
 		{
 			files: ['*.html'],
 			options: {
-				parser: 'angular'
-			}
-		}
-	]
+				parser: 'angular',
+			},
+		},
+	],
 };

@@ -6,7 +6,7 @@
 
 	@for (question of questions; track question.id) {
 		<p>
-			{{  question.name }}
+			{{ question.name }}
 			<input [formControlName]="question.id" />
 		</p>
 	}

@@ -121,3 +121,45 @@ By default, `ngx-configurable-layout` always provides minimal styling. Several c
 | ngx-layout-item-inactive       | A class to style the inactive items used in `editable` layouts.             |
 | ngx-layout-item-disabled       | A class to style the disabled items used in `editable` layouts.             |
 | ngx-layout-grid-inactive-shown | A class given to the container when the inactive items are being shown.     |
+
+## Image marker
+
+The `ngx-image-marker` components provides the ability to visualize and add annotations to an image by using both the [MarkerJs2 and the MarkerLive packages ](https://markerjs.com/).
+
+**Important:** Due to the nature of the package and ZoneJS, some of the features from MarkerJs2 are overwritten with an Angular approach, as they currently do not work with ZoneJS.
+
+### Setup
+
+To setup the `ngx-image-marker`, we simply need to provide an image url to `image` and a description of the image to the `imageDescription` input of the component. From there on out, we can add and visualize annotations to the provided image.
+
+We can switch between edit mode and view mode by using the `canEdit` Input. Simultaneously we can add starter data by providing `startState`.
+
+The `stateUpdated` Output will emit whenever a change has been made to the annotations during edit mode, whilst `markerClicked` will emit whenever a marker is clicked during view mode.
+
+Additionally, we can pass a set of `markerTypes` we want the MarkerJs package to be restricted to. It's important to know that we need to provide markers for both the view and the edit mode, given they both use different packages and interfaces; being `marker-live` and `markerjs2` respectively.
+
+### Future improvements
+
+In the future we aim to make the `ngx-image-marker` work as a `ControlValueAccessor`. Both the current and a form based implementations will be supported initially. At a later date, based on input through a [RFC](https://github.com/studiohyperdrive/hyperdrive-opensource/discussions) we might change that.
+
+### Styling
+
+By default, `ngx-image-marker` always provides minimal styling from the marker packages. These classes have been set by the `ngx-image-marker` component and match with the corresponding classes of the marker package.
+
+We refer to the [styling settings documentation](https://markerjs.com/reference/interfaces/istylesettings.html) for more information regarding these classes.
+
+| Class                                  |                                         |
+| -------------------------------------- | --------------------------------------- |
+| ngx-image-marker-notes-area            | notesAreaStyleClassName                 |
+| ngx-image-marker-toolbar               | toolbarStyleColorsClassName             |
+| ngx-image-marker-toolbox               | toolboxStyleColorsClassName             |
+| ngx-image-marker-toolbar-button        | toolbarButtonStyleColorsClassName       |
+| ngx-image-marker-toolbar-button-active | toolbarActiveButtonStyleColorsClassName |
+| ngx-image-marker-toolbox-button        | toolboxButtonStyleColorsClassName       |
+| ngx-image-marker-toolbox-button-active | toolboxActiveButtonStyleColorsClassName |
+
+### Accessibility
+
+Currently, both the [MarkerJs2 and the MarkerLive packages ](https://markerjs.com/) do not allow for keyboard interaction. Because of that, it is important to correctly inform users about the WCAG/WAI-ARIA implications.
+
+Efforts are being made to improve the WCAG/WAI-ARIA compliance of the package, but no deadline has been set at the time of writing.

@@ -1,13 +1,14 @@
 ---
 keyword: IntroductionPage
 ---
+
 `ngx-forms` is an Angular based package used to enhance both the user and the developer experience in creating and using complex form flows.
 
 ## For organisations
 
 In a data driven world, our forms package aims to not only streamline the experience of using forms for end-users but also enhance the developer experience creating them, making it easier and faster to make forms of any size and complexity. Through best practices and tried and tested methods, our open source solution offers everything you need to tackle your data needs.
 
-Our focus on **reusability** allows developers to analyze your requirements and ensure that your end-users will experience consistency throughout your entire application so they never feel lost; no matter the size or complexity of your flows! 
+Our focus on **reusability** allows developers to analyze your requirements and ensure that your end-users will experience consistency throughout your entire application so they never feel lost; no matter the size or complexity of your flows!
 
 By providing a wide variety of **validation methods**, we can cater to your specific needs and ensure that the data you receive is exactly as you need it to be. Our validation methods range from common use-cases such as e-mail validation to complex validation tailored to your own specifications.
 

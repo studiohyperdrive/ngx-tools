@@ -9,7 +9,7 @@ It works with mixed types of spacing.
 ## How to use
 
 ```typescript
-import { replaceHtmlWhitespace } from "@studiohyperdrive/utils";
+import { replaceHtmlWhitespace } from '@studiohyperdrive/utils';
 
 const result = replaceHtmlWhitespace('The\u00A0quick\u00A0brown\u00A0fox');
 

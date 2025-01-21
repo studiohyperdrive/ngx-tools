@@ -16,7 +16,7 @@
 			"executor": "@nx/vite:test",
 			"outputs": ["{workspaceRoot}/coverage/libs/javascript/rxjs"],
 			"options": {
-        "verbose": true,
+				"verbose": true,
 				"passWithNoTests": true,
 				"reportsDirectory": "../../coverage/libs.nodejs/rxjs"
 			}
@@ -25,7 +25,10 @@
 			"executor": "@nx/linter:eslint",
 			"outputs": ["{options.outputFile}"],
 			"options": {
-				"lintFilePatterns": ["libs/javascript/rxjs/**/*.ts", "libs/javascript/rxjs/package.json"]
+				"lintFilePatterns": [
+					"libs/javascript/rxjs/**/*.ts",
+					"libs/javascript/rxjs/package.json"
+				]
 			}
 		},
 		"stylelint": {

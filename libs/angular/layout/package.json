@@ -1,6 +1,6 @@
 {
 	"name": "@studiohyperdrive/ngx-layout",
-	"version": "19.0.0",
+	"version": "19.1.0",
 	"description": "A lightweight customizable approach for common and complex layouts in Angular.",
 	"keywords": [
 		"angular",
@@ -17,10 +17,12 @@
 		"display-content",
 		"loading",
 		"error",
-    "drag and drop",
-    "accessible drag and drop",
-    "drag-and-drop",
-    "accessible drag-and-drop"
+		"drag and drop",
+		"accessible drag and drop",
+		"drag-and-drop",
+		"accessible drag-and-drop",
+		"markerjs2",
+		"markerjs-live"
 	],
 	"homepage": "https://open-source.studiohyperdrive.be/docs/angular/layout/introduction",
 	"license": "MIT",
@@ -37,7 +39,11 @@
 		"@angular/common": "^19.0.0",
 		"@angular/core": "^19.0.0",
 		"@angular/forms": "^19.0.0",
-		"@angular/cdk": "^19.0.0"
+		"@angular/cdk": "^19.0.0",
+		"@studiohyperdrive/ngx-core": "^19.1.0",
+		"markerjs-live": "1.2.1",
+		"markerjs2": "2.32.3",
+		"angular2-uuid": "^1.1.1"
 	},
 	"dependencies": {
 		"tslib": "^2.3.0"

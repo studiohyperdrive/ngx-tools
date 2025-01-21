@@ -2,7 +2,7 @@
 	<div>
 		<label for="email">
 			Email
-			<input type="email" formControlName="email" name="email" />
+			<input name="email" type="email" formControlName="email" />
 		</label>
 	</div>
 
@@ -13,7 +13,7 @@
 	<div>Errors: {{ form.errors | json }}</div>
 	<div>Valid: {{ form.valid }}</div>
 
-	<br/>
+	<br />
 	<div>
 		<button type="submit">Submit</button>
 	</div>

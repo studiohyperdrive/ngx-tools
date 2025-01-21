@@ -66,9 +66,9 @@ The hasOwnProperty will check whether the specified property exists within the g
 
 The HasValuesPipe will check if a provided object has values.
 
-#### `*HighlightPipePage`
+#### `*NgxHighlightPipePage`
 
-The HighlightPipe will select a piece of text and wrap it in a new element.
+The NgxHighlightPipe will select a piece of text and wrap it in a new element.
 
 #### `*IbanPipePage`
 
@@ -154,3 +154,9 @@ This service provides a SSR proof way to create channels for the BroadcastChanne
 #### `*NgxQueryParamFormSyncComponentPage`
 
 This abstract component provides a way to sync the queryParams with a reactive form. This is ideal to handle filtered views, as it automatically syncs selected filters with the url.
+
+### Utils
+
+#### `*simpleChangeHasChangedPage`
+
+The simpleChangeHasChanged utility Checks whether or not a SimpleChanges property has changed.

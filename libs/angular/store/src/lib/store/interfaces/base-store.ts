@@ -18,7 +18,7 @@ export interface BaseStore<StateInterface, ErrorInterface = unknown> {
 export interface BaseStoreAssets<
 	StateInterface,
 	EffectsInterface extends BaseStoreEffectsInterface = any,
-	ErrorInterface = HttpErrorResponse
+	ErrorInterface = HttpErrorResponse,
 > {
 	actions: BaseStoreActions<StateInterface, EffectsInterface, ErrorInterface>;
 	reducers: ActionReducer<
@@ -33,7 +33,7 @@ export interface BaseStoreAssets<
 export interface BaseStoreActions<
 	StateInterface = any,
 	EffectsInterface extends BaseStoreEffectsInterface = any,
-	ErrorInterface = unknown
+	ErrorInterface = unknown,
 > {
 	set: ActionCreator<
 		string,

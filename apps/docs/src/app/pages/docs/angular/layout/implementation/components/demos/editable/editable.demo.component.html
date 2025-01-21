@@ -10,14 +10,14 @@
 <ngx-configurable-layout
 	layoutType="editable"
 	itemSize="equal"
-	[formControl]="control"
-	[showInactive]="isActive.value"
-	[allowDragAndDrop]="dragAndDrop.value"
-	[dropPredicate]="drop"
 	rowGap="10px"
 	columnGap="10px"
 	itemLabel="Blok"
 	rowLabel="rij"
+	[formControl]="control"
+	[showInactive]="isActive.value"
+	[allowDragAndDrop]="dragAndDrop.value"
+	[dropPredicate]="drop"
 >
 	<ngx-configurable-layout-item key="a">
 		<div class="layout-items large">Form key a</div>
@@ -41,6 +41,6 @@
 
 	<ng-template #checkboxTmpl let-control>
 		This is an optional custom checkboxTmpl!
-		<input type="checkbox" [formControl]="control" class="my-custom-checkbox" />
+		<input class="my-custom-checkbox" type="checkbox" [formControl]="control" />
 	</ng-template>
 </ngx-configurable-layout>

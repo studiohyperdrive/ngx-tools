@@ -1,0 +1,13 @@
+<ngx-image-marker
+	image="assets/klimmuur.webp"
+	imageDescription="Floor-plan of a climbing place"
+	[canEdit]="allowEdit"
+	[startState]="currentState"
+	(stateUpdated)="updateState($event)"
+	(markerClicked)="markerClicked()"
+>
+</ngx-image-marker>
+
+<button [disabled]="!allowEdit" (click)="save()">Save</button>
+<br />
+<button [disabled]="allowEdit" (click)="edit()">Edit</button>

@@ -25,13 +25,13 @@ provideNgxModalConfiguration({
 ```
 
 Using the above configuration, we can set several properties that will be applied to the modals globally. These properties are:
-| Property                  |                                                                                                                                  |
-| ------------------------- | ---------------------------------------------------------------------------------------------------------------                  |
-| closeOnNavigation         | Whether the modal closes on navigation. By default, this is `true`                                                               |
-| direction                 | The reading direction of the modal.                                                                                              |
-| hasBackdrop               | Whether or not we wish to set a backdrop. By default, this is `true`.                                                            |
-| panelClass                | A class set to the `overlay` element. By default, this is an empty array.                                                        |
-| autoClose                 | Whether the modal automatically closes after the initial interaction emitted by the `action` output. By default, this is `true`. |
+| Property | |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| closeOnNavigation | Whether the modal closes on navigation. By default, this is `true` |
+| direction | The reading direction of the modal. |
+| hasBackdrop | Whether or not we wish to set a backdrop. By default, this is `true`. |
+| panelClass | A class set to the `overlay` element. By default, this is an empty array. |
+| autoClose | Whether the modal automatically closes after the initial interaction emitted by the `action` output. By default, this is `true`. |
 
 On top of that, by passing a `modals` record, we can define a set preset modals we can use throughout the entire application. We can setup default modals for confirmation, navigating away from a route, etc. Next to overwrites of the global properties above, we can also provide the following properties:
 
@@ -67,12 +67,12 @@ this.modalService
 		describedById: 'confirm-button',
 		labelledById: 'confirm-label',
 		data: {
-			title: 'Please confirm your actions!'
-		}
+			title: 'Please confirm your actions!',
+		},
 	})
 	.pipe(
-		tap(action => {
-			if(action === 'Confirm') {
+		tap((action) => {
+			if (action === 'Confirm') {
 				// Perform confirm logic
 			}
 
@@ -81,6 +81,7 @@ this.modalService
 	)
 	.subscribe();
 ```
+
 ### Custom modal
 
 We can always create a custom modal for feature-specific use-cases. We do this by providing a component.

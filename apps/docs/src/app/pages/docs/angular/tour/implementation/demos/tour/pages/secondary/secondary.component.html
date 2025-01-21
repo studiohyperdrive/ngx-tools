@@ -1,33 +1,20 @@
 <div>
 	<h1 tourItem="secondary">NgxDisplayContent</h1>
 	<div>
-		<p>
-			Hello this is the content we wish to show!
-		</p>
+		<p>Hello this is the content we wish to show!</p>
 	</div>
 </div>
 
-@if(data$ | async) {
+@if (data$ | async) {
 	<p tourItem="async">
-		{{data$ | async}}
+		{{ data$ | async }}
 	</p>
 }
 
-
 <ul>
-	<li tourItem="item">
-		Item 1
-	</li>
-	<li tourItem="item">
-		Item 2
-	</li>
-	<li tourItem="item">
-		Item 3
-	</li>
-	<li tourItem="item">
-		Item 4
-	</li>
-	<li tourItem="item">
-		Item 5
-	</li>
+	<li tourItem="item">Item 1</li>
+	<li tourItem="item">Item 2</li>
+	<li tourItem="item">Item 3</li>
+	<li tourItem="item">Item 4</li>
+	<li tourItem="item">Item 5</li>
 </ul>

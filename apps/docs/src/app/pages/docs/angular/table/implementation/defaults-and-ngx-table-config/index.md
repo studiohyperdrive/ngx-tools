@@ -21,12 +21,12 @@ We can provide the config using a provider. An example of this could be:
 
 ```ts
 providers: [
-    {
-        provide: NgxTableConfigToken,
-        useValue: {
-            showDetailRow: 'on-single-item',
-            highlightKey: 'is-updated',
-        },
-    },
+	{
+		provide: NgxTableConfigToken,
+		useValue: {
+			showDetailRow: 'on-single-item',
+			highlightKey: 'is-updated',
+		},
+	},
 ];
 ```

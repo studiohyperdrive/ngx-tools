@@ -12,7 +12,7 @@ const i18nLoadingService: any = {
 };
 
 describe('NgxI18nTranslationLoaderResolver', () => {
-	let subscriptions: Subscription[] = [];
+	const subscriptions: Subscription[] = [];
 
 	afterEach(() => {
 		subscriptions.forEach((sub: Subscription) => sub.unsubscribe());

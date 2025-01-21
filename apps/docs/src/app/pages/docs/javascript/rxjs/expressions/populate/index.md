@@ -9,16 +9,17 @@ It expects a record of Observables that match with the keys of the object. An op
 ## How to use
 
 ```typescript
-import { populate } from "@studiohyperdrive/rxjs-utils";
-import { of } from "rxjs";
+import { populate } from '@studiohyperdrive/rxjs-utils';
+import { of } from 'rxjs';
 
-of({hello: 'world'}).pipe(
-    populate({
-        world: () => of('hello'),
-        'foo.bar': (data) => of(data.hello)
-    })
-)
-    .subscribe((result) => {
-        // => result: {hello: 'world', world: 'hello', foo: {bar: 'world'}}
-    });
+of({ hello: 'world' })
+	.pipe(
+		populate({
+			world: () => of('hello'),
+			'foo.bar': (data) => of(data.hello),
+		})
+	)
+	.subscribe((result) => {
+		// => result: {hello: 'world', world: 'hello', foo: {bar: 'world'}}
+	});
 ```

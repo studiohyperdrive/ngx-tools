@@ -20,6 +20,6 @@ export const provideNgxTourConfiguration = (configuration: NgxTourTokenType): Pr
 				: ({
 						component: configuration,
 						offset: { top: 0, bottom: 0 },
-				  } as NgxTourTokenConfiguration),
+					} as NgxTourTokenConfiguration),
 	};
 };

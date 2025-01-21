@@ -9,9 +9,10 @@ export type StringifiedQueryParamsType<QueryParamsType> = {
 
 @Directive()
 export abstract class NgxQueryParamFormSyncComponent<
-	QueryParamsType,
-	FormType extends AbstractControl
-> implements OnInit, OnDestroy
+		QueryParamsType,
+		FormType extends AbstractControl,
+	>
+	implements OnInit, OnDestroy
 {
 	protected readonly destroyed$: Subject<void> = new Subject();
 
@@ -26,7 +27,10 @@ export abstract class NgxQueryParamFormSyncComponent<
 	protected queryParams$: Observable<StringifiedQueryParamsType<QueryParamsType>> = this.route
 		.queryParams as Observable<StringifiedQueryParamsType<QueryParamsType>>;
 
-	constructor(protected readonly route: ActivatedRoute, protected readonly router: Router) {}
+	constructor(
+		protected readonly route: ActivatedRoute,
+		protected readonly router: Router
+	) {}
 
 	public ngOnInit(): void {
 		//Iben: Warn the user if one of the two methods isn't provided

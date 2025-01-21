@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener, Input, Optional } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input, Optional, AfterViewInit } from '@angular/core';
 
 import { NgxHasFocusDirective } from '../has-focus-action';
 import { NgxTreeGridCellTarget, NgxTreeGridRowTarget } from '../../interfaces';
@@ -18,7 +18,7 @@ import { NgxTreeGridDirective } from './tree-grid.directive';
 		'[attr.tabIndex]': '-1',
 	},
 })
-export class NgxTreeGridCellDirective extends NgxHasFocusDirective {
+export class NgxTreeGridCellDirective extends NgxHasFocusDirective implements AfterViewInit {
 	/**
 	 * The parent row of the cell
 	 */
@@ -152,7 +152,7 @@ export class NgxTreeGridCellDirective extends NgxHasFocusDirective {
 		let result: HTMLElement;
 
 		// Iben: Loop over each first-level element of the children
-		for (let element of [...this.elementRef.nativeElement.children]) {
+		for (const element of [...this.elementRef.nativeElement.children]) {
 			if (!result) {
 				// Iben: Check if we can focus on the element
 				element.focus();

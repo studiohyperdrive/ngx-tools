@@ -1,32 +1,25 @@
 {
 	"extends": "../../../tsconfig.base.json",
-  "compilerOptions": {
-    "module": "ESNext",
-    "moduleResolution": "node",
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "esModuleInterop": false,
-    "experimentalDecorators": true,
-    "importHelpers": true,
-    "declaration": true,
-    "declarationDir": "src/types",
-    "target": "ES2022",
-    "lib": [
-      "ES2023"
-    ],
-    "noEmit": true
-  },
-  "include": [
-    "src/**/*.ts",
-    "types/**/*.ts"
-  ],
-  "exclude": [
-    "src/**.spec.ts"
-  ],
+	"compilerOptions": {
+		"module": "ESNext",
+		"moduleResolution": "node",
+		"forceConsistentCasingInFileNames": true,
+		"strict": true,
+		"noImplicitOverride": true,
+		"noPropertyAccessFromIndexSignature": true,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+		"esModuleInterop": false,
+		"experimentalDecorators": true,
+		"importHelpers": true,
+		"declaration": true,
+		"declarationDir": "src/types",
+		"target": "ES2022",
+		"lib": ["ES2023"],
+		"noEmit": true
+	},
+	"include": ["src/**/*.ts", "types/**/*.ts"],
+	"exclude": ["src/**.spec.ts"],
 	"references": [
 		{
 			"path": "./tsconfig.lib.json"

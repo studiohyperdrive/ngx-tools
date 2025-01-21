@@ -22,7 +22,7 @@ const rootI18nService: any = {
 describe('NgxI18nService', () => {
 	const service = new NgxI18nService(translateService, rootI18nService);
 
-	let subscriptions: Subscription[] = [];
+	const subscriptions: Subscription[] = [];
 
 	afterEach(() => {
 		subscriptions.forEach((sub: Subscription) => sub.unsubscribe());

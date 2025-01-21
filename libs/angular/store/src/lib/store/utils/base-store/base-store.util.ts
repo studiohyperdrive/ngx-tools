@@ -12,7 +12,7 @@ import { BaseStoreEffectsInterface } from '../../interfaces/effects';
  */
 export const createBaseStoreAssets = <
 	StateInterface,
-	EffectsInterface extends BaseStoreEffectsInterface = any
+	EffectsInterface extends BaseStoreEffectsInterface = any,
 >({
 	slice,
 	initialStateValue,

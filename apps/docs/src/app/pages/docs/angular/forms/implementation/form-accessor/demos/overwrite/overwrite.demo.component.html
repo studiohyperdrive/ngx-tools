@@ -2,10 +2,10 @@
 	<app-user-name-form formControlName="username" />
 </div>
 
-<p>Username: "{{ form.get("username").value }}"</p>
+<p>Username: "{{ form.get('username').value }}"</p>
 
 <p><strong>Validation - Form</strong></p>
-<div>Username: {{ form.get("username").errors | json }}</div>
+<div>Username: {{ form.get('username').errors | json }}</div>
 <div>Errors: {{ form.errors | json }}</div>
 <div>Valid: {{ form.valid }}</div>
 

@@ -1,53 +1,47 @@
 <ngx-table
 	[selectable]="Selectable"
 	[formControl]="control"
-	[columns]="Columns  === 'All' ? ['name', 'email', 'phone', 'country'] : ['name', 'country']"
+	[columns]="Columns === 'All' ? ['name', 'email', 'phone', 'country'] : ['name', 'country']"
 	[data]="data()"
-	[currentSorting]="currentSorting()">
+	[currentSorting]="currentSorting()"
+>
 	<ngx-table-cell column="name">
-		<ng-template #headerTmpl>
-			User
-		</ng-template>
+		<ng-template #headerTmpl> User </ng-template>
 		<ng-template #cellTmpl let-item>
 			<span class="content">
-				{{item}}
+				{{ item }}
 			</span>
 		</ng-template>
 	</ngx-table-cell>
 	<ngx-table-cell column="email">
-		<ng-template #headerTmpl>
-			E-mail
-		</ng-template>
+		<ng-template #headerTmpl> E-mail </ng-template>
 		<ng-template #cellTmpl let-item>
 			<span class="content">
-				{{item}}
+				{{ item }}
 			</span>
 		</ng-template>
 	</ngx-table-cell>
 	<ngx-table-cell column="phone">
-		<ng-template #headerTmpl>
-			Phone
-		</ng-template>
+		<ng-template #headerTmpl> Phone </ng-template>
 		<ng-template #cellTmpl let-item>
 			<span class="content">
-				{{item}}
+				{{ item }}
 			</span>
 		</ng-template>
 	</ngx-table-cell>
-	<ngx-table-cell [sortable]="Sortable" (sort)="sortLocation($event)" column="country">
-		<ng-template #headerTmpl>
-			Location
-		</ng-template>
+	<ngx-table-cell column="country" [sortable]="Sortable" (sort)="sortLocation($event)">
+		<ng-template #headerTmpl> Location </ng-template>
 		<ng-template #cellTmpl let-item>
 			<span class="content">
-				{{item}}
+				{{ item }}
 			</span>
 		</ng-template>
 	</ngx-table-cell>
 
 	@if (Detail) {
 		<ng-template #detailRowTmpl let-item>
-			The user {{item.name}} can be reached at <a [href]="'mailto:'+item.email">{{item.email}}</a>
+			The user {{ item.name }} can be reached at
+			<a [href]="'mailto:' + item.email">{{ item.email }}</a>
 		</ng-template>
 	}
 </ngx-table>

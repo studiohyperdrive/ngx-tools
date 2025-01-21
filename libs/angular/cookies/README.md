@@ -12,12 +12,11 @@ npm install @studiohyperdrive/ngx-cookies
 
 Add the CookieConsent CSS to the build step.
 
-``` json
+```json
         "styles": [
           "node_modules/vanilla-cookieconsent/dist/cookieconsent.css"
         ],
 ```
-
 
 ## Versioning and build information
 

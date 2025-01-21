@@ -3,7 +3,7 @@
 	<div>
 		<label for="number">
 			Number
-			<input type="number" formControlName="number" name="number" />
+			<input name="number" type="number" formControlName="number" />
 		</label>
 	</div>
 
@@ -14,7 +14,7 @@
 	<div>Errors: {{ form.errors | json }}</div>
 	<div>Valid: {{ form.valid }}</div>
 
-	<br/>
+	<br />
 	<div>
 		<button type="submit">Submit</button>
 	</div>

@@ -24,5 +24,8 @@ export class UserEffects {
 		return this.actions$.pipe(handleEffect<string>(actions.paging, 'set', () => of('hello')));
 	});
 
-	constructor(private readonly actions$: Actions, private readonly userService: UserService) {}
+	constructor(
+		private readonly actions$: Actions,
+		private readonly userService: UserService
+	) {}
 }

@@ -49,20 +49,20 @@ export class AppComponent {
 Lastly set up the global config in your root provider array:
 
 ```typescript
-	providers: [
-		//...
-        provideNgxReplaceElementsConfiguration({
-            link: {
-                element: 'ngx-link',
-                selector:'a[data-link-id={{id}}]',
-                includeInnerText: true
-            },
-            image: {
-                element: 'ngx-image',
-                selector:'img[data-link-id={{id}}]',
-            }
-        })
-	]
+providers: [
+	//...
+	provideNgxReplaceElementsConfiguration({
+		link: {
+			element: 'ngx-link',
+			selector: 'a[data-link-id={{id}}]',
+			includeInnerText: true,
+		},
+		image: {
+			element: 'ngx-image',
+			selector: 'img[data-link-id={{id}}]',
+		},
+	}),
+];
 ```
 
 For each element we want to register, we define the WebComponent name using the `element` property. In order to be able to select an item to replace later on in the text, we create a `selector`. This selector should **always** include a part to identify the id, being `{{id}}`.

@@ -1,40 +1,40 @@
 {
-  "name": "@studiohyperdrive/utils",
-  "version": "2.0.0",
-  "description": "A package containing common Javascript utils.",
-  "keywords": [
-    "file",
-    "number",
-    "object",
-    "string",
-    "range",
-    "get-key-by-value",
-    "merge",
-    "search-recursively",
-    "camel-case-to-sentence",
-    "normalize-string",
-    "replace-whitespace",
-    "search-string",
-    "string-comparator"
-  ],
-  "homepage": "https://open-source.studiohyperdrive.be/docs/javascript/utils/introduction",
-  "author": {
-    "name": "Studio Hyperdrive",
-    "url": "https://studiohyperdrive.be/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/studiohyperdrive/hyperdrive-opensource",
-    "directory": "libs/javascript/rxjs/src"
-  },
-  "license": "MIT",
-  "main": "./index.js",
-  "module": "./index.mjs",
-  "typings": "./index.d.ts",
-  "peerDependencies": {
-    "obj-clean": "^3.0.1",
-    "vite": "5.4.11",
-    "@nx/vite": "20.2.1",
-    "vite-plugin-dts": "4.3.0"
-  }
+	"name": "@studiohyperdrive/utils",
+	"version": "2.0.0",
+	"description": "A package containing common Javascript utils.",
+	"keywords": [
+		"file",
+		"number",
+		"object",
+		"string",
+		"range",
+		"get-key-by-value",
+		"merge",
+		"search-recursively",
+		"camel-case-to-sentence",
+		"normalize-string",
+		"replace-whitespace",
+		"search-string",
+		"string-comparator"
+	],
+	"homepage": "https://open-source.studiohyperdrive.be/docs/javascript/utils/introduction",
+	"author": {
+		"name": "Studio Hyperdrive",
+		"url": "https://studiohyperdrive.be/"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/studiohyperdrive/hyperdrive-opensource",
+		"directory": "libs/javascript/rxjs/src"
+	},
+	"license": "MIT",
+	"main": "./index.js",
+	"module": "./index.mjs",
+	"typings": "./index.d.ts",
+	"peerDependencies": {
+		"obj-clean": "^3.0.1",
+		"vite": "5.4.11",
+		"@nx/vite": "20.2.1",
+		"vite-plugin-dts": "4.3.0"
+	}
 }

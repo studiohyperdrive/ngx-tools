@@ -23,7 +23,10 @@
 			"executor": "@nx/linter:eslint",
 			"outputs": ["{options.outputFile}"],
 			"options": {
-				"lintFilePatterns": ["libs/javascript/testing/**/*.ts", "libs/javascript/testing/package.json"]
+				"lintFilePatterns": [
+					"libs/javascript/testing/**/*.ts",
+					"libs/javascript/testing/package.json"
+				]
 			}
 		},
 		"stylelint": {

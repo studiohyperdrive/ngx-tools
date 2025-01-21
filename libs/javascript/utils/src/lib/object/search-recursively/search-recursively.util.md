@@ -1,11 +1,12 @@
 # searchRecursively
+
 Searches recursively over a nested list of items.
 
 It requires the itemType to have a property "children" of the same type
 
 ## How to use
 
-```typescript
+````typescript
 import { searchRecursively } from "@studiohyperdrive/utils";
 
 interface Example {
@@ -90,4 +91,4 @@ const result = searchRecursively(
     item => item.something.includes('hello')
 );
 // result = { id: 5, something: 'hello blub', children: [] };
-```
+````

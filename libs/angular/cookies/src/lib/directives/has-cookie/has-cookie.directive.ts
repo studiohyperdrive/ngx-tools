@@ -8,6 +8,7 @@ import {
 	TemplateRef,
 	Type,
 	ViewContainerRef,
+	OnDestroy,
 } from '@angular/core';
 import { Subject, tap, takeUntil, combineLatest, map } from 'rxjs';
 import { flatten } from 'lodash';
@@ -24,7 +25,7 @@ import { NgxCookiesFallbackComponentToken } from '../../tokens';
 	selector: '[hasCookie]',
 	standalone: true,
 })
-export class NgxHasCookieDirective {
+export class NgxHasCookieDirective implements OnDestroy {
 	//TODO: Iben: Replace this with the OnDestroyComponent flow once we have a shared lib
 	/**
 	 * The destroyed state of the directive

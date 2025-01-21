@@ -9,14 +9,10 @@ It expects an array of `Observable<boolean>`.
 ## How to use
 
 ```typescript
-import { combineBooleans } from "@studiohyperdrive/rxjs-utils";
-import { of } from "rxjs";
+import { combineBooleans } from '@studiohyperdrive/rxjs-utils';
+import { of } from 'rxjs';
 
-combineBooleans([
-    of(true),
-    of(false)
-])
-    .subscribe((result) => {
-        // => result: true
-    });
+combineBooleans([of(true), of(false)]).subscribe((result) => {
+	// => result: true
+});
 ```

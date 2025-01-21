@@ -2,6 +2,7 @@
 _Describe the changes you made_
 
 **Requirements**
+
 - [ ] Correct label have been assigned
 - [ ] Project has been assigned
 - [ ] Milestone has been (created/)assigned

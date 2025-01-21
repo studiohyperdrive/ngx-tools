@@ -11,8 +11,8 @@ A common use-case for `fetchIf` is to check whether a property already exists wi
 ## How to use
 
 ```typescript
-import { fetchIf } from "@studiohyperdrive/rxjs-utils";
-import { of } from "rxjs";
+import { fetchIf } from '@studiohyperdrive/rxjs-utils';
+import { of } from 'rxjs';
 
 fetchIf(
 	of([{ id: 'hello' }]),
@@ -21,4 +21,4 @@ fetchIf(
 ).subscribe((result) => {
 	// => result: {id: 'world'}
 });
-
+```

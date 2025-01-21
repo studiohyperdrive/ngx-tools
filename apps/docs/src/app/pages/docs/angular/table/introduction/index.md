@@ -1,6 +1,7 @@
 ---
 keyword: IntroductionPage
 ---
+
 `ngx-table` is an Angular CDK based package to quickly create complex data tables.
 
 ## For organisations
@@ -30,6 +31,3 @@ Using a template based system, the package provides a quick and easy way to buil
 Whilst the package itself opinionated and is tailored to be WCAG/WAI-ARIA compliant by default, the template based approach offers a lot of room to customize the table to the required use-case.
 
 Looking for more information on how this package can help you out in your application? Check out `Implementation` to find out more!
-
-
-

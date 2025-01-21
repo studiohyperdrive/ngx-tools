@@ -2,60 +2,56 @@ name: Deploy-Docs
 
 run-name: Deploy Docs to GitHub Pages ${{ github.event.release.tag_name }}
 
-
 on:
-  release:
-    types: [created]
+    release:
+        types: [created]
 
-    # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+        # Allows you to run this workflow manually from the Actions tab
+    workflow_dispatch:
 
-  
 jobs:
-  build:
-    name: Build
-    runs-on: ubuntu-latest
-    
-    steps:
-      # Checkout the repository
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+    build:
+        name: Build
+        runs-on: ubuntu-latest
 
-      # Setup Node.js environment
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "18"
+        steps:
+            # Checkout the repository
+            - name: Checkout Repository
+              uses: actions/checkout@v4
 
-      # Install dependencies
-      - name: Install Dependencies
-        run: npm install --ignore-scripts
+            # Setup Node.js environment
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '18'
 
-      # Build the documentation
-      - name: Build Documentation
-        run: npx nx run docs:build --prerender=true --server="apps/docs/server.ts" --baseHref="https://open-source.studiohyperdrive.be/"
+            # Install dependencies
+            - name: Install Dependencies
+              run: npm install --ignore-scripts
 
-  
-      - name: Upload static files as artifact
-        id: deployment
-        uses: actions/upload-pages-artifact@v3 
-        with:
-          path: ./dist/apps/docs/browser/browser/
+            # Build the documentation
+            - name: Build Documentation
+              run: npx nx run docs:build --prerender=true --server="apps/docs/server.ts" --baseHref="https://open-source.studiohyperdrive.be/"
 
+            - name: Upload static files as artifact
+              id: deployment
+              uses: actions/upload-pages-artifact@v3
+              with:
+                  path: ./dist/apps/docs/browser/browser/
 
-    # Deployment job
-  deploy:
-    # Add a dependency to the build job
-    needs: build
-    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
-    permissions:
-      pages: write      # to deploy to Pages
-      id-token: write   # to verify the deployment originates from an appropriate source
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+        # Deployment job
+    deploy:
+        # Add a dependency to the build job
+        needs: build
+        # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+        permissions:
+            pages: write # to deploy to Pages
+            id-token: write # to verify the deployment originates from an appropriate source
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+        runs-on: ubuntu-latest
+        steps:
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@v4

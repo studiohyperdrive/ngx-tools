@@ -45,11 +45,14 @@ ng-doc-navbar {
 }
 
 .ng-doc-navigation-controls {
-	border-image: linear-gradient(-90.97deg,
+	border-image: linear-gradient(
+			-90.97deg,
 			#00cb9a 0.32%,
 			#3858ca 29.01%,
 			#38cfff 51.04%,
-			#f872c2 98.69%) 1;
+			#f872c2 98.69%
+		)
+		1;
 }
 
 .ng-doc-navbar-left {
@@ -115,7 +118,9 @@ ng-doc-playground {
 				grid-row: 1/2;
 				width: 100% !important;
 
-				.ng-doc-playground-header, .ng-doc-playground-setting, .ng-doc-playground-divider {
+				.ng-doc-playground-header,
+				.ng-doc-playground-setting,
+				.ng-doc-playground-divider {
 					display: none !important;
 				}
 			}

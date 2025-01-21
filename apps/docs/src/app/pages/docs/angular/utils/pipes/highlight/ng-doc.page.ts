@@ -2,8 +2,8 @@ import { NgDocPage } from '@ng-doc/core';
 import { PipesCategory } from '../../../../../../categories/angular';
 import { HighlightPipeCustomDemoComponent, HighlightPipeDemoComponent } from './demos';
 
-const HighlightPipePage: NgDocPage = {
-	title: `HighlightPipe`,
+const NgxHighlightPipePage: NgDocPage = {
+	title: `NgxHighlightPipe`,
 	mdFile: './index.md',
 	category: PipesCategory,
 	demos: { HighlightPipeDemoComponent, HighlightPipeCustomDemoComponent },
@@ -15,4 +15,4 @@ const HighlightPipePage: NgDocPage = {
 	},
 };
 
-export default HighlightPipePage;
+export default NgxHighlightPipePage;

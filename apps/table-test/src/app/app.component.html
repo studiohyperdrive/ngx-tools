@@ -13,30 +13,30 @@
 
 <app-wrapper [contentVisible]="isWrapperShown">
 	<ngx-table
+		selectableKey="id"
 		[loading]="loading"
 		[formControl]="form"
 		[data]="data | async"
 		[columns]="columns"
 		[selectable]="true"
 		[currentSorting]="currentSort"
-		selectableKey="id"
 		[resetFormOnNewData]="false"
 		(rowClicked)="rowEmitted($event)"
 	>
 		<ng-template #radioTmpl let-control let-row="row" let-index="index">
 			<input
-				type="radio"
 				name="control"
+				type="radio"
 				[id]="index"
 				[formControl]="control"
 				[value]="row.id"
 			/>
 		</ng-template>
-		@if(showDetail) {
-		<ng-template #detailRowTmpl let-row let-index="index">
-			{{ row | json }}
-			{{ index }}
-		</ng-template>
+		@if (showDetail) {
+			<ng-template #detailRowTmpl let-row let-index="index">
+				{{ row | json }}
+				{{ index }}
+			</ng-template>
 		}
 
 		<ngx-table-cell
