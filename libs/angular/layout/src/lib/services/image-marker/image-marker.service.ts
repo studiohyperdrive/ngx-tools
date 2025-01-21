@@ -144,6 +144,8 @@ export class NgxImageMarkerService implements OnDestroy {
 		// These can later on be extended when needed
 		marker.uiStyleSettings.zoomButtonVisible = configuration.allowZoom;
 		marker.uiStyleSettings.zoomOutButtonVisible = configuration.allowZoom;
+		marker.zoomSteps = configuration.zoom?.levels || [1, 2, 3, 4];
+		marker.zoomLevel = configuration.zoom?.current ?? 1;
 		marker.uiStyleSettings.clearButtonVisible = configuration.allowClear;
 
 		// Iben: Set the available marker types

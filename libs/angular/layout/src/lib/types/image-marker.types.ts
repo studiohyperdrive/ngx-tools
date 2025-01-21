@@ -44,6 +44,14 @@ export interface NgxImageMarkerConfiguration {
 	 * An optional set of allowed marker types, by default all
 	 */
 	markerTypes?: NgxImageMarkerTypes;
+
+	/**
+	 * An optional set of allowed marker types, by default the levels are [1,2,3,4] and the current zoom is 1
+	 */
+	zoom?: {
+		levels: number[];
+		current: number;
+	};
 }
 
 interface NgxImageMarkerBase {

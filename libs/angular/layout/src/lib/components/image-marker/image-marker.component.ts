@@ -80,6 +80,16 @@ export class NgxImageMarkerComponent implements AfterViewInit, OnChanges, OnDest
 	@Input() public canEdit: boolean = true;
 
 	/**
+	 * An optional current zoom level
+	 */
+	@Input() public currentZoomLevel: number;
+
+	/**
+	 * An optional amount of times we can zoom in and out
+	 */
+	@Input() public zoomLevels: number[];
+
+	/**
 	 * An optional record of types of Markerjs markers we wish to render
 	 */
 	@Input() public markerTypes: NgxImageMarkerTypes;
@@ -118,7 +128,9 @@ export class NgxImageMarkerComponent implements AfterViewInit, OnChanges, OnDest
 			this.currentMarker &&
 			(simpleChangeHasChanged(changes.startState) ||
 				simpleChangeHasChanged(changes.canEdit) ||
-				simpleChangeHasChanged(changes.markerTypes));
+				simpleChangeHasChanged(changes.markerTypes) ||
+				simpleChangeHasChanged(changes.currentZoomLevel) ||
+				simpleChangeHasChanged(changes.zoomLevels));
 
 		// Iben: Recreate the marker whenever the configuration is adjusted
 		if (!this.currentMarker || hasChanges) {
@@ -156,6 +168,10 @@ export class NgxImageMarkerComponent implements AfterViewInit, OnChanges, OnDest
 					allowZoom: true,
 					defaultState: this.startState || undefined,
 					markerTypes: this.markerTypes,
+					zoom:
+						this.currentZoomLevel !== undefined && this.zoomLevels
+							? { current: this.currentZoomLevel, levels: this.zoomLevels }
+							: undefined,
 				}
 			);
 
