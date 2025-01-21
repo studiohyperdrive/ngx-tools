@@ -111,7 +111,6 @@ export class NgxWindowService {
 		if (this.isBrowser) {
 			return action({ browserWindow: this.window, browserDocument: this.document });
 		}
-
 		console.warn('Browser depended function has not run.');
 		return undefined;
 	}

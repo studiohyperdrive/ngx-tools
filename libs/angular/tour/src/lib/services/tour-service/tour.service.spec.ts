@@ -1,5 +1,6 @@
 import { subscribeSpyTo } from '@hirez_io/observer-spy';
 
+import { NgxWindowService, NgxWindowServiceMock } from '@studiohyperdrive/ngx-core';
 import { MockTourStepComponent, OverlayMock } from '../../mocks';
 import { NgxTourService } from './tour.service';
 
@@ -12,10 +13,14 @@ xdescribe('NgxTourService Browser', () => {
 	let service: NgxTourService;
 
 	beforeEach(() => {
-		service = new NgxTourService(OverlayMock(new MockTourStepComponent(service)), 'browser', {
-			component: MockTourStepComponent,
-			offset: {},
-		});
+		service = new NgxTourService(
+			OverlayMock(new MockTourStepComponent(service)),
+			NgxWindowServiceMock(undefined) as unknown as NgxWindowService,
+			{
+				component: MockTourStepComponent,
+				offset: {},
+			}
+		);
 	});
 
 	afterAll(() => {

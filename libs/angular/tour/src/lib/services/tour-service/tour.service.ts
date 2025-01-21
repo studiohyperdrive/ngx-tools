@@ -1,4 +1,4 @@
-import { ComponentRef, Inject, Injectable, OnDestroy, PLATFORM_ID } from '@angular/core';
+import { ComponentRef, Inject, Injectable, OnDestroy } from '@angular/core';
 import {
 	BehaviorSubject,
 	Observable,
@@ -19,8 +19,8 @@ import {
 } from 'rxjs';
 import { ConnectedPosition, Overlay, OverlayConfig, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 
+import { NgxWindowService } from '@studiohyperdrive/ngx-core';
 import { NgxTourStepComponent } from '../../abstracts';
 import { NgxTourItemDirective } from '../../directives';
 import { NgxTourStepToken } from '../../tokens';
@@ -185,7 +185,7 @@ export class NgxTourService implements OnDestroy {
 
 	constructor(
 		private readonly cdkOverlayService: Overlay,
-		@Inject(PLATFORM_ID) private readonly platformId: string,
+		private readonly windowService: NgxWindowService,
 		@Inject(NgxTourStepToken) private readonly configuration: NgxTourTokenConfiguration
 	) {
 		// Iben: We use a subject with concatMap here because we want each event to be handled correctly and the elements record should finish updating before updating it again.
@@ -200,7 +200,7 @@ export class NgxTourService implements OnDestroy {
 			.subscribe();
 
 		// Iben: Listen to the onresize event of the window
-		this.runInBrowser(({ browserWindow }) => {
+		this.windowService.runInBrowser(({ browserWindow }) => {
 			browserWindow.onresize = () => {
 				this.windowResizeSubject.next();
 			};
@@ -220,7 +220,7 @@ export class NgxTourService implements OnDestroy {
 		startIndex = 0
 	): Observable<void> {
 		// Wouter: Early exit if the tour is run on the server, for which this service is not intended
-		if (isPlatformServer(this.platformId)) {
+		if (!this.windowService.isBrowser()) {
 			console.warn(
 				'NgxTourService: The tour service is not intended to be run on the server. The tour will not be started.'
 			);
@@ -228,7 +228,7 @@ export class NgxTourService implements OnDestroy {
 			return of(null);
 		}
 
-		this.runInBrowser(({ browserWindow, browserDocument }) => {
+		this.windowService.runInBrowser(({ browserWindow, browserDocument }) => {
 			// Iben: Save the current scroll position so we can return to it when we close the tour
 			this.startingScrollPosition = browserWindow.scrollY;
 
@@ -278,7 +278,7 @@ export class NgxTourService implements OnDestroy {
 			take(1),
 			switchMap(() => this.runStepFunction(onClose)),
 			tap(() => {
-				this.runInBrowser(({ browserWindow, browserDocument }) => {
+				this.windowService.runInBrowser(({ browserWindow, browserDocument }) => {
 					// Iben: Scroll back to the starting position
 					browserWindow.scrollTo({ top: this.startingScrollPosition });
 
@@ -360,7 +360,7 @@ export class NgxTourService implements OnDestroy {
 		this.handleBodyClass('remove');
 
 		// Iben: Get rid of the onresize event
-		this.runInBrowser(({ browserWindow }) => {
+		this.windowService.runInBrowser(({ browserWindow }) => {
 			browserWindow.onresize = null;
 		});
 	}
@@ -459,7 +459,7 @@ export class NgxTourService implements OnDestroy {
 		currentStep: NgxTourStep,
 		item?: NgxTourItemDirective
 	): ComponentRef<NgxTourStepComponent> {
-		return this.runInBrowser(({ browserDocument, browserWindow }) => {
+		return this.windowService.runInBrowser(({ browserDocument, browserWindow }) => {
 			// Iben: Update the previous and current step subject
 			this.previousStepSubject.next(this.currentStepSubject.getValue());
 			this.currentStepSubject.next(currentStep);
@@ -623,9 +623,9 @@ export class NgxTourService implements OnDestroy {
 	 * Surrounds the provided item with a cutout in the backdrop
 	 *
 	 * @private
-	 * @param backdrop - The provided backdrop
-	 * @param item - The item we wish to surround
-	 * @param cutoutMargin - The amount of margin we want around the item
+	 * @param event.backdrop - The provided backdrop
+	 * @param event.item - The item we wish to surround
+	 * @param event.cutoutMargin - The amount of margin we want around the item
 	 */
 	private setClipPath(event: NgxTourBackdropClipEvent): void {
 		const { backdrop, item, cutoutMargin } = event;
@@ -703,23 +703,12 @@ export class NgxTourService implements OnDestroy {
 	 * Sets or removes the body class to indicate the tour is active
 	 */
 	private handleBodyClass(action: 'set' | 'remove'): void {
-		this.runInBrowser(({ browserDocument }) => {
+		this.windowService.runInBrowser(({ browserDocument }) => {
 			if (action === 'set') {
 				browserDocument.body.classList.add('ngx-tour-active');
 			} else {
 				browserDocument.body.classList.remove('ngx-tour-active');
 			}
 		});
-	}
-
-	//TODO: Iben: Remove this function in service of the WindowService once it is shared
-	private runInBrowser<ReturnType = void>(
-		callback: (data: { browserWindow: Window; browserDocument: Document }) => ReturnType
-	): ReturnType {
-		if (isPlatformBrowser(this.platformId)) {
-			return callback({ browserWindow: document.defaultView, browserDocument: document });
-		}
-
-		return undefined;
 	}
 }

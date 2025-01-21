@@ -35,10 +35,10 @@ Then register it as a web component in your `app.component.ts`:
 export class AppComponent {
 	constructor(
 		// ...
-		private readonly windowService: WindowService,
+		private readonly windowService: NgxWindowService,
 		private readonly injector: Injector
 	) {
-		// Note that we are using our WindowService (ngx-utils) to avoid SSR issues.
+		// Note that we are using our WindowService (ngx-core) to avoid SSR issues.
 		if (this.windowService.isBrowser) {
 			const linkComponent = createCustomElement(LinkComponent, { injector: this.injector });
 

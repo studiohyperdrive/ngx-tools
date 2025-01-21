@@ -1,6 +1,6 @@
-import { isPlatformBrowser } from '@angular/common';
-import { Inject, Injectable, OnDestroy, PLATFORM_ID } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Observable, Subject, fromEvent, takeUntil, tap } from 'rxjs';
+import { NgxWindowService } from '@studiohyperdrive/ngx-core';
 
 /**
  * A service that provides the currently online status of the application
@@ -22,9 +22,9 @@ export class NgxOnlineService implements OnDestroy {
 	 */
 	public readonly online$: Observable<boolean> = this.onlineSubject.asObservable();
 
-	constructor(@Inject(PLATFORM_ID) platformId: string) {
+	constructor(private readonly windowService: NgxWindowService) {
 		// Iben: When we're in the browser, listen to the online and offline status of the application
-		if (isPlatformBrowser(platformId)) {
+		if (this.windowService.isBrowser()) {
 			// Iben: Handle the on and offline status of the application
 			fromEvent(window, 'online')
 				.pipe(

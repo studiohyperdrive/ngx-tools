@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, NEVER, Observable, Subject } from 'rxjs';
+import { NgxWindowService } from '@studiohyperdrive/ngx-core';
 import {
 	NgxStorage,
 	NgxStorageClearEvent,
@@ -9,7 +10,6 @@ import {
 	NgxStorageSetEvent,
 	NgxStorageType,
 } from '../../types';
-import { WindowService } from '../window-service/window.service';
 
 /**
  * A service that provides a SSR-proof Observable based approach to the session- and localStorage.
@@ -35,7 +35,7 @@ export class NgxStorageService {
 	public readonly storageEvents$: Observable<NgxStorageEvent> =
 		this.storageEventSubject.asObservable();
 
-	constructor(private readonly windowService: WindowService) {
+	constructor(private readonly windowService: NgxWindowService) {
 		// Iben: Get the initial values of the session and the local storage
 		windowService.runInBrowser(() => {
 			this.setupStorage(sessionStorage, this.sessionStorageRecord);

@@ -1,4 +1,5 @@
 import { subscribeSpyTo } from '@hirez_io/observer-spy';
+import { NgxWindowService, NgxWindowServiceMock } from '@studiohyperdrive/ngx-core';
 import { MockTourStepComponent, OverlayMock } from '../../mocks';
 import { NgxTourService } from './tour.service';
 
@@ -6,10 +7,17 @@ describe('NgxTourService Server', () => {
 	let service: NgxTourService;
 
 	beforeEach(() => {
-		service = new NgxTourService(OverlayMock(new MockTourStepComponent(service)), 'server', {
-			component: MockTourStepComponent,
-			offset: {},
-		});
+		const windowServiceMock = NgxWindowServiceMock(undefined);
+		jest.spyOn(windowServiceMock, 'isBrowser').mockReturnValue(false);
+
+		service = new NgxTourService(
+			OverlayMock(new MockTourStepComponent(service)),
+			windowServiceMock as unknown as NgxWindowService,
+			{
+				component: MockTourStepComponent,
+				offset: {},
+			}
+		);
 	});
 
 	it('should not start the tour', (done) => {

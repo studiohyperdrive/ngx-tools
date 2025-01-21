@@ -1,5 +1,5 @@
 import { Subscription } from 'rxjs';
-import { windowServiceMock } from '../window-service/window.service.mock';
+import { NgxWindowServiceMock } from '@studiohyperdrive/ngx-core';
 import { NgxBroadcastChannelService } from './broadcast-channel.service';
 
 class MockBroadcastChannel {
@@ -45,7 +45,7 @@ describe('NgxBroadcastChannelService', () => {
 		let subscriptions: Subscription[] = [];
 
 		beforeEach(() => {
-			service = new NgxBroadcastChannelService(windowServiceMock(undefined) as any);
+			service = new NgxBroadcastChannelService(NgxWindowServiceMock(undefined) as any);
 		});
 
 		afterEach(() => {
@@ -223,7 +223,7 @@ describe('NgxBroadcastChannelService', () => {
 	describe('not in browser', () => {
 		let service: NgxBroadcastChannelService;
 
-		const windowService = windowServiceMock(undefined);
+		const windowService = NgxWindowServiceMock(undefined);
 		windowService.runInBrowser = () => {
 			return;
 		};
