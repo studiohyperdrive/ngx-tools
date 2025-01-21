@@ -136,6 +136,8 @@ We can switch between edit mode and view mode by using the `canEdit` Input. Simu
 
 The `stateUpdated` Output will emit whenever a change has been made to the annotations during edit mode, whilst `markerClicked` will emit whenever a marker is clicked during view mode.
 
+By providing both the `zoomLevels` and the `currentZoomLevel` we can adjust how much you can zoom in on to the image, and at which zoom level you wish the image to be.
+
 Additionally, we can pass a set of `markerTypes` we want the MarkerJs package to be restricted to. It's important to know that we need to provide markers for both the view and the edit mode, given they both use different packages and interfaces; being `marker-live` and `markerjs2` respectively.
 
 ### Future improvements

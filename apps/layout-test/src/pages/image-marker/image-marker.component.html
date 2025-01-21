@@ -2,6 +2,8 @@
 	image="assets/klimmuur.webp"
 	imageDescription="Floor-plan of a climbing place"
 	[canEdit]="allowEdit"
+	[zoomLevels]="[0.5, 1, 1.5, 2]"
+	[currentZoomLevel]="1.5"
 	[startState]="currentState"
 	(stateUpdated)="updateState($event)"
 	(markerClicked)="markerClicked()"
