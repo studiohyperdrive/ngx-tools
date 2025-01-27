@@ -1,0 +1,44 @@
+{
+  "name": "ngx-gov-flanders",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/angular/gov/flanders/src",
+  "prefix": "lib",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "options": {
+        "tsConfig": "libs/angular/gov/flanders/tsconfig.lib.json",
+        "project": "libs/angular/gov/flanders/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/angular/gov/flanders/tsconfig.lib.prod.json"
+        }
+      }
+    },
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "main": "libs/angular/gov/flanders/src/test.ts",
+        "tsConfig": "libs/angular/gov/flanders/tsconfig.spec.json",
+        "karmaConfig": "libs/angular/gov/flanders/karma.conf.js",
+        "watch": false
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "lintFilePatterns": ["libs/angular/gov/flanders/**/*.ts", "libs/angular/gov/flanders/**/*.html"]
+      }
+    },
+    "stylelint": {
+      "executor": "nx-stylelint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/angular/gov/flanders/**/*.css"],
+        "formatter": "json"
+      }
+    }
+  }
+}

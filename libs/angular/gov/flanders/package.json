@@ -1,0 +1,38 @@
+{
+  "name": "@studiohyperdrive/ngx-gov-flanders",
+  "version": "0.0.1",
+  "keywords": [
+    "angular",
+    "angular2",
+    "flanders",
+    "flemish",
+    "gov",
+    "government",
+    "global header",
+    "global footer",
+    "acm"
+  ],
+  "homepage": "https://open-source.studiohyperdrive.be/docs/angular/gov/flanders/introduction",
+  "license": "MIT",
+  "author": {
+    "name": "Studio Hyperdrive",
+    "url": "https://studiohyperdrive.be/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/studiohyperdrive/hyperdrive-opensource",
+    "directory": "libs/angular/gov/flanders/src"
+  },
+  "peerDependencies": {
+    "@angular/common": "^19.0.0",
+    "@angular/core": "^19.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.5.0"
+  },
+  "devDependencies": {
+    "@govflanders/vl-widget-global-header-types": "^2.0.4",
+    "@govflanders/vl-widget-global-footer-types": "1.0.17"
+  },
+  "sideEffects": false
+}
