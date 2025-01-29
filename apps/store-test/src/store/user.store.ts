@@ -1,3 +1,4 @@
+import { SignInResponse } from '../interface/authentication.types';
 import { User } from '../interface/user.interface';
 import {
 	StoreFlowAssets,
@@ -13,6 +14,7 @@ interface UserStore extends StoreFlowAssets {
 	paging: BaseStoreAssets<string>;
 	hello: BaseStoreAssets<string>;
 	admins: EntityStoreAssets<User>;
+	authenticationResponse: BaseStoreAssets<SignInResponse>;
 }
 
 export const { actions, reducers, selectors } = createStoreAssets<UserStore>('users', [
@@ -33,5 +35,9 @@ export const { actions, reducers, selectors } = createStoreAssets<UserStore>('us
 		subSlice: 'admins',
 		generator: createEntityAdapterStoreAssets<User>,
 		initialValue: [{ id: 'iben', name: 'Iben' }],
+	},
+	{
+		subSlice: 'authenticationResponse',
+		generator: createBaseStoreAssets<SignInResponse>,
 	},
 ]);

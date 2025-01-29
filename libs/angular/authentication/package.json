@@ -1,0 +1,11 @@
+{
+	"name": "@studiohyperdrive/ngx-auth",
+	"version": "0.0.1",
+	"peerDependencies": {
+		"@angular/core": "^19.0.0",
+		"rxjs": "7.8.1",
+		"@studiohyperdrive/types-auth": "^2.0.0",
+		"@angular/router": "19.0.3"
+	},
+	"sideEffects": false
+}
