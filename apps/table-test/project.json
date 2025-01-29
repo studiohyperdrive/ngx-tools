@@ -4,6 +4,7 @@
 	"projectType": "application",
 	"sourceRoot": "apps/table-test/src",
 	"prefix": "app",
+	"tags": ["test-app"],
 	"generators": {
 		"@schematics/angular:component": {
 			"style": "scss"
