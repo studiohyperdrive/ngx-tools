@@ -11,6 +11,7 @@ import StringCategory from './utils/sub-categories/string/ng-doc.category';
 import FileCategory from './utils/sub-categories/file/ng-doc.category';
 import NumberCategory from './utils/sub-categories/number/ng-doc.category';
 import JavascriptCategory from './ng-doc.category';
+import TypesCategory from './types/ng-doc.category';
 
 export {
 	PaginationCategory,
@@ -26,4 +27,5 @@ export {
 	StringCategory,
 	FileCategory,
 	NumberCategory,
+	TypesCategory,
 };

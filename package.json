@@ -48,8 +48,8 @@
 		"@nx/eslint-plugin": "20.2.1",
 		"@nx/vite": "20.2.2",
 		"@studiohyperdrive/env": "1.0.4",
-		"@studiohyperdrive/utils": "^2.0.0",
 		"@studiohyperdrive/ngx-core": "19.1.0",
+		"@studiohyperdrive/utils": "^2.0.0",
 		"@types/lodash": "4.17.12",
 		"angular2-uuid": "1.1.1",
 		"date-fns": "3.6.0",
@@ -82,6 +82,7 @@
 		"@angular/compiler-cli": "19.0.3",
 		"@hirez_io/observer-spy": "2.2.0",
 		"@nx/angular": "20.2.1",
+		"@nx/esbuild": "20.2.1",
 		"@nx/eslint": "20.2.1",
 		"@nx/jest": "20.2.1",
 		"@nx/js": "20.2.1",
@@ -103,6 +104,7 @@
 		"@typescript-eslint/utils": "^8.11.0",
 		"autoprefixer": "^10.4.20",
 		"browser-sync": "^3.0.0",
+		"esbuild": "^0.19.2",
 		"eslint": "^8.53.0",
 		"eslint-config-prettier": "9.1.0",
 		"eslint-import-resolver-typescript": "3.6.3",
@@ -136,9 +138,13 @@
 		"ts-jest": "^29.2.5",
 		"ts-node": "10.9.2",
 		"typescript": "5.6.3",
+		"verdaccio": "^5.0.4",
 		"vite": "5.4.11",
 		"vite-plugin-dts": "4.3.0",
 		"vite-plugin-static-copy": "2.2.0",
 		"vitest": "2.1.8"
+	},
+	"nx": {
+		"includedScripts": []
 	}
 }

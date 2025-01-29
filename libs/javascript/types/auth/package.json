@@ -1,0 +1,27 @@
+{
+  "name": "@studiohyperdrive/types-auth",
+  "version": "0.0.1",
+  "dependencies": {},
+  "type": "commonjs",
+  "main": "./index.cjs",
+  "typings": "./index.d.ts",
+  "description": "A package containing common authentication related types",
+  "keywords": [
+    "authentication",
+    "user",
+    "session",
+    "features",
+    "permissions"
+  ],
+  "homepage": "https://open-source.studiohyperdrive.be/docs/javascript/types/introduction",
+  "author": {
+    "name": "Studio Hyperdrive",
+    "url": "https://studiohyperdrive.be/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/studiohyperdrive/hyperdrive-opensource",
+    "directory": "libs/javascript/types/auth/src"
+  },
+  "license": "MIT"
+}
