@@ -21,6 +21,7 @@
 			"@js/regex": ["libs/javascript/regex/src/index.ts"],
 			"@js/rxjs": ["libs/javascript/rxjs/src/index.ts"],
 			"@js/testing": ["libs/javascript/testing/src/index.ts"],
+			"@js/types/auth": ["libs/javascript/types/auth/src/index.ts"],
 			"@js/utils": ["libs/javascript/utils/src/index.ts"],
 			"@ng-doc/generated": ["./ng-doc/docs/index.ts"],
 			"@ng-doc/generated/*": ["./ng-doc/docs/*"],

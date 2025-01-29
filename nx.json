@@ -69,6 +69,11 @@
 		"stylelint": {
 			"inputs": ["default", "{workspaceRoot}/.stylelintrc(.(json|yml|yaml|js))?"],
 			"cache": true
+		},
+		"@nx/esbuild:esbuild": {
+			"cache": true,
+			"dependsOn": ["^build"],
+			"inputs": ["production", "^production"]
 		}
 	},
 	"generators": {
@@ -87,5 +92,18 @@
 			"unitTestRunner": "jest"
 		}
 	},
-	"useLegacyCache": true
+	"useLegacyCache": true,
+	"release": {
+		"version": {
+			"preVersionCommand": "npx nx run-many -t build"
+		}
+	},
+	"plugins": [
+		{
+			"plugin": "@nx/eslint/plugin",
+			"options": {
+				"targetName": "eslint:lint"
+			}
+		}
+	]
 }

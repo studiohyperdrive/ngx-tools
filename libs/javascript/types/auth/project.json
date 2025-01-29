@@ -1,0 +1,34 @@
+{
+	"name": "js-types-auth",
+	"$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "libs/javascript/types/auth/src",
+	"projectType": "library",
+	"release": {
+		"version": {
+			"generatorOptions": {
+				"packageRoot": "dist/{projectRoot}",
+				"currentVersionResolver": "git-tag"
+			}
+		}
+	},
+	"tags": [],
+	"targets": {
+		"build": {
+			"executor": "@nx/esbuild:esbuild",
+			"outputs": ["{options.outputPath}"],
+			"options": {
+				"outputPath": "dist/libs/javascript/types/auth",
+				"main": "libs/javascript/types/auth/src/index.ts",
+				"tsConfig": "libs/javascript/types/auth/tsconfig.lib.json",
+				"format": ["cjs"],
+				"assets": ["libs/javascript/types/auth/*.md"],
+				"generatePackageJson": true
+			}
+		},
+		"nx-release-publish": {
+			"options": {
+				"packageRoot": "dist/{projectRoot}"
+			}
+		}
+	}
+}
