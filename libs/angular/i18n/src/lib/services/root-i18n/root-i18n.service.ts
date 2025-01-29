@@ -2,7 +2,6 @@ import { Inject, Injectable } from '@angular/core';
 import { BehaviorSubject, filter, Observable } from 'rxjs';
 import { NgxWindowService } from '@studiohyperdrive/ngx-core';
 
-import { NgxStorageService } from '@ngx/utils';
 import { NgxI18nConfiguration } from '../../i18n.types';
 import { NgxI18nConfigurationToken } from '../../tokens';
 
@@ -42,9 +41,8 @@ export class NgxI18nRootService {
 
 	constructor(
 		@Inject(NgxI18nConfigurationToken)
-		private readonly windowsService: NgxWindowService,
-		private readonly storageService: NgxStorageService,
-		private readonly configuration: NgxI18nConfiguration
+		private readonly configuration: NgxI18nConfiguration,
+		private readonly windowsService: NgxWindowService
 	) {
 		// Iben: Set the initial values so that we can refer to the services as the source of truth
 		this.defaultLanguage = configuration.defaultLanguage;
@@ -75,9 +73,9 @@ export class NgxI18nRootService {
 		const newLanguage = this.getNewLanguage(language);
 
 		// Iben: Save the current language to the localStorage when we're in the browser
-		if (this.windowsService.isBrowser()) {
-			this.storageService.localStorage.setItem('ngx-i18n-language', newLanguage);
-		}
+		this.windowsService.runInBrowser(() => {
+			localStorage.setItem('ngx-i18n-language', newLanguage);
+		});
 
 		// Iben: Update the subject
 		this.currentLanguageSubject.next(newLanguage);
@@ -97,11 +95,9 @@ export class NgxI18nRootService {
 		// Iben: If the current language does not exist, we check if it exists in the local storage, if not, we use the default config
 		let language = this.defaultLanguage;
 
-		if (this.windowsService.isBrowser()) {
-			language =
-				this.storageService.localStorage.getItem('ngx-i18n-language') ||
-				this.defaultLanguage;
-		}
+		this.windowsService.runInBrowser(() => {
+			language = localStorage.getItem('ngx-i18n-language') || this.defaultLanguage;
+		});
 
 		// Iben: We set the new language
 		this.setCurrentLanguage(language);
