@@ -4,7 +4,7 @@
 	"projectType": "application",
 	"prefix": "app",
 	"sourceRoot": "apps/docs/src",
-	"tags": [],
+	"tags": ["docs"],
 	"targets": {
 		"build": {
 			"executor": "@ng-doc/builder:application",

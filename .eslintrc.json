@@ -96,7 +96,11 @@
 						"allow": [],
 						"depConstraints": [
 							{
-								"sourceTag": "*",
+								"sourceTag": "test-app",
+								"onlyDependOnLibsWithTags": ["*"]
+							},
+							{
+								"sourceTag": "docs",
 								"onlyDependOnLibsWithTags": ["*"]
 							}
 						]

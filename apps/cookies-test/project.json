@@ -4,7 +4,7 @@
 	"projectType": "application",
 	"prefix": "app",
 	"sourceRoot": "apps/cookies-test/src",
-	"tags": [],
+	"tags": ["test-app"],
 	"targets": {
 		"build": {
 			"executor": "@ng-doc/builder:application",
