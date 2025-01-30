@@ -104,6 +104,17 @@
 			"options": {
 				"targetName": "eslint:lint"
 			}
+		},
+		{
+			"plugin": "@nx/vite/plugin",
+			"options": {
+				"buildTargetName": "vite:build",
+				"testTargetName": "vite:test",
+				"serveTargetName": "serve",
+				"previewTargetName": "preview",
+				"serveStaticTargetName": "serve-static",
+				"typecheckTargetName": "typecheck"
+			}
 		}
 	]
 }

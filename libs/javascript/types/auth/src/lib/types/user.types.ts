@@ -23,9 +23,14 @@ export interface AuthenticatedUserSession<
  * A base type for an authentication request, providing the authenticated user and optional session and metadata.
  *
  * @template UserType - The type of the authenticated user
+ * @template SessionType - An optional type of the session
  * @template MetadataType - An optional type of the metadata
  */
-export interface AuthenticationResponse<UserType, MetadataType = any> {
+export interface AuthenticationResponse<
+	UserType,
+	SessionType extends AuthenticatedUserSession = AuthenticatedUserSession,
+	MetadataType = any,
+> {
 	/**
 	 * The authenticated user
 	 */
@@ -33,7 +38,7 @@ export interface AuthenticationResponse<UserType, MetadataType = any> {
 	/**
 	 * An optional set of session related data
 	 */
-	session?: AuthenticatedUserSession;
+	session?: SessionType;
 	/**
 	 * The optional set of metadata
 	 */
