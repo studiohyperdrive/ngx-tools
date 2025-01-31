@@ -1,6 +1,6 @@
 {
 	"name": "@studiohyperdrive/utils",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"description": "A package containing common Javascript utils.",
 	"keywords": [
 		"file",
