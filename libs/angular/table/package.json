@@ -28,7 +28,7 @@
 	"license": "MIT",
 	"peerDependencies": {
 		"@angular/common": "^19.0.0",
-		"@angular/core": "^^19.0.0",
+		"@angular/core": "^19.0.0",
 		"@angular/forms": "^19.0.0",
 		"@angular/cdk": "^19.0.0",
 		"dot-prop": "^9.0.0",
