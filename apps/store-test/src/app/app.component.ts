@@ -1,22 +1,43 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { tap } from 'rxjs';
 import { actions, selectors } from '../store/user.store';
 import { CoursesService } from '../services/courses.service';
+import { AuthenticationService } from '../services/authentication.service';
+import {
+	NgxHasFeatureDirective,
+	NgxHasPermissionDirective,
+	NgxIsAuthenticatedDirective,
+} from '@ngx/auth';
 
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
 	styleUrls: ['./app.component.scss'],
-	standalone: true,
+	imports: [NgxHasFeatureDirective, NgxHasPermissionDirective, NgxIsAuthenticatedDirective],
 })
 export class AppComponent implements OnInit {
 	title = 'store-test';
 
+	user = toSignal(this.authenticationService.user$);
+	session = toSignal(this.authenticationService.session$);
+
 	constructor(
 		private readonly store: Store,
-		private readonly courseService: CoursesService
-	) {}
+		private readonly courseService: CoursesService,
+		private readonly authenticationService: AuthenticationService
+	) {
+		this.authenticationService.setGlobalFeatures(['B']);
+	}
+
+	signIn(): void {
+		this.authenticationService.signIn(undefined).subscribe();
+	}
+
+	signOut(): void {
+		this.authenticationService.signOut().subscribe();
+	}
 
 	ngOnInit() {
 		this.store.dispatch(actions.users.effects.set());

@@ -10,3 +10,8 @@
 		>
 	</p>
 </div>
+<p *ngxHasFeature="'A'">I have the feature!</p>
+<p *ngxHasPermission="'Admin'">I have the permission!</p>
+
+<button *ngxIsAuthenticated="false" (click)="signIn()">Sign in</button>
+<button *ngxIsAuthenticated="true" (click)="signOut()">Sign out</button>

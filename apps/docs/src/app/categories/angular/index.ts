@@ -21,6 +21,7 @@ import UtilsServicesCategory from './utils/sub-categories/services/ng-doc.catego
 import CoreServicesCategory from './core/sub-categories/services/ng-doc.category';
 import CoreCategory from './core/ng-doc.category';
 import UtilsUtilsCategory from './utils/sub-categories/utils/ng-doc.category';
+import AuthenticationCategory from './authentication/ng-doc.category';
 
 export {
 	AngularCategory,
@@ -46,4 +47,5 @@ export {
 	CoreServicesCategory,
 	CoreCategory,
 	UtilsUtilsCategory,
+	AuthenticationCategory,
 };

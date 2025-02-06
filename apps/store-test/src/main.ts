@@ -9,6 +9,8 @@ import { reducers as coursesReducers } from './store/courses.store';
 import { reducers } from './store/user.store';
 import { CoursesService } from './services/courses.service';
 import { UserService } from './services/users.service';
+import { AuthenticationService } from './services/authentication.service';
+import { provideNgxAuthenticationConfiguration } from '@ngx/auth';
 
 bootstrapApplication(AppComponent, {
 	providers: [
@@ -23,5 +25,8 @@ bootstrapApplication(AppComponent, {
 		),
 		UserService,
 		CoursesService,
+		provideNgxAuthenticationConfiguration({
+			service: AuthenticationService,
+		}),
 	],
 }).catch((err) => console.error(err));
