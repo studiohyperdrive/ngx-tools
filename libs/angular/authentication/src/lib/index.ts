@@ -5,3 +5,4 @@ export * from './pipes';
 export * from './types';
 export * from './providers';
 export * from './mocks';
+export * from './services';

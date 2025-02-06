@@ -4,8 +4,8 @@
 	"peerDependencies": {
 		"@angular/core": "^19.0.0",
 		"rxjs": "7.8.1",
-		"@studiohyperdrive/types-auth": "^2.0.0",
-		"@angular/router": "19.0.3"
+		"@angular/common": "19.0.3",
+		"obj-clean": "3.0.1"
 	},
 	"sideEffects": false
 }

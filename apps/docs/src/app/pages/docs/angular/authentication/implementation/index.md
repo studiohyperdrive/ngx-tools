@@ -4,7 +4,7 @@ keyword: ImplementationPage
 
 ## Setup
 
-In order to use `ngx-auth`, we use the `provideNgxAuthenticationConfiguration` provider that requires an implementation of the `NgxAuthenticationAbstractService` to provide the service to the application. We advise you to provide this in the root of your application.
+In order to use `ngx-auth`, we use the `provideNgxAuthenticationConfiguration` provider that requires an implementation of the `NgxAuthenticationAbstractService` to provide the service to the application. We advise you to provide this in the `bootstrapApplication` of your project.
 
 ```ts
 providers: [
@@ -68,6 +68,55 @@ The services provides access to the user, session and metadata by providing the 
 
 By default, features are provided on a user basis. However, we are aware that certain features might be set globally regardless of the authentication status of the user. You can do so be calling the `setGlobalFeatures` method. These features will always be available to any user, anonymous or not.
 
+## NgxAuthenticatedHttpClient
+
+Additionally, you can use the `NgxAuthenticatedHttpClient` to further enhance your developer experience. Given its opinionated nature, it's entirely optional withing the `ngx-auth` package.
+
+By providing additional `httpClientConfiguration` to the `provideNgxAuthenticationConfiguration` function, as seen below, we can now use the `HttpClient` wrapper. We no longer have to provide the `HttpClient` itself by calling `provideHttpClient`, this is done automatically by the configuration provider.
+
+```ts
+providers: [
+    ...,
+    provideNgxAuthenticationConfiguration({
+        service: YourAuthenticationService,
+        httpClientConfiguration: {
+            baseUrl: () => environment.baseUrl,
+            interceptors: [MyCustomInterceptor],
+            authenticatedCallHandler: MyAuthenticatedCallHandler
+        }
+        })
+]
+
+```
+
+The configuration has three optional items. `baseUrl` is a function that will be called at injection time and provides the base url we'll add to each request url. We do this according to the `baseurl/request-url` pattern.
+
+Using the optional `interceptors`, we can provide other custom made interceptors to the application. By providing `authenticatedCallHandler` we can make changes to any request that is considered an authenticated request, which will be explained further below.
+
+The `NgxAuthenticatedHttpClient` comes with two added benefits. On one hand, it automatically adds a base-url to all of your request calls. On the other, it integrates with the `NgxAuthenticatedHttpInterceptor` which will automatically call your interceptor function whenever a call with authentication is made.
+
+Our `HttpClient` wrapper provides an implementation for `get`, `post`, `push`, `patch` and `delete` calls. On top of that, it also provides an extra method, `download`, which adds extra information to a `GET` request specifically for downloading `Blobs`. In the example below you see can see the `get` method in action.
+
+```ts
+const httpClient = inject(NgxAuthenticatedHttpClient);
+
+public getData(): Observable<Data> {
+    return httpClient.get<Data>('get-data')
+}
+```
+
+In the example above we do a simple get call to fetch data from an end-point. We have the ability to pass params as the second parameter.
+
+As this is an opinionated wrapper, we assume that most calls are made within an authenticated state. Because of that, the base assumption is that we can set the `withCredentials` flag to true by default. In the example below, we show how you can overwrite that.
+
+```ts
+const httpClient = inject(NgxAuthenticatedHttpClient);
+
+public loginUser(data: HttParams): Observable<Data> {
+    return httpClient.post<Data>('login', data, false )
+}
+```
+
 ## Guards
 
 All guards depend on being provided specific data in the `data` block of the route. We strongly advise to type your routes as the provided `NgxAuthenticatedRoute` instead of the default `Route`. This way, you'll ensure that your routes always provide the necessary data for the guards.
@@ -127,9 +176,7 @@ The `ngxHasFeature`and `ngxHasPermission` directives have added options to handl
 <p *ngxHasPermission="['Admin']; shouldHavePermission: false">
 	I will be shown if the user is not an Admin!
 </p>
-<p *ngxIsAuthenticated="true">
-	I will be shown if the user is authenticated!
-</p>
+<p *ngxIsAuthenticated="true">I will be shown if the user is authenticated!</p>
 ```
 
 ## Pipes
