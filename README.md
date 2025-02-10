@@ -6,6 +6,9 @@
 
 To setup this project, clone the repo and run `npm i` to install the dependencies.
 
+## Documentation
+You can find the documentation for all of our packages on our [Documentation Website](https://open-source.studiohyperdrive.be/).
+
 ### NPM
 
 The available command are:
